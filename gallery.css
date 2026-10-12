@@ -1,0 +1,128 @@
+/* A quiet paper surface; artwork keeps its own palette. */
+:root {
+  --paper: #f7f3e9;
+  --ink: #173f3d;
+  --muted: #526b63;
+  --line: #cbd5c8;
+  --red: #21645e;
+  --green: #164f4c;
+  --sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+body { background: var(--paper) url('assets/paper.svg') repeat; }
+.site-header { border-bottom-color: #bbcdbf; }
+.monogram { color: #21645e; }
+.site-header nav a { padding-block: 8px; }
+.welcome { padding-block: 55px 40px; isolation: isolate; }
+.welcome::before {
+  content: ''; position: absolute; z-index: -1; pointer-events: none;
+  inset: 5px auto auto -25px; width: min(460px, 90%); height: 155px;
+  background: url('assets/wash.svg') center / 100% 100% no-repeat;
+  opacity: .65; transform: rotate(-3deg);
+}
+.welcome h1 { font-family: var(--sans); font-weight: 500; letter-spacing: -1.9px; }
+.welcome-copy { max-width: 530px; }
+.welcome-note { color: #2f7165; }
+.eyebrow { letter-spacing: .035em; text-transform: none; font-weight: 400; }
+.section-line { border: 0; margin-bottom: 20px; }
+.section-line h2 { font: 500 18px/1.3 var(--sans); letter-spacing: -.3px; text-transform: none; }
+.section-line > span { letter-spacing: 0; font-size: 12px; }
+.worktable {
+  grid-template-columns: 1.18fr 1fr .94fr;
+  grid-template-areas: 'cranes experiment teaching' 'cranes experiment illustration';
+  gap: 28px; align-items: start;
+}
+.cranes { grid-area: cranes; padding-top: 10px; }
+.experiment { grid-area: experiment; margin-top: 28px; }
+.teaching { grid-area: teaching; margin-top: 0; }
+.illustration { grid-area: illustration; margin-top: 0; }
+.art-stage {
+  padding: 0; aspect-ratio: 1; border: 10px solid #fffdf7;
+  outline: 1px solid #d7d6c9; transform: rotate(-1deg);
+}
+.art-stage img { object-fit: contain; }
+.image-note { display: none; }
+.piece-caption { padding: 18px 4px 0; }
+.piece-caption h3 { font: 500 24px/1.23 var(--sans); letter-spacing: -.65px; }
+.piece-caption .eyebrow { font-size: 12px; margin-bottom: 7px; }
+.open-arrow {
+  color: #21645e; background: #e2e9d7;
+  width: 34px; height: 34px; border-radius: 48% 52% 46% 54%;
+  display: grid; place-items: center; flex: 0 0 auto; font-size: 23px;
+}
+.experiment {
+  color: #f5f3df; background: #164f4c url('assets/paper.svg');
+  border-radius: 3px 8px 4px 2px; position: relative;
+}
+.experiment::before {
+  content: ''; position: absolute; pointer-events: none; left: 3%; right: 2%;
+  top: -5px; height: 12px; background: #164f4c;
+  clip-path: polygon(0 50%, 9% 27%, 21% 44%, 36% 12%, 52% 38%, 69% 16%, 88% 32%, 100% 0, 100% 100%, 0 100%);
+}
+.experiment-link { min-height: 485px; padding: 25px; }
+.piece-number { font-size: 11px !important; letter-spacing: .025em; text-transform: none; }
+.experiment .piece-number { max-width: none; color: #d0e0cf; }
+.experiment h3 { font: 500 clamp(26px,2.5vw,34px)/1.2 var(--sans); letter-spacing: -.9px; }
+.experiment h3 em { font-family: var(--serif); font-weight: 400; color: #e8d8a2; }
+.status { font-size: 11px; color: #f5f3df; border-color: #8fae9c; }
+.experiment-intro { font-size: 14px; color: #edf1df; }
+.experiment-bottom { font-size: 11px; }
+.experiment .open-arrow { background: #3b7066; color: #f5f3df; }
+.sketch-label { color: #e0e9d6; font-size: 14px; }
+.sketch-end { color: #e0e9d6; font-size: 11px; }
+.teaching {
+  background: #e4ebd8 url('assets/paper.svg'); border: 1px solid #c9d6bd;
+  border-radius: 2px 6px 3px 5px; transform: rotate(.6deg);
+}
+.teaching-link { min-height: 315px; padding: 20px 23px; }
+.teaching .piece-number { color: #4f6656; }
+.teaching h3 { font: 500 28px/1.17 var(--sans); letter-spacing: -.7px; margin-top: 15px; }
+.teaching-link > p { font-size: 14px; }
+.teaching-note { padding-block: 15px; color: #245f51; }
+.teaching-bottom { font-size: 11px; }
+.illustration { transform: rotate(-.6deg); }
+.illustration-stage { padding: 0; border: 8px solid #fffdf7; outline: 1px solid #d7d6c9; }
+.illustration .piece-caption { padding: 13px 3px 0; }
+.illustration .eyebrow { font-size: 11px; }
+.illustration h3 { font: 500 22px/1.2 var(--sans); letter-spacing: -.5px; }
+.between { margin-top: 50px; padding-block: 33px; border-top: 0; }
+.between::before {
+  content: ''; position: absolute; top: 0; left: 0; height: 5px; width: 100%;
+  background: #a9c1a5; opacity: .65;
+  clip-path: polygon(0 40%, 17% 12%, 35% 33%, 58% 0, 76% 35%, 100% 15%, 100% 70%, 71% 100%, 43% 65%, 18% 95%, 0 80%);
+}
+.between h2 { font: 400 25px/1.35 var(--sans); letter-spacing: -.6px; }
+.between-doodle { color: #5a8978; opacity: .75; }
+.contact { border-top-color: #bbcdbf; }
+.contact h2 { font-family: var(--sans); font-weight: 500; }
+.contact-links a:hover { background: #e5eadb; }
+.site-footer { align-items: center; flex-wrap: wrap; }
+.design-note { flex-basis: 100%; padding-top: 8px; max-width: 680px; font-size: 13px; color: var(--ink); }
+.design-note summary { cursor: pointer; width: fit-content; padding-block: 8px; text-decoration: underline; text-underline-offset: 4px; }
+.design-note summary:focus-visible { outline: 3px solid var(--red); outline-offset: 4px; }
+.design-note p { line-height: 1.8; margin: 10px 0; }
+.dialog-content { background: var(--paper); }
+.dialog-content h2, .story h2, .dialog-content h3, .story h3 { font-family: var(--sans); font-weight: 500; }
+@media (min-width:1450px) { .experiment-link { min-height: 520px; } }
+@media (max-width:1050px) {
+  .worktable { grid-template-columns: 1fr 1fr; grid-template-areas: 'cranes experiment' 'teaching illustration'; gap: 32px; }
+  .teaching, .illustration { margin-top: 0; }
+  .teaching-link { min-height: 330px; }
+}
+@media (max-width:640px) {
+  .welcome { padding-block: 34px 26px; }
+  .welcome::before { left: -10px; width: 320px; height: 125px; }
+  .section-line > span { font-size: 10px; }
+  .section-line h2 { font-size: 17px; }
+  .worktable { grid-template-columns: 1fr; grid-template-areas: 'cranes' 'experiment' 'teaching' 'illustration'; gap: 32px; }
+  .cranes { padding-top: 0; }
+  .experiment { margin-top: 6px; }
+  .experiment-link { min-height: 455px; padding: 25px 27px; }
+  .experiment h3 { font-size: 33px; }
+  .teaching { margin-inline: 3px; }
+  .teaching-link { min-height: 310px; }
+  .between { padding-right: 45px; }
+  .between h2 { font-size: 22px; }
+  .site-footer .design-note { order: 4; }
+}
+@media (prefers-contrast:more) { body, .experiment, .teaching { background-image: none; } .welcome::before { display:none; } }
+@media print { body { background: white; } .welcome::before { display:none; } }
