@@ -1,30 +1,81 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Michael Tran</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f2eb">
+  <meta name="description" content="Michael Tran's corner of the internet. Explore drawings, game experiments, teaching, and the thinking behind them.">
+  <title>Michael Tran — a few things I've made</title>
+  <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="home.css">
+  <script src="home.js" defer></script>
 </head>
 <body>
-    <!-- Placeholder for the header -->
-    <div id="header-placeholder"></div>
-    
-    <section id="intro">
-        <div class="intro-container">
-            <div class="intro-text">
-                <h2>Hello!</h2>
-                <p>I'm Michael Tran, a Computer Science graduate from Princeton University with a Bachelor's degree in Science and Engineering. My passion lies in the intersection of technology and creativity. I specialize in front-end development, where I can bring my designs to life and create seamless user experiences.</p>
-                <p>Beyond coding, I've had successful design projects and enjoy practicing arts such as drawing and animation in my free time.</p>
-            </div>
-            <div class="intro-image">
-                <img src="LandingImg.png" alt="Landing Image">  
-            </div>
-        </div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header wrap">
+    <a class="identity" href="#" aria-label="Michael Tran, home"><span class="monogram" aria-hidden="true">mt<span>✳</span></span><span>Michael Tran</span></a>
+    <nav aria-label="Main navigation"><a href="#work">Have a look around</a><a href="#contact">Say hello <span aria-hidden="true">↗</span></a></nav>
+  </header>
+
+  <main id="main" class="wrap">
+    <section class="welcome" aria-labelledby="welcome-title">
+      <div><p class="eyebrow">A small corner of the internet</p><h1 id="welcome-title">Hi, I'm Michael.</h1></div>
+      <p class="welcome-copy">I make things, help people learn, and follow my curiosity.<br class="wide-only"> Some of that turns into code. Some of it ends up on a T-shirt.</p>
+      <span class="welcome-note">A few things to start with <span aria-hidden="true">↙</span></span>
     </section>
-    <!-- Placeholder for the footer -->
-    <div id="footer-placeholder"></div>
-    
-    <script src="script.js"></script>
+
+    <section id="work" aria-labelledby="work-title">
+      <div class="section-line"><h2 id="work-title">On the table</h2><span>Selected work & ongoing questions</span></div>
+      <div class="worktable">
+        <article class="piece cranes">
+          <a class="piece-link" href="#scully-story" data-story="scully-story" aria-label="Open Scully co-op: a little community, a shared design">
+            <div class="art-stage"><span class="piece-number">01 / MADE FOR PEOPLE</span><img src="assets/scully-cranes.webp" width="1100" height="1100" alt="Three pink origami cranes arranged diagonally beneath Scully co-op lettering on a charcoal background." fetchpriority="high"><span class="image-note">Scully co-op / shirt artwork</span></div>
+            <div class="piece-caption"><div><p class="eyebrow">Community & graphic design</p><h3>A little community.<br>A shared design.</h3></div><span class="open-arrow" aria-hidden="true">↗</span></div>
+          </a>
+        </article>
+
+        <article class="piece experiment">
+          <a class="piece-link experiment-link" href="#game-story" data-story="game-story">
+            <div class="experiment-top"><span class="piece-number">02 / A QUESTION WORTH BUILDING</span><span class="status">In progress</span></div>
+            <h3>What if the strategy<br>was in the <em>decisions?</em></h3>
+            <p class="experiment-intro">A game-design question.<br>A system to explore it.<br>A working prototype.</p>
+            <div class="decision-sketch" aria-hidden="true"><span class="sketch-label">A thought, mapped out</span><div class="sketch-start">notice</div><div class="sketch-branches"><span>protect</span><span>reposition</span><span>act</span></div><div class="sketch-end">learn from what happens</div></div>
+            <div class="experiment-bottom"><span>Game design · systems thinking</span><span class="open-arrow" aria-hidden="true">↗</span></div>
+          </a>
+        </article>
+
+        <article class="piece teaching">
+          <a class="piece-link teaching-link" href="#teaching-story" data-story="teaching-story">
+            <div class="teaching-top"><span class="piece-number">03 / PEOPLE FIRST</span><span class="small-star" aria-hidden="true">✳</span></div>
+            <h3>Another way<br>to explain it.</h3>
+            <p>As a private tutor, I help students find a way into ideas that haven't clicked yet.</p>
+            <div class="teaching-note"><span aria-hidden="true">↳</span><p>Different students.<br>Different starting points.</p></div>
+            <div class="teaching-bottom"><span>Teaching & accessibility</span><span class="open-arrow" aria-hidden="true">↗</span></div>
+          </a>
+        </article>
+
+        <article class="piece illustration">
+          <a class="piece-link" href="#illustration-story" data-story="illustration-story" aria-label="Open illustration: room for a different kind of thinking">
+            <div class="illustration-stage"><span class="piece-number">04 / ANOTHER MEDIUM</span><img src="assets/rita-moreno.webp" width="1100" height="800" alt="Rita Moreno illustrated in a flowing pink dress, with pink serif lettering on a muted purple background." loading="lazy"></div>
+            <div class="piece-caption"><div><p class="eyebrow">Illustration & composition</p><h3>Room for a different<br>kind of thinking.</h3></div><span class="open-arrow" aria-hidden="true">↗</span></div>
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <section class="between" aria-labelledby="between-title"><p class="eyebrow">And in between</p><h2 id="between-title">There’s also cooking, baking,<br>my dog, and opinions about games.</h2><p>They’re part of the picture, too.</p><span class="between-doodle" aria-hidden="true">&</span></section>
+
+    <section id="contact" class="contact" aria-labelledby="contact-title"><div><p class="eyebrow">Keep in touch</p><h2 id="contact-title">Say hello.</h2><p>For opportunities, collaborations, or a good conversation.</p></div><div class="contact-links"><a href="mailto:michaelhtran333@gmail.com">michaelhtran333@gmail.com <span aria-hidden="true">↗</span></a><a href="https://www.linkedin.com/in/mhtranse/">LinkedIn <span aria-hidden="true">↗</span></a><a href="https://github.com/mhtran3">GitHub <span aria-hidden="true">↗</span></a></div></section>
+    <footer class="site-footer"><span>Michael Tran</span><span>A work in progress, in the best sense.</span><a href="#">Back to the top ↑</a></footer>
+
+    <section class="story-library" aria-label="More about the work">
+      <article id="scully-story" class="story"><p class="eyebrow">Community & graphic design</p><h2>A little community. A shared design.</h2><img src="assets/scully-cranes.webp" width="1100" height="1100" alt="Scully co-op shirt design featuring pink origami cranes." loading="lazy"><p>This shirt artwork brings together origami cranes and lettering for Scully co-op, the Princeton cooperative where I served as co-president.</p><p>The design is one part of a broader practice that includes illustration and occasional freelance graphic design.</p><p class="story-credit">Scully co-op · shirt artwork</p><a class="story-return" href="#work">Back to the collection ↑</a></article>
+      <article id="game-story" class="story"><p class="eyebrow">Game design & systems thinking / ongoing</p><h2>What if the strategy was in the decisions?</h2><p>I wanted to explore a different kind of strategy in an autobattler: what if training a unit and shaping its choices mattered as much as choosing a team and placing it on a board?</p><h3>The question</h3><p>I was interested in units that could make meaningful decisions and move freely, with skillsets shaped by the player rather than fixed classes.</p><h3>From an idea to a prototype</h3><p>I defined the problem, planned the gameplay systems, and directed AI-assisted development of a working Godot prototype. My contribution centers on game design, system decisions, testing, and iteration.</p><h3>Where it stands</h3><p>It is an ongoing Pokémon fan-game prototype, not a finished commercial release. The work I want to share is the process of turning a design question into a system I can test.</p><p class="story-credit">The diagram on the homepage is an explanatory sketch, not a gameplay capture or a representation of the exact implementation.</p><a class="story-return" href="#work">Back to the collection ↑</a></article>
+      <article id="teaching-story" class="story"><p class="eyebrow">Teaching & accessibility</p><h2>Another way to explain it.</h2><p>I currently tutor students in mathematics, SAT preparation, and academic writing. My work involves understanding where a student is starting, adapting explanations, and planning practice around what they need.</p><h3>A thread through my work</h3><p>At Princeton, I worked with faculty on an introductory Java and Python curriculum for first-generation students. During my software engineering internship at Rubrik, I evaluated front-end accessibility, implemented fixes, and documented recommendations for the team.</p><p>These are different settings for a recurring interest: helping people get access to something that can otherwise feel difficult to approach.</p><p class="story-credit">The internship is described from experience; internal project files are not available here.</p><a class="story-return" href="#work">Back to the collection ↑</a></article>
+      <article id="illustration-story" class="story"><p class="eyebrow">Illustration & composition</p><h2>Room for a different kind of thinking.</h2><img src="assets/rita-moreno.webp" width="1100" height="800" alt="Illustration of Rita Moreno in pink with large decorative lettering." loading="lazy"><p>An illustration of Rita Moreno, combining a figure study with a typographic composition.</p><p>Drawing, graphic design, and animation are part of my work alongside technology. I like having room for the medium and the visual approach to change from one piece to another.</p><p class="story-credit">Rita Moreno · digital illustration</p><a class="story-return" href="#work">Back to the collection ↑</a></article>
+    </section>
+  </main>
+
+  <dialog id="story-dialog" aria-labelledby="dialog-title"><div class="dialog-bar"><span>From the collection</span><button type="button" id="close-dialog" aria-label="Close project details">Close <span aria-hidden="true">×</span></button></div><div id="dialog-content" class="dialog-content"></div></dialog>
 </body>
 </html>
