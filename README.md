@@ -10,7 +10,9 @@ No build step, third-party JavaScript, analytics, external fonts, or runtime dep
 
 ## Assets and scope
 
-The two WebP previews are optimized copies of existing public artwork in `(public)/MyArt/`. Original files are preserved. The decision diagram is an explanatory website illustration, not a game screenshot. Private planning notes, unreviewed Drive photographs, student materials, and sensitive autobiographical content are excluded from this landing page.
+The displayed WebP previews are optimized copies of existing public artwork in `(public)/MyArt/`: Scully co-op shirt artwork and the wave-patterned skateboard study. The skateboard card shows a labeled detail; its dialog shows the complete study, with the Hokusai reference identified. Original files are preserved. The previous Rita Moreno asset is retained but is no longer displayed on the homepage.
+
+The education card covers community tutoring access, curriculum development, advising, and teaching. The development card describes concrete combat AI choices and a readiness fallback verified in the local project, with Michael's AI-assisted role stated and playability presented as an ongoing evaluation. Private planning notes, unreviewed Drive photographs, student materials, and sensitive autobiographical content are excluded from this landing page.
 
 This first version provides a foundation for future project pages and everyday-life material. Links are limited to implemented sections and real contact destinations.
 

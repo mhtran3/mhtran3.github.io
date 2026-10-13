@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f2e9d9">
-  <meta name="description" content="Michael Tran's corner of the internet. Explore drawings, game experiments, teaching, and the thinking behind them.">
-  <title>Michael Tran — a few things I've made</title>
+  <meta name="description" content="Michael Tran's corner of the internet. Explore artwork, combat AI design, and work to make quality education more accessible.">
+  <title>Michael Tran — art, education, and technology</title>
   <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
   <link rel="stylesheet" href="home.css">
   <link rel="stylesheet" href="gallery.css">
@@ -26,7 +26,7 @@
     </section>
 
     <section id="work" aria-labelledby="work-title">
-      <div class="section-line"><h2 id="work-title">A few things I’ve made</h2><span>Pick a piece. Take a closer look.</span></div>
+      <div class="section-line"><h2 id="work-title">A few things I work on</h2><span>Pick a piece. Take a closer look.</span></div>
       <div class="worktable">
         <article class="piece cranes">
           <a class="piece-link" href="#scully-story" data-story="scully-story" aria-label="Open the Scully co-op shirt design">
@@ -37,28 +37,32 @@
 
         <article class="piece experiment">
           <a class="piece-link experiment-link" href="#game-story" data-story="game-story">
-            <div class="experiment-top"><span class="piece-number">A game experiment</span><span class="status">In progress</span></div>
-            <h3>What if the strategy<br>was in the <em>decisions?</em></h3>
-            <p class="experiment-intro">A game-design question.<br>A system to explore it.<br>A working prototype.</p>
-            <div class="decision-sketch" aria-hidden="true"><span class="sketch-label">A thought, mapped out</span><div class="sketch-start">notice</div><div class="sketch-branches"><span>protect</span><span>reposition</span><span>act</span></div><div class="sketch-end">learn from what happens</div></div>
-            <div class="experiment-bottom"><span>Game design · systems thinking</span><span class="open-arrow" aria-hidden="true">↗</span></div>
+            <div class="experiment-top"><span class="piece-number">Development / combat AI</span><span class="status">In progress</span></div>
+            <h3>Balancing combat AI<br>and playability.</h3>
+            <p class="experiment-intro">Training should change how a unit makes decisions. The challenge is making that depth understandable and enjoyable to play.</p>
+            <dl class="engineering-notes">
+              <div><dt>System design</dt><dd>Movement and skill selection run separately, using shared information about the fight.</dd></div>
+              <div><dt>Robustness</dt><dd>A high-scoring ability can still be unavailable. A fallback checks for a ready action.</dd></div>
+              <div><dt>Still evaluating</dt><dd>How much tactical complexity improves the experience, and when it gets in the way.</dd></div>
+            </dl>
+            <div class="experiment-bottom"><span>Godot 4 · AI-assisted prototype</span><span class="open-arrow" aria-hidden="true">↗</span></div>
           </a>
         </article>
 
         <article class="piece teaching">
           <a class="piece-link teaching-link" href="#teaching-story" data-story="teaching-story">
-            <div class="teaching-top"><span class="piece-number">From my tutoring work</span><span class="small-star" aria-hidden="true">✳</span></div>
-            <h3>Another way<br>to explain it.</h3>
-            <p>As a private tutor, I help students find a way into ideas that haven't clicked yet.</p>
-            <div class="teaching-note"><span aria-hidden="true">↳</span><p>Different students.<br>Different starting points.</p></div>
-            <div class="teaching-bottom"><span>Teaching & accessibility</span><span class="open-arrow" aria-hidden="true">↗</span></div>
+            <div class="teaching-top"><span class="piece-number">Education & community</span><span class="small-star" aria-hidden="true">✳</span></div>
+            <h3>Quality education<br>within reach.</h3>
+            <p>Everyone should have access to quality education, regardless of income or background.</p>
+            <ul class="education-examples"><li>Coordinating free volunteer tutoring.</li><li>Developing introductory CS materials for first-generation students.</li></ul>
+            <div class="teaching-bottom"><span>Teaching · curriculum · access</span><span class="open-arrow" aria-hidden="true">↗</span></div>
           </a>
         </article>
 
         <article class="piece illustration">
-          <a class="piece-link" href="#illustration-story" data-story="illustration-story" aria-label="Open the Rita Moreno illustration">
-            <div class="illustration-stage"><img src="assets/rita-moreno.webp" width="1100" height="800" alt="Rita Moreno illustrated in a flowing pink dress, with pink serif lettering on a muted purple background." loading="lazy"></div>
-            <div class="piece-caption"><div><p class="eyebrow">Illustration & composition</p><h3>Rita, in pink.</h3></div><span class="open-arrow" aria-hidden="true">↗</span></div>
+          <a class="piece-link" href="#illustration-story" data-story="illustration-story" aria-label="Open the full wave-patterned skateboard design study">
+            <div class="illustration-stage board-preview"><img src="assets/wave-board.webp" width="1100" height="1375" alt="Detail of a skateboard design study with blue waves, teal wheels, and a reference print." loading="lazy"><span class="preview-label">Detail / open full study</span></div>
+            <div class="piece-caption"><div><p class="eyebrow">Drawing & applied design</p><h3>Waves on a board</h3></div><span class="open-arrow" aria-hidden="true">↗</span></div>
           </a>
         </article>
       </div>
@@ -68,7 +72,7 @@
 
     <section id="contact" class="contact" aria-labelledby="contact-title"><div><p class="eyebrow">Keep in touch</p><h2 id="contact-title">Say hello.</h2><p>For opportunities, collaborations, or a good conversation.</p></div><div class="contact-links"><a href="mailto:michaelhtran333@gmail.com">michaelhtran333@gmail.com <span aria-hidden="true">↗</span></a><a href="https://www.linkedin.com/in/mhtranse/">LinkedIn <span aria-hidden="true">↗</span></a><a href="https://github.com/mhtran3">GitHub <span aria-hidden="true">↗</span></a></div></section>
     <footer class="site-footer">
-      <span>Michael Tran</span><span>A work in progress, in the best sense.</span><a href="#">Back to the top ↑</a>
+      <span>Michael Tran</span><span>Art, education, and technology.</span><a href="#">Back to the top ↑</a>
       <details class="design-note">
         <summary>A note on the design</summary>
         <p>The palette takes a cue from The Leaf Café in Đà Nẵng: warm plaster, dark wood, and greenery. Wood-colored frames and a narrow patterned border bring a little of that atmosphere to this collection. The uneven arrangement gives pieces with different shapes and moods room to sit together. <a href="https://thecupscoffee.vn/the-leaf-cafe/">See the café reference.</a></p>
@@ -79,9 +83,44 @@
 
     <section class="story-library" aria-label="More about the work">
       <article id="scully-story" class="story"><p class="eyebrow">Community & graphic design</p><h2>A shirt for Scully co-op</h2><img src="assets/scully-cranes.webp" width="1100" height="1100" alt="Scully co-op shirt design featuring pink origami cranes." loading="lazy"><p>This shirt artwork brings together origami cranes and lettering for Scully co-op, the Princeton cooperative where I served as co-president.</p><p>The design is one part of a broader practice that includes illustration and occasional freelance graphic design.</p><p class="story-credit">Scully co-op · shirt artwork</p><a class="story-return" href="#work">Back to the collection ↑</a></article>
-      <article id="game-story" class="story"><p class="eyebrow">Game design & systems thinking / ongoing</p><h2>What if the strategy was in the decisions?</h2><p>I wanted to explore a different kind of strategy in an autobattler: what if training a unit and shaping its choices mattered as much as choosing a team and placing it on a board?</p><h3>The question</h3><p>I was interested in units that could make meaningful decisions and move freely, with skillsets shaped by the player rather than fixed classes.</p><h3>From an idea to a prototype</h3><p>I defined the problem, planned the gameplay systems, and directed AI-assisted development of a working Godot prototype. My contribution centers on game design, system decisions, testing, and iteration.</p><h3>Where it stands</h3><p>It is an ongoing Pokémon fan-game prototype, not a finished commercial release. The work I want to share is the process of turning a design question into a system I can test.</p><p class="story-credit">The diagram on the homepage is an explanatory sketch, not a gameplay capture or a representation of the exact implementation.</p><a class="story-return" href="#work">Back to the collection ↑</a></article>
-      <article id="teaching-story" class="story"><p class="eyebrow">Teaching & accessibility</p><h2>Another way to explain it.</h2><p>I currently tutor students in mathematics, SAT preparation, and academic writing. My work involves understanding where a student is starting, adapting explanations, and planning practice around what they need.</p><h3>A thread through my work</h3><p>At Princeton, I worked with faculty on an introductory Java and Python curriculum for first-generation students. During my software engineering internship at Rubrik, I evaluated front-end accessibility, implemented fixes, and documented recommendations for the team.</p><p>These are different settings for a recurring interest: helping people get access to something that can otherwise feel difficult to approach.</p><p class="story-credit">The internship is described from experience; internal project files are not available here.</p><a class="story-return" href="#work">Back to the collection ↑</a></article>
-      <article id="illustration-story" class="story"><p class="eyebrow">Illustration & composition</p><h2>Rita, in pink.</h2><img src="assets/rita-moreno.webp" width="1100" height="800" alt="Illustration of Rita Moreno in pink with large decorative lettering." loading="lazy"><p>An illustration of Rita Moreno, combining a figure study with a typographic composition.</p><p>Drawing, graphic design, and animation are part of my work alongside technology. I like having room for the medium and the visual approach to change from one piece to another.</p><p class="story-credit">Rita Moreno · digital illustration</p><a class="story-return" href="#work">Back to the collection ↑</a></article>
+      <article id="game-story" class="story">
+        <p class="eyebrow">Development / Godot 4 / ongoing</p><h2>Balancing combat AI and playability</h2>
+        <p>My game prototype explores a combat system where training a unit affects its decisions, and players build skillsets that work together. The technical challenge is balancing a robust, flexible system with an experience that is still understandable and enjoyable.</p>
+        <h3>Choices in the system</h3>
+        <ul class="story-points">
+          <li><strong>Separate movement from skill selection.</strong> Each system can evaluate its own choices while sharing information about enemies and the unit’s available skills. Choosing an ability does not immediately redirect movement toward it.</li>
+          <li><strong>Use scores to express preferences.</strong> Range, health, and available skills affect which actions look useful. This allows behavior to respond to the situation without assigning every unit a fixed class or script.</li>
+          <li><strong>Make training affect consistency.</strong> The training-related Wisdom stat reduces noise in decision scores. Better-trained units make more consistent choices; ordinary units are not made perfectly predictable.</li>
+        </ul>
+        <h3>A concrete robustness problem</h3>
+        <p>An ability that was still recharging could score higher than a ready one, despite a penalty. That left the unit idle for a decision cycle. The current implementation falls back to the best ready skill above a minimum score, so it can act without wasting an ability that has no useful target.</p>
+        <p>The distinction matters: a preference score describes how attractive an action is; readiness checks determine whether it can actually happen. Adding tactical options also means accounting for the ways those rules interact.</p>
+        <h3>Innovation within practical limits</h3>
+        <p>More complex behavior is only useful if it improves play. I’m still evaluating whether the decisions are readable, whether training feels meaningful, and which systems justify their complexity. A working prototype lets me investigate those questions; it does not settle them.</p>
+        <h3>My role</h3>
+        <p>I define the game design and system direction, direct AI-assisted development, and test and iterate on the prototype. It is an ongoing Pokémon fan-game project, not a finished commercial release.</p>
+        <a class="story-return" href="#work">Back to the collection ↑</a>
+      </article>
+      <article id="teaching-story" class="story">
+        <p class="eyebrow">Education & community access</p><h2>Quality education within reach</h2>
+        <p>I believe everyone should have access to quality education, regardless of income or background. My work in education includes tutoring, curriculum development, student advising, and helping communities connect with learning resources.</p>
+        <h3>Connecting families with free tutoring</h3>
+        <p>As a site coordinator with the Princeton Online Tutoring Network, I recruited, trained, and matched volunteer tutors with students whose families could not afford tutoring. I also worked with community partners and supervised sessions.</p>
+        <h3>Building an entry point into computer science</h3>
+        <p>At Princeton’s Computer Science Department, I worked with faculty to develop a 12-week introductory Java and Python curriculum for first-generation students. I facilitated workshops, gathered feedback, and revised materials for remote delivery.</p>
+        <h3>Supporting students beyond a lesson</h3>
+        <p>Through the Scholars Institute Fellows Program, I advised first-generation, lower-income students on course planning, degree progress, and financial aid, and connected them with campus offices and support. I also co-led visual arts in Trenton Arts at Princeton, working with students from Trenton.</p>
+        <h3>My teaching today</h3>
+        <p>I currently tutor students in mathematics, SAT preparation, and academic writing. I assess where each student is starting, adapt explanations, and plan practice around their needs.</p>
+        <a class="story-return" href="#work">Back to the collection ↑</a>
+      </article>
+      <article id="illustration-story" class="story">
+        <p class="eyebrow">Drawing & applied design</p><h2>Waves on a board</h2>
+        <img class="board-study" src="assets/wave-board.webp" width="1100" height="1375" alt="Full skateboard design study: repeating blue waves and shark silhouettes on a white deck with teal wheels, beside a reference to The Great Wave and separate wave drawings." loading="lazy">
+        <p>A wave-patterned skateboard design study. The full sheet places the board alongside a reference image and individual wave drawings, showing the pattern at different scales.</p>
+        <p class="story-credit">The reference print shown in the study is Katsushika Hokusai’s The Great Wave off Kanagawa. The homepage displays a detail; the complete study is shown here.</p>
+        <a class="story-return" href="#work">Back to the collection ↑</a>
+      </article>
     </section>
   </main>
 
