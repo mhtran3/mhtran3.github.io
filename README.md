@@ -23,3 +23,5 @@ The café influence comes from Michael's interest in The Leaf Café in Đà Nẵ
 The education card opens with Michael's belief that everyone deserves a quality education. Supporting details describe his Trenton Arts fellowship, volunteer tutor coordination, mentoring as a head fellow, curriculum work with first-generation/lower-income students in mind, and current tutoring.
 
 The decorative SVGs are original code-based assets. Artwork is left unfiltered. High-contrast preferences remove the decorative backgrounds, and reduced-motion preferences suppress transitions. The expandable design note explains these choices without crowding the introduction.
+
+The tabletop uses a low viewpoint with a narrow visible surface. The drinks use flat colors and shallow rims/saucers to match the simple botanical art. Saucers are centered beneath each drink and slightly staggered in depth. Michael requested jacaranda branches as a personal nod to Vietnam; the illustration adds muted purple flowers. The larger branch is omitted on small screens, where the smaller branch beside the everyday-life section remains.
