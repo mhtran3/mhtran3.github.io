@@ -45,10 +45,23 @@ body {
 .worktable {
   grid-template-columns: 1.18fr 1fr .94fr;
   grid-template-areas: 'cranes experiment teaching' 'cranes experiment illustration';
-  gap: 32px; align-items: start; padding-bottom: 36px;
-  border-bottom: 7px solid var(--wood);
-  box-shadow: 0 2px 0 var(--wood-dark), 0 9px 8px -9px #513b2c80;
+  gap: 32px; align-items: start;
 }
+.cafe-table { position: relative; height: 235px; margin-top: 24px; pointer-events: none; }
+.table-top {
+  position: absolute; inset: auto 0 28px; height: 48px;
+  background: url('assets/wood-grain.svg') center / 900px 76px, linear-gradient(#ba895d, #a57349);
+  clip-path: polygon(2.5% 0, 97.5% 0, 100% 100%, 0 100%);
+  border-top: 2px solid #c89c70;
+}
+.table-edge {
+  position: absolute; inset: auto 0 0; height: 30px;
+  background: url('assets/wood-grain.svg') 35% 60% / 1100px 80px, linear-gradient(#89603f, #67462e);
+  border-top: 3px solid #c09161; border-bottom: 3px solid #513923;
+  border-radius: 0 0 5px 5px;
+  box-shadow: 0 12px 14px -10px #513b2c70;
+}
+.table-drinks { position: absolute; width: 370px; max-width: 88%; height: auto; right: 9%; bottom: 45px; }
 .cranes { grid-area: cranes; padding-top: 10px; }
 .experiment { grid-area: experiment; margin-top: 28px; }
 .teaching { grid-area: teaching; margin-top: 0; }
@@ -102,11 +115,9 @@ body {
 }
 .teaching-link { min-height: 315px; padding: 20px 23px; }
 .teaching .piece-number { color: #506044; }
-.teaching h3 { font: 500 28px/1.17 var(--sans); letter-spacing: -.7px; margin-top: 15px; }
+.teaching h3 { font: 500 26px/1.23 var(--sans); letter-spacing: -.6px; margin-top: 15px; }
 .teaching-link > p { font-size: 14px; }
-.education-examples { margin: 17px 0 22px; padding-left: 17px; font-size: 13px; line-height: 1.6; }
-.education-examples li + li { margin-top: 7px; }
-.teaching-bottom { font-size: 11px; }
+.teaching-bottom { font-size: 11px; padding-top: 24px; }
 .illustration { transform: rotate(-.6deg); }
 .illustration-stage {
   padding: 6px; border: 6px solid #715039; border-top-color: #92704f;
@@ -166,6 +177,10 @@ dialog::backdrop { background: #2d271ee0; }
   .section-line > span { font-size: 10px; }
   .section-line h2 { font-size: 17px; }
   .worktable { grid-template-columns: 1fr; grid-template-areas: 'cranes' 'experiment' 'teaching' 'illustration'; gap: 32px; }
+  .cafe-table { height: 190px; margin-top: 30px; }
+  .table-top { height: 38px; bottom: 24px; }
+  .table-edge { height: 26px; }
+  .table-drinks { width: 300px; right: 5%; bottom: 36px; }
   .cranes { padding-top: 0; }
   .experiment { margin-top: 6px; }
   .experiment-link { min-height: 455px; padding: 25px 27px; }
@@ -178,10 +193,12 @@ dialog::backdrop { background: #2d271ee0; }
   .site-footer .design-note { order: 4; }
 }
 @media (prefers-contrast:more) {
-  body, .experiment, .teaching { background-image: none; }
+  body, .experiment, .teaching, .table-top, .table-edge { background-image: none; }
+  .table-top { background-color: #a57349; }
+  .table-edge { background-color: #67462e; }
   .welcome::before, .welcome::after, .botanical-sprig, .between::before { display: none; }
 }
 @media print {
   body { background: white; }
-  .welcome::before, .welcome::after, .botanical-sprig { display: none; }
+  .welcome::before, .welcome::after, .botanical-sprig, .cafe-table { display: none; }
 }

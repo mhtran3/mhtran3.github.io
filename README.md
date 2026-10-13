@@ -18,6 +18,8 @@ This first version provides a foundation for future project pages and everyday-l
 
 ## Visual direction
 
-The café influence comes from Michael's interest in The Leaf Café in Đà Nẵng. Reference photos of the location at 1151 Nguyễn Tất Thành show ochre plaster, dark wood, olive greenery, and patterned floor tiles: https://thecupscoffee.vn/the-leaf-cafe/ . The page translates those materials into a warm background, wood-colored picture frames and shelf line, brown project panel, sage teaching note, and a small original tile motif. Café photos and branding are not used as site assets.
+The café influence comes from Michael's interest in The Leaf Café in Đà Nẵng. Reference photos of the location at 1151 Nguyễn Tất Thành show ochre plaster, dark wood, olive greenery, and patterned floor tiles: https://thecupscoffee.vn/the-leaf-cafe/ . The page translates those materials into a warm background, wood-colored picture frames, brown project panel, sage education note, and a small original tile motif. The collection ends at a thick illustrated wooden tabletop with matcha and Vietnamese egg coffee on ceramic saucers. Café photos and branding are not used as site assets.
+
+The education card opens with Michael's belief that everyone deserves a quality education. Supporting details describe his Trenton Arts fellowship, volunteer tutor coordination, mentoring as a head fellow, curriculum work with first-generation/lower-income students in mind, and current tutoring.
 
 The decorative SVGs are original code-based assets. Artwork is left unfiltered. High-contrast preferences remove the decorative backgrounds, and reduced-motion preferences suppress transitions. The expandable design note explains these choices without crowding the introduction.
