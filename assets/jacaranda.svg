@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="240" viewBox="0 0 320 240">
+  <defs>
+    <g id="frond">
+      <path d="M0 0Q31 10 66 0" fill="none" stroke="#77825d" stroke-width="1.4"/>
+      <g fill="#84915d">
+        <path d="M10 3Q-1 -10 3 -14Q16 -9 10 3ZM20 5Q10 -12 17 -15Q27 -9 20 5ZM31 5Q23 -10 29 -13Q39 -7 31 5ZM43 4Q37 -10 43 -12Q50 -5 43 4ZM54 2Q50 -8 55 -9Q62 -4 54 2Z"/>
+        <path d="M10 3Q3 14 8 18Q19 14 10 3ZM22 5Q18 20 24 21Q33 14 22 5ZM34 5Q33 19 39 19Q46 12 34 5ZM46 4Q46 16 52 15Q57 8 46 4ZM57 2Q59 11 63 9Q66 4 57 2Z"/>
+      </g>
+    </g>
+    <g id="bloom">
+      <path d="M-4 0L-9 15Q-13 22 -7 25Q-5 31 1 27Q7 29 10 23Q16 19 10 14L4 0Z" fill="#9e8abe"/>
+      <path d="M-8 21Q-4 17 0 21Q5 17 9 21Q5 28 0 25Q-5 29 -8 21Z" fill="#c1a9d5"/>
+      <path d="M0 4L0 16" fill="none" stroke="#77628e" stroke-width="1.2" stroke-linecap="round"/>
+    </g>
+  </defs>
+  <g fill="none" stroke="#7d6c50" stroke-linecap="round">
+    <path d="M-8 37Q104 36 183 110Q220 147 290 162" stroke-width="3"/>
+    <path d="M66 50Q122 35 163 28M111 70Q150 74 191 58M146 91Q144 140 184 176M197 124Q251 113 284 129M247 153Q253 184 280 203" stroke-width="1.7"/>
+  </g>
+  <use href="#frond" transform="translate(59 49) rotate(-48)"/>
+  <use href="#frond" transform="translate(71 50) rotate(61) scale(.9)"/>
+  <use href="#frond" transform="translate(109 38) rotate(-35) scale(.8)"/>
+  <use href="#frond" transform="translate(121 38) rotate(27) scale(.8)"/>
+  <use href="#frond" transform="translate(116 74) rotate(84)"/>
+  <use href="#frond" transform="translate(170 106) rotate(-34) scale(.85)"/>
+  <use href="#frond" transform="translate(203 130) rotate(66) scale(.9)"/>
+  <use href="#frond" transform="translate(237 150) rotate(-31) scale(.7)"/>
+  <g fill="none" stroke="#8c7e8f" stroke-width="1.2">
+    <path d="M182 62L197 73M183 61L180 81M184 62L210 60M178 172L169 184M180 174L190 192M278 129L275 145M279 129L295 139M280 203L267 212M281 202L295 213"/>
+  </g>
+  <use href="#bloom" transform="translate(197 73) rotate(-22) scale(.8)"/>
+  <use href="#bloom" transform="translate(180 81) rotate(10) scale(.8)"/>
+  <use href="#bloom" transform="translate(210 60) rotate(-38) scale(.7)"/>
+  <use href="#bloom" transform="translate(169 184) rotate(20) scale(.9)"/>
+  <use href="#bloom" transform="translate(190 192) rotate(-17) scale(.8)"/>
+  <use href="#bloom" transform="translate(275 145) rotate(9) scale(.8)"/>
+  <use href="#bloom" transform="translate(295 139) rotate(-25) scale(.75)"/>
+  <use href="#bloom" transform="translate(267 212) rotate(22) scale(.7)"/>
+  <use href="#bloom" transform="translate(295 213) rotate(-12) scale(.65)"/>
+</svg>

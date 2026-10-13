@@ -49,19 +49,20 @@ body {
 }
 .cafe-table { position: relative; height: 235px; margin-top: 24px; pointer-events: none; }
 .table-top {
-  position: absolute; inset: auto 0 28px; height: 48px;
-  background: url('assets/wood-grain.svg') center / 900px 76px, linear-gradient(#ba895d, #a57349);
-  clip-path: polygon(2.5% 0, 97.5% 0, 100% 100%, 0 100%);
-  border-top: 2px solid #c89c70;
+  position: absolute; inset: auto 0 28px; height: 22px;
+  background: url('assets/wood-grain.svg') center / 1000px 52px, #b58a60;
+  clip-path: polygon(.7% 0, 99.3% 0, 100% 100%, 0 100%);
+  border-top: 1px solid #c89c70;
 }
 .table-edge {
   position: absolute; inset: auto 0 0; height: 30px;
-  background: url('assets/wood-grain.svg') 35% 60% / 1100px 80px, linear-gradient(#89603f, #67462e);
-  border-top: 3px solid #c09161; border-bottom: 3px solid #513923;
+  background: url('assets/wood-grain.svg') 35% 60% / 1100px 80px, #78563c;
+  border-top: 2px solid #c09161; border-bottom: 2px solid #513923;
   border-radius: 0 0 5px 5px;
   box-shadow: 0 12px 14px -10px #513b2c70;
 }
-.table-drinks { position: absolute; width: 370px; max-width: 88%; height: auto; right: 9%; bottom: 45px; }
+.table-drinks { position: absolute; width: 370px; max-width: 88%; height: auto; right: 9%; bottom: 28px; }
+.table-branch { position: absolute; top: 0; left: 0; width: min(28%, 270px); height: auto; }
 .cranes { grid-area: cranes; padding-top: 10px; }
 .experiment { grid-area: experiment; margin-top: 28px; }
 .teaching { grid-area: teaching; margin-top: 0; }
@@ -142,8 +143,8 @@ body {
 .between h2 { font: 400 25px/1.35 var(--sans); letter-spacing: -.6px; }
 .botanical-sprig {
   position: absolute; right: 8px; bottom: 12px; width: 135px; height: 145px;
-  background: url('assets/botanical.svg') center / contain no-repeat;
-  opacity: .8; pointer-events: none; transform: rotate(12deg);
+  background: url('assets/jacaranda.svg') center / contain no-repeat;
+  opacity: .9; pointer-events: none; transform: rotate(-14deg);
 }
 .contact { border-top-color: var(--line); }
 .contact h2 { font-family: var(--sans); font-weight: 500; }
@@ -178,9 +179,10 @@ dialog::backdrop { background: #2d271ee0; }
   .section-line h2 { font-size: 17px; }
   .worktable { grid-template-columns: 1fr; grid-template-areas: 'cranes' 'experiment' 'teaching' 'illustration'; gap: 32px; }
   .cafe-table { height: 190px; margin-top: 30px; }
-  .table-top { height: 38px; bottom: 24px; }
+  .table-top { height: 18px; bottom: 24px; }
   .table-edge { height: 26px; }
-  .table-drinks { width: 300px; right: 5%; bottom: 36px; }
+  .table-drinks { width: 300px; right: 5%; bottom: 24px; }
+  .table-branch { display: none; }
   .cranes { padding-top: 0; }
   .experiment { margin-top: 6px; }
   .experiment-link { min-height: 455px; padding: 25px 27px; }
@@ -196,7 +198,7 @@ dialog::backdrop { background: #2d271ee0; }
   body, .experiment, .teaching, .table-top, .table-edge { background-image: none; }
   .table-top { background-color: #a57349; }
   .table-edge { background-color: #67462e; }
-  .welcome::before, .welcome::after, .botanical-sprig, .between::before { display: none; }
+  .welcome::before, .welcome::after, .botanical-sprig, .between::before, .table-branch { display: none; }
 }
 @media print {
   body { background: white; }
