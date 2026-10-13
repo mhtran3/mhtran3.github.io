@@ -82,17 +82,19 @@ body {
   clip-path: polygon(0 50%, 9% 27%, 21% 44%, 36% 12%, 52% 38%, 69% 16%, 88% 32%, 100% 0, 100% 100%, 0 100%);
 }
 .experiment-link { min-height: 485px; padding: 25px; }
+.experiment-top { flex-wrap: wrap; }
 .piece-number { font-size: 11px !important; letter-spacing: .025em; text-transform: none; }
 .experiment .piece-number { max-width: none; color: #e6d8be; }
 .experiment h3 { font: 500 clamp(26px,2.5vw,34px)/1.2 var(--sans); letter-spacing: -.9px; }
-.experiment h3 em { font-family: var(--serif); font-weight: 400; color: #e5c38d; }
 .status { font-size: 11px; color: #faf1dc; border-color: #b29977; }
 .experiment-intro { font-size: 14px; color: #eee2cc; }
+.engineering-notes { margin: 23px 0 25px; }
+.engineering-notes > div { border-top: 1px solid #a48d7166; padding: 12px 0 2px; }
+.engineering-notes > div + div { margin-top: 12px; }
+.engineering-notes dt { font-size: 12px; font-weight: 600; color: #e5c38d; margin-bottom: 5px; }
+.engineering-notes dd { margin: 0; font-size: 14px; line-height: 1.65; color: #faf1dc; }
 .experiment-bottom { font-size: 11px; }
 .experiment .open-arrow { background: #72573f; color: #faf1dc; }
-.sketch-label { color: #e4d6bb; font-size: 14px; }
-.sketch-end { color: #e4d6bb; font-size: 11px; }
-.sketch-start, .sketch-start::after, .sketch-branches::before, .sketch-branches span { border-color: #bda78b; }
 .teaching {
   background: #dce1c9 url('assets/paper.svg'); border: 1px solid #aeb798;
   border-radius: 2px 6px 3px 5px; transform: rotate(.6deg);
@@ -102,13 +104,20 @@ body {
 .teaching .piece-number { color: #506044; }
 .teaching h3 { font: 500 28px/1.17 var(--sans); letter-spacing: -.7px; margin-top: 15px; }
 .teaching-link > p { font-size: 14px; }
-.teaching-note { padding-block: 15px; color: #3f5d40; }
+.education-examples { margin: 17px 0 22px; padding-left: 17px; font-size: 13px; line-height: 1.6; }
+.education-examples li + li { margin-top: 7px; }
 .teaching-bottom { font-size: 11px; }
 .illustration { transform: rotate(-.6deg); }
 .illustration-stage {
   padding: 6px; border: 6px solid #715039; border-top-color: #92704f;
   border-bottom-color: #483528; outline: 1px solid #4c392a;
   background: var(--cream); box-shadow: 3px 6px 10px #513b2c21;
+}
+.board-preview img { aspect-ratio: 1.37; object-fit: cover; object-position: center top; }
+.preview-label {
+  position: absolute; bottom: 9px; right: 9px; padding: 3px 7px;
+  background: var(--cream); color: var(--ink); font-size: 10px;
+  border: 1px solid var(--line); line-height: 1.5;
 }
 .illustration .piece-caption { padding: 13px 3px 0; }
 .illustration .eyebrow { font-size: 11px; }
@@ -141,6 +150,9 @@ dialog::backdrop { background: #2d271ee0; }
 .dialog-bar button { border-color: #97836a; }
 .dialog-bar button:hover { background: #d9c8aa; }
 .dialog-content h2, .story h2, .dialog-content h3, .story h3 { font-family: var(--sans); font-weight: 500; }
+.story-points { padding-left: 22px; line-height: 1.8; }
+.story-points li + li { margin-top: 14px; }
+.dialog-content .board-study, .story .board-study { max-height: none; width: min(100%, 520px); }
 @media (min-width:1450px) { .experiment-link { min-height: 520px; } }
 @media (max-width:1050px) {
   .worktable { grid-template-columns: 1fr 1fr; grid-template-areas: 'cranes experiment' 'teaching illustration'; gap: 32px; }
