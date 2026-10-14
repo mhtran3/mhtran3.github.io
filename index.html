@@ -20,6 +20,7 @@
 
   <main id="main" class="wrap">
     <section class="welcome" aria-labelledby="welcome-title">
+      <div class="branch-corner" aria-hidden="true"><img src="assets/jacaranda-cascade.webp" width="480" height="600" alt=""></div>
       <div><p class="eyebrow">A small corner of the internet</p><h1 id="welcome-title">Hi, I'm Michael.</h1></div>
       <p class="welcome-copy">I make things, help people learn, and follow my curiosity.<br class="wide-only"> Some of that turns into code. Some of it ends up on a T-shirt.</p>
       <span class="welcome-note">A few things to start with <span aria-hidden="true">↙</span></span>
@@ -37,17 +38,17 @@
         </article>
 
         <article class="piece experiment">
-          <a class="piece-link experiment-link" href="#game-story" data-story="game-story">
-            <div class="experiment-top"><span class="piece-number">Development / combat AI</span><span class="status">In progress</span></div>
-            <h3>Balancing combat AI<br>and playability.</h3>
-            <p class="experiment-intro">Training should change how a unit makes decisions. The challenge is making that depth understandable and enjoyable to play.</p>
+          <a class="piece-link experiment-link" href="#rwkv-story" data-story="rwkv-story">
+            <div class="experiment-top"><span class="piece-number">Technology & judgment</span><span class="status">An open question</span></div>
+            <h3>Useful AI,<br>at what cost?</h3>
+            <p class="experiment-intro">I use AI, and I’m uneasy about its costs. That tension is part of why I started exploring models that use memory differently.</p>
             <dl class="engineering-notes">
-              <div><dt>System design</dt><dd>Movement and skill selection run separately, using shared information about the fight.</dd></div>
-              <div><dt>Robustness</dt><dd>A high-scoring ability can still be unavailable. A fallback checks for a ready action.</dd></div>
-              <div><dt>Still evaluating</dt><dd>How much tactical complexity improves the experience, and when it gets in the way.</dd></div>
+              <div><dt>A small experiment</dt><dd>Running RWKV locally and inspecting GPU memory use and its state interface.</dd></div>
+              <div><dt>A larger question</dt><dd>As making things becomes easier, what makes our choices intentional and meaningful?</dd></div>
             </dl>
-            <div class="experiment-bottom"><span>Godot 4 · AI-assisted prototype</span><span class="open-arrow" aria-hidden="true">↗</span></div>
+            <div class="experiment-bottom"><span>Reflection + an unfinished experiment</span><span class="open-arrow" aria-hidden="true">↗</span></div>
           </a>
+          <a class="related-study" href="#game-story" data-story="game-story">Also: combat AI, readiness checks, and playability <span aria-hidden="true">↗</span></a>
         </article>
 
         <article class="piece teaching">
@@ -69,7 +70,6 @@
       <div class="cafe-table" aria-hidden="true">
         <span class="table-top"></span>
         <span class="table-edge"></span>
-        <img class="table-branch" src="assets/jacaranda.svg" width="360" height="310" alt="" loading="lazy">
         <img class="table-drinks" src="assets/cafe-drinks.svg" width="500" height="260" alt="" loading="lazy">
       </div>
     </section>
@@ -78,18 +78,32 @@
 
     <section id="contact" class="contact" aria-labelledby="contact-title"><div><p class="eyebrow">Keep in touch</p><h2 id="contact-title">Say hello.</h2><p>For opportunities, collaborations, or a good conversation.</p></div><div class="contact-links"><a href="mailto:michaelhtran333@gmail.com">michaelhtran333@gmail.com <span aria-hidden="true">↗</span></a><a href="https://www.linkedin.com/in/mhtranse/">LinkedIn <span aria-hidden="true">↗</span></a><a href="https://github.com/mhtran3">GitHub <span aria-hidden="true">↗</span></a></div></section>
     <footer class="site-footer">
-      <span>Michael Tran</span><span>Art, education, and technology.</span><a href="#">Back to the top ↑</a>
+      <span>Michael Tran</span><span>Art, education, and technology.</span><a href="colophon.html">How this site is built</a><a href="https://github.com/mhtran3/mhtran3.github.io">Source</a><a href="#">Back to the top ↑</a>
       <details class="design-note">
         <summary>A note on the design</summary>
         <p>The palette takes a cue from The Leaf Café in Đà Nẵng: warm plaster, dark wood, and greenery. Wood-colored frames and a narrow patterned border bring a little of that atmosphere to this collection. The uneven arrangement gives pieces with different shapes and moods room to sit together. <a href="https://thecupscoffee.vn/the-leaf-cafe/">See the café reference.</a></p>
         <p>The reading text and most headings use a Helvetica-based system font stack, with Arial as a fallback. Small serif accents add contrast. The exact typeface will vary with the fonts installed on your device; no external fonts are downloaded.</p>
-        <p>The foliage takes its shapes from my café photographs: fine, arching fronds above broader veined leaves. Each drawing has a place in the scene. An overhead canopy casts a faint shadow on the wall; a small ceramic planter sits beside the drinks; a separate broad-leaf plant rests at the edge of the everyday-life section. The illustrations vary in shape and scale, with stems that connect and surfaces that support them.</p>
+        <p>A cascading branch enters from the upper corner, with its own space beside the introduction. Below the gallery, a separate broad-leaf planter rests on the divider. Their different shapes draw on the fine fronds and large veined leaves in my café photographs. The branch is an AI-generated illustration adapted from a reference I selected; it is distinct from the artwork in the gallery.</p>
         <p>The table keeps a low viewpoint, with a warm lacquer-like finish and a small floral engraving. Matcha and Vietnamese egg coffee connect the gallery to everyday life.</p>
-        <p>The paper grain and softly varied colors borrow from painted surfaces, while the shapes stay simple and the text stays crisp. The artwork keeps its original colors. These decorations are lightweight SVGs made for the site; the scene stays still and simplifies on small screens.</p>
+        <p>The paper grain and softly varied colors borrow from painted surfaces, while the text stays crisp and the artwork keeps its original colors. The branch uses a transparent WebP; the other decorations use SVG. The scene stays still and simplifies on small screens. <a href="colophon.html">Read the implementation choices and testing notes.</a></p>
       </details>
     </footer>
 
     <section class="story-library" aria-label="More about the work">
+      <article id="rwkv-story" class="story">
+        <p class="eyebrow">AI / values / an early local experiment</p><h2>Useful AI, at what cost?</h2>
+        <p>I’m interested in what AI makes possible, and apprehensive about its environmental costs, effects on people’s well-being, privacy, and job security. Using it does not make those concerns disappear.</p>
+        <h3>What I want to preserve</h3>
+        <p>As AI lowers some barriers to making things, I think intentionality and authenticity will matter more: choosing what to make, why it matters, and what deserves our attention. I also want room to keep learning and making things because the process has meaning, even when the output could be automated.</p>
+        <h3>A question I could investigate</h3>
+        <p>That concern led me toward RWKV-type models and their different approach to memory. RWKV-7 uses a fixed-size recurrent state during inference. I wanted to explore what that could make practical on the hardware I had. <a href="https://arxiv.org/abs/2503.14456">Read the RWKV-7 paper.</a></p>
+        <h3>What I actually tried</h3>
+        <p>My early local experiment used the official RWKV-7 inference package. The test script loads a model, reports allocated and reserved CUDA memory, and inspects the model’s state interface. This is exploratory work with an existing architecture, not a new model I designed.</p>
+        <h3>What remains unresolved</h3>
+        <p>I’m interested in whether a hybrid approach could keep useful capabilities while easing resource demands. I haven’t built or benchmarked such a hybrid. Lower memory requirements alone would not establish lower energy use or environmental impact, and efficiency would not resolve the other concerns that brought me here.</p>
+        <p>A useful next step would be a controlled comparison of memory, speed, and output quality on the same hardware and tasks. For now, this project is an unfinished investigation.</p>
+        <a class="story-return" href="#work">Back to the collection ↑</a>
+      </article>
       <article id="scully-story" class="story"><p class="eyebrow">Community & graphic design</p><h2>A shirt for Scully co-op</h2><img src="assets/scully-cranes.webp" width="1100" height="1100" alt="Scully co-op shirt design featuring pink origami cranes." loading="lazy"><p>This shirt artwork brings together origami cranes and lettering for Scully co-op, the Princeton cooperative where I served as co-president.</p><p>The design is one part of a broader practice that includes illustration and occasional freelance graphic design.</p><p class="story-credit">Scully co-op · shirt artwork</p><a class="story-return" href="#work">Back to the collection ↑</a></article>
       <article id="game-story" class="story">
         <p class="eyebrow">Development / Godot 4 / ongoing</p><h2>Balancing combat AI and playability</h2>

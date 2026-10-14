@@ -1,31 +1,37 @@
 # Michael Tran's personal website
 
-A static, accessible landing page for https://mhtran3.github.io/. Its collection-led layout introduces selected artwork, a game-design prototype, and teaching experience without reducing Michael to a single professional title.
+A static personal gallery for https://mhtran3.github.io/: artwork, education access work, and technical curiosity, without reducing Michael to a single professional title.
 
-## Preview
+## Structure
 
-Serve this directory with a static HTTP server, for example `python -m http.server 8765`, and open http://localhost:8765.
+- `index.html`: selected work, contact links, and complete project stories.
+- `home.css`: base layout; `gallery.css`: current cafe materials, responsive scene, and colophon styles.
+- `home.js`: progressive enhancement from ordinary story anchors to native dialogs.
+- `colophon.html`: design decisions, implementation tradeoffs, authorship, and testing limitations.
+- `scripts/check-site.py`: standard-library Python check for local references, fragment targets, duplicate IDs, and explicit byte budgets. Run `python scripts/check-site.py` to regenerate `site-check.json`.
 
-No build step, third-party JavaScript, analytics, external fonts, or runtime dependencies are required. `index.html` contains all content and contact links. `home.css` controls the responsive layout; `gallery.css` adds the current material palette and gallery treatment. `home.js` progressively enhances project anchors into keyboard-accessible native dialogs. With JavaScript disabled, the full project notes remain available below the landing page.
+No build step, third-party JavaScript, analytics, remote fonts, or runtime dependencies are required. Without JavaScript, stories remain in the page. The colophon uses no JavaScript. To preview locally, serve this directory with a static HTTP server.
 
-## Assets and scope
+## Content and provenance
 
-The displayed WebP previews are optimized copies of existing public artwork in `(public)/MyArt/`: Scully co-op shirt artwork and the wave-patterned skateboard study. The skateboard card shows a labeled detail; its dialog shows the complete study, with the Hokusai reference identified. Original files are preserved. The previous Rita Moreno asset is retained but is no longer displayed on the homepage.
+The Scully co-op shirt artwork and wave-board study are optimized copies of Michael's existing public artwork. The skateboard card is labeled as a detail; its full study identifies the Hokusai reference. Original artwork remains unfiltered. The Rita Moreno preview is retained but not displayed.
 
-The education card covers community tutoring access, curriculum development, advising, and teaching. The development card describes concrete combat AI choices and a readiness fallback verified in the local project, with Michael's AI-assisted role stated and playability presented as an ongoing evaluation. Private planning notes, unreviewed Drive photographs, student materials, and sensitive autobiographical content are excluded from this landing page.
+The education card starts with “Everyone deserves access to quality education.” Its detail covers Trenton Arts, volunteer tutor coordination, mentoring, curriculum development, and current tutoring.
 
-This first version provides a foundation for future project pages and everyday-life material. Links are limited to implemented sections and real contact destinations.
+The AI card connects Michael's concerns and views on intentionality to an early RWKV experiment. It distinguishes inspecting memory/state from developing a new architecture, and does not claim a working hybrid, a benchmark comparison, or environmental savings. The separate combat-AI case study remains linked directly below the card, with concrete system choices and Michael's AI-assisted role described.
 
-## Visual direction
+## Cafe scene
 
-The café influence comes from Michael's interest in The Leaf Café in Đà Nẵng. Reference photos of the location at 1151 Nguyễn Tất Thành show ochre plaster, dark wood, olive greenery, and patterned floor tiles: https://thecupscoffee.vn/the-leaf-cafe/ . The page translates those materials into a warm background, wood-colored picture frames, brown project panel, sage education note, and a small original tile motif. The collection ends at a thick illustrated wooden tabletop with matcha and Vietnamese egg coffee on ceramic saucers. Café photos and branding are not used as site assets.
+The Leaf Cafe in Da Nang inspires warm plaster, dark wood, greenery, and tile details. Michael's cafe photos were reviewed privately and are not published. The scene contains a reserved upper-right branch corner, paper texture behind readable text, wood-framed art, and a low-viewpoint table with a restrained original floral engraving. Matcha sits on a wooden saucer; Vietnamese egg coffee sits on a cream saucer. A distinct broad-leaf planter rests on the lower divider.
 
-The education card opens with Michael's belief that everyone deserves a quality education. Supporting details describe his Trenton Arts fellowship, volunteer tutor coordination, mentoring as a head fellow, curriculum work with first-generation/lower-income students in mind, and current tutoring.
+`assets/jacaranda-cascade.webp` is an AI-generated decorative illustration adapted from Michael's selected cascading-branch reference using the built-in image tool. It is 480 x 600 with transparency, optimized to 86,916 bytes. The filename reflects the requested reference, not a botanical identification. Other decorative assets are code-based SVGs. The colophon explicitly distinguishes these decorations from Michael's artwork.
 
-The decorative SVGs are original code-based assets. Artwork is left unfiltered. High-contrast preferences remove the decorative backgrounds, and reduced-motion preferences suppress transitions. The expandable design note explains these choices without crowding the introduction.
+The old tabletop frond planter and canopy shadow are no longer displayed. The two visible plants have distinct silhouettes and appear once each. Decoration ignores pointer input, is hidden from assistive technology, and simplifies for narrow screens, contrast preferences, and print. Reduced-motion preferences suppress transitions and smooth scrolling.
 
-The tabletop uses a low viewpoint with a narrow visible surface. The drinks use flat colors and shallow rims/saucers. Saucers are centered beneath each drink and slightly staggered in depth. The branch illustration was redrawn after reviewing Michael's Leaf photos: fine arching fronds with small paired leaflets replace the sparse branch and flower clusters. The existing `jacaranda.svg` filename is retained, but the illustration follows the reference's foliage structure without claiming a botanical identification. A small ceramic planter gives the stems an origin and rests on the same plane as the saucers.
+## Validation and limits
 
-The three botanical drawings are distinct and each appears once: a canopy shadow enters from the gallery wall's upper/right edge, feathered foliage grows from the tabletop planter, and a separate broad-leaf planter rests on the divider below the everyday-life section. The latter takes its long pointed leaves and pale veins from the lower planting in Michael's photos. Floating sprigs, mirrored silhouettes, and loose foreground leaves have been removed. Older unused assets remain available but are not displayed.
+The saved check report contains source-file bytes, not compressed transfer sizes or live deployment data. Current budgets are 10 KiB for homepage JavaScript, 40 KiB for the combined stylesheets, and 100 KiB for the branch image. These are project limits; they are not accessibility or speed scores.
 
-A seeded paper grain with sparse fibers adds texture without filtering artwork or text. The table has a warm lacquer-like finish and an original restrained floral engraving, not a claimed reproduction of a traditional motif. Decorations occupy their own space, ignore pointer input, are hidden from assistive technology, and simplify on mobile, in high contrast, and in print. There is no parallax or added animation. The private reference photographs are not published as site assets.
+Standalone decorative assets were rendered and inspected. Full-page browser layout, keyboard/screen-reader interaction, Lighthouse, and automated accessibility audits remain outstanding for this revision because local preview automation was restricted. Do not describe the saved source check as a browser audit. No custom CI reporting workflow has been added.
+
+Private planning records, reference photos, student materials, local project source, and sensitive autobiographical content are excluded from the public site.

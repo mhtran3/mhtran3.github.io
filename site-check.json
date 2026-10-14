@@ -1,0 +1,38 @@
+{
+  "generated_at_utc": "2026-10-14T04:09:20+00:00",
+  "scope": "Static source check; manually generated, not live deployment telemetry.",
+  "result": "pass",
+  "local_references_checked": 51,
+  "file_sizes": {
+    "homepage_js": {
+      "files": [
+        "home.js"
+      ],
+      "bytes": 1844,
+      "budget_bytes": 10240
+    },
+    "stylesheets": {
+      "files": [
+        "home.css",
+        "gallery.css"
+      ],
+      "bytes": 23288,
+      "budget_bytes": 40960
+    },
+    "decorative_branch": {
+      "files": [
+        "assets/jacaranda-cascade.webp"
+      ],
+      "bytes": 86916,
+      "budget_bytes": 102400
+    }
+  },
+  "not_checked": [
+    "external URLs",
+    "browser layout",
+    "keyboard interactions",
+    "screen readers",
+    "Lighthouse",
+    "automated accessibility audit"
+  ]
+}
