@@ -28,7 +28,7 @@ The Leaf Cafe and Michael's IMG_0136 reference inform the frosted depth, negativ
 
 The counter remains a flat textured wood strip. Both drink bodies share their saucer centers and baseline. The generic broad-leaf planter and prominent hobbies section have been removed. Earlier dense foliage and realistic branch assets remain unused. Decorations ignore pointer input and disappear for contrast preferences and print.
 
-The introduction now states current work and provides direct email, LinkedIn, and GitHub links. Cards present concrete education and technical work before interaction and use explicit underlined action labels. All details still have the native-dialog enhancement and no-JavaScript reading path. Personal interests live in an optional, initially closed footer disclosure, rather than the landing-page reading flow. The colophon explains this hierarchy and distinguishes generated decor from Michael's artwork.
+The introduction identifies Michael as an artist, engineer, and educator, emphasizes connections across disciplines, and provides direct email, LinkedIn, and GitHub links. It avoids current-employment framing and qualifiers such as occasional. Cards present concrete education and technical work before interaction and use explicit underlined action labels. All details still have the native-dialog enhancement and no-JavaScript reading path. Personal interests live in an optional, initially closed footer disclosure, rather than the landing-page reading flow. The colophon explains this hierarchy and distinguishes generated decor from Michael's artwork.
 
 ## Validation and limits
 
