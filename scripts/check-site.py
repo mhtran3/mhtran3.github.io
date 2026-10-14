@@ -53,7 +53,7 @@ def main():
     budgets = [
         ('homepage_js', ['home.js'], 10 * 1024),
         ('stylesheets', ['home.css', 'gallery.css'], 40 * 1024),
-        ('foliage_backdrop', ['assets/frosted-foliage.webp'], 100 * 1024),
+        ('foliage_backdrop', ['assets/jacaranda-bougainvillea.webp'], 100 * 1024),
     ]
     sizes = {}
     for name, files, limit in budgets:

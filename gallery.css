@@ -1,13 +1,13 @@
 /* Café materials frame the collection; artwork keeps its own palette. */
 :root {
   --paper: #f2e9d9;
-  --ink: #3e3027;
+  --ink: #29251e;
   --muted: #51422f;
   --line: #cec0a9;
   --red: #32665b;
   --green: #3e5543;
-  --wood: #78563c;
-  --wood-dark: #513b2c;
+  --wood: #59432f;
+  --wood-dark: #302920;
   --cream: #faf4e7;
   --sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
@@ -31,6 +31,9 @@ body {
 }
 .welcome h1 { font-family: var(--sans); font-weight: 500; letter-spacing: -1.9px; }
 .welcome-copy { max-width: 530px; }
+.current-work { display: block; margin-top: 13px; font-size: 13px; color: var(--muted); }
+.welcome-links { grid-column: 2; display: flex; flex-wrap: wrap; gap: 14px 25px; font-size: 14px; }
+.welcome-links a { padding-block: 7px; }
 .welcome-note { color: #49674e; }
 .eyebrow { letter-spacing: .035em; text-transform: none; font-weight: 400; }
 .section-line { border: 0; margin-bottom: 20px; }
@@ -41,7 +44,7 @@ body {
 .scene-backdrop {
   position: absolute; z-index: -1; pointer-events: none;
   inset: 48px -24px 0; overflow: hidden; border-radius: 3px;
-  background: #f5f0e3 url('assets/frosted-foliage.webp') center top / 100% auto no-repeat;
+  background: #f5f0e3 url('assets/jacaranda-bougainvillea.webp') center top / 100% auto no-repeat;
 }
 .scene-backdrop::after {
   /* A painted frost/light layer over the scenery, never over the text or artwork. */
@@ -51,12 +54,12 @@ body {
 .worktable {
   grid-template-columns: 1.18fr 1fr .94fr;
   grid-template-areas: 'cranes experiment teaching' 'cranes experiment illustration';
-  gap: 32px; align-items: start; padding-top: 112px;
+  gap: 32px; align-items: start; padding-top: 56px;
 }
 .cafe-table { position: relative; height: 211px; margin-top: 24px; pointer-events: none; }
 .table-edge {
   position: absolute; inset: auto 0 0; height: 18px;
-  background: #78563c url('assets/paper.svg');
+  background: #49372b url('assets/paper.svg');
   border-radius: 2px 3px 1px 2px;
 }
 .table-drinks { position: absolute; width: 370px; max-width: 88%; height: auto; right: 9%; bottom: 17px; }
@@ -66,7 +69,7 @@ body {
 .illustration { grid-area: illustration; margin-top: 0; }
 .art-stage {
   padding: 8px; aspect-ratio: 1; border: 8px solid var(--wood);
-  border-top-color: #98734f; border-bottom-color: var(--wood-dark);
+  border-top-color: #ac9267; border-bottom-color: var(--wood-dark);
   background: var(--cream); outline: 1px solid #4c392a;
   box-shadow: 2px 4px 3px #513b2c18, 5px 13px 18px -5px #513b2c30, inset 0 0 0 1px #dbcab0;
   transform: rotate(-1deg);
@@ -76,6 +79,9 @@ body {
 .image-note { display: none; }
 .piece-caption { padding: 18px 8px 8px; background: var(--paper); }
 .piece-caption h3 { font: 500 24px/1.23 var(--sans); letter-spacing: -.65px; }
+.card-summary { margin: 10px 0 12px; font-size: 14px; line-height: 1.65; }
+.card-action { font-size: 13px; line-height: 1.6; text-decoration: underline; text-underline-offset: 4px; }
+.piece-link:hover .card-action { text-decoration-thickness: 2px; }
 .piece-caption .eyebrow { font-size: 12px; margin-bottom: 7px; }
 .open-arrow {
   color: #32665b; background: #dde2cf;
@@ -85,7 +91,7 @@ body {
 .experiment {
   color: #faf1dc; background: var(--wood-dark) url('assets/paper.svg');
   border-radius: 3px 8px 4px 2px; position: relative;
-  box-shadow: 2px 5px 10px #513b2c1a;
+  box-shadow: inset 1px 1px 0 #d7c49380, 2px 5px 10px #30292026;
 }
 .experiment::before {
   content: ''; position: absolute; pointer-events: none; left: 3%; right: 2%;
@@ -112,7 +118,7 @@ body {
 .teaching {
   background: #dce1c9 url('assets/paper.svg'); border: 1px solid #aeb798;
   border-radius: 2px 6px 3px 5px; transform: rotate(.6deg);
-  color: #344634; box-shadow: 2px 4px 7px #513b2c12;
+  color: #253b2f; box-shadow: inset 1px 1px 0 #fff9dd, 2px 4px 7px #3029201a;
 }
 .teaching-link { min-height: 315px; padding: 20px 23px; }
 .teaching .piece-number { color: #506044; }
@@ -121,8 +127,8 @@ body {
 .teaching-bottom { font-size: 11px; padding-top: 24px; }
 .illustration { transform: rotate(-.6deg); }
 .illustration-stage {
-  padding: 6px; border: 6px solid #715039; border-top-color: #92704f;
-  border-bottom-color: #483528; outline: 1px solid #4c392a;
+  padding: 6px; border: 6px solid #59432f; border-top-color: #ac9267;
+  border-bottom-color: #302920; outline: 1px solid #4c392a;
   background: var(--cream); box-shadow: 3px 6px 10px #513b2c21;
 }
 .board-preview img { aspect-ratio: 1.37; object-fit: cover; object-position: center top; }
@@ -134,19 +140,7 @@ body {
 .illustration .piece-caption { padding: 13px 8px 8px; }
 .illustration .eyebrow { font-size: 11px; }
 .illustration h3 { font: 500 22px/1.2 var(--sans); letter-spacing: -.5px; }
-.between { margin-top: 34px; padding: 55px 170px 34px 0; border-top: 0; }
-.between::before {
-  content: ''; position: absolute; top: 0; left: 0; height: 24px; width: 100%;
-  background: url('assets/tile.svg') left center / 24px 24px repeat-x;
-  opacity: .6; pointer-events: none;
-}
-.between h2 { font: 400 25px/1.35 var(--sans); letter-spacing: -.6px; }
-.life-plant {
-  /* This plant rests on the contact divider, outside the text column. */
-  position: absolute; right: 10px; bottom: 0; width: 112px; height: auto;
-  pointer-events: none;
-}
-.contact { border-top-color: var(--line); }
+.contact { border-top-color: var(--line); margin-top: 36px; }
 .contact h2 { font-family: var(--sans); font-weight: 500; }
 .contact-links a:hover { background: #e4dfcd; }
 .site-footer { align-items: center; flex-wrap: wrap; }
@@ -184,10 +178,11 @@ dialog::backdrop { background: #2d271ee0; }
 }
 @media (max-width:640px) {
   .welcome { padding: 36px 0 30px; min-height: 0; }
+  .welcome-links { margin-top: 16px; }
   .welcome::before { left: -10px; width: 320px; height: 125px; }
   .section-line > span { font-size: 10px; }
   .section-line h2 { font-size: 17px; }
-  .worktable { grid-template-columns: 1fr; grid-template-areas: 'cranes' 'experiment' 'teaching' 'illustration'; gap: 32px; padding-top: 76px; }
+  .worktable { grid-template-columns: 1fr; grid-template-areas: 'cranes' 'experiment' 'teaching' 'illustration'; gap: 32px; padding-top: 40px; }
   .scene-backdrop { inset: 48px -8px 0; background-size: auto 500px; }
   .scene-backdrop::after { background: linear-gradient(180deg, #fffaf01a, var(--paper) 750px); }
   .cafe-table { height: 170px; margin-top: 30px; }
@@ -199,23 +194,20 @@ dialog::backdrop { background: #2d271ee0; }
   .experiment h3 { font-size: 33px; }
   .teaching { margin-inline: 3px; }
   .teaching-link { min-height: 310px; }
-  .between { padding-right: 88px; }
-  .between h2 { font-size: 22px; }
-  .life-plant { width: 65px; right: 0; }
   .site-footer .design-note { order: 4; }
 }
 @media (prefers-contrast:more) {
   .worktable { padding-top: 0; }
   body, .experiment, .teaching, .table-edge { background-image: none; }
   .table-edge { background-color: #67462e; }
-  .welcome::before, .life-plant, .between::before, .scene-backdrop { display: none; }
+  .welcome::before, .scene-backdrop { display: none; }
 }
 @media (forced-colors:active) {
   .worktable { padding-top: 0; }
-  .scene-backdrop, .cafe-table, .life-plant, .welcome::before { display: none; }
+  .scene-backdrop, .cafe-table, .welcome::before { display: none; }
 }
 @media print {
   .worktable { padding-top: 0; }
   body { background: white; }
-  .welcome::before, .life-plant, .cafe-table, .scene-backdrop { display: none; }
+  .welcome::before, .cafe-table, .scene-backdrop { display: none; }
 }
