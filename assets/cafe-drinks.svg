@@ -3,9 +3,9 @@
   <g fill="none" stroke="#9d8c72" stroke-width="2" stroke-linecap="round" opacity=".5"><path d="M350 113C337 97 364 88 352 71M373 110C363 96 382 89 375 77"/></g>
   <!-- Matcha saucer, centered beneath its glass and slightly farther back. -->
   <ellipse cx="131" cy="246" rx="87" ry="5" fill="#513b2c" opacity=".1"/>
-  <path d="M42 240Q130 248 220 240L214 247Q131 256 49 247Z" fill="#b8bd9f"/>
-  <ellipse cx="131" cy="239" rx="89" ry="8" fill="#e4e6cb"/>
-  <path d="M67 240Q129 248 193 240" fill="none" stroke="#a8b38e" stroke-width="1.5"/>
+  <path d="M42 240Q130 248 220 240L214 247Q131 256 49 247Z" fill="#493328"/>
+  <ellipse cx="131" cy="239" rx="89" ry="8" fill="#79563d"/>
+  <path d="M67 240Q129 248 193 240" fill="none" stroke="#b18760" stroke-width="1.5"/>
   <path d="M76 90L84 228Q130 243 175 228L184 90Z" fill="#a4b77a"/>
   <path d="M80 160Q109 155 133 162T180 161L175 228Q131 242 84 228Z" fill="#e5dfbf"/>
   <path d="M81 157Q109 162 130 153T180 155L178 172Q149 180 130 167T82 174Z" fill="#c3cea1"/>
