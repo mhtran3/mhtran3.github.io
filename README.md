@@ -20,15 +20,15 @@ The education card starts with “Everyone deserves access to quality education.
 
 The AI card connects Michael's concerns and views on intentionality to an early RWKV experiment. It distinguishes inspecting memory/state from developing a new architecture, and does not claim a working hybrid, a benchmark comparison, or environmental savings. The separate combat-AI case study remains linked directly below the card, with concrete system choices and Michael's AI-assisted role described.
 
-## Cafe scene
+## Cafe scene and reading hierarchy
 
-The Leaf Cafe in Da Nang inspires warm plaster, dark wood, greenery, and tile details. Michael's IMG_0136 reference informs the negative space between paired leaflets and daylight passing through them. The photograph stays private.
+The Leaf Cafe and Michael's IMG_0136 reference inform the frosted depth, negative space, and backlight. The photograph stays private. Michael selected jacaranda and bougainvillea for their personal connection to Da Nang and his Vietnamese heritage. The design treats these as stylized plant references, not a botanical identification of the original photograph.
 
-`assets/frosted-foliage.webp` is an AI-generated gouache-style background (1280 x 853, 73,418 bytes). It suggests an eye-level view through frosted glass, with flat leaf shapes, luminous gaps, and softly painted distant foliage. A CSS light layer blends it into the page. The background appears once behind opaque gallery cards, leaving an exposed band above them. No runtime blur or extra JavaScript is needed. Original artwork is unfiltered.
+`assets/jacaranda-bougainvillea.webp` is a sparse AI-generated gouache background (1280 x 853, 48,420 bytes), with separated branches entering from different edges and a soft distant jacaranda shape. Pale gaps and warm edge light contrast with deeper brown and green page accents. The background appears once, behind opaque cards and captions. No runtime blur or additional JavaScript is needed. Original artwork is unfiltered.
 
-The table divider is now a flat textured wood strip, without a beveled top, engraving, gradient shading, or cast shadow. Both drink bodies share the center of their saucer, and the saucers share a baseline. The separate broad-leaf planter remains on the lower divider. The earlier realistic branch, tabletop fern, and canopy shadow assets are retained but unused.
+The counter remains a flat textured wood strip. Both drink bodies share their saucer centers and baseline. The generic broad-leaf planter and prominent hobbies section have been removed. Earlier dense foliage and realistic branch assets remain unused. Decorations ignore pointer input and disappear for contrast preferences and print.
 
-Decorations ignore pointer input, are hidden from assistive technology, and are removed for contrast preferences and print. Reduced-motion preferences suppress transitions and smooth scrolling. The colophon distinguishes generated decoration from Michael's own artwork.
+The introduction now states current work and provides direct email, LinkedIn, and GitHub links. Cards present concrete education and technical work before interaction and use explicit underlined action labels. All details still have the native-dialog enhancement and no-JavaScript reading path. Personal interests live in an optional, initially closed footer disclosure, rather than the landing-page reading flow. The colophon explains this hierarchy and distinguishes generated decor from Michael's artwork.
 
 ## Validation and limits
 

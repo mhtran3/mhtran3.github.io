@@ -1,8 +1,8 @@
 {
-  "generated_at_utc": "2026-10-14T04:21:13+00:00",
+  "generated_at_utc": "2026-10-14T16:46:32+00:00",
   "scope": "Homepage, colophon, and their stylesheets. Manual source check, not live deployment telemetry.",
   "result": "pass",
-  "local_references_checked": 49,
+  "local_references_checked": 47,
   "file_sizes": {
     "homepage_js": {
       "files": [
@@ -16,14 +16,14 @@
         "home.css",
         "gallery.css"
       ],
-      "bytes": 22466,
+      "bytes": 22565,
       "budget_bytes": 40960
     },
     "foliage_backdrop": {
       "files": [
-        "assets/frosted-foliage.webp"
+        "assets/jacaranda-bougainvillea.webp"
       ],
-      "bytes": 73418,
+      "bytes": 48420,
       "budget_bytes": 102400
     }
   },
