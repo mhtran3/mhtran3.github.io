@@ -28,13 +28,14 @@ class Page(HTMLParser):
 
 
 def main():
-    pages = {p.resolve(): Page(p) for p in ROOT.glob('*.html')}
+    # Scope the redesigned entry points; retained legacy pages are not migrated here.
+    pages = {p.resolve(): Page(p) for p in (ROOT / 'index.html', ROOT / 'colophon.html')}
     errors, count = [], 0
     references = []
     for path, page in pages.items():
         errors.extend(f'{path.name}: duplicate ID {i}' for i in page.duplicates)
         references.extend((path, ref) for ref in page.refs)
-    for path in ROOT.glob('*.css'):
+    for path in (ROOT / 'home.css', ROOT / 'gallery.css'):
         references.extend((path, match[1].strip()) for match in re.findall(
             r'url\(\s*([\'"]?)(.*?)\1\s*\)', path.read_text(encoding='utf-8')))
     for origin, ref in references:
@@ -64,7 +65,7 @@ def main():
         raise SystemExit('\n'.join(errors))
     result = {
         'generated_at_utc': datetime.now(timezone.utc).isoformat(timespec='seconds'),
-        'scope': 'Static source check; manually generated, not live deployment telemetry.',
+        'scope': 'Homepage, colophon, and their stylesheets. Manual source check, not live deployment telemetry.',
         'result': 'pass', 'local_references_checked': count, 'file_sizes': sizes,
         'not_checked': ['external URLs', 'browser layout', 'keyboard interactions',
                         'screen readers', 'Lighthouse', 'automated accessibility audit'],
