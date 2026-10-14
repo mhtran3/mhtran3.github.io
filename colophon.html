@@ -25,8 +25,8 @@
     <section id="materials">
       <h2>A scene with room to read</h2>
       <p>The Leaf Café in Đà Nẵng is a reference for the warm plaster, dark wood, greenery, and small tile details. The page borrows that atmosphere without using the café’s photographs as decoration. My selected artwork stays in its original colors.</p>
-      <p>The branch has a reserved corner beside the introduction. It enters from the edge, instead of floating between cards. A different broad-leaf plant rests on the lower divider; the cups sit on a shallow tabletop. Background texture, framed work, and foreground objects give the page depth without moving as you scroll.</p>
-      <p>The table’s warm finish and restrained floral detail are interpretations, not reproductions of a traditional Vietnamese motif. Matcha and Vietnamese egg coffee make the café reference more personal.</p>
+      <p>The scene suggests sitting inside a café and looking through frosted glass. Foliage belongs behind the cards, with pale daylight visible between airy leaflets. Softer distant shapes and flatter painted leaves create depth; the cards, captions, and text remain opaque. The foliage enters from the edges of one continuous illustration rather than repeated branch stamps.</p>
+      <p>A flat wooden strip suggests the counter without a three-dimensional bevel, cast shadow, or visible top plane. Each drink shares a center with its saucer. Matcha and Vietnamese egg coffee make the café reference more personal; a separate broad-leaf planter anchors the lower divider.</p>
       <h3>Typography as a practical choice</h3>
       <p>My typography class made me pay closer attention to how type shapes reading. Here, a Helvetica-based system stack gives the main text a quiet, familiar voice; Arial and the device’s sans-serif font are fallbacks. Small serif accents offer a different tone. This is a choice for this page, not a claim that serif type is inherently harder to read.</p>
       <p>System fonts avoid a font download, but the exact appearance varies across devices. Texture sits behind the content rather than filtering letters or artwork.</p>
@@ -40,22 +40,22 @@
       <p>Project cards are ordinary links to stories in the same document. JavaScript enhances them into native dialogs, gives the dialog its story heading, and returns focus to the opener when it closes. Without JavaScript or dialog support, the stories remain in the page. This colophon needs no JavaScript.</p>
       <p>Skip links and visible focus styles are included. Reduced-motion preferences remove smooth scrolling and transitions; high-contrast modes remove decorative imagery. Decorative images have empty alternative text and are hidden from assistive technology. These are implemented features, not a completed accessibility certification.</p>
       <h3>What stays small</h3>
-      <p>There are no third-party scripts, analytics, remote fonts, or autoplay media in the page. The site code does not set cookies. Artwork uses WebP; simple scene details use SVG. The more textured branch uses a transparent WebP rather than thousands of tiny vector shapes.</p>
+      <p>There are no third-party scripts, analytics, remote fonts, or autoplay media in the page. The site code does not set cookies. Artwork uses WebP; simple scene details use SVG. The frosted-window effect is painted into one optimized WebP background, with a light CSS color layer over the scenery. It does not require a live blur filter, animation, or changes to the artwork itself.</p>
       <p>For now, there is no command palette, service worker, or live metrics widget. The navigation and content are small enough that those features would need a specific purpose before earning their place.</p>
     </section>
 
     <section id="checks">
       <h2>Evidence, with its limits attached</h2>
-      <p><a href="scripts/check-site.py">The source check</a> verifies local HTML and stylesheet references, fragment targets, duplicate IDs, and these uncompressed file-size budgets: 10 KiB for homepage JavaScript, 40 KiB for the two stylesheets together, and 100 KiB for the decorative branch. These limits are project choices, not industry standards or loading-time scores.</p>
+      <p><a href="scripts/check-site.py">The source check</a> verifies local HTML and stylesheet references, fragment targets, duplicate IDs, and these uncompressed file-size budgets: 10 KiB for homepage JavaScript, 40 KiB for the two stylesheets together, and 100 KiB for the foliage background. These limits are project choices, not industry standards or loading-time scores.</p>
       <p><a href="site-check.json">Read the latest saved check report.</a> This is a manually generated snapshot, not live deployment telemetry. It can be reproduced from the source with <code>python scripts/check-site.py</code>. Image sizes are file bytes; browser transfer sizes and caching may differ.</p>
-      <p>Full browser layout review, keyboard and screen-reader testing, and Lighthouse and automated accessibility audits are still outstanding for this revision. No scores or coverage percentages are claimed here. The next useful checks are small-screen readability, dialog focus behavior, and loading performance with the illustrated branch.</p>
+      <p>Full browser layout review, keyboard and screen-reader testing, and Lighthouse and automated accessibility audits are still outstanding for this revision. No scores or coverage percentages are claimed here. The next useful checks are small-screen readability, dialog focus behavior, and loading performance with the painted foliage background.</p>
       <p>The draft changes and their history are available in <a href="https://github.com/mhtran3/mhtran3.github.io/pull/1">the site’s pull request</a>. A custom CI reporting pipeline has not been added.</p>
     </section>
 
     <section id="credits">
       <h2>Authorship and assistance</h2>
       <p>The artwork in the collection is mine. The wave-board study includes an identified reference to Hokusai’s <em>The Great Wave off Kanagawa</em>.</p>
-      <p>I set the personal direction, choose references, and review and refine the site with AI assistance for code and writing. The cascading branch is an AI-generated decorative illustration adapted from a reference I selected; the remaining scene details are code-based SVGs. It is not presented as my hand-painted artwork.</p>
+      <p>I set the personal direction, choose references, and review and refine the site with AI assistance for code and writing. The foliage background is an AI-generated gouache-style illustration informed by my café photograph; the remaining scene details are code-based SVGs. It is not presented as my hand-painted artwork.</p>
       <p>Part of the point of this page is to keep those distinctions visible. A finished-looking result is only one part of the work; the decisions, limitations, and revisions matter too.</p>
       <p><a href="https://github.com/mhtran3/mhtran3.github.io">Browse the source repository</a> · <a href="https://thecupscoffee.vn/the-leaf-cafe/">The Leaf Café reference</a></p>
     </section>
