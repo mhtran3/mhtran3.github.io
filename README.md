@@ -22,15 +22,17 @@ The AI card connects Michael's concerns and views on intentionality to an early 
 
 ## Cafe scene
 
-The Leaf Cafe in Da Nang inspires warm plaster, dark wood, greenery, and tile details. Michael's cafe photos were reviewed privately and are not published. The scene contains a reserved upper-right branch corner, paper texture behind readable text, wood-framed art, and a low-viewpoint table with a restrained original floral engraving. Matcha sits on a wooden saucer; Vietnamese egg coffee sits on a cream saucer. A distinct broad-leaf planter rests on the lower divider.
+The Leaf Cafe in Da Nang inspires warm plaster, dark wood, greenery, and tile details. Michael's IMG_0136 reference informs the negative space between paired leaflets and daylight passing through them. The photograph stays private.
 
-`assets/jacaranda-cascade.webp` is an AI-generated decorative illustration adapted from Michael's selected cascading-branch reference using the built-in image tool. It is 480 x 600 with transparency, optimized to 86,916 bytes. The filename reflects the requested reference, not a botanical identification. Other decorative assets are code-based SVGs. The colophon explicitly distinguishes these decorations from Michael's artwork.
+`assets/frosted-foliage.webp` is an AI-generated gouache-style background (1280 x 853, 73,418 bytes). It suggests an eye-level view through frosted glass, with flat leaf shapes, luminous gaps, and softly painted distant foliage. A CSS light layer blends it into the page. The background appears once behind opaque gallery cards, leaving an exposed band above them. No runtime blur or extra JavaScript is needed. Original artwork is unfiltered.
 
-The old tabletop frond planter and canopy shadow are no longer displayed. The two visible plants have distinct silhouettes and appear once each. Decoration ignores pointer input, is hidden from assistive technology, and simplifies for narrow screens, contrast preferences, and print. Reduced-motion preferences suppress transitions and smooth scrolling.
+The table divider is now a flat textured wood strip, without a beveled top, engraving, gradient shading, or cast shadow. Both drink bodies share the center of their saucer, and the saucers share a baseline. The separate broad-leaf planter remains on the lower divider. The earlier realistic branch, tabletop fern, and canopy shadow assets are retained but unused.
+
+Decorations ignore pointer input, are hidden from assistive technology, and are removed for contrast preferences and print. Reduced-motion preferences suppress transitions and smooth scrolling. The colophon distinguishes generated decoration from Michael's own artwork.
 
 ## Validation and limits
 
-The saved check report contains source-file bytes, not compressed transfer sizes or live deployment data. Current budgets are 10 KiB for homepage JavaScript, 40 KiB for the combined stylesheets, and 100 KiB for the branch image. These are project limits; they are not accessibility or speed scores.
+The saved check report contains source-file bytes, not compressed transfer sizes or live deployment data. Current budgets are 10 KiB for homepage JavaScript, 40 KiB for the combined stylesheets, and 100 KiB for the foliage background. These are project limits; they are not accessibility or speed scores.
 
 Standalone decorative assets were rendered and inspected. Full-page browser layout, keyboard/screen-reader interaction, Lighthouse, and automated accessibility audits remain outstanding for this revision because local preview automation was restricted. Do not describe the saved source check as a browser audit. No custom CI reporting workflow has been added.
 

@@ -22,13 +22,7 @@ body {
 .site-header { border-bottom-color: var(--line); }
 .monogram { color: var(--wood); }
 .site-header nav a { padding-block: 8px; }
-.welcome { padding: 52px calc(20% + 24px) 44px 0; min-height: 306px; isolation: isolate; }
-/* Only this decorative corner clips: text and keyboard focus remain visible. */
-.branch-corner {
-  position: absolute; top: 0; right: 0; width: 20%; max-width: 230px;
-  overflow: hidden; pointer-events: none;
-}
-.branch-corner img { width: 100%; height: auto; }
+.welcome { padding: 52px 0 44px; isolation: isolate; }
 .welcome::before {
   content: ''; position: absolute; z-index: -1; pointer-events: none;
   inset: 5px auto auto -25px; width: min(460px, 90%); height: 155px;
@@ -46,33 +40,26 @@ body {
 /* The backdrop owns its clipping; gallery links and focus rings remain unclipped. */
 .scene-backdrop {
   position: absolute; z-index: -1; pointer-events: none;
-  inset: 32px -12px 0; overflow: hidden; border-radius: 5px 11px 3px 7px;
-  background: radial-gradient(ellipse at 30% 15%, #fffaf14d, transparent 68%),
-    linear-gradient(180deg, transparent 42%, #c6b49021 100%);
+  inset: 48px -24px 0; overflow: hidden; border-radius: 3px;
+  background: #f5f0e3 url('assets/frosted-foliage.webp') center top / 100% auto no-repeat;
+}
+.scene-backdrop::after {
+  /* A painted frost/light layer over the scenery, never over the text or artwork. */
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, #fffaf01a, #f2e9d91a 38%, var(--paper) 90%);
 }
 .worktable {
   grid-template-columns: 1.18fr 1fr .94fr;
   grid-template-areas: 'cranes experiment teaching' 'cranes experiment illustration';
-  gap: 32px; align-items: start;
+  gap: 32px; align-items: start; padding-top: 112px;
 }
-.cafe-table { position: relative; height: 235px; margin-top: 24px; pointer-events: none; }
-.table-top {
-  position: absolute; inset: auto 0 48px; height: 22px;
-  background: url('assets/wood-grain.svg') center / 1000px 52px,
-    linear-gradient(180deg, #a97651, #b88359 52%, #9d6847);
-  clip-path: polygon(.7% 0, 99.3% 0, 100% 100%, 0 100%);
-  border-top: 1px solid #c49b72;
-}
+.cafe-table { position: relative; height: 211px; margin-top: 24px; pointer-events: none; }
 .table-edge {
-  position: absolute; inset: auto 0 0; height: 50px;
-  background: url('assets/wood-inlay.svg') center / auto 38px no-repeat,
-    url('assets/wood-grain.svg') 35% 60% / 1100px 80px,
-    linear-gradient(180deg, #784d36, #68422e 45%, #573727);
-  border-top: 2px solid #c09161; border-bottom: 3px solid #483023;
-  border-radius: 0 0 7px 7px;
-  box-shadow: inset 0 3px 0 #492b243d, 0 15px 18px -12px #513b2c80;
+  position: absolute; inset: auto 0 0; height: 18px;
+  background: #78563c url('assets/paper.svg');
+  border-radius: 2px 3px 1px 2px;
 }
-.table-drinks { position: absolute; width: 370px; max-width: 88%; height: auto; right: 9%; bottom: 48px; }
+.table-drinks { position: absolute; width: 370px; max-width: 88%; height: auto; right: 9%; bottom: 17px; }
 .cranes { grid-area: cranes; padding-top: 10px; }
 .experiment { grid-area: experiment; margin-top: 28px; }
 .teaching { grid-area: teaching; margin-top: 0; }
@@ -87,7 +74,7 @@ body {
 .art-stage img { object-fit: contain; }
 .cranes .piece-link:hover img { transform: none; }
 .image-note { display: none; }
-.piece-caption { padding: 18px 4px 0; }
+.piece-caption { padding: 18px 8px 8px; background: var(--paper); }
 .piece-caption h3 { font: 500 24px/1.23 var(--sans); letter-spacing: -.65px; }
 .piece-caption .eyebrow { font-size: 12px; margin-bottom: 7px; }
 .open-arrow {
@@ -144,7 +131,7 @@ body {
   background: var(--cream); color: var(--ink); font-size: 10px;
   border: 1px solid var(--line); line-height: 1.5;
 }
-.illustration .piece-caption { padding: 13px 3px 0; }
+.illustration .piece-caption { padding: 13px 8px 8px; }
 .illustration .eyebrow { font-size: 11px; }
 .illustration h3 { font: 500 22px/1.2 var(--sans); letter-spacing: -.5px; }
 .between { margin-top: 34px; padding: 55px 170px 34px 0; border-top: 0; }
@@ -190,9 +177,6 @@ dialog::backdrop { background: #2d271ee0; }
 .colophon code { font-size: .85em; overflow-wrap: anywhere; }
 @media (min-width:1450px) { .experiment-link { min-height: 520px; } }
 @media (max-width:1050px) {
-  .welcome { grid-template-columns: 1fr; padding-right: 180px; gap: 16px; min-height: 260px; }
-  .welcome-note { grid-column: 1; justify-self: start; }
-  .branch-corner { width: 150px; }
   .worktable { grid-template-columns: 1fr 1fr; grid-template-areas: 'cranes experiment' 'teaching illustration'; gap: 32px; }
   .teaching, .illustration { margin-top: 0; }
   .teaching-link { min-height: 330px; }
@@ -200,16 +184,15 @@ dialog::backdrop { background: #2d271ee0; }
 }
 @media (max-width:640px) {
   .welcome { padding: 36px 0 30px; min-height: 0; }
-  .welcome > div:not(.branch-corner) { padding-right: 90px; }
-  .branch-corner { width: 78px; }
   .welcome::before { left: -10px; width: 320px; height: 125px; }
   .section-line > span { font-size: 10px; }
   .section-line h2 { font-size: 17px; }
-  .worktable { grid-template-columns: 1fr; grid-template-areas: 'cranes' 'experiment' 'teaching' 'illustration'; gap: 32px; }
-  .cafe-table { height: 206px; margin-top: 30px; }
-  .table-top { height: 18px; bottom: 40px; }
-  .table-edge { height: 42px; background-size: auto 30px, 1100px 80px, auto; }
-  .table-drinks { width: 300px; right: 0; max-width: 84%; bottom: 40px; }
+  .worktable { grid-template-columns: 1fr; grid-template-areas: 'cranes' 'experiment' 'teaching' 'illustration'; gap: 32px; padding-top: 76px; }
+  .scene-backdrop { inset: 48px -8px 0; background-size: auto 500px; }
+  .scene-backdrop::after { background: linear-gradient(180deg, #fffaf01a, var(--paper) 750px); }
+  .cafe-table { height: 170px; margin-top: 30px; }
+  .table-edge { height: 14px; }
+  .table-drinks { width: 300px; right: 0; max-width: 84%; bottom: 13px; }
   .cranes { padding-top: 0; }
   .experiment { margin-top: 6px; }
   .experiment-link { min-height: 455px; padding: 25px 27px; }
@@ -222,15 +205,17 @@ dialog::backdrop { background: #2d271ee0; }
   .site-footer .design-note { order: 4; }
 }
 @media (prefers-contrast:more) {
-  body, .experiment, .teaching, .table-top, .table-edge { background-image: none; }
-  .table-top { background-color: #a57349; }
+  .worktable { padding-top: 0; }
+  body, .experiment, .teaching, .table-edge { background-image: none; }
   .table-edge { background-color: #67462e; }
-  .welcome::before, .life-plant, .between::before, .branch-corner, .scene-backdrop { display: none; }
+  .welcome::before, .life-plant, .between::before, .scene-backdrop { display: none; }
 }
 @media (forced-colors:active) {
-  .scene-backdrop, .cafe-table, .life-plant, .welcome::before, .branch-corner { display: none; }
+  .worktable { padding-top: 0; }
+  .scene-backdrop, .cafe-table, .life-plant, .welcome::before { display: none; }
 }
 @media print {
+  .worktable { padding-top: 0; }
   body { background: white; }
-  .welcome::before, .life-plant, .cafe-table, .scene-backdrop, .branch-corner { display: none; }
+  .welcome::before, .life-plant, .cafe-table, .scene-backdrop { display: none; }
 }
