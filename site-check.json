@@ -1,6 +1,6 @@
 {
-  "generated_at_utc": "2026-10-14T04:09:20+00:00",
-  "scope": "Static source check; manually generated, not live deployment telemetry.",
+  "generated_at_utc": "2026-10-14T04:11:09+00:00",
+  "scope": "Homepage, colophon, and their stylesheets. Manual source check, not live deployment telemetry.",
   "result": "pass",
   "local_references_checked": 51,
   "file_sizes": {
