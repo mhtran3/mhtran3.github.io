@@ -14,11 +14,11 @@ No build step, third-party JavaScript, analytics, remote fonts, or runtime depen
 
 ## Content and provenance
 
-The Scully co-op shirt artwork and wave-board study are optimized copies of Michael's existing public artwork. The skateboard card is labeled as a detail; its full study identifies the Hokusai reference. Original artwork remains unfiltered. The Rita Moreno preview is retained but not displayed.
+The main collection features Michael's hotpot illustration for ZZZ 2025 Art Fest, the flower-clearing excerpt from Bloom, dungeon movement/positioning diagnostics, and education work. The festival attribution is supplied by Michael and does not imply a publisher commission. Four process frames and an 18-second timelapse excerpt accompany the hotpot illustration. Bloom uses a six-second silent excerpt. Scully and the wave sketch remain accessible under More from the collection; the full wave study identifies its Hokusai reference. Artwork colors remain unfiltered. See assets/media/README.md for excerpt provenance.
 
 The education card starts with “Everyone deserves access to quality education.” Its detail covers Trenton Arts, volunteer tutor coordination, mentoring, curriculum development, and current tutoring.
 
-The AI card connects Michael's concerns and views on intentionality to an early RWKV experiment. It distinguishes inspecting memory/state from developing a new architecture, and does not claim a working hybrid, a benchmark comparison, or environmental savings. The separate combat-AI case study remains linked directly below the card, with concrete system choices and Michael's AI-assisted role described.
+The engineering card leads with actual dungeon heatmap footage and concrete system choices. Its case study includes two player-controlled video players: terrain-aware combat scores and exploration flow directions. The simulation in the recorded clips was automatic. The case study states Michael's AI-assisted role and distinguishes third-party game art from his contribution. The RWKV reflection is linked underneath; it remains an early experiment and does not claim a working hybrid, benchmark comparison, or environmental savings.
 
 ## Cafe scene and reading hierarchy
 
@@ -32,8 +32,12 @@ The introduction identifies Michael as an artist, engineer, and educator, emphas
 
 ## Validation and limits
 
-The saved check report contains source-file bytes, not compressed transfer sizes or live deployment data. Current budgets are 10 KiB for homepage JavaScript, 40 KiB for the combined stylesheets, and 100 KiB for the foliage background. These are project limits; they are not accessibility or speed scores.
+The saved check report contains source-file bytes, not compressed transfer sizes or live deployment data. Current budgets are 10 KiB for homepage JavaScript, 40 KiB for the combined stylesheets, 100 KiB for the foliage background, 150 KiB for the featured illustration, and 5 MiB combined / 2 MiB each for the optional video clips. These are project limits; they are not accessibility or speed scores.
 
 Standalone decorative assets were rendered and inspected. Full-page browser layout, keyboard/screen-reader interaction, Lighthouse, and automated accessibility audits remain outstanding for this revision because local preview automation was restricted. Do not describe the saved source check as a browser audit. No custom CI reporting workflow has been added.
 
 Private planning records, reference photos, student materials, local project source, and sensitive autobiographical content are excluded from the public site.
+
+## Media behavior
+
+Homepage cards use still images. All four videos have native controls, playsinline, preload=none, an accessible label, and adjacent visual descriptions. No autoplay or looping is used. Dialog close pauses and removes cloned media; a document-level play listener pauses other videos, including in the no-dialog/direct-story view. Source checks include poster references and video attributes. Native controls and responsive layout still need real-browser QA; source checks do not establish accessibility conformance.
