@@ -316,6 +316,9 @@ dialog::backdrop { background: #2d271ee0; }
 .comparison-detail figure { margin: 0; min-width: 0; }
 .comparison-detail img { width: 100%; height: auto; max-height: 400px; object-fit: contain; margin: 0; background: white; }
 .comparison-detail figcaption, .jacket-photo figcaption { font-size: 13px; color: var(--muted); line-height: 1.65; margin-top: 10px; }
+.seal-source { margin: 24px 0; }
+.seal-source img { width: min(100%, 500px); max-height: none; margin: 0 auto; }
+.seal-source figcaption { font-size: 13px; color: var(--muted); margin-top: 10px; }
 .jacket-photo { margin: 24px 0; }
 .jacket-photo img { margin: 0; }
 .story .apparel-art, .dialog-content .apparel-art { max-height: 540px; width: 100%; background: transparent; }
