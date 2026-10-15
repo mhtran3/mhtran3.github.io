@@ -30,6 +30,7 @@ body {
   opacity: .8; transform: rotate(-3deg);
 }
 .welcome h1 { font-family: var(--sans); font-weight: 500; letter-spacing: -1.9px; }
+.welcome h1 + .eyebrow { margin: 12px 0 0; font-size: 15px; }
 .welcome-copy { max-width: 530px; }
 .welcome-links { grid-column: 2; display: flex; flex-wrap: wrap; gap: 14px 25px; font-size: 14px; }
 .welcome-links a { padding-block: 7px; }
@@ -264,11 +265,13 @@ dialog::backdrop { background: #2d271ee0; }
 }
 
 /* Reading order: perspective, education/engineering, applied graphics, then art. */
-.perspective-note { display: grid; grid-template-columns: 1fr 1.4fr; gap: 28px; padding: 27px 0 30px; border-block: 1px solid var(--line); margin-bottom: 35px; }
+.perspective-note { background: #dce5d8; border: 1px solid #a8b9a2; border-radius: 4px; margin-bottom: 35px; }
+.perspective-link { display: grid; grid-template-columns: 1.2fr 1fr; align-items: center; gap: 32px; padding: 27px 30px; text-decoration: none; border-radius: inherit; }
+.perspective-link:hover { background: #d3dfcf; }
+.perspective-link:hover .card-action { text-decoration-thickness: 2px; }
 .perspective-note h2 { font: 500 clamp(25px, 3vw, 35px)/1.16 var(--sans); letter-spacing: -.8px; margin: 0; }
 .perspective-note .eyebrow span { color: var(--red); padding-left: 8px; }
 .perspective-note p:not(.eyebrow) { font-size: 15px; line-height: 1.8; margin: 0 0 12px; max-width: 590px; }
-.perspective-note a { font-size: 13px; }
 .collection-index { display: flex; flex-wrap: wrap; gap: 10px 26px; font-size: 13px; margin-bottom: 26px; }
 .collection-index a { padding-block: 8px; }
 .worktable.professional-work { grid-template-columns: 1fr 1.2fr; grid-template-areas: none; padding-top: 24px; gap: 35px; }
@@ -276,20 +279,18 @@ dialog::backdrop { background: #2d271ee0; }
 .accessibility-link { padding: 28px; }
 .accessibility-link h3 { font: 500 clamp(27px, 2.6vw, 35px)/1.17 var(--sans); letter-spacing: -.6px; margin: 20px 0 18px; }
 .accessibility-link > p:not(.eyebrow) { font-size: 15px; line-height: 1.8; }
-.role-notes { font-size: 13px; line-height: 1.7; margin: 22px 0; }
-.role-notes > div + div { margin-top: 14px; }
-.role-notes dt { font-weight: 600; }
-.role-notes dd { margin: 3px 0 0; }
+.accessibility-link > .card-action { display: inline-block; margin-top: 16px; }
+.combat-feature .experiment-bottom { margin-top: 24px; }
 .professional-work .combat-feature { grid-column: 1 / -1; }
 .professional-work .combat-feature > .piece-link { display: grid; grid-template-columns: 1fr 1fr; align-items: center; }
 .professional-work .technical-preview { padding: 15px; }
 .professional-work .technical-preview .preview-label { position: static; display: block; margin-top: 10px; width: fit-content; }
 .professional-work > .piece { grid-area: auto; margin: 0; }
 .professional-work .teaching { margin-top: 24px; }
-.professional-work .teaching-link { min-height: 410px; padding: 28px; }
+.professional-work .teaching-link { min-height: 0; padding: 28px; }
 .professional-work .teaching h3 { font-size: clamp(29px, 3vw, 39px); }
 .professional-work .teaching-link > p { font-size: 15px; }
-.professional-work .teaching-bottom { margin-top: 28px; }
+.professional-work .teaching-bottom { margin-top: 12px; padding-top: 12px; }
 .collection-section { margin-top: 58px; }
 .design-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 35px; }
 .design-grid .piece { background: var(--cream); border: 1px solid var(--line); }
@@ -331,8 +332,8 @@ dialog::backdrop { background: #2d271ee0; }
   .shirt-preview { min-height: 290px; }
 }
 @media (max-width:640px) {
-  .perspective-note, .worktable.professional-work, .design-grid, .art-grid { grid-template-columns: 1fr; gap: 25px; }
-  .perspective-note { gap: 18px; padding-block: 23px; }
+  .perspective-link, .worktable.professional-work, .design-grid, .art-grid { grid-template-columns: 1fr; gap: 25px; }
+  .perspective-link { gap: 18px; padding: 23px; }
   .collection-index { gap: 5px 18px; }
   .section-line { flex-wrap: wrap; gap: 7px; }
   .section-line h2 { font-size: 18px; }
