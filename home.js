@@ -5,20 +5,22 @@
   const closeButton = document.querySelector('#close-dialog');
   let opener = null;
 
-  document.querySelectorAll('[data-story]').forEach(link => {
-    link.addEventListener('click', event => {
+  // Delegation also handles links inside cloned stories.
+  document.addEventListener('click', event => {
+      const link = event.target.closest?.('[data-story]');
+      if (!link) return;
       if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
       const story = document.getElementById(link.dataset.story);
       if (!story) return;
       event.preventDefault();
-      opener = link;
+      if (!dialog.open) opener = link;
+      content.querySelectorAll('video').forEach(video => video.pause());
       content.replaceChildren(...Array.from(story.children, child => child.cloneNode(true)));
       content.querySelector('h2').id = 'dialog-title';
       document.body.classList.add('dialog-open');
-      dialog.showModal();
+      if (!dialog.open) dialog.showModal();
       dialog.scrollTop = 0;
       closeButton.focus({ preventScroll: true });
-    });
   });
   closeButton.addEventListener('click', () => dialog.close());
   dialog.addEventListener('click', event => {

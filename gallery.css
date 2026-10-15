@@ -211,7 +211,7 @@ dialog::backdrop { background: #2d271ee0; }
   .welcome::before, .cafe-table, .scene-backdrop { display: none; }
 }
 
-/* The current selection gives the detailed illustration and diagnostic map room. */
+/* Shared media treatments for the collection and its stories. */
 .worktable {
   grid-template-columns: 1.35fr 1fr;
   grid-template-areas: 'cranes teaching' 'experiment illustration';
@@ -261,4 +261,85 @@ dialog::backdrop { background: #2d271ee0; }
   .teaching { margin-inline: 3px; }
   .process-grid { grid-template-columns: 1fr; }
   .collection-more > div { flex-direction: column; align-items: flex-start; gap: 8px; }
+}
+
+/* Reading order: perspective, education/engineering, applied graphics, then art. */
+.perspective-note { display: grid; grid-template-columns: 1fr 1.4fr; gap: 28px; padding: 27px 0 30px; border-block: 1px solid var(--line); margin-bottom: 35px; }
+.perspective-note h2 { font: 500 clamp(25px, 3vw, 35px)/1.16 var(--sans); letter-spacing: -.8px; margin: 0; }
+.perspective-note .eyebrow span { color: var(--red); padding-left: 8px; }
+.perspective-note p:not(.eyebrow) { font-size: 15px; line-height: 1.8; margin: 0 0 12px; max-width: 590px; }
+.perspective-note a { font-size: 13px; }
+.collection-index { display: flex; flex-wrap: wrap; gap: 10px 26px; font-size: 13px; margin-bottom: 26px; }
+.collection-index a { padding-block: 8px; }
+.worktable.professional-work { grid-template-columns: 1fr 1.2fr; grid-template-areas: none; padding-top: 24px; gap: 35px; }
+.accessibility-feature { background: #e4e9df; border: 1px solid #bcc9b8; border-radius: 3px; }
+.accessibility-link { padding: 28px; }
+.accessibility-link h3 { font: 500 clamp(27px, 2.6vw, 35px)/1.17 var(--sans); letter-spacing: -.6px; margin: 20px 0 18px; }
+.accessibility-link > p:not(.eyebrow) { font-size: 15px; line-height: 1.8; }
+.role-notes { font-size: 13px; line-height: 1.7; margin: 22px 0; }
+.role-notes > div + div { margin-top: 14px; }
+.role-notes dt { font-weight: 600; }
+.role-notes dd { margin: 3px 0 0; }
+.professional-work .combat-feature { grid-column: 1 / -1; }
+.professional-work .combat-feature > .piece-link { display: grid; grid-template-columns: 1fr 1fr; align-items: center; }
+.professional-work .technical-preview { padding: 15px; }
+.professional-work .technical-preview .preview-label { position: static; display: block; margin-top: 10px; width: fit-content; }
+.professional-work > .piece { grid-area: auto; margin: 0; }
+.professional-work .teaching { margin-top: 24px; }
+.professional-work .teaching-link { min-height: 410px; padding: 28px; }
+.professional-work .teaching h3 { font-size: clamp(29px, 3vw, 39px); }
+.professional-work .teaching-link > p { font-size: 15px; }
+.professional-work .teaching-bottom { margin-top: 28px; }
+.collection-section { margin-top: 58px; }
+.design-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 35px; }
+.design-grid .piece { background: var(--cream); border: 1px solid var(--line); }
+.design-grid .piece-caption { background: var(--cream); padding: 22px; }
+.seal-feature { grid-column: 1 / -1; }
+.seal-link { display: grid; grid-template-columns: 1.25fr 1fr; align-items: center; }
+.seal-comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 25px; }
+.seal-comparison img { width: 100%; aspect-ratio: 1; object-fit: contain; background: white; }
+.seal-comparison span { display: block; margin-top: 12px; font-size: 12px; color: var(--muted); }
+.design-stage { background: #e8dfce; padding: 20px; }
+.shirt-preview { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: center; min-height: 260px; }
+.shirt-preview img { width: 100%; height: 230px; object-fit: contain; }
+.jacket-link { height: 100%; }
+.jacket-preview { padding: 0; background: transparent; }
+.jacket-preview img { width: 100%; height: auto; margin: auto; }
+.jacket-link .piece-caption { padding: 22px; }
+.art-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 35px; align-items: start; }
+.art-grid > .piece { grid-area: auto; margin: 0; padding: 0; transform: none; }
+.art-grid .hotpot .art-stage { border-width: 5px; transform: none; }
+.art-grid .hotpot .art-stage img { max-height: 300px; }
+.art-grid .animation-feature .illustration-stage { padding-top: 0; }
+.art-grid .animation-feature .illustration-stage img { max-height: 300px; }
+.comparison-detail { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-block: 24px; }
+.comparison-detail figure { margin: 0; min-width: 0; }
+.comparison-detail img { width: 100%; height: auto; max-height: 400px; object-fit: contain; margin: 0; background: white; }
+.comparison-detail figcaption, .jacket-photo figcaption { font-size: 13px; color: var(--muted); line-height: 1.65; margin-top: 10px; }
+.jacket-photo { margin: 24px 0; }
+.jacket-photo img { margin: 0; }
+.story .apparel-art, .dialog-content .apparel-art { max-height: 540px; width: 100%; background: transparent; }
+@media (max-width:900px) {
+  .seal-link { grid-template-columns: 1fr; }
+  .seal-comparison { max-width: 640px; margin: auto; }
+  .jacket-link { grid-template-columns: 1fr; }
+  .jacket-preview img { width: 100%; height: auto; }
+  .jacket-link .piece-caption { padding: 22px; }
+  .shirt-preview { min-height: 290px; }
+}
+@media (max-width:640px) {
+  .perspective-note, .worktable.professional-work, .design-grid, .art-grid { grid-template-columns: 1fr; gap: 25px; }
+  .perspective-note { gap: 18px; padding-block: 23px; }
+  .collection-index { gap: 5px 18px; }
+  .section-line { flex-wrap: wrap; gap: 7px; }
+  .section-line h2 { font-size: 18px; }
+  .professional-work .teaching { margin-top: 0; }
+  .professional-work .teaching-link { min-height: 0; padding: 25px; }
+  .professional-work .combat-feature > .piece-link { grid-template-columns: 1fr; }
+  .professional-work .teaching h3 { font-size: 32px; }
+  .collection-section { margin-top: 42px; }
+  .seal-comparison { gap: 10px; padding: 18px; }
+  .shirt-preview { min-height: 0; }
+  .shirt-preview img { height: 200px; }
+  .comparison-detail { grid-template-columns: 1fr; }
 }
