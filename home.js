@@ -26,9 +26,19 @@
     if (event.target === dialog && (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom)) dialog.close();
   });
   dialog.addEventListener('close', () => {
+    // Closing a story must stop its media, including audio added in future work.
+    content.querySelectorAll('video').forEach(video => video.pause());
+    content.replaceChildren();
     document.body.classList.remove('dialog-open');
     opener?.focus({ preventScroll: true });
   });
+  // Keep attention on the requested clip, including in the direct-story view.
+  document.addEventListener('play', event => {
+    if (event.target.tagName !== 'VIDEO') return;
+    document.querySelectorAll('video').forEach(video => {
+      if (video !== event.target) video.pause();
+    });
+  }, true);
   // Native anchors remain readable without JavaScript and for direct story links.
   function showDirectStory() {
     const id = window.location.hash.slice(1);

@@ -44,11 +44,15 @@
       <h3>What stays small</h3>
       <p>There are no third-party scripts, analytics, remote fonts, or autoplay media in the page. The site code does not set cookies. Artwork uses WebP; simple scene details use SVG. The frosted-window effect is painted into one optimized WebP background, with a light CSS color layer over the scenery. It does not require a live blur filter, animation, or changes to the artwork itself.</p>
       <p>For now, there is no command palette, service worker, or live metrics widget. The navigation and content are small enough that those features would need a specific purpose before earning their place.</p>
+      <h3>Motion belongs to the work</h3>
+      <p>The gallery uses still previews. Animation, drawing-process, and prototype clips play only when requested, with native video controls and no looping or autoplay. Each video uses <code>preload="none"</code>; closing a story stops its clip, and starting another pauses the previous one. Short excerpts keep attention on a specific scene or decision rather than making the whole page move.</p>
+      <p>The illustration’s process frames come from my timelapse. The game footage comes from the running prototype’s own viewport. Captions explain what the recordings show and distinguish navigation fields from combat positioning. These are examples to inspect, not performance or correctness scores.</p>
     </section>
 
     <section id="checks">
       <h2>Evidence, with its limits attached</h2>
       <p><a href="scripts/check-site.py">The source check</a> verifies local HTML and stylesheet references, fragment targets, duplicate IDs, and these uncompressed file-size budgets: 10 KiB for homepage JavaScript, 40 KiB for the two stylesheets together, and 100 KiB for the foliage background. These limits are project choices, not industry standards or loading-time scores.</p>
+      <p>The selected illustration has a 150 KiB budget. The four video excerpts have a combined 5 MiB budget and a 2 MiB limit per clip; they are optional media, not an initial page-download target. The source check also verifies posters, story destinations, and play-on-request video attributes.</p>
       <p><a href="site-check.json">Read the latest saved check report.</a> This is a manually generated snapshot, not live deployment telemetry. It can be reproduced from the source with <code>python scripts/check-site.py</code>. Image sizes are file bytes; browser transfer sizes and caching may differ.</p>
       <p>Full browser layout review, keyboard and screen-reader testing, and Lighthouse and automated accessibility audits are still outstanding for this revision. No scores or coverage percentages are claimed here. The next useful checks are small-screen readability, dialog focus behavior, and loading performance with the painted foliage background.</p>
       <p>The draft changes and their history are available in <a href="https://github.com/mhtran3/mhtran3.github.io/pull/1">the site’s pull request</a>. A custom CI reporting pipeline has not been added.</p>
@@ -56,7 +60,8 @@
 
     <section id="credits">
       <h2>Authorship and assistance</h2>
-      <p>The artwork in the collection is mine. The wave-board study includes an identified reference to Hokusai’s <em>The Great Wave off Kanagawa</em>.</p>
+      <p>The hotpot illustration and the visual artwork, animation, and compositing in <em>Bloom</em> are mine. The hotpot scene depicts characters from Zenless Zone Zero. The film excerpt is silent and makes no claim of soundtrack authorship. The wave-board study includes an identified reference to Hokusai’s <em>The Great Wave off Kanagawa</em>.</p>
+      <p>The game prototype uses third-party sprites and environment assets. That case study presents my system design, direction of AI-assisted development, and testing process, rather than claiming the game’s visual assets as my artwork.</p>
       <p>I set the personal direction, choose references, and review and refine the site with AI assistance for code and writing. The foliage background is an AI-generated gouache-style illustration informed by my café photograph; the remaining scene details are code-based SVGs. It is not presented as my hand-painted artwork.</p>
       <p>Part of the point of this page is to keep those distinctions visible. A finished-looking result is only one part of the work; the decisions, limitations, and revisions matter too.</p>
       <p><a href="https://github.com/mhtran3/mhtran3.github.io">Browse the source repository</a> · <a href="https://thecupscoffee.vn/the-leaf-cafe/">The Leaf Café reference</a></p>
