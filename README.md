@@ -14,11 +14,15 @@ No build step, third-party JavaScript, analytics, remote fonts, or runtime depen
 
 ## Content and provenance
 
-The main collection features Michael's hotpot illustration for ZZZ 2025 Art Fest, the flower-clearing excerpt from Bloom, dungeon movement/positioning diagnostics, and education work. The festival attribution is supplied by Michael and does not imply a publisher commission. Four process frames and an 18-second timelapse excerpt accompany the hotpot illustration. Bloom uses a six-second silent excerpt. Scully and the wave sketch remain accessible under More from the collection; the full wave study identifies its Hokusai reference. Artwork colors remain unfiltered. See assets/media/README.md for excerpt provenance.
+The opening perspective is “Okay, we have AI. Now what?” Education and Rubrik accessibility work lead the professional collection, followed by the ongoing combat-AI prototype. The next section presents research-led Whig–Clio restoration for official university use, printed apparel for Scully/MOL/Class of 1976, and the Class of 2023 senior jacket. Bloom and the hotpot illustration follow in a quieter art section; the wave sketch stays in an optional sketchbook disclosure.
+
+Michael confirmed that the three featured shirt designs were printed. The Scully sweatshirt photograph provides a visible artwork-to-fabric comparison. MOL and reunion images are labeled as artwork, not garment photographs. Whig–Clio research, recovery of features lost to repeated compression, and official university use are Michael’s supplied project context. The jacket is independently documented by Princeton University and Princeton Alumni Weekly. Its photograph shows garments on chairs, credited to Denise Applewhite, Office of Communications; the portrait is not displayed.
+
+Hotpot’s ZZZ 2025 Art Fest attribution is supplied by Michael and does not imply a publisher commission. Four process frames and an 18-second timelapse excerpt accompany it. Bloom uses a six-second silent excerpt. Artwork colors remain unfiltered. See assets/media/README.md for media provenance.
 
 The education card starts with “Everyone deserves access to quality education.” Its detail covers Trenton Arts, volunteer tutor coordination, mentoring, curriculum development, and current tutoring.
 
-The engineering card leads with actual dungeon heatmap footage and concrete system choices. Its case study includes two player-controlled video players: terrain-aware combat scores and exploration flow directions. The simulation in the recorded clips was automatic. The case study states Michael's AI-assisted role and distinguishes third-party game art from his contribution. The RWKV reflection is linked underneath; it remains an early experiment and does not claim a working hybrid, benchmark comparison, or environmental savings.
+The engineering card leads with actual dungeon heatmap footage and concrete system choices. Its case study includes two player-controlled video players: terrain-aware combat scores and exploration flow directions. The simulation in the recorded clips was automatic. The case study states Michael's AI-assisted role and distinguishes third-party game art from his contribution. The RWKV reflection is linked from the AI perspective and engineering card; it remains an early experiment and does not claim a working hybrid, benchmark comparison, or environmental savings.
 
 ## Cafe scene and reading hierarchy
 
