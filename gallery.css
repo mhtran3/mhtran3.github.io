@@ -44,12 +44,37 @@ body {
 .scene-backdrop {
   position: absolute; z-index: -1; pointer-events: none;
   inset: 48px -24px 0; overflow: hidden; border-radius: 3px;
-  background: #f5f0e3 url('assets/jacaranda-bougainvillea.webp') center top / 100% auto no-repeat;
+  /* Light and shade span the collection independently of the painting's height. */
+  background:
+    url('assets/paper.svg') 0 0 / 180px 180px repeat,
+    radial-gradient(ellipse at 92% 28%, #637a5724, transparent 44%),
+    radial-gradient(ellipse at 4% 62%, #54706326, transparent 40%),
+    radial-gradient(ellipse at 78% 86%, #d9b87530, transparent 43%),
+    #f5f0e3;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 28px, #000 calc(100% - 160px), transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 28px, #000 calc(100% - 160px), transparent);
+}
+.scene-backdrop::before {
+  /* Keep the original foliage proportions; dissolve its edge into the CSS wash. */
+  content: ''; position: absolute; inset: 0 0 auto; aspect-ratio: 1280 / 853;
+  background: url('assets/jacaranda-bougainvillea.webp') center top / cover no-repeat;
+  -webkit-mask-image: linear-gradient(to bottom, #000 40%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 40%, transparent 100%);
 }
 .scene-backdrop::after {
-  /* A painted frost/light layer over the scenery, never over the text or artwork. */
-  content: ''; position: absolute; inset: 0;
-  background: linear-gradient(180deg, #fffaf01a, #f2e9d91a 38%, var(--paper) 90%);
+  /* A broad light wash behind content. No moving foliage or runtime blur. */
+  content: ''; position: absolute; inset: -20px;
+  background:
+    radial-gradient(ellipse at 72% 22%, #fff8d4, transparent 48%),
+    radial-gradient(ellipse at 30% 70%, #fff8e1, transparent 40%);
+  opacity: .16;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .scene-backdrop::after { animation: window-light-settle 4s ease-out both; }
+}
+@keyframes window-light-settle {
+  from { opacity: .08; transform: translate(-8px, -5px); }
+  to { opacity: .16; transform: translate(0, 0); }
 }
 .worktable {
   grid-template-columns: 1.18fr 1fr .94fr;
@@ -183,8 +208,8 @@ dialog::backdrop { background: #2d271ee0; }
   .section-line > span { font-size: 10px; }
   .section-line h2 { font-size: 17px; }
   .worktable { grid-template-columns: 1fr; grid-template-areas: 'cranes' 'experiment' 'teaching' 'illustration'; gap: 32px; padding-top: 40px; }
-  .scene-backdrop { inset: 48px -8px 0; background-size: auto 500px; }
-  .scene-backdrop::after { background: linear-gradient(180deg, #fffaf01a, var(--paper) 750px); }
+  .scene-backdrop { inset: 48px -8px 0; }
+  .scene-backdrop::before { height: 500px; aspect-ratio: auto; }
   .cafe-table { height: 170px; margin-top: 30px; }
   .table-edge { height: 14px; }
   .table-drinks { width: 300px; right: 0; max-width: 84%; bottom: 13px; }
