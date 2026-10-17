@@ -42,22 +42,36 @@ body {
 #work { position: relative; isolation: isolate; }
 /* The backdrop owns its clipping; gallery links and focus rings remain unclipped. */
 .scene-backdrop {
+  --scene-edge-feather: 28px;
   position: absolute; z-index: -1; pointer-events: none;
   inset: 48px -24px 0; overflow: hidden; border-radius: 3px;
-  /* Light and shade span the collection independently of the painting's height. */
+  /* A shaded interior surrounds warm openings; all color stays behind content. */
   background:
     url('assets/paper.svg') 0 0 / 180px 180px repeat,
-    radial-gradient(ellipse at 92% 28%, #637a5724, transparent 44%),
-    radial-gradient(ellipse at 4% 62%, #54706326, transparent 40%),
-    radial-gradient(ellipse at 78% 86%, #d9b87530, transparent 43%),
+    radial-gradient(ellipse at 0% 28%, #263f3452, transparent 47%),
+    radial-gradient(ellipse at 100% 58%, #49382e45, transparent 45%),
+    radial-gradient(ellipse at 8% 82%, #344c3d38, transparent 40%),
+    radial-gradient(ellipse at 66% 38%, #ffe9ae70, transparent 42%),
+    radial-gradient(ellipse at 56% 84%, #fff2cf78, transparent 38%),
     #f5f0e3;
-  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 28px, #000 calc(100% - 160px), transparent);
-  mask-image: linear-gradient(to bottom, transparent, #000 28px, #000 calc(100% - 160px), transparent);
+  /* Feather the sides too, so deeper shade cannot expose a rectangular edge. */
+  -webkit-mask-image:
+    linear-gradient(to bottom, transparent, #000 28px, #000 calc(100% - 160px), transparent),
+    linear-gradient(to right, transparent, #000 var(--scene-edge-feather), #000 calc(100% - var(--scene-edge-feather)), transparent);
+  mask-image:
+    linear-gradient(to bottom, transparent, #000 28px, #000 calc(100% - 160px), transparent),
+    linear-gradient(to right, transparent, #000 var(--scene-edge-feather), #000 calc(100% - var(--scene-edge-feather)), transparent);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
 }
 .scene-backdrop::before {
-  /* Keep the original foliage proportions; dissolve its edge into the CSS wash. */
+  /* Shade the painted perimeter, leaving a warm opening between the branches. */
   content: ''; position: absolute; inset: 0 0 auto; aspect-ratio: 1280 / 853;
-  background: url('assets/jacaranda-bougainvillea.webp') center top / cover no-repeat;
+  background:
+    radial-gradient(ellipse at 0% 18%, #203d3266, transparent 58%),
+    radial-gradient(ellipse at 100% 76%, #48382d4d, transparent 48%),
+    radial-gradient(ellipse at 64% 12%, #fff2c94d, transparent 42%),
+    url('assets/jacaranda-bougainvillea.webp') center top / cover no-repeat;
   -webkit-mask-image: linear-gradient(to bottom, #000 40%, transparent 100%);
   mask-image: linear-gradient(to bottom, #000 40%, transparent 100%);
 }
@@ -208,7 +222,7 @@ dialog::backdrop { background: #2d271ee0; }
   .section-line > span { font-size: 10px; }
   .section-line h2 { font-size: 17px; }
   .worktable { grid-template-columns: 1fr; grid-template-areas: 'cranes' 'experiment' 'teaching' 'illustration'; gap: 32px; padding-top: 40px; }
-  .scene-backdrop { inset: 48px -8px 0; }
+  .scene-backdrop { inset: 48px -8px 0; --scene-edge-feather: 16px; }
   .scene-backdrop::before { height: 500px; aspect-ratio: auto; }
   .cafe-table { height: 170px; margin-top: 30px; }
   .table-edge { height: 14px; }
