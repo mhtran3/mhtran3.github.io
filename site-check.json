@@ -1,14 +1,15 @@
 {
-  "generated_at_utc": "2026-10-17T15:19:37+00:00",
+  "generated_at_utc": "2026-10-17T16:05:13+00:00",
   "scope": "Homepage, colophon, and their stylesheets. Manual source check, not live deployment telemetry.",
   "result": "pass",
-  "local_references_checked": 101,
+  "local_references_checked": 103,
   "file_sizes": {
     "homepage_js": {
       "files": [
-        "home.js"
+        "home.js",
+        "lighting.js"
       ],
-      "bytes": 2514,
+      "bytes": 4331,
       "budget_bytes": 10240
     },
     "stylesheets": {
@@ -16,7 +17,7 @@
         "home.css",
         "gallery.css"
       ],
-      "bytes": 36285,
+      "bytes": 38558,
       "budget_bytes": 40960
     },
     "foliage_backdrop": {
