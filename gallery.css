@@ -20,22 +20,35 @@ body {
 }
 /* Warm reading surfaces sit within a walnut interior, with greenery beyond. */
 .cafe-interior {
-  --paper: #ded0b8;
-  --cream: #e7dbc6;
+  --room: #7a6248;
+  --scene: #817b60;
+  --foliage-opacity: .56;
+  --daylight: .38;
+  --lamp-light: 0;
+  --paper: #e4d7bf;
+  --cream: #ecdfc8;
   --line: #b7a58b;
-  background-color: #352a23;
-  background-image: url('assets/paper.svg'), linear-gradient(110deg, #4b382b, #352a23 48%, #30271f);
+  background-color: var(--room);
+  background-image: url('assets/paper.svg'), linear-gradient(110deg, #cab18414, transparent 48%, #2b241c20);
   background-size: 180px 180px, 100% 100%;
+  background-blend-mode: multiply, normal;
   border-top-color: #241d18;
+  transition: background-color 1.6s ease;
+}
+.cafe-interior[data-light="dusk"] {
+  --room: #69513f; --scene: #6d654f; --foliage-opacity: .32; --daylight: .13; --lamp-light: .45;
+}
+.cafe-interior[data-light="night"] {
+  --room: #49392e; --scene: #514b3a; --foliage-opacity: .14; --daylight: .015; --lamp-light: .85;
 }
 .cafe-interior :is(.site-header, .welcome, .collection-index, .section-line, .collection-more, .contact, .site-footer) {
-  --ink: #ecdfc8;
-  --muted: #c8b79e;
+  --ink: #fff8eb;
+  --muted: #fff1dc;
   --line: #826a53;
-  --red: #bbceb0;
+  --red: #fff1dc;
   color: var(--ink);
 }
-.cafe-interior .monogram { color: #d9bb8c; }
+.cafe-interior .monogram { color: #fff1dc; }
 .cafe-interior .welcome::before { display: none; }
 .cafe-interior .contact-links a:hover { background: #4b3c2f; }
 .cafe-interior .story-library {
@@ -43,8 +56,17 @@ body {
 }
 .cafe-interior .piece-link:focus-visible,
 .cafe-interior .perspective-link:focus-visible { outline-color: #e4d2a8; }
+.cafe-interior .section-line h2, .cafe-interior .collection-more summary {
+  background: #5b4938; padding: 7px 12px; border-left: 2px solid #c4a473;
+}
+.cafe-interior .collection-index, .cafe-interior .collection-more > div { background: #5b4938; padding: 8px 12px; }
+.lighting-control { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 10px; font-size: 12px; }
+.lighting-control[hidden] { display: none; }
+.lighting-control select { font: inherit; min-height: 36px; padding: 5px 24px 5px 8px; color: #30271f; background: #ecdfc8; border: 1px solid #a58c68; border-radius: 3px; }
+.lighting-control select:focus-visible { outline: 3px solid #fff1dc; outline-offset: 4px; }
+#lighting-status { color: var(--muted); font-size: 11px; }
 ::selection { background: #d4dec5; color: #253a30; }
-.site-header { border-bottom-color: var(--line); }
+.site-header { border-bottom-color: var(--line); flex-wrap: wrap; }
 .monogram { color: var(--wood); }
 .site-header nav a { padding-block: 8px; }
 .welcome { padding: 52px 0 44px; isolation: isolate; }
@@ -73,10 +95,11 @@ body {
   /* Subdued greenery belongs beyond the darker interior, never over content. */
   background:
     url('assets/paper.svg') 0 0 / 180px 180px repeat,
-    radial-gradient(ellipse at 0% 28%, #30463880, transparent 47%),
-    radial-gradient(ellipse at 100% 58%, #2a231d80, transparent 45%),
-    radial-gradient(ellipse at 8% 82%, #34463860, transparent 40%),
-    #3e372c;
+    radial-gradient(ellipse at 0% 28%, #30463850, transparent 47%),
+    radial-gradient(ellipse at 100% 58%, #2a231d50, transparent 45%),
+    radial-gradient(ellipse at 8% 82%, #34463840, transparent 40%);
+  background-color: var(--scene);
+  transition: background-color 1.6s ease;
   /* Feather the sides too, so deeper shade cannot expose a rectangular edge. */
   -webkit-mask-image:
     linear-gradient(to bottom, transparent, #000 28px, #000 calc(100% - 160px), transparent),
@@ -88,35 +111,36 @@ body {
   mask-composite: intersect;
 }
 .scene-backdrop::before {
-  /* Tint the distant painting as a shaded window; the original asset is intact. */
+  /* Local time changes how much daylight reaches this distant painting. */
   content: ''; position: absolute; inset: 0 0 auto; aspect-ratio: 1280 / 853;
-  background:
-    linear-gradient(135deg, #29382ed9, #302a23d4),
-    url('assets/jacaranda-bougainvillea.webp') center top / cover no-repeat;
+  background: url('assets/jacaranda-bougainvillea.webp') center top / cover no-repeat;
+  opacity: var(--foliage-opacity);
+  transition: opacity 1.6s ease;
   -webkit-mask-image: linear-gradient(to bottom, #000 40%, transparent 100%);
   mask-image: linear-gradient(to bottom, #000 40%, transparent 100%);
 }
 .scene-backdrop::after {
-  /* A broad light wash behind content. No moving foliage or runtime blur. */
+  /* Irregular pools of daylight stay behind the cards; no animated rays or blur. */
   content: ''; position: absolute; inset: -20px;
   background:
-    radial-gradient(ellipse at 72% 22%, #d9d4b8, transparent 48%),
-    radial-gradient(ellipse at 30% 70%, #c9bea5, transparent 40%);
-  opacity: .045;
-}
-@media (prefers-reduced-motion: no-preference) {
-  .scene-backdrop::after { animation: window-light-settle 4s ease-out both; }
-}
-@keyframes window-light-settle {
-  from { opacity: .02; transform: translate(-8px, -5px); }
-  to { opacity: .045; transform: translate(0, 0); }
+    radial-gradient(ellipse 14% 7% at 63% 9%, #fff0c9, transparent 76%),
+    radial-gradient(ellipse 8% 4% at 85% 16%, #ffedc0, transparent 75%),
+    radial-gradient(ellipse 13% 6% at 24% 43%, #fff0ce, transparent 78%),
+    radial-gradient(ellipse 9% 5% at 75% 62%, #f9e6b9, transparent 75%),
+    radial-gradient(ellipse 16% 7% at 44% 83%, #fff0ce, transparent 80%);
+  opacity: var(--daylight);
+  transition: opacity 1.6s ease;
 }
 .worktable {
   grid-template-columns: 1.18fr 1fr .94fr;
   grid-template-areas: 'cranes experiment teaching' 'cranes experiment illustration';
   gap: 32px; align-items: start; padding-top: 56px;
 }
-.cafe-table { position: relative; height: 211px; margin-top: 24px; pointer-events: none; }
+.cafe-table { position: relative; height: 211px; margin-top: 24px; pointer-events: none; overflow: hidden; }
+.table-lamp { position: absolute; width: 110px; height: 172px; left: 7%; bottom: 17px; }
+.table-lamp img { position: relative; width: 100%; height: auto; }
+.lamp-glow { position: absolute; inset: -60px -110px -5px; background: radial-gradient(ellipse at 50% 48%, #f6bd6e85, #d8974933 40%, transparent 70%); opacity: var(--lamp-light); transition: opacity 1.6s ease; }
+.lamp-bulb { position: absolute; z-index: 1; top: 40%; left: 16%; width: 68%; height: 8%; border-radius: 50%; background: #ffe7a8; box-shadow: 0 8px 25px #ffd18c77; opacity: var(--lamp-light); transition: opacity 1.6s ease; }
 .table-edge {
   position: absolute; inset: auto 0 0; height: 18px;
   background: #49372b url('assets/paper.svg');
@@ -247,7 +271,8 @@ dialog::backdrop { background: #2d271ee0; }
   .scene-backdrop::before { height: 500px; aspect-ratio: auto; }
   .cafe-table { height: 170px; margin-top: 30px; }
   .table-edge { height: 14px; }
-  .table-drinks { width: 300px; right: 0; max-width: 84%; bottom: 13px; }
+  .table-drinks { width: 300px; right: 0; max-width: 70%; bottom: 13px; }
+  .table-lamp { width: 76px; height: 119px; left: 0; bottom: 13px; }
   .cranes { padding-top: 0; }
   .experiment { margin-top: 6px; }
   .experiment-link { min-height: 455px; padding: 25px 27px; }
@@ -442,7 +467,8 @@ dialog::backdrop { background: #2d271ee0; }
   }
   .cafe-interior .monogram { color: CanvasText; }
   .cafe-interior .piece-link:focus-visible,
-  .cafe-interior .perspective-link:focus-visible { outline-color: Highlight; }
+  .cafe-interior .perspective-link:focus-visible,
+  .lighting-control select:focus-visible { outline-color: Highlight; }
 }
 @media print {
   .cafe-interior { background: white; --paper: white; --cream: white; }
@@ -450,4 +476,7 @@ dialog::backdrop { background: #2d271ee0; }
     --ink: #222; --muted: #444; --red: #222; --line: #777;
   }
   .cafe-interior .monogram { color: #222; }
+  .lighting-control { display: none; }
+  .cafe-interior .section-line h2, .cafe-interior .collection-more summary,
+  .cafe-interior .collection-index, .cafe-interior .collection-more > div { background: white; }
 }

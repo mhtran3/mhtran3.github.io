@@ -64,7 +64,7 @@ def main():
         elif parsed.fragment and target in pages and unquote(parsed.fragment) not in pages[target].ids:
             errors.append(f'{origin.name}: missing fragment: {ref}')
     budgets = [
-        ('homepage_js', ['home.js'], 10 * 1024),
+        ('homepage_js', ['home.js', 'lighting.js'], 10 * 1024),
         ('stylesheets', ['home.css', 'gallery.css'], 40 * 1024),
         ('foliage_backdrop', ['assets/jacaranda-bougainvillea.webp'], 100 * 1024),
         ('branch_accent', ['assets/bougainvillea-branch-v1.webp'], 100 * 1024),
