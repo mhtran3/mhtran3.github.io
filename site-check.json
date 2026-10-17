@@ -1,0 +1,64 @@
+{
+  "generated_at_utc": "2026-10-17T16:05:13+00:00",
+  "scope": "Homepage, colophon, and their stylesheets. Manual source check, not live deployment telemetry.",
+  "result": "pass",
+  "local_references_checked": 103,
+  "file_sizes": {
+    "homepage_js": {
+      "files": [
+        "home.js",
+        "lighting.js"
+      ],
+      "bytes": 4331,
+      "budget_bytes": 10240
+    },
+    "stylesheets": {
+      "files": [
+        "home.css",
+        "gallery.css"
+      ],
+      "bytes": 38558,
+      "budget_bytes": 40960
+    },
+    "foliage_backdrop": {
+      "files": [
+        "assets/jacaranda-bougainvillea.webp"
+      ],
+      "bytes": 48420,
+      "budget_bytes": 102400
+    },
+    "branch_accent": {
+      "files": [
+        "assets/bougainvillea-branch-v1.webp"
+      ],
+      "bytes": 80544,
+      "budget_bytes": 102400
+    },
+    "featured_illustration": {
+      "files": [
+        "assets/hotpot.webp"
+      ],
+      "bytes": 112266,
+      "budget_bytes": 153600
+    },
+    "selected_videos": {
+      "files": [
+        "assets/media/bloom-clearing.mp4",
+        "assets/media/dungeon-flow.mp4",
+        "assets/media/dungeon-heatmap.mp4",
+        "assets/media/hotpot-process.mp4"
+      ],
+      "bytes": 4105413,
+      "budget_bytes": 5242880
+    }
+  },
+  "play_on_request_videos": 4,
+  "not_checked": [
+    "external URLs",
+    "browser layout",
+    "keyboard interactions",
+    "screen readers",
+    "Lighthouse",
+    "automated accessibility audit"
+  ]
+}

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="38" viewBox="0 0 1000 38">
+  <!-- A restrained original floral engraving, not a reproduction of a historical motif. -->
+  <g fill="none" stroke="#c49462" stroke-width=".9" opacity=".65">
+    <path d="M12 6H450L463 19L450 32H12M988 6H550L537 19L550 32H988"/>
+    <path d="M18 10H447M18 28H447M553 10H982M553 28H982" opacity=".5"/>
+    <path d="M470 19Q485 5 500 19Q485 33 470 19ZM500 19Q515 5 530 19Q515 33 500 19ZM488 19Q488 9 500 5Q512 9 512 19M488 19Q488 29 500 33Q512 29 512 19"/>
+    <path d="M477 19H523M500 8V30" opacity=".6"/>
+  </g>
+</svg>

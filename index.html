@@ -1,30 +1,281 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Michael Tran</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#7a6248">
+  <meta name="description" content="Michael Tran's corner of the internet. Explore artwork, combat AI design, and work to make quality education more accessible.">
+  <title>Michael Tran — art, education, and technology</title>
+  <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="home.css">
+  <link rel="stylesheet" href="gallery.css">
+  <script src="home.js" defer></script>
+  <script src="lighting.js" defer></script>
 </head>
-<body>
-    <!-- Placeholder for the header -->
-    <div id="header-placeholder"></div>
-    
-    <section id="intro">
-        <div class="intro-container">
-            <div class="intro-text">
-                <h2>Hello!</h2>
-                <p>I'm Michael Tran, a Computer Science graduate from Princeton University with a Bachelor's degree in Science and Engineering. My passion lies in the intersection of technology and creativity. I specialize in front-end development, where I can bring my designs to life and create seamless user experiences.</p>
-                <p>Beyond coding, I've had successful design projects and enjoy practicing arts such as drawing and animation in my free time.</p>
-            </div>
-            <div class="intro-image">
-                <img src="LandingImg.png" alt="Landing Image">  
-            </div>
-        </div>
+<body class="cafe-interior" data-light="day">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header wrap">
+    <a class="identity" href="#" aria-label="Michael Tran, home"><span class="monogram" aria-hidden="true">mt<span>✳</span></span><span>Michael Tran</span></a>
+    <nav aria-label="Main navigation"><a href="#work">Work</a><a href="#graphics">Design</a><a href="#contact">Say hello <span aria-hidden="true">↗</span></a></nav>
+    <div class="lighting-control" hidden><label for="cafe-lighting">Café light</label><select id="cafe-lighting" aria-describedby="lighting-status"><option value="auto">Auto</option><option value="day">Daylight</option><option value="dusk">Twilight</option><option value="night">Lamplight</option></select><span id="lighting-status">Your local time</span></div>
+  </header>
+
+  <div class="portfolio-canvas">
+  <main id="main" class="wrap">
+    <section class="welcome" aria-labelledby="welcome-title">
+      <div><h1 id="welcome-title">Michael Tran</h1><p class="eyebrow">Artist, engineer, and educator.</p></div>
+      <p class="welcome-copy">I bring disciplines together to make learning more accessible, test ideas, and create for communities.</p>
+      <nav class="welcome-links" aria-label="Contact Michael"><a href="mailto:michaelhtran333@gmail.com">Email me</a><a href="https://www.linkedin.com/in/mhtranse/">LinkedIn</a><a href="https://github.com/mhtran3">GitHub</a></nav>
     </section>
-    <!-- Placeholder for the footer -->
-    <div id="footer-placeholder"></div>
-    
-    <script src="script.js"></script>
+
+    <aside class="perspective-note" aria-labelledby="perspective-title">
+      <a class="perspective-link" href="#ai-story" data-story="ai-story">
+        <div><p class="eyebrow">Perspective <span aria-hidden="true">✳</span></p><h2 id="perspective-title">Okay, we have AI. Now what?</h2></div>
+        <div><p>When making becomes easier, what we choose to make—and why—matters more.</p><span class="card-action">Read the reflection <span aria-hidden="true">↗</span></span></div>
+      </a>
+    </aside>
+
+    <section id="work" aria-labelledby="work-title">
+      <div class="scene-backdrop" aria-hidden="true"></div>
+      <nav class="collection-index" aria-label="Explore selected work"><a href="#work-title">Education & engineering</a><a href="#graphics">Graphics & apparel</a><a href="#artwork">Animation & illustration</a></nav>
+      <div class="section-line"><h2 id="work-title">Education & engineering</h2></div>
+      <div class="worktable professional-work">
+        <article class="piece teaching">
+          <a class="piece-link teaching-link" href="#teaching-story" data-story="teaching-story">
+            <div class="teaching-top"><span class="piece-number">Education & community</span><span class="small-star" aria-hidden="true">✳</span></div>
+            <h3>Everyone deserves access to quality education.</h3>
+            <p>Arts teaching in Trenton, free tutoring coordination, and mentoring and curriculum for first-generation, lower-income students.</p>
+            <div class="teaching-bottom"><span class="card-action">Explore my education work</span><span class="open-arrow" aria-hidden="true">↗</span></div>
+          </a>
+        </article>
+        <article class="piece accessibility-feature">
+          <a class="piece-link accessibility-link" href="#accessibility-story" data-story="accessibility-story">
+            <p class="eyebrow">Rubrik / engineering intern / 2022</p>
+            <h3>Making a production app more accessible</h3>
+            <p>Evaluated interface barriers, implemented React and TypeScript fixes, and left the team an action plan.</p>
+            <span class="card-action">Explore the work & my role <span aria-hidden="true">↗</span></span>
+          </a>
+        </article>
+
+        <article class="piece experiment combat-feature">
+          <a class="piece-link" href="#game-story" data-story="game-story">
+            <div class="technical-preview"><img src="assets/dungeon-heatmap.webp" alt="A dungeon debugging view shows terrain-aware position scores and a white cross marking a unit’s movement target." width="1280" height="720" loading="lazy"><span class="preview-label">Recorded from the working prototype</span></div>
+            <div class="experiment-link">
+              <div class="experiment-top"><span class="piece-number">Engineering / combat AI / Godot</span><span class="status">Working prototype</span></div>
+              <h3>Making movement decisions visible</h3>
+              <p class="experiment-intro">Designed and tested combat AI where training shapes behavior, with heatmaps to inspect positioning. Built with AI-assisted development.</p>
+              <div class="experiment-bottom"><span class="card-action">Watch the heatmaps & explore</span><span class="open-arrow" aria-hidden="true">↗</span></div>
+            </div>
+          </a>
+          <a class="related-study" href="#rwkv-story" data-story="rwkv-story">RWKV: exploring model memory <span aria-hidden="true">↗</span></a>
+        </article>
+      </div>
+
+      <section id="graphics" class="collection-section" aria-labelledby="graphics-title">
+        <div class="section-line"><h2 id="graphics-title">Graphics made for communities</h2></div>
+        <div class="design-grid">
+          <article class="piece seal-feature">
+            <a class="piece-link seal-link" href="#seals-story" data-story="seals-story">
+              <div class="seal-comparison"><div><img src="assets/clio-restored.webp" width="1000" height="1000" alt="Restored Clio seal: a seated woman holding an open book, surrounded by circular lettering." loading="lazy"><span>Clio · restored seated figure</span></div><div><img src="assets/whig-eagle-restored.webp" width="999" height="1000" alt="Restored Whig seal: a bird with spread wings, ribbons, and circular lettering." loading="lazy"><span>Whig · restored bird</span></div></div>
+              <div class="piece-caption"><div><p class="eyebrow">University work / research & restoration</p><h3>Recovering the detail in Whig–Clio’s seals</h3><p class="card-summary">Recovered lost details from historical records and rebuilt damaged seals for official university use.</p><span class="card-action">Compare the source & restoration</span></div><span class="open-arrow" aria-hidden="true">↗</span></div>
+            </a>
+          </article>
+          <article class="piece apparel-feature">
+            <a class="piece-link" href="#apparel-story" data-story="apparel-story">
+              <div class="design-stage shirt-preview"><img src="assets/scully-cranes.webp" alt="Pink origami-crane graphic designed for Scully co-op." width="1100" height="1100" loading="lazy"><img src="assets/scully-printed.webp" alt="The Scully crane design printed on a dark sweatshirt." width="990" height="1000" loading="lazy"></div>
+              <div class="piece-caption"><div><p class="eyebrow">Scully / MOL / Class of 1976</p><h3>From artwork to apparel</h3><p class="card-summary">Designs rooted in community—from connecting classmates during quarantine to honoring a co-op’s traditions.</p><span class="card-action">Explore the designs & their stories</span></div><span class="open-arrow" aria-hidden="true">↗</span></div>
+            </a>
+          </article>
+          <article class="piece jacket-feature">
+            <a class="piece-link jacket-link" href="#jacket-story" data-story="jacket-story">
+              <div class="design-stage jacket-preview"><img src="assets/jackets-class-day.webp" alt="Class of 2023 jackets draped over chairs, showing orange tiger linework, ivy, diagonal stripes, and the back design." width="1200" height="759" loading="lazy"></div>
+              <div class="piece-caption"><div><p class="eyebrow">Princeton Class of 2023 / apparel</p><h3>A jacket for a graduating class</h3><p class="card-summary">Designed for Princeton’s Class of 2023. Worn at Reunions.</p><span class="card-action">See the jacket & its story</span></div><span class="open-arrow" aria-hidden="true">↗</span></div>
+            </a>
+          </article>
+        </div>
+      </section>
+
+      <section id="artwork" class="collection-section" aria-labelledby="artwork-title">
+        <div class="artwork-branch" aria-hidden="true"><img src="assets/bougainvillea-branch-v1.webp" alt="" width="900" height="600" loading="lazy" decoding="async"></div>
+        <div class="section-line"><h2 id="artwork-title">Animation & illustration</h2></div>
+        <div class="art-grid">
+          <article class="piece illustration animation-feature">
+          <a class="piece-link" href="#bloom-story" data-story="bloom-story">
+            <div class="illustration-stage"><img src="assets/bloom-clearing.webp" alt="An orange flower and small flying insects in a painted forest clearing, framed by dark foliage." width="960" height="540" loading="lazy"><span class="preview-label">Bloom / 6-second excerpt</span></div>
+            <div class="piece-caption"><div><p class="eyebrow">Animation / painted environments</p><h3>A clearing in <em>Bloom</em></h3><p class="card-summary">Painted environments and animation, made by me.</p><span class="card-action">Watch the scene</span></div><span class="open-arrow" aria-hidden="true">↗</span></div>
+          </a>
+        </article>
+          <article class="piece cranes hotpot">
+          <a class="piece-link" href="#hotpot-story" data-story="hotpot-story">
+            <div class="art-stage"><img src="assets/hotpot.webp" alt="Game characters share hotpot around a crowded table, framed by warm light and a detailed night-time street." width="1280" height="802" loading="lazy"></div>
+            <div class="piece-caption"><div><p class="eyebrow">Illustration / composition & light</p><h3>A shared table</h3><p class="card-summary">An ensemble illustration with a look inside my drawing process.</p><span class="card-action">See the artwork & process</span></div><span class="open-arrow" aria-hidden="true">↗</span></div>
+          </a>
+        </article>
+        </div>
+      </section>
+      <details class="collection-more"><summary>From the sketchbook <span aria-hidden="true">✳</span></summary><div><a href="#illustration-story" data-story="illustration-story">Waves on a board · sketchbook study ↗</a></div></details>
+      <div class="cafe-table" aria-hidden="true">
+        <div class="table-lamp"><span class="lamp-glow"></span><span class="lamp-bulb"></span><img src="assets/cafe-lamp.svg" alt="" width="128" height="200" loading="lazy"></div>
+        <span class="table-edge"></span>
+        <img class="table-drinks" src="assets/cafe-drinks.svg" width="500" height="260" alt="" loading="lazy">
+      </div>
+    </section>
+
+
+    <section id="contact" class="contact" aria-labelledby="contact-title"><div><p class="eyebrow">Keep in touch</p><h2 id="contact-title">Say hello.</h2><p>For opportunities, collaborations, or a good conversation.</p></div><div class="contact-links"><a href="mailto:michaelhtran333@gmail.com">michaelhtran333@gmail.com <span aria-hidden="true">↗</span></a><a href="https://www.linkedin.com/in/mhtranse/">LinkedIn <span aria-hidden="true">↗</span></a><a href="https://github.com/mhtran3">GitHub <span aria-hidden="true">↗</span></a></div></section>
+    <footer class="site-footer">
+      <span>Michael Tran</span><span>Art, education, and technology.</span><a href="colophon.html">How this site is built</a><a href="https://github.com/mhtran3/mhtran3.github.io">Source</a><a href="#">Back to the top ↑</a>
+      <details class="design-note">
+        <summary>A note on the design</summary>
+        <p>The palette takes a cue from The Leaf Café in Đà Nẵng: dark wood, warm reading surfaces, and greenery beyond a shaded interior. Walnut-brown surroundings hold the paper and muted green cards; the foliage stays quieter in the background. The uneven arrangement gives pieces with different shapes and moods room to sit together. <a href="https://thecupscoffee.vn/the-leaf-cafe/">See the café reference.</a></p>
+        <p>The reading text and most headings use a Helvetica-based system font stack, with Arial as a fallback. Small serif accents add contrast. The exact typeface will vary with the fonts installed on your device; no external fonts are downloaded.</p>
+        <p>The foliage sits beyond an imagined frosted window behind the collection. Sparse jacaranda and bougainvillea branches leave room for pale daylight, with a softer jacaranda shape suggesting distance. These are stylized plant references I connect with Đà Nẵng and my Vietnamese heritage. The light and spacing draw on my café photographs. The background and separate bougainvillea branch at the transition into art are AI-generated decoration, distinct from the artwork in the gallery; the cards and their text stay opaque and crisp.</p>
+        <p>A flat, paper-textured wooden strip suggests a café counter. Matcha and Vietnamese egg coffee sit centered on their saucers, beside a small shaded lamp. During the day, warm openings in the foliage suggest sunlight; as evening arrives, the window dims and the lamp glows.</p>
+        <p>The atmosphere follows your device’s local time. The Café light control lets you linger in daylight, twilight, or lamplight. The branches and reading surfaces stay still, and reduced-motion preferences remove the transitions. Paper grain adds texture while the text stays crisp and the artwork keeps its original colors. <a href="colophon.html">Read the implementation choices and testing notes.</a></p>
+      </details>
+      <details class="design-note personal-note">
+        <summary>Beyond this collection</summary>
+        <p>There’s more to my life than the work here: cooking and baking, time with my dog, and thinking about what makes games interesting. Art and technology are also things I keep learning about for myself.</p>
+      </details>
+    </footer>
+
+    <section class="story-library" aria-label="More about the work">
+      <article id="ai-story" class="story">
+        <p class="eyebrow">Perspective / technology & human judgment</p><h2>Okay, we have AI. Now what?</h2>
+        <p>As AI lowers some barriers to making things, I think intentionality and authenticity will become more valuable. A polished result matters, but so do the choices behind it: what problem is worth solving, whose needs are being considered, and what gives the work meaning.</p>
+        <p>I’m interested in the connections between disciplines. Education makes me think about access and how people learn; engineering gives me ways to test ideas; art asks me to pay attention to composition, expression, and the details that change how something feels.</p>
+        <h3>Choosing what to keep doing ourselves</h3>
+        <p>I don’t want efficiency to become the only reason to do something. Drawing, learning, and making can matter because of the experience itself, even when a tool could produce a result faster. There should be room to choose that process without having to justify it in terms of productivity.</p>
+        <h3>Curiosity does not remove responsibility</h3>
+        <p>I use AI, and I’m also apprehensive about its environmental costs and its implications for well-being, privacy, and job security. Those concerns affect what I want to investigate and how I describe the work.</p>
+        <p>My early RWKV experiment grew from a narrower question I could explore: what might a different approach to model memory make practical on the hardware I had? It is an unfinished investigation, not evidence that I have solved those broader concerns.</p>
+        <p><a href="#rwkv-story" data-story="rwkv-story">Read about the RWKV experiment →</a> · <a href="colophon.html#credits">How I use AI on this site →</a></p>
+        <a class="story-return" href="#work">Back to the collection ↑</a>
+      </article>
+      <article id="teaching-story" class="story">
+        <p class="eyebrow">Education & community access</p><h2>Everyone deserves access to quality education.</h2>
+        <p>Quality education should be accessible to everyone, regardless of income or background. That commitment has guided my work with students, community programs, and learning resources.</p>
+        <h3>Arts education in Trenton</h3>
+        <p>As a fellow and visual arts co-lead with Trenton Arts at Princeton, I worked with students from Trenton. Arts education is part of my commitment to making learning opportunities more accessible.</p>
+        <h3>Connecting families with free tutoring</h3>
+        <p>As a site coordinator with the Princeton Online Tutoring Network, I recruited, trained, and matched volunteer tutors with students whose families could not afford tutoring. I also worked with community partners and supervised sessions.</p>
+        <h3>Mentoring underclassmen</h3>
+        <p>As a fellow and later a head fellow in the Scholars Institute Fellows Program, I mentored underclassmen from first-generation, lower-income backgrounds. We worked through course planning, degree progress, and financial aid, and I connected them with campus offices and support.</p>
+        <h3>Designing curriculum around students’ needs</h3>
+        <p>At Princeton’s Computer Science Department, I worked with faculty to develop a 12-week introductory Java and Python curriculum with first-generation, lower-income students’ learning needs in mind. I facilitated workshops, gathered feedback, and revised materials for remote delivery.</p>
+        <h3>My teaching today</h3>
+        <p>I currently tutor students in mathematics, SAT preparation, and academic writing. I assess where each student is starting, adapt explanations, and plan practice around their needs.</p>
+        <a class="story-return" href="#work">Back to the collection ↑</a>
+      </article>
+      <article id="accessibility-story" class="story">
+        <p class="eyebrow">Rubrik / software engineering intern / June–August 2022</p><h2>Accessibility in a production web application</h2>
+        <p>My internship began with fixing accessibility issues in Rubrik’s web product and expanded into a broader front-end accessibility evaluation.</p>
+        <h3>From findings to implementation</h3><p>I implemented fixes using React, TypeScript, HTML, and CSS, and documented procedures and recommendations for the team. Alongside the code changes, I prepared an action plan for continuing the accessibility work.</p>
+        <h3>Making the work useful beyond the internship</h3><p>I presented the project to the company. The documentation gave the team a way to continue working through the findings after the internship ended.</p>
+        <p class="story-credit">This is a summary of my contribution. Internal source code and project materials are not available in this portfolio.</p>
+        <a class="story-return" href="#work">Back to education & engineering ↑</a>
+      </article>
+      <article id="game-story" class="story">
+        <p class="eyebrow">Development / Godot 4 / ongoing</p><h2>Balancing combat AI and playability</h2>
+        <p>My game prototype explores a combat system where training a unit affects its decisions, and players build skillsets that work together. The technical challenge is balancing a robust, flexible system with an experience that is still understandable and enjoyable.</p>
+        <h3>See the decisions</h3>
+        <p>The prototype includes overlays for inspecting movement. These recordings show the existing systems running in the dungeon, with automatic movement active.</p>
+        <figure class="media-figure"><video controls playsinline preload="none" width="960" height="540" poster="assets/dungeon-heatmap.webp" aria-label="Dungeon combat positioning heatmap demonstration"><source src="assets/media/dungeon-heatmap.mp4" type="video/mp4"><a href="assets/media/dungeon-heatmap.mp4">Open the video</a></video><figcaption><strong>Choosing a fighting position.</strong> Scores update across the terrain for the highlighted unit. The white cross marks its current movement target; the map makes its preferences visible. <span class="media-note">Silent excerpt · play on request.</span></figcaption></figure>
+        <figure class="media-figure"><video controls playsinline preload="none" width="960" height="540" poster="assets/dungeon-flow.webp" aria-label="Dungeon directional flow-field demonstration"><source src="assets/media/dungeon-flow.mp4" type="video/mp4"><a href="assets/media/dungeon-flow.mp4">Open the video</a></video><figcaption><strong>Mapping routes through terrain.</strong> The arrows show the exploration flow field across walkable rooms and corridors. The field remains visible during this fight; combat positioning adds separate decisions. <span class="media-note">Silent excerpt · play on request.</span></figcaption></figure>
+        <h3>Two movement questions</h3>
+        <p>Getting through a corridor and choosing where to stand during a fight need different information. The dungeon builds a distance field over walkable cells, then derives directions toward the exploration goal. Combat evaluates positions using the unit’s situation. Keeping both visible helps separate route problems from tactical choices.</p>
+        <p class="story-credit">Recorded from the ongoing Godot prototype. These excerpts demonstrate the diagnostic views, not a benchmark of optimal behavior. Game sprites and environment assets are third-party artwork; my contribution here is the system design and development process.</p>
+        <h3>Choices in the system</h3>
+        <ul class="story-points">
+          <li><strong>Separate movement from skill selection.</strong> Each system can evaluate its own choices while sharing information about enemies and the unit’s available skills. Choosing an ability does not immediately redirect movement toward it.</li>
+          <li><strong>Use scores to express preferences.</strong> Range, health, and available skills affect which actions look useful. This allows behavior to respond to the situation without assigning every unit a fixed class or script.</li>
+          <li><strong>Make training affect consistency.</strong> The training-related Wisdom stat reduces noise in decision scores. Better-trained units make more consistent choices; ordinary units are not made perfectly predictable.</li>
+        </ul>
+        <h3>A concrete robustness problem</h3>
+        <p>An ability that was still recharging could score higher than a ready one, despite a penalty. That left the unit idle for a decision cycle. The current implementation falls back to the best ready skill above a minimum score, so it can act without wasting an ability that has no useful target.</p>
+        <p>The distinction matters: a preference score describes how attractive an action is; readiness checks determine whether it can actually happen. Adding tactical options also means accounting for the ways those rules interact.</p>
+        <h3>Innovation within practical limits</h3>
+        <p>More complex behavior is only useful if it improves play. I’m still evaluating whether the decisions are readable, whether training feels meaningful, and which systems justify their complexity. A working prototype lets me investigate those questions; it does not settle them.</p>
+        <h3>My role</h3>
+        <p>I define the game design and system direction, direct AI-assisted development, and test and iterate on the prototype. It is an ongoing Pokémon fan-game project, not a finished commercial release.</p>
+        <a class="story-return" href="#work">Back to the collection ↑</a>
+      </article>
+      <article id="rwkv-story" class="story">
+        <p class="eyebrow">AI / values / an early local experiment</p><h2>Useful AI, at what cost?</h2>
+        <p>I’m interested in what AI makes possible, and apprehensive about its environmental costs, effects on people’s well-being, privacy, and job security. Using it does not make those concerns disappear.</p>
+        <h3>What I want to preserve</h3>
+        <p>As AI lowers some barriers to making things, I think intentionality and authenticity will matter more: choosing what to make, why it matters, and what deserves our attention. I also want room to keep learning and making things because the process has meaning, even when the output could be automated.</p>
+        <h3>A question I could investigate</h3>
+        <p>That concern led me toward RWKV-type models and their different approach to memory. RWKV-7 uses a fixed-size recurrent state during inference. I wanted to explore what that could make practical on the hardware I had. <a href="https://arxiv.org/abs/2503.14456">Read the RWKV-7 paper.</a></p>
+        <h3>What I actually tried</h3>
+        <p>My early local experiment used the official RWKV-7 inference package. The test script loads a model, reports allocated and reserved CUDA memory, and inspects the model’s state interface. This is exploratory work with an existing architecture, not a new model I designed.</p>
+        <h3>What remains unresolved</h3>
+        <p>I’m interested in whether a hybrid approach could keep useful capabilities while easing resource demands. I haven’t built or benchmarked such a hybrid. Lower memory requirements alone would not establish lower energy use or environmental impact, and efficiency would not resolve the other concerns that brought me here.</p>
+        <p>A useful next step would be a controlled comparison of memory, speed, and output quality on the same hardware and tasks. For now, this project is an unfinished investigation.</p>
+        <a class="story-return" href="#work">Back to the collection ↑</a>
+      </article>
+      <article id="seals-story" class="story">
+        <p class="eyebrow">Whig–Clio / restoration & vector graphics</p><h2>Recovering the detail in Whig–Clio’s seals</h2>
+        <p>This was restoration work with the university for official use. The available Whig–Clio imagery had accumulated heavy artifacts through repeated compression, obscuring and losing parts of the original designs.</p>
+        <h3>The source image</h3><figure class="seal-source"><img src="assets/seals-source.webp" width="625" height="625" alt="Low-resolution source showing the seated Clio figure on the left and the Whig bird on the right, with faint and degraded details." loading="lazy"><figcaption>Before: the supplied image of both seals.</figcaption></figure><h3>The restored seals</h3><div class="comparison-detail"><figure><img src="assets/clio-restored.webp" width="1000" height="1000" alt="Restored seated Clio figure with an open book, chair, drapery, and surrounding lettering." loading="lazy"><figcaption>After: the Clio seal, with the seated figure.</figcaption></figure><figure><img src="assets/whig-eagle-restored.webp" width="999" height="1000" alt="Restored Whig bird with wing feathers, ribbons, branches, and surrounding lettering." loading="lazy"><figcaption>After: the Whig seal, with the bird.</figcaption></figure></div>
+        <h3>Research before reconstruction</h3><p>I researched older records to understand the original features, then used those references to guide the digital restoration. The work involved recovering details missing from the degraded image while preserving the identity of the historical seals.</p><h3>A reusable result</h3><p>I rebuilt the restored artwork in vector form for official use. Vector paths allow the design to scale without magnifying the damaged source pixels. The source and restoration views show the seated figure and the bird: the two seals at the center of this project.</p>
+        <p class="story-credit">Existing identity and iconography: Whig–Clio. Historical research, digital restoration, and vectorization: Michael Tran. The website displays optimized image previews of the original and restored work.</p>
+        <a class="story-return" href="#graphics">Back to graphics ↑</a>
+      </article>
+      <article id="apparel-story" class="story">
+        <p class="eyebrow">Graphic design / community & apparel</p><h2>From artwork to apparel</h2>
+        <p>These projects grew from the communities around me: classmates separated during quarantine, the co-op I called home, and alumni returning for a reunion.</p>
+        <h3>A series for a scattered community</h3>
+        <p>During COVID quarantine, I made a shirt concept for COS. Seeing it give our scattered community something to be excited about, I continued making designs for other majors anonymously.</p>
+        <p>Someone later reached out to commission the official Molecular Biology Class of 2021 shirt. What began as a personal project for the community had become an opportunity to design something its members would wear.</p>
+        <h3>Scully · carrying a shared history</h3><p>The cranes reference the paper cranes hanging in our co-op, made by members from previous years. I designed the shirt as a homage to that shared space and the people who had left their mark on it.</p>
+        <div class="comparison-detail"><figure><img src="assets/scully-cranes.webp" alt="Scully co-op artwork with pink origami cranes and lettering." width="1100" height="1100" loading="lazy"><figcaption>The artwork.</figcaption></figure><figure><img src="assets/scully-printed.webp" alt="The crane illustration printed across a dark Scully sweatshirt." width="990" height="1000" loading="lazy"><figcaption>The finished sweatshirt.</figcaption></figure></div>
+        <h3>Molecular Biology · Class of 2021</h3><img class="apparel-art" src="assets/mol-shirt.webp" alt="A tiger in a lab coat marked MOL21, with mice beside it, drawn in black on orange." width="800" height="1000" loading="lazy"><p>A lab-coated tiger and mice bring the department’s subject into the commissioned class shirt.</p>
+        <h3>Class of 1976 · 50th reunion</h3><img class="apparel-art" src="assets/reunion-shirt.webp" alt="Spirit of 76 reunion shirt graphic with an intertwined 76, a Princeton P, and ivy." width="1000" height="1000" loading="lazy"><p>A reunion graphic combining the class year, the Princeton P, ivy, and the group’s reunion wording. The project also includes logo, patch, and name-tag artwork.</p>
+        <p class="story-credit">Graphic artwork by Michael Tran. The MOL and reunion images shown here are the artwork, not photographs of the printed garments.</p>
+        <a class="story-return" href="#graphics">Back to graphics ↑</a>
+      </article>
+      <article id="jacket-story" class="story">
+        <p class="eyebrow">Princeton Class of 2023 / senior jacket</p><h2>A jacket for a graduating class</h2>
+        <p>I designed the Class of 2023 senior jacket, worn by classmates during Reunions. Orange tiger linework, ivy, and asymmetrical stripes connect the front, sleeves, and back.</p>
+        <figure class="jacket-photo"><img src="assets/jackets-class-day.webp" alt="Finished Class of 2023 jackets on chairs at Class Day, with the back and sleeves visible." width="1200" height="759" loading="lazy"><figcaption>Jackets at Class Day, May 2023. Photo: Denise Applewhite, Princeton University Office of Communications. <a href="https://www.princeton.edu/news/2023/05/29/us-rep-terri-sewell-86-princeton-seniors-class-day-spread-seeds-service-wherever">View the original coverage.</a></figcaption></figure>
+        <h3>A design shaped with classmates</h3><p>I drew the design on an iPad, looked at earlier class jackets, and gathered classmates’ feedback as it developed. The large orange circle on the back grew from a friend’s suggestion to embrace the playful spirit of the tradition.</p>
+        <p><a href="https://paw.princeton.edu/article/punk-panels-and-perfect-weather-mark-reunions-2023">Read the May 31, 2023 Princeton Alumni Weekly coverage →</a> The section “The Class of 2023 Debuts Jacket” documents the design and its use at Reunions.</p>
+        <a class="story-return" href="#graphics">Back to graphics ↑</a>
+      </article>
+      <article id="bloom-story" class="story">
+        <p class="eyebrow">Animation / painted environments</p><h2>A clearing in <em>Bloom</em></h2>
+        <p>A short scene from my animated film, with a bright flower, small flying insects, and layers of dark foliage framing the clearing.</p>
+        <figure class="media-figure"><video controls playsinline preload="none" width="960" height="540" poster="assets/bloom-clearing.webp" aria-label="Bloom animated forest-clearing scene"><source src="assets/media/bloom-clearing.mp4" type="video/mp4"><a href="assets/media/bloom-clearing.mp4">Open the video</a></video><figcaption>A six-second excerpt from 1:48–1:54 in the final film. <span class="media-note">Silent excerpt · play on request.</span></figcaption></figure>
+        <h3>A closer look</h3>
+        <p>The orange flower provides a focal point within the muted forest. Dark foreground shapes frame the lighter clearing, while small movements give the scene life without filling every part of the image with activity.</p>
+        <p class="story-credit">Visual artwork, animation, and compositing by Michael Tran. This excerpt is presented without the film’s soundtrack.</p>
+        <a class="story-return" href="#work">Back to the collection ↑</a>
+      </article>
+      <article id="hotpot-story" class="story">
+        <p class="eyebrow">Illustration / ZZZ 2025 Art Fest</p><h2>A shared table</h2>
+        <p>Illustration created for ZZZ 2025 Art Fest. Warm lighting, layered environmental details, and expressive character interactions bring a shared meal to life.</p>
+        <img class="featured-art" src="assets/hotpot.webp" alt="The finished hotpot illustration: an ensemble of game characters gathered around food in a warmly lit street setting." width="1280" height="802" loading="lazy">
+        <h3>How it developed <span class="story-asterisk" aria-hidden="true">✳</span></h3>
+        <p>These frames come from my drawing timelapse. They show the figure drawing, color blocking, environmental detail, and lighting at different stages, including the working notes left on the canvas.</p>
+        <div class="process-grid"><figure><img src="assets/hotpot-drawing.webp" alt="Line drawing of the characters arranged around the table, with handwritten working notes." width="960" height="540" loading="lazy"><figcaption><strong>Figure drawing</strong>The figures, poses, and shared table take shape in the line drawing.</figcaption></figure><figure><img src="assets/hotpot-color.webp" alt="Characters and food filled with flat colors over the initial drawing, with visible working notes." width="960" height="540" loading="lazy"><figcaption><strong>Color blocking</strong>Flat colors establish the characters and food before the rendering develops.</figcaption></figure><figure><img src="assets/hotpot-rendering.webp" alt="The hotpot, characters, and street environment with painted color, form, and detail." width="960" height="540" loading="lazy"><figcaption><strong>Rendering the scene</strong>The street, food, and figures gain detail and a sense of volume.</figcaption></figure><figure><img src="assets/hotpot-lighting.webp" alt="The completed gathering with warm highlights, rim light, and atmospheric glow." width="960" height="540" loading="lazy"><figcaption><strong>Light and atmosphere</strong>Warm highlights and atmospheric light bring the separate elements together.</figcaption></figure></div>
+        <h3>From drawing to color</h3>
+        <figure class="media-figure"><video controls playsinline preload="none" width="960" height="540" poster="assets/hotpot-drawing.webp" aria-label="Hotpot illustration drawing and color-blocking timelapse"><source src="assets/media/hotpot-process.mp4" type="video/mp4"><a href="assets/media/hotpot-process.mp4">Open the video</a></video><figcaption>An 18-second timelapse excerpt follows the early construction into color. The original recording includes layers being shown and hidden as the work develops. <span class="media-note">Silent excerpt · play on request.</span></figcaption></figure>
+        <p class="story-credit">Illustration by Michael Tran. Characters from Zenless Zone Zero.</p>
+        <a class="story-return" href="#work">Back to the collection ↑</a>
+      </article>
+      <article id="scully-story" class="story"><p class="eyebrow">Community & graphic design</p><h2>A shirt for Scully co-op</h2><img src="assets/scully-cranes.webp" alt="Scully co-op shirt design featuring pink origami cranes." width="1100" height="1100" loading="lazy"><p>This shirt artwork brings together origami cranes and lettering for Scully co-op, the Princeton cooperative where I served as co-president.</p><p>The cranes pay homage to the paper cranes hanging in our shared space, made by members from previous years.</p><p><a href="#apparel-story" data-story="apparel-story">Explore the apparel collection and its stories →</a></p><p class="story-credit">Scully co-op · shirt artwork</p><a class="story-return" href="#work">Back to the collection ↑</a></article>
+      <article id="illustration-story" class="story">
+        <p class="eyebrow">Drawing & applied design</p><h2>Waves on a board</h2>
+        <img class="board-study" src="assets/wave-board.webp" alt="Full skateboard design study: repeating blue waves and shark silhouettes on a white deck with teal wheels, beside a reference to The Great Wave and separate wave drawings." width="1100" height="1375" loading="lazy">
+        <p>A wave-patterned skateboard design study. The full sheet places the board alongside a reference image and individual wave drawings, showing the pattern at different scales.</p>
+        <p class="story-credit">The reference print shown in the study is Katsushika Hokusai’s The Great Wave off Kanagawa. The complete sketchbook study is shown here.</p>
+        <a class="story-return" href="#work">Back to the collection ↑</a>
+      </article>
+    </section>
+  </main>
+  </div>
+
+  <dialog id="story-dialog" aria-labelledby="dialog-title"><div class="dialog-bar"><span>From the collection</span><button type="button" id="close-dialog" aria-label="Close project details">Close <span aria-hidden="true">×</span></button></div><div id="dialog-content" class="dialog-content"></div></dialog>
 </body>
 </html>
