@@ -319,12 +319,19 @@ dialog::backdrop { background: #2d271ee0; }
 .collection-section { margin-top: 58px; }
 /* One quiet branch marks the transition into art, rooted beyond the right edge. */
 #artwork { position: relative; isolation: isolate; padding-top: 96px; }
+/* Measure the usable page width, excluding a vertical scrollbar. */
+.portfolio-canvas { container-type: inline-size; }
 .artwork-branch {
   position: absolute; z-index: -1; pointer-events: none;
-  top: -34px; right: -24px; width: min(380px, 40%); aspect-ratio: 3 / 2;
+  top: -34px; right: calc((100% - 100cqw) / 2);
+  width: min(380px, 40%); aspect-ratio: 3 / 2;
   overflow: hidden; opacity: .72;
 }
-.artwork-branch img { display: block; width: 100%; height: auto; }
+.artwork-branch img {
+  /* Overscan the stem so the image boundary cannot read as a cut end. */
+  display: block; width: calc(100% + 12px); max-width: none; height: auto;
+  transform-origin: 100% 75%;
+}
 @media (max-width: 900px), (prefers-contrast: more), (forced-colors: active) {
   #artwork { padding-top: 0; }
   .artwork-branch { display: none; }
