@@ -18,6 +18,31 @@ body {
   background-repeat: repeat, no-repeat;
   border-top: 5px solid var(--wood-dark);
 }
+/* Warm reading surfaces sit within a walnut interior, with greenery beyond. */
+.cafe-interior {
+  --paper: #ded0b8;
+  --cream: #e7dbc6;
+  --line: #b7a58b;
+  background-color: #352a23;
+  background-image: url('assets/paper.svg'), linear-gradient(110deg, #4b382b, #352a23 48%, #30271f);
+  background-size: 180px 180px, 100% 100%;
+  border-top-color: #241d18;
+}
+.cafe-interior :is(.site-header, .welcome, .collection-index, .section-line, .collection-more, .contact, .site-footer) {
+  --ink: #ecdfc8;
+  --muted: #c8b79e;
+  --line: #826a53;
+  --red: #bbceb0;
+  color: var(--ink);
+}
+.cafe-interior .monogram { color: #d9bb8c; }
+.cafe-interior .welcome::before { display: none; }
+.cafe-interior .contact-links a:hover { background: #4b3c2f; }
+.cafe-interior .story-library {
+  background: var(--paper); padding: clamp(20px, 3vw, 40px); margin-block: 36px;
+}
+.cafe-interior .piece-link:focus-visible,
+.cafe-interior .perspective-link:focus-visible { outline-color: #e4d2a8; }
 ::selection { background: #d4dec5; color: #253a30; }
 .site-header { border-bottom-color: var(--line); }
 .monogram { color: var(--wood); }
@@ -45,15 +70,13 @@ body {
   --scene-edge-feather: 28px;
   position: absolute; z-index: -1; pointer-events: none;
   inset: 48px -24px 0; overflow: hidden; border-radius: 3px;
-  /* A shaded interior surrounds warm openings; all color stays behind content. */
+  /* Subdued greenery belongs beyond the darker interior, never over content. */
   background:
     url('assets/paper.svg') 0 0 / 180px 180px repeat,
-    radial-gradient(ellipse at 0% 28%, #263f3452, transparent 47%),
-    radial-gradient(ellipse at 100% 58%, #49382e45, transparent 45%),
-    radial-gradient(ellipse at 8% 82%, #344c3d38, transparent 40%),
-    radial-gradient(ellipse at 66% 38%, #ffe9ae70, transparent 42%),
-    radial-gradient(ellipse at 56% 84%, #fff2cf78, transparent 38%),
-    #f5f0e3;
+    radial-gradient(ellipse at 0% 28%, #30463880, transparent 47%),
+    radial-gradient(ellipse at 100% 58%, #2a231d80, transparent 45%),
+    radial-gradient(ellipse at 8% 82%, #34463860, transparent 40%),
+    #3e372c;
   /* Feather the sides too, so deeper shade cannot expose a rectangular edge. */
   -webkit-mask-image:
     linear-gradient(to bottom, transparent, #000 28px, #000 calc(100% - 160px), transparent),
@@ -65,12 +88,10 @@ body {
   mask-composite: intersect;
 }
 .scene-backdrop::before {
-  /* Shade the painted perimeter, leaving a warm opening between the branches. */
+  /* Tint the distant painting as a shaded window; the original asset is intact. */
   content: ''; position: absolute; inset: 0 0 auto; aspect-ratio: 1280 / 853;
   background:
-    radial-gradient(ellipse at 0% 18%, #203d3266, transparent 58%),
-    radial-gradient(ellipse at 100% 76%, #48382d4d, transparent 48%),
-    radial-gradient(ellipse at 64% 12%, #fff2c94d, transparent 42%),
+    linear-gradient(135deg, #29382ed9, #302a23d4),
     url('assets/jacaranda-bougainvillea.webp') center top / cover no-repeat;
   -webkit-mask-image: linear-gradient(to bottom, #000 40%, transparent 100%);
   mask-image: linear-gradient(to bottom, #000 40%, transparent 100%);
@@ -79,16 +100,16 @@ body {
   /* A broad light wash behind content. No moving foliage or runtime blur. */
   content: ''; position: absolute; inset: -20px;
   background:
-    radial-gradient(ellipse at 72% 22%, #fff8d4, transparent 48%),
-    radial-gradient(ellipse at 30% 70%, #fff8e1, transparent 40%);
-  opacity: .16;
+    radial-gradient(ellipse at 72% 22%, #d9d4b8, transparent 48%),
+    radial-gradient(ellipse at 30% 70%, #c9bea5, transparent 40%);
+  opacity: .045;
 }
 @media (prefers-reduced-motion: no-preference) {
   .scene-backdrop::after { animation: window-light-settle 4s ease-out both; }
 }
 @keyframes window-light-settle {
-  from { opacity: .08; transform: translate(-8px, -5px); }
-  to { opacity: .16; transform: translate(0, 0); }
+  from { opacity: .02; transform: translate(-8px, -5px); }
+  to { opacity: .045; transform: translate(0, 0); }
 }
 .worktable {
   grid-template-columns: 1.18fr 1fr .94fr;
@@ -155,7 +176,7 @@ body {
 .experiment a:focus-visible { outline-color: #32665b; outline-offset: 7px; }
 .experiment .related-study:focus-visible { outline-color: #faf1dc; }
 .teaching {
-  background: #dce1c9 url('assets/paper.svg'); border: 1px solid #aeb798;
+  background: #c7cdb2 url('assets/paper.svg'); border: 1px solid #9da58a;
   border-radius: 2px 6px 3px 5px; transform: rotate(.6deg);
   color: #253b2f; box-shadow: inset 1px 1px 0 #fff9dd, 2px 4px 7px #3029201a;
 }
@@ -304,9 +325,9 @@ dialog::backdrop { background: #2d271ee0; }
 }
 
 /* Reading order: perspective, education/engineering, applied graphics, then art. */
-.perspective-note { background: #dce5d8; border: 1px solid #a8b9a2; border-radius: 4px; margin-bottom: 35px; }
+.perspective-note { background: #bac3a9; border: 1px solid #8b9b7f; border-radius: 4px; margin-bottom: 35px; }
 .perspective-link { display: grid; grid-template-columns: 1.2fr 1fr; align-items: center; gap: 32px; padding: 27px 30px; text-decoration: none; border-radius: inherit; }
-.perspective-link:hover { background: #d3dfcf; }
+.perspective-link:hover { background: #c6ceb7; }
 .perspective-link:hover .card-action { text-decoration-thickness: 2px; }
 .perspective-note h2 { font: 500 clamp(25px, 3vw, 35px)/1.16 var(--sans); letter-spacing: -.8px; margin: 0; }
 .perspective-note .eyebrow span { color: var(--red); padding-left: 8px; }
@@ -314,7 +335,7 @@ dialog::backdrop { background: #2d271ee0; }
 .collection-index { display: flex; flex-wrap: wrap; gap: 10px 26px; font-size: 13px; margin-bottom: 26px; }
 .collection-index a { padding-block: 8px; }
 .worktable.professional-work { grid-template-columns: 1fr 1.2fr; grid-template-areas: none; padding-top: 24px; gap: 35px; }
-.accessibility-feature { background: #e4e9df; border: 1px solid #bcc9b8; border-radius: 3px; }
+.accessibility-feature { background: #d0d5c3; border: 1px solid #a6ae98; border-radius: 3px; }
 .accessibility-link { padding: 28px; }
 .accessibility-link h3 { font: 500 clamp(27px, 2.6vw, 35px)/1.17 var(--sans); letter-spacing: -.6px; margin: 20px 0 18px; }
 .accessibility-link > p:not(.eyebrow) { font-size: 15px; line-height: 1.8; }
@@ -408,4 +429,25 @@ dialog::backdrop { background: #2d271ee0; }
   .shirt-preview { min-height: 0; }
   .shirt-preview img { height: 200px; }
   .comparison-detail { grid-template-columns: 1fr; }
+}
+
+/* Keep the interior palette from overriding system contrast and paper output. */
+@media (prefers-contrast: more) {
+  .cafe-interior { background-image: none; }
+}
+@media (forced-colors: active) {
+  .cafe-interior { background: Canvas; color: CanvasText; }
+  .cafe-interior :is(.site-header, .welcome, .collection-index, .section-line, .collection-more, .contact, .site-footer) {
+    --ink: CanvasText; --muted: CanvasText; --red: Highlight; --line: CanvasText;
+  }
+  .cafe-interior .monogram { color: CanvasText; }
+  .cafe-interior .piece-link:focus-visible,
+  .cafe-interior .perspective-link:focus-visible { outline-color: Highlight; }
+}
+@media print {
+  .cafe-interior { background: white; --paper: white; --cream: white; }
+  .cafe-interior :is(.site-header, .welcome, .collection-index, .section-line, .collection-more, .contact, .site-footer) {
+    --ink: #222; --muted: #444; --red: #222; --line: #777;
+  }
+  .cafe-interior .monogram { color: #222; }
 }
