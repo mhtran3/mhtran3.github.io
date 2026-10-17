@@ -67,6 +67,7 @@ def main():
         ('homepage_js', ['home.js'], 10 * 1024),
         ('stylesheets', ['home.css', 'gallery.css'], 40 * 1024),
         ('foliage_backdrop', ['assets/jacaranda-bougainvillea.webp'], 100 * 1024),
+        ('branch_accent', ['assets/bougainvillea-branch-v1.webp'], 100 * 1024),
         ('featured_illustration', ['assets/hotpot.webp'], 150 * 1024),
         ('selected_videos', [str(p.relative_to(ROOT)).replace('\\', '/') for p in sorted((ROOT / 'assets/media').glob('*.mp4'))], 5 * 1024 * 1024),
     ]
