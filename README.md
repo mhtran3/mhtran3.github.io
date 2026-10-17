@@ -45,3 +45,8 @@ Private planning records, reference photos, student materials, local project sou
 ## Media behavior
 
 Homepage cards use still images. All four videos have native controls, playsinline, preload=none, an accessible label, and adjacent visual descriptions. No autoplay or looping is used. Dialog close pauses and removes cloned media; a document-level play listener pauses other videos, including in the no-dialog/direct-story view. Source checks include poster references and video attributes. Native controls and responsive layout still need real-browser QA; source checks do not establish accessibility conformance.
+
+
+## Separate branch accent
+
+`assets/bougainvillea-branch-v1.webp` is a 900 × 600 transparent AI-generated gouache decoration (80,544 bytes). It appears once, anchored to the right edge of the transition into animation and illustration. A dedicated clipped wrapper keeps it behind content without clipping links or focus outlines. It is static and ignores pointer input; its image has empty alt text inside an aria-hidden wrapper. It is hidden at widths of 900px or less, in increased/forced contrast, and for print. No added JavaScript. Its source PNG and generation prompt are kept in the private planning folder, outside the public site.
