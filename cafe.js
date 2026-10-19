@@ -8,29 +8,13 @@
   const say = text => { if (status) { status.textContent = ''; requestAnimationFrame(() => { status.textContent = text; }); } };
   const still = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // ——— Skylight on the cards ———
-  // Each lit card gets a light layer whose pane is pinned to the screen (position: fixed) and
-  // clipped to the card, so the pattern stays put while the card slides beneath it. The only
-  // thing set here is the depth offset: the pattern on a card sits toward the light, opposite
-  // to where its shadow falls, because the card is nearer the skylight than the glass.
-  document.querySelectorAll('.perspective-note, .teaching, .accessibility-feature, .combat-feature, .design-grid > .piece, .art-grid > .piece').forEach(card => {
-    card.classList.add('lit');   // cafe.css styles every lit card through this one class
-    const light = document.createElement('span');
-    light.className = 'card-light'; light.setAttribute('aria-hidden', 'true');
-    light.innerHTML = '<span class="sky-pane"><span class="sky-room"><span class="sky sky-fill sky-soft"></span><span class="sky sky-crisp sky-a"></span><span class="sky sky-crisp sky-b"></span><span class="sky sky-crisp sky-c"></span></span></span>';
-    card.prepend(light);
-  });
-  function setDepth() {
-    const cs = body.style;
-    body.style.setProperty('--depth-x', `${(-3.2 * parseFloat(cs.getPropertyValue('--shadow-x') || 0)).toFixed(1)}px`);
-    body.style.setProperty('--depth-y', `${(-3.2 * parseFloat(cs.getPropertyValue('--shadow-y') || 0)).toFixed(1)}px`);
-  }
-  document.addEventListener('cafe:light', setDepth);
-  setDepth();
-  // Start every copy of a layer on the same clock, so a branch's shadow moves identically on the
-  // glass and on every card (and branches a and b keep time with the ones in the window).
+  // ——— The sun on the table ———
+  // The light layers are plain markup (see index.html); the paper's copy is pinned to the screen
+  // and clipped to the sheet, so it needs no script while you scroll. This only starts every copy
+  // of a patch, and the branch that shapes it, on the same clock, so the sun on the paper and on
+  // the wood moves as one.
   requestAnimationFrame(() => {
-    document.querySelectorAll('.sky, .cw-jacaranda, .cw-bougainvillea').forEach(el => el.getAnimations().forEach(a => { a.startTime = 0; }));
+    document.querySelectorAll('.fleck, .bough').forEach(el => el.getAnimations().forEach(a => { a.startTime = 0; }));
   });
 
   // ——— Lamps ———

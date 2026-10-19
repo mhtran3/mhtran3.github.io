@@ -7,17 +7,20 @@
   if (!body) return;
   const root = document.documentElement;
 
-  // [minute of day, palette]. g = glass top/middle/bottom, s = sunlight colour,
-  // ss = sun strength, d = dapples, l = how lit the leaves are, w = plaster wall colour.
+  // [minute of day, palette]. t = table wood in shade / in sun, p = paper in shade / in sun,
+  // s = sunlight colour, ss = sun strength, d = how much sun gets through the leaves,
+  // l = how lit the leaves are, w = plaster wall colour.
+  // Shade under leaves is cool and a little green; sun is warm. That split, and the distance
+  // between the two, is what makes the patches read as light rather than as a pattern.
   const H = h => Math.round(h * 60);
-  const night = { g: ['#23252a', '#1e1d1f', '#1a1613'], s: '#c8904f', ss: .1, d: 0, l: .3, w: '#3d3127' };
-  const blue = { g: ['#4b5364', '#3a3b45', '#2b2627'], s: '#d7a49c', ss: .25, d: 0, l: .45, w: '#5b4b3d' };
-  const rise = { g: ['#e3bc8e', '#c99571', '#8f634a'], s: '#ffca8c', ss: .75, d: .45, l: .72, w: '#a9855c' };
-  const morning = { g: ['#e6ecd8', '#d5d2a9', '#c1b088'], s: '#fff8e4', ss: .88, d: .72, l: .95, w: '#c6a97c' };
-  const noon = { g: ['#e8eedb', '#d8d4a8', '#c6b38b'], s: '#fffbea', ss: .95, d: .85, l: 1, w: '#cdb081' };
-  const afternoon = { g: ['#e7e0b4', '#d4bf8c', '#bf9f76'], s: '#ffe3ae', ss: .9, d: .8, l: .95, w: '#c7a374' };
-  const golden = { g: ['#e3ac6d', '#c88954', '#94613f'], s: '#ffbe70', ss: .82, d: .55, l: .8, w: '#b6875b' };
-  const sunset = { g: ['#a9654b', '#7b4737', '#4d3128'], s: '#ff9b5d', ss: .55, d: .18, l: .55, w: '#80593f' };
+  const night = { t: ['#241b14', '#3a2a1c'], p: ['#bba98a', '#ccb894'], s: '#c8904f', ss: .1, d: 0, l: .3, w: '#3d3127' };
+  const blue = { t: ['#2b2622', '#4a4440'], p: ['#b9b09d', '#c8bfae'], s: '#d7a49c', ss: .25, d: 0, l: .45, w: '#5b4b3d' };
+  const rise = { t: ['#342a20', '#c98d55'], p: ['#c8b799', '#ffdcac'], s: '#ffca8c', ss: .75, d: .55, l: .72, w: '#a9855c' };
+  const morning = { t: ['#383022', '#d0a76a'], p: ['#cfc2a3', '#fff8e6'], s: '#fff8e4', ss: .88, d: .8, l: .95, w: '#c6a97c' };
+  const noon = { t: ['#3a3022', '#caa063'], p: ['#cdbf9f', '#fff5dc'], s: '#fffbea', ss: .95, d: .85, l: 1, w: '#cdb081' };
+  const afternoon = { t: ['#3b2f21', '#cd9a5a'], p: ['#ccbc9a', '#fff0d0'], s: '#ffe3ae', ss: .9, d: .85, l: .95, w: '#c7a374' };
+  const golden = { t: ['#3a2b1d', '#d38a46'], p: ['#cab693', '#ffe2b2'], s: '#ffbe70', ss: .82, d: .75, l: .8, w: '#b6875b' };
+  const sunset = { t: ['#30251b', '#b76a3c'], p: ['#c0aa89', '#ffcf9c'], s: '#ff9b5d', ss: .55, d: .35, l: .55, w: '#80593f' };
   const day = [
     [0, night], [H(5), night], [H(5.75), blue], [H(6.5), rise], [H(8), morning], [H(12.5), noon],
     [H(16), afternoon], [H(17.75), golden], [H(18.75), sunset], [H(19.5), blue], [H(20.5), night], [1440, night],
@@ -52,7 +55,8 @@
     const [m0, a] = day[i], [m1, b] = day[i + 1];
     const t = ease((minute - m0) / (m1 - m0 || 1));
     return {
-      g: a.g.map((c, k) => mixHex(c, b.g[k], t)), s: mixHex(a.s, b.s, t), w: mixHex(a.w, b.w, t),
+      t: a.t.map((c, k) => mixHex(c, b.t[k], t)), p: a.p.map((c, k) => mixHex(c, b.p[k], t)),
+      s: mixHex(a.s, b.s, t), w: mixHex(a.w, b.w, t),
       ss: mix(a.ss, b.ss, t), d: mix(a.d, b.d, t), l: mix(a.l, b.l, t),
     };
   }
@@ -80,13 +84,12 @@
     const wall = lamps.wall ?? autoOn, table = lamps.table ?? autoOn;
     const lampLight = (wall ? .6 : 0) + (table ? .4 : 0);
     const v = {
-      '--glass-1': p.g[0], '--glass-2': p.g[1], '--glass-3': p.g[2], '--sun': p.s,
-      '--sun-at': `${sun.x.toFixed(1)}% ${sun.y.toFixed(1)}%`, '--sun-strength': p.ss.toFixed(3),
-      '--dapple': p.d.toFixed(3), '--dapple-at': `${sun.x.toFixed(1)}% ${Math.min(sun.y, 55).toFixed(1)}%`,
-      '--leaf-light': p.l.toFixed(3), '--far': mix(.32, .62, sun.daylight).toFixed(3), '--near': mix(.58, .86, sun.daylight).toFixed(3),
+      '--sun': p.s, '--sun-at': `${sun.x.toFixed(1)}% ${sun.y.toFixed(1)}%`, '--sun-strength': p.ss.toFixed(3),
+      '--dapple': p.d.toFixed(3), '--leaf-light': p.l.toFixed(3),
+      '--table-shade': p.t[0], '--table-lit': p.t[1], '--paper-shade': p.p[0], '--paper-lit': p.p[1],
       '--wall-lamp': wall ? 1 : 0, '--table-lamp': table ? 1 : 0,
-      // The window only mirrors the room once it is darker outside than in.
-      '--reflect': (Math.max(wall ? 1 : 0, table ? .7 : 0) * dark ** 1.5).toFixed(3),
+      // Lamplight pools on the table; it only shows once the room is darker than the lamp.
+      '--pool': (lampLight * (.12 + .88 * dark)).toFixed(3),
       // Shadows fall away from the sun; long when it is low, short at noon. After dark,
       // the wall lamp at the upper right becomes the light that casts them.
       '--shadow-x': `${mix(wall ? -6 : 0, (50 - sun.x) * .32, sun.daylight).toFixed(1)}px`,
@@ -98,7 +101,7 @@
       '--plaster': p.w, '--downlight': (.25 + .75 * dark).toFixed(3),
       // The skylight's leaf pattern slides a little across the day as the sun moves over it.
       '--sky-shift': `${((sun.x - 50) * 2.4).toFixed(1)}px`,
-      '--dark': dark.toFixed(3), '--daylit': sun.daylight.toFixed(3), '--frame': mixHex('#4d3a2a', '#221912', dark),
+      '--dark': dark.toFixed(3), '--daylit': sun.daylight.toFixed(3),
     };
     // Choose whichever ink reads best on the plaster at this moment. Around sunrise and
     // sunset the wall passes through mid-tones where neither ink is comfortable, so the

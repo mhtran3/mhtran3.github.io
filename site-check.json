@@ -1,8 +1,8 @@
 {
-  "generated_at_utc": "2026-10-18T20:37:09+00:00",
+  "generated_at_utc": "2026-10-19T03:46:04+00:00",
   "scope": "Homepage, colophon, and their stylesheets. Manual source check, not live deployment telemetry.",
   "result": "pass",
-  "local_references_checked": 123,
+  "local_references_checked": 139,
   "file_sizes": {
     "homepage_js": {
       "files": [
@@ -10,7 +10,7 @@
         "lighting.js",
         "cafe.js"
       ],
-      "bytes": 24475,
+      "bytes": 23490,
       "budget_bytes": 28672
     },
     "stylesheets": {
@@ -19,8 +19,8 @@
         "gallery.css",
         "cafe.css"
       ],
-      "bytes": 66583,
-      "budget_bytes": 67584
+      "bytes": 50597,
+      "budget_bytes": 70656
     },
     "heading_fonts": {
       "files": [
@@ -31,29 +31,33 @@
       "bytes": 66368,
       "budget_bytes": 73728
     },
-    "cafe_window": {
+    "reflection_fonts": {
       "files": [
-        "assets/window-far.webp",
-        "assets/window-jacaranda.webp",
-        "assets/window-bougainvillea.webp",
-        "assets/sky-soft.webp",
-        "assets/sky-far.webp",
-        "assets/sky-crisp-a.webp",
-        "assets/sky-crisp-b.webp",
-        "assets/sky-crisp-c.webp",
-        "assets/sky-far-a.webp",
-        "assets/sky-far-b.webp",
-        "assets/sky-far-c.webp"
+        "assets/fonts/fraunces/fraunces-medium-latin.woff2",
+        "assets/fonts/fraunces/fraunces-medium-latin-ext.woff2",
+        "assets/fonts/fraunces/fraunces-medium-vietnamese.woff2"
       ],
-      "bytes": 303634,
-      "budget_bytes": 307200
+      "bytes": 76812,
+      "budget_bytes": 81920
     },
-    "branch_accent": {
+    "cafe_table": {
       "files": [
-        "assets/bougainvillea-branch-v1.webp"
+        "assets/table-grain.webp",
+        "assets/fleck-soft.webp",
+        "assets/fleck-a.webp",
+        "assets/fleck-b.webp",
+        "assets/fleck-c.webp"
       ],
-      "bytes": 80544,
-      "budget_bytes": 102400
+      "bytes": 191774,
+      "budget_bytes": 204800
+    },
+    "branches": {
+      "files": [
+        "assets/canopy-jacaranda.webp",
+        "assets/canopy-bougainvillea.webp"
+      ],
+      "bytes": 178440,
+      "budget_bytes": 194560
     },
     "cafe_fixtures": {
       "files": [
@@ -61,8 +65,8 @@
         "assets/plaster.svg",
         "assets/cafe-lamp.svg"
       ],
-      "bytes": 4302,
-      "budget_bytes": 12288
+      "bytes": 19850,
+      "budget_bytes": 24576
     },
     "featured_illustration": {
       "files": [
