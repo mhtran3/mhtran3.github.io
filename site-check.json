@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-10-19T03:46:04+00:00",
+  "generated_at_utc": "2026-10-19T19:52:38+00:00",
   "scope": "Homepage, colophon, and their stylesheets. Manual source check, not live deployment telemetry.",
   "result": "pass",
   "local_references_checked": 139,
@@ -10,8 +10,8 @@
         "lighting.js",
         "cafe.js"
       ],
-      "bytes": 23490,
-      "budget_bytes": 28672
+      "bytes": 28763,
+      "budget_bytes": 32768
     },
     "stylesheets": {
       "files": [
@@ -19,7 +19,7 @@
         "gallery.css",
         "cafe.css"
       ],
-      "bytes": 50597,
+      "bytes": 53231,
       "budget_bytes": 70656
     },
     "heading_fonts": {
@@ -48,16 +48,24 @@
         "assets/fleck-b.webp",
         "assets/fleck-c.webp"
       ],
-      "bytes": 191774,
-      "budget_bytes": 204800
+      "bytes": 220614,
+      "budget_bytes": 229376
     },
     "branches": {
       "files": [
         "assets/canopy-jacaranda.webp",
         "assets/canopy-bougainvillea.webp"
       ],
-      "bytes": 178440,
-      "budget_bytes": 194560
+      "bytes": 189976,
+      "budget_bytes": 204800
+    },
+    "seal_comparison": {
+      "files": [
+        "assets/seal-clio-before.webp",
+        "assets/seal-whig-before.webp"
+      ],
+      "bytes": 74522,
+      "budget_bytes": 81920
     },
     "cafe_fixtures": {
       "files": [
@@ -86,7 +94,8 @@
       "budget_bytes": 5242880
     }
   },
-  "play_on_request_videos": 4,
+  "play_on_request_videos": 3,
+  "visibility_autoplay_videos": 2,
   "not_checked": [
     "external URLs",
     "browser layout",

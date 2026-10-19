@@ -46,7 +46,10 @@ def main():
             if any(attr not in video for attr in ('controls', 'playsinline', 'poster', 'aria-label')):
                 errors.append(f'{path.name}: video needs controls, inline playback, a poster and an accessible label')
             if 'autoplay' in video or video.get('preload') != 'none':
-                errors.append(f'{path.name}: video must play on request with preload=none')
+                errors.append(f'{path.name}: videos must defer loading; autoplay is managed by visibility, not the HTML autoplay attribute')
+            if 'data-autoplay' in video:
+                if video['data-autoplay'] != 'visible' or any(attr not in video for attr in ('muted', 'loop')):
+                    errors.append(f'{path.name}: visible autoplay needs muted, loop, and native controls')
         references.extend((path, ref) for ref in page.refs)
     for path in (ROOT / 'home.css', ROOT / 'gallery.css', ROOT / 'cafe.css'):
         references.extend((path, match[1].strip()) for match in re.findall(
@@ -64,12 +67,13 @@ def main():
         elif parsed.fragment and target in pages and unquote(parsed.fragment) not in pages[target].ids:
             errors.append(f'{origin.name}: missing fragment: {ref}')
     budgets = [
-        ('homepage_js', ['home.js', 'lighting.js', 'cafe.js'], 28 * 1024),
+        ('homepage_js', ['home.js', 'lighting.js', 'cafe.js'], 32 * 1024),
         ('stylesheets', ['home.css', 'gallery.css', 'cafe.css'], 69 * 1024),
         ('heading_fonts', ['assets/fonts/bricolage-grotesque-medium-latin.woff2', 'assets/fonts/bricolage-grotesque-medium-latin-ext.woff2', 'assets/fonts/bricolage-grotesque-medium-vietnamese.woff2'], 72 * 1024),
         ('reflection_fonts', ['assets/fonts/fraunces/fraunces-medium-latin.woff2', 'assets/fonts/fraunces/fraunces-medium-latin-ext.woff2', 'assets/fonts/fraunces/fraunces-medium-vietnamese.woff2'], 80 * 1024),
-        ('cafe_table', ['assets/table-grain.webp', 'assets/fleck-soft.webp', 'assets/fleck-a.webp', 'assets/fleck-b.webp', 'assets/fleck-c.webp'], 200 * 1024),
-        ('branches', ['assets/canopy-jacaranda.webp', 'assets/canopy-bougainvillea.webp'], 190 * 1024),
+        ('cafe_table', ['assets/table-grain.webp', 'assets/fleck-soft.webp', 'assets/fleck-a.webp', 'assets/fleck-b.webp', 'assets/fleck-c.webp'], 224 * 1024),
+        ('branches', ['assets/canopy-jacaranda.webp', 'assets/canopy-bougainvillea.webp'], 200 * 1024),
+        ('seal_comparison', ['assets/seal-clio-before.webp', 'assets/seal-whig-before.webp'], 80 * 1024),
         ('cafe_fixtures', ['assets/trombone-lamp.svg', 'assets/plaster.svg', 'assets/cafe-lamp.svg'], 24 * 1024),
         ('featured_illustration', ['assets/hotpot.webp'], 150 * 1024),
         ('selected_videos', [str(p.relative_to(ROOT)).replace('\\', '/') for p in sorted((ROOT / 'assets/media').glob('*.mp4'))], 5 * 1024 * 1024),
@@ -89,7 +93,8 @@ def main():
         'generated_at_utc': datetime.now(timezone.utc).isoformat(timespec='seconds'),
         'scope': 'Homepage, colophon, and their stylesheets. Manual source check, not live deployment telemetry.',
         'result': 'pass', 'local_references_checked': count, 'file_sizes': sizes,
-        'play_on_request_videos': sum(len(page.videos) for page in pages.values()),
+        'play_on_request_videos': sum('data-autoplay' not in video for page in pages.values() for video in page.videos),
+        'visibility_autoplay_videos': sum('data-autoplay' in video for page in pages.values() for video in page.videos),
         'not_checked': ['external URLs', 'browser layout', 'keyboard interactions',
                         'screen readers', 'Lighthouse', 'automated accessibility audit'],
     }

@@ -86,8 +86,8 @@
 
           <article class="entry entry--figure" aria-labelledby="game-title">
             <figure class="print wide">
-              <a href="#game-story" data-story="game-story" tabindex="-1"><img src="assets/dungeon-heatmap.webp" alt="A dungeon debugging view: terrain-aware position scores, with a white cross marking a unit’s movement target." width="1280" height="720" loading="lazy"></a>
-              <figcaption>Recorded from my working prototype. Sprites and environment art are third-party.</figcaption>
+              <video controls muted loop playsinline preload="none" data-autoplay="visible" width="960" height="540" poster="assets/dungeon-heatmap.webp" aria-label="Dungeon combat positioning heatmap demonstration"><source src="assets/media/dungeon-heatmap.mp4" type="video/mp4"><a href="assets/media/dungeon-heatmap.mp4">Open the heatmap video</a></video>
+              <figcaption>Silent clip from my working prototype; use the controls to pause. Sprites and environment art are third-party.</figcaption>
             </figure>
             <div class="note">
               <p class="kicker">Combat AI in Godot 4</p>
@@ -96,7 +96,7 @@
             <div class="body">
               <h3 id="game-title"><a href="#game-story" data-story="game-story">Making movement decisions visible</a></h3>
               <p>My game prototype explores combat where training a unit affects its decisions. Overlays show where a unit wants to stand and how it finds its way through the dungeon, which helps me tell route problems apart from tactical choices.</p>
-              <a class="more" href="#game-story" data-story="game-story" tabindex="-1" aria-hidden="true"><span>✳</span> Watch the footage</a>
+              <a class="more" href="#game-story" data-story="game-story" tabindex="-1" aria-hidden="true"><span>✳</span> Explore the footage &amp; decisions</a>
               <p class="aside">Also: <a href="#rwkv-story" data-story="rwkv-story">an early experiment with RWKV and model memory</a></p>
             </div>
           </article>
@@ -118,14 +118,25 @@
           <h2 class="part-title" id="graphics-title">Graphics made for communities</h2>
 
           <article class="entry entry--figure" aria-labelledby="seals-title">
-            <div class="print-pair print-pair--seals wide">
-              <a href="#seals-story" data-story="seals-story" tabindex="-1"><img src="assets/clio-restored.webp" alt="The restored Clio seal: a seated woman holding an open book, inside circular lettering." width="1000" height="1000" loading="lazy"></a>
-              <a href="#seals-story" data-story="seals-story" tabindex="-1"><img src="assets/whig-eagle-restored.webp" alt="The restored Whig seal: a bird with spread wings and ribbons, inside circular lettering." width="999" height="1000" loading="lazy"></a>
-            </div>
+            <figure class="compare wide" style="--cut: 50%">
+              <div class="compare-seals">
+                <div class="seal-cmp">
+                  <img class="cmp-after" src="assets/clio-restored.webp" alt="The restored Clio seal: a seated woman holding an open book, inside circular lettering." width="1000" height="1000" loading="lazy">
+                  <img class="cmp-before" src="assets/seal-clio-before.webp" alt="The Clio seal as I was given it: soft, with the lettering and the figure's details blurred." width="480" height="480" loading="lazy">
+                  <span class="cmp-line" aria-hidden="true"></span>
+                </div>
+                <div class="seal-cmp">
+                  <img class="cmp-after" src="assets/whig-eagle-restored.webp" alt="The restored Whig seal: a bird with spread wings and ribbons, inside circular lettering." width="999" height="1000" loading="lazy">
+                  <img class="cmp-before" src="assets/seal-whig-before.webp" alt="The Whig seal as I was given it: soft, with the ribbon lettering almost lost." width="480" height="480" loading="lazy">
+                  <span class="cmp-line" aria-hidden="true"></span>
+                </div>
+              </div>
+              <input class="cmp-range" type="range" min="0" max="100" value="50" aria-label="Compare the seals as I was given them with my restorations">
+              <figcaption><span>As I was given them</span><span class="cmp-hint">Drag across a seal to compare</span><span>Restored</span></figcaption>
+            </figure>
             <div class="note">
               <p class="kicker">Whig–Clio</p>
               <p class="meta">Historical research, restoration, and vector graphics</p>
-              <figure class="before"><img src="assets/seals-source-print.webp" alt="The supplied image of both seals: small and soft, with details lost." width="300" height="147" loading="lazy"><figcaption>Before: the image I was given</figcaption></figure>
             </div>
             <div class="body">
               <h3 id="seals-title"><a href="#seals-story" data-story="seals-story">Recovering the detail in Whig–Clio’s seals</a></h3>
@@ -426,7 +437,7 @@
         <summary>A note on the design</summary>
         <p>The page is built like a corner of The Leaf Café in Đà Nẵng, from my own photographs: a dark ceiling with small downlights, an ochre plaster wall, a table under the trees, and a wooden counter at the bottom. The work lies on the table as one long folded sheet, like a zine, so the writing and the pictures are read together. <a href="https://thecupscoffee.vn/the-leaf-cafe/">See the café reference.</a></p>
         <p>Bricolage Grotesque connects the headings across my work. I chose it partly for its story: designer Mathieu Triay connects its mixed influences to migration and belonging. Inside selected stories, Fraunces introduces a more reflective voice. Paragraphs and navigation keep a quiet Helvetica-based system stack, with Arial as a fallback. Both custom fonts are hosted with this site. <a href="colophon.html#typography">More about the typography.</a></p>
-        <p>The table sits under jacaranda and bougainvillea that move slightly in a breeze. Sun comes through the leaves in bright patches over deep, warm shade. Each gap between leaves throws a small oval image of the sun; where gaps crowd, the ovals overlap into a patch with a scalloped edge, and a few patches carry the sharp shapes of leaves close by. These are stylized plant references I connect with Đà Nẵng and my Vietnamese heritage. The light and spacing draw on my café photographs. The branches and the leaf shapes in the light come from AI-generated paintings, and the wood grain is generated in code; they are decoration, distinct from the work on the page. The restored seals are printed straight onto the sheet, so the paper shows through them; photographs and illustrations keep their original colors, and the light never falls across them.</p>
+        <p>The table sits under jacaranda and bougainvillea that move slightly in a breeze. Sun comes through the leaves in bright patches over deep, warm shade. Each gap between leaves throws a small oval image of the sun; where gaps crowd, the ovals overlap into a patch with a scalloped edge, and a few patches carry the sharp shapes of leaves close by. These are stylized plant references I connect with Đà Nẵng and my Vietnamese heritage. The light and spacing draw on my café photographs. The branches and the leaf shapes in the light come from AI-generated paintings, and the wood grain is generated in code; they are decoration, distinct from the work on the page. The seals are printed straight onto the sheet as a before-and-after you can drag across, so the paper shows through them; photographs and illustrations keep their original colors, and the light never falls across them.</p>
         <p>The lamp on the wall is a trombone slide turned into a light fixture, drawn after one at the café. Its cord runs over a small pulley; pull it to switch the lamp. The counter ends in a lift-up flap and a swinging gate, like a real serving counter. On it are a small espresso machine you can pull a shot from, iced matcha latte drawn from the one I ordered there, Vietnamese egg coffee with its cup resting in a bowl of hot water, and chè with pandan jelly and red water-chestnut “rubies.” The drinks can be sipped, and refilled when they run out.</p>
         <p>The light follows your device’s clock minute by minute, from dawn through golden hour to night, and the time-of-day slider lets you move through the day yourself. The patches of sun are pale gold at noon and orange at golden hour; after dark, lamplight pools on the table and the paper, brighter with each lamp you switch on. The sheet catches the sun slightly shifted from the wood beneath it and casts its shadow away from the light. As you scroll, the paper slides along the table while the light stays where it falls. The Eye candy switch holds every ambient movement still and is remembered in your browser. Text never moves, and reduced-motion preferences stop the breeze and the transitions. <a href="colophon.html">Read the implementation choices and testing notes.</a></p>
       </details>
@@ -482,7 +493,7 @@
         <p>My game prototype explores a combat system where training a unit affects its decisions, and players build skillsets that work together. The technical challenge is balancing a robust, flexible system with an experience that is still understandable and enjoyable.</p>
         <h3>See the decisions</h3>
         <p>The prototype includes overlays for inspecting movement. These recordings show the existing systems running in the dungeon, with automatic movement active.</p>
-        <figure class="media-figure"><video controls playsinline preload="none" width="960" height="540" poster="assets/dungeon-heatmap.webp" aria-label="Dungeon combat positioning heatmap demonstration"><source src="assets/media/dungeon-heatmap.mp4" type="video/mp4"><a href="assets/media/dungeon-heatmap.mp4">Open the video</a></video><figcaption><strong>Choosing a fighting position.</strong> Scores update across the terrain for the highlighted unit. The white cross marks its current movement target; the map makes its preferences visible. <span class="media-note">Silent excerpt · play on request.</span></figcaption></figure>
+        <figure class="media-figure"><video controls muted loop playsinline preload="none" data-autoplay="visible" width="960" height="540" poster="assets/dungeon-heatmap.webp" aria-label="Dungeon combat positioning heatmap demonstration"><source src="assets/media/dungeon-heatmap.mp4" type="video/mp4"><a href="assets/media/dungeon-heatmap.mp4">Open the video</a></video><figcaption><strong>Choosing a fighting position.</strong> Scores update across the terrain for the highlighted unit. The white cross marks its current movement target; the map makes its preferences visible. <span class="media-note">Silent looping excerpt · starts in view unless reduced motion is enabled. Use the controls to pause.</span></figcaption></figure>
         <figure class="media-figure"><video controls playsinline preload="none" width="960" height="540" poster="assets/dungeon-flow.webp" aria-label="Dungeon directional flow-field demonstration"><source src="assets/media/dungeon-flow.mp4" type="video/mp4"><a href="assets/media/dungeon-flow.mp4">Open the video</a></video><figcaption><strong>Mapping routes through terrain.</strong> The arrows show the exploration flow field across walkable rooms and corridors. The field remains visible during this fight; combat positioning adds separate decisions. <span class="media-note">Silent excerpt · play on request.</span></figcaption></figure>
         <h3>Two movement questions</h3>
         <p>Getting through a corridor and choosing where to stand during a fight need different information. The dungeon builds a distance field over walkable cells, then derives directions toward the exploration goal. Combat evaluates positions using the unit’s situation. Keeping both visible helps separate route problems from tactical choices.</p>
