@@ -9,22 +9,42 @@
   <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
   <link rel="stylesheet" href="home.css">
   <link rel="stylesheet" href="gallery.css">
+  <link rel="stylesheet" href="cafe.css">
   <script src="home.js" defer></script>
   <script src="lighting.js" defer></script>
+  <script src="cafe.js" defer></script>
 </head>
 <body class="cafe-interior" data-light="day">
   <a class="skip-link" href="#main">Skip to content</a>
+  <div class="cafe-window" aria-hidden="true">
+    <div class="cw-sun"></div>
+    <div class="cw-leaflight"></div>
+    <div class="cw-far"></div>
+    <div class="cw-branch cw-jacaranda"><img src="assets/window-jacaranda.webp" alt="" width="560" height="359" decoding="async"></div>
+    <div class="cw-branch cw-bougainvillea"><img src="assets/window-bougainvillea.webp" alt="" width="380" height="389" decoding="async"></div>
+    <div class="cw-skylight"><span class="sky-room"><span class="sky sky-fill sky-far"></span><span class="sky sky-blur sky-a"></span><span class="sky sky-blur sky-b"></span><span class="sky sky-blur sky-c"></span></span></div>
+    <div class="cw-reflections"></div>
+    <div class="cw-frost"></div>
+    <div class="cw-frame"></div>
+  </div>
+  <div class="cafe-ceiling">
+  <span class="downlight" style="--x: 9%"></span><span class="downlight" style="--x: 37%"></span><span class="downlight" style="--x: 63%"></span><span class="downlight" style="--x: 91%"></span>
   <header class="site-header wrap">
     <a class="identity" href="#" aria-label="Michael Tran, home"><span class="monogram" aria-hidden="true">mt<span>✳</span></span><span>Michael Tran</span></a>
     <nav aria-label="Main navigation"><a href="#work">Work</a><a href="#graphics">Design</a><a href="#contact">Say hello <span aria-hidden="true">↗</span></a></nav>
-    <div class="lighting-control" hidden><label for="cafe-lighting">Café light</label><select id="cafe-lighting" aria-describedby="lighting-status"><option value="auto">Auto</option><option value="day">Daylight</option><option value="dusk">Twilight</option><option value="night">Lamplight</option></select><span id="lighting-status">Your local time</span></div>
+    <div class="lighting-control" hidden><label for="cafe-time">Time of day</label><input type="range" id="cafe-time" min="0" max="1439" step="1" value="720" aria-describedby="cafe-time-label"><output id="cafe-time-label" for="cafe-time">Your time</output><button type="button" id="cafe-now" hidden>Back to now</button><button type="button" class="eye-candy" aria-pressed="true" hidden>Eye candy</button></div>
   </header>
+  </div>
 
   <div class="portfolio-canvas">
   <main id="main" class="wrap">
     <section class="welcome" aria-labelledby="welcome-title">
       <div><h1 id="welcome-title">Michael Tran</h1><p class="eyebrow">Artist, engineer, and educator.</p></div>
       <p class="welcome-copy">I bring disciplines together to make learning more accessible, test ideas, and create for communities.</p>
+      <div class="wall-lamp">
+        <div class="wall-lamp-light" aria-hidden="true"><span class="lamp-pool"></span><span class="lamp-shadow"><img src="assets/trombone-lamp.svg" alt="" width="160" height="400"></span><img class="lamp-body" src="assets/trombone-lamp.svg" alt="" width="160" height="400"><span class="lamp-mouth"></span></div>
+        <div class="lamp-cord"><span class="cord-line" aria-hidden="true"></span><button type="button" class="cord-pull" aria-pressed="false"><span class="visually-hidden">Wall lamp</span></button></div>
+      </div>
       <nav class="welcome-links" aria-label="Contact Michael"><a href="mailto:michaelhtran333@gmail.com">Email me</a><a href="https://www.linkedin.com/in/mhtranse/">LinkedIn</a><a href="https://github.com/mhtran3">GitHub</a></nav>
     </section>
 
@@ -36,7 +56,6 @@
     </aside>
 
     <section id="work" aria-labelledby="work-title">
-      <div class="scene-backdrop" aria-hidden="true"></div>
       <nav class="collection-index" aria-label="Explore selected work"><a href="#work-title">Education & engineering</a><a href="#graphics">Graphics & apparel</a><a href="#artwork">Animation & illustration</a></nav>
       <div class="section-line"><h2 id="work-title">Education & engineering</h2></div>
       <div class="worktable professional-work">
@@ -44,7 +63,7 @@
           <a class="piece-link teaching-link" href="#teaching-story" data-story="teaching-story">
             <div class="teaching-top"><span class="piece-number">Education & community</span><span class="small-star" aria-hidden="true">✳</span></div>
             <h3>Everyone deserves access to quality education.</h3>
-            <p>Arts teaching in Trenton, free tutoring coordination, and mentoring and curriculum for first-generation, lower-income students.</p>
+            <p>I help students find a starting point when a problem feels unfamiliar. My work spans arts education in Trenton, free tutoring coordination, mentoring, and curriculum for first-generation, lower-income students.</p>
             <div class="teaching-bottom"><span class="card-action">Explore my education work</span><span class="open-arrow" aria-hidden="true">↗</span></div>
           </a>
         </article>
@@ -114,24 +133,230 @@
         </div>
       </section>
       <details class="collection-more"><summary>From the sketchbook <span aria-hidden="true">✳</span></summary><div><a href="#illustration-story" data-story="illustration-story">Waves on a board · sketchbook study ↗</a></div></details>
-      <div class="cafe-table" aria-hidden="true">
-        <div class="table-lamp"><span class="lamp-glow"></span><span class="lamp-bulb"></span><img src="assets/cafe-lamp.svg" alt="" width="128" height="200" loading="lazy"></div>
-        <span class="table-edge"></span>
-        <img class="table-drinks" src="assets/cafe-drinks.svg" width="500" height="260" alt="" loading="lazy">
-      </div>
     </section>
 
 
-    <section id="contact" class="contact" aria-labelledby="contact-title"><div><p class="eyebrow">Keep in touch</p><h2 id="contact-title">Say hello.</h2><p>For opportunities, collaborations, or a good conversation.</p></div><div class="contact-links"><a href="mailto:michaelhtran333@gmail.com">michaelhtran333@gmail.com <span aria-hidden="true">↗</span></a><a href="https://www.linkedin.com/in/mhtranse/">LinkedIn <span aria-hidden="true">↗</span></a><a href="https://github.com/mhtran3">GitHub <span aria-hidden="true">↗</span></a></div></section>
+    <section id="contact" class="contact counter" aria-labelledby="contact-title">
+      <div class="counter-top">
+        <div class="counter-dog" aria-hidden="true"></div>
+        <button type="button" class="table-lamp" aria-pressed="false"><span class="lamp-glow" aria-hidden="true"></span><span class="lamp-bulb" aria-hidden="true"></span><img src="assets/cafe-lamp.svg" alt="" width="128" height="200"><span class="visually-hidden">Table lamp</span></button>
+        <div class="counter-espresso">
+          <svg class="espresso" viewBox="0 0 250 210" aria-hidden="true">
+            <!-- A single-group lever-top espresso machine: brushed steel, walnut side panel and brass
+                 trim to match the trombone lamp, with a small "mt" nameplate as the café's own. -->
+            <defs>
+              <linearGradient id="e-steel" x1="0" x2="1"><stop offset="0" stop-color="#9b978f"/><stop offset=".18" stop-color="#d9d7d0"/><stop offset=".42" stop-color="#f4f3ee"/><stop offset=".7" stop-color="#c9c6be"/><stop offset="1" stop-color="#8f8b83"/></linearGradient>
+              <linearGradient id="e-steel-v" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f1f0eb"/><stop offset="1" stop-color="#b9b5ac"/></linearGradient>
+              <linearGradient id="e-chrome" x1="0" x2="1"><stop offset="0" stop-color="#6e6b66"/><stop offset=".35" stop-color="#f7f6f2"/><stop offset=".55" stop-color="#c3c0b9"/><stop offset="1" stop-color="#5f5c57"/></linearGradient>
+              <linearGradient id="e-brass" x1="0" x2="1"><stop offset="0" stop-color="#7d6039"/><stop offset=".45" stop-color="#d9b77c"/><stop offset=".6" stop-color="#f0d9a6"/><stop offset="1" stop-color="#86683f"/></linearGradient>
+              <linearGradient id="e-walnut" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5b4130"/><stop offset="1" stop-color="#3a281c"/></linearGradient>
+              <radialGradient id="e-crema" cx=".45" cy=".4" r=".7"><stop offset="0" stop-color="#d49a5e"/><stop offset="1" stop-color="#8f5a31"/></radialGradient>
+              <clipPath id="shot-cup"><path d="M116 168L118.5 186Q125 188.5 131.5 186L134 168Z"/></clipPath>
+              <filter id="e-soft" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="2.4"/></filter>
+            </defs>
+            <ellipse cx="120" cy="201" rx="100" ry="6" fill="#1a110b" opacity=".4" filter="url(#e-soft)"/>
+            <!-- feet -->
+            <path d="M40 192h12v8H40zM186 192h12v8h-12z" fill="#2a2420"/>
+            <!-- walnut side panel, seen at a slight angle -->
+            <path d="M200 62L214 56V186L200 194Z" fill="url(#e-walnut)"/>
+            <path d="M203 70L211 66M203 96L211 92M203 124L211 120M203 152L211 148" stroke="#6e5240" stroke-width="1" opacity=".6"/>
+            <!-- body -->
+            <rect x="30" y="62" width="170" height="132" rx="5" fill="url(#e-steel)"/>
+            <path d="M30 62H200L214 56H44Z" fill="url(#e-steel-v)"/>
+            <path d="M35 66H195" stroke="#fff" stroke-opacity=".6"/>
+            <!-- cup warmer gallery with two cups resting upside down -->
+            <path d="M44 56V41M200 56V41M92 56V41M146 56V41" stroke="#a9884f" stroke-width="2.2"/>
+            <path d="M44 41H200" stroke="#b8955e" stroke-width="3.2" stroke-linecap="round"/>
+            <path d="M44 39.8H200" stroke="#f0d9a6" stroke-width="1" opacity=".7"/>
+            <path d="M58 56l3-11h16l3 11z" fill="#f2eee5" stroke="#cfc8b9" stroke-width=".8"/>
+            <path d="M84 56l3-11h16l3 11z" fill="#efeae0" stroke="#cfc8b9" stroke-width=".8"/>
+            <!-- pressure gauge -->
+            <circle cx="66" cy="95" r="15" fill="url(#e-brass)"/>
+            <circle cx="66" cy="95" r="11.5" fill="#f8f4ea"/>
+            <path d="M58 101A10 10 0 1 1 74 101" fill="none" stroke="#b9b0a0" stroke-width="1"/>
+            <path d="M71.5 99.5A8 8 0 0 0 73.6 92" fill="none" stroke="#b74a3a" stroke-width="1.6"/>
+            <g class="gauge-needle"><path d="M66 95L59.5 100.5" stroke="#2a2420" stroke-width="1.4" stroke-linecap="round"/></g>
+            <circle cx="66" cy="95" r="1.6" fill="#2a2420"/>
+            <!-- nameplate -->
+            <rect x="48" y="122" width="36" height="16" rx="2.5" fill="url(#e-brass)"/>
+            <text x="66" y="134" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="11" fill="#4a3826" letter-spacing="-1">mt✳</text>
+            <!-- steam wand and knob on the left -->
+            <circle cx="40" cy="80" r="5" fill="url(#e-brass)"/>
+            <path d="M32 92C24 96 22 106 22 120V156" fill="none" stroke="url(#e-chrome)" stroke-width="4.4" stroke-linecap="round"/>
+            <!-- group head with a brass lever -->
+            <g class="lever"><path d="M126 76L156 52" stroke="url(#e-brass)" stroke-width="4" stroke-linecap="round"/><circle cx="157" cy="51" r="4.5" fill="#3b2a1f"/></g>
+            <path d="M110 92h32l4 22h-40z" fill="url(#e-chrome)"/>
+            <ellipse cx="126" cy="92" rx="16" ry="4" fill="#e9e7e1"/>
+            <circle cx="126" cy="80" r="6" fill="url(#e-chrome)"/>
+            <path d="M104 114h44l-3 9h-38z" fill="url(#e-chrome)"/>
+            <!-- portafilter with a wooden handle reaching toward you -->
+            <path d="M108 123h36l-2 10h-32z" fill="#55524d"/>
+            <path d="M142 126L188 138Q193 140 191 145L188 148Q186 150 181 148L140 133Z" fill="url(#e-walnut)"/>
+            <path d="M120 133v5M132 133v5" stroke="#7d7a74" stroke-width="2.4"/>
+            <!-- the shot: two streams, then the cup fills -->
+            <g class="shot-stream" opacity="0"><path d="M120.5 138V172M131.5 138V172" stroke="#5a3218" stroke-width="1.6" stroke-linecap="round"/></g>
+            <rect x="30" y="176" width="170" height="5" fill="url(#e-brass)"/>
+            <!-- drip tray and cup -->
+            <rect x="34" y="184" width="162" height="10" rx="2" fill="#7f7b74"/>
+            <path d="M42 187h146" stroke="#4a4743" stroke-width="2" stroke-dasharray="5 3"/>
+            <ellipse cx="125" cy="186" rx="14" ry="2.6" fill="#ece6d8"/>
+            <path d="M116 168L118.5 186Q125 188.5 131.5 186L134 168Z" fill="#f6f2ea" stroke="#cfc6b4" stroke-width=".8"/>
+            <g clip-path="url(#shot-cup)"><rect class="shot-fill" x="112" y="168" width="26" height="22" fill="#4a2a15" transform="translate(0 22)"/></g>
+            <ellipse class="shot-crema" cx="125" cy="168.5" rx="8.8" ry="1.6" fill="url(#e-crema)" opacity="0"/>
+            <path d="M134 172C139 172 139 180 133.2 180" fill="none" stroke="#efe9dd" stroke-width="2.2"/>
+            <path d="M34 72V180" stroke="#fff" stroke-width="2" opacity=".35"/>
+            <!-- brass trim, hot-water tap, and a small warm indicator lamp -->
+            <path d="M184 100V128Q184 134 178 136" fill="none" stroke="#bdbab3" stroke-width="3.4" stroke-linecap="round"/>
+            <circle cx="184" cy="96" r="4.4" fill="url(#e-brass)"/>
+            <circle class="ready-light" cx="96" cy="88" r="3.2" fill="#ffb24d"/>
+            <circle cx="96" cy="88" r="3.2" fill="none" stroke="#7d6039" stroke-width="1.2"/>
+            <path d="M22 156l-2 4" stroke="#bdbab3" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+          <button type="button" class="pull-shot"><span class="visually-hidden">Pull a shot of espresso</span></button>
+        </div>
+        <div class="counter-drinks">
+          <svg class="drinks" viewBox="0 0 430 210" aria-hidden="true">
+            <!-- Three things from a Vietnamese café, drawn at one eye level with light from the window
+                 on the left: iced matcha latte, egg coffee kept warm in a bowl of hot water, and chè
+                 with pandan jelly, red water-chestnut "rubies" and coconut milk over crushed ice. -->
+            <defs>
+              <linearGradient id="d-milk" x1="0" x2="1"><stop offset="0" stop-color="#ddd4c1"/><stop offset=".35" stop-color="#f5f0e5"/><stop offset=".75" stop-color="#ece5d6"/><stop offset="1" stop-color="#d6ccb8"/></linearGradient>
+              <linearGradient id="d-matcha" x1="0" x2="1"><stop offset="0" stop-color="#6f8d3c"/><stop offset=".38" stop-color="#9ab75c"/><stop offset=".75" stop-color="#8aa64d"/><stop offset="1" stop-color="#668236"/></linearGradient>
+              <linearGradient id="d-foam" x1="0" x2="1"><stop offset="0" stop-color="#e9e3d6"/><stop offset=".35" stop-color="#fdfbf6"/><stop offset="1" stop-color="#e4ddcd"/></linearGradient>
+              <linearGradient id="d-glass" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".12" stop-color="#fff" stop-opacity=".12"/><stop offset=".8" stop-color="#fff" stop-opacity=".04"/><stop offset="1" stop-color="#fff" stop-opacity=".22"/></linearGradient>
+              <linearGradient id="d-straw" x1="0" x2="1"><stop offset="0" stop-color="#a5794a"/><stop offset=".4" stop-color="#d4ad78"/><stop offset="1" stop-color="#9c7144"/></linearGradient>
+              <linearGradient id="d-ceramic" x1="0" x2="1"><stop offset="0" stop-color="#d9d3c6"/><stop offset=".3" stop-color="#faf7f0"/><stop offset=".8" stop-color="#ebe6db"/><stop offset="1" stop-color="#cbc4b5"/></linearGradient>
+              <radialGradient id="d-egg" cx=".42" cy=".4" r=".7"><stop offset="0" stop-color="#f8dc9c"/><stop offset=".7" stop-color="#ecc479"/><stop offset="1" stop-color="#d9a85e"/></radialGradient>
+              <linearGradient id="d-water" x1="0" x2="1"><stop offset="0" stop-color="#9fb9b9"/><stop offset=".4" stop-color="#c7dad6"/><stop offset="1" stop-color="#93adad"/></linearGradient>
+              <linearGradient id="d-coconut" x1="0" x2="1"><stop offset="0" stop-color="#e2ddcf"/><stop offset=".35" stop-color="#faf8f1"/><stop offset="1" stop-color="#e0dacb"/></linearGradient>
+              <linearGradient id="d-wood" x1="0" x2="1"><stop offset="0" stop-color="#3c2c20"/><stop offset=".4" stop-color="#5a4433"/><stop offset="1" stop-color="#33251b"/></linearGradient>
+              <linearGradient id="d-steel" x1="0" x2="1"><stop offset="0" stop-color="#8d8a84"/><stop offset=".45" stop-color="#e9e7e1"/><stop offset="1" stop-color="#9b978f"/></linearGradient>
+              <filter id="d-soft" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="2.4"/></filter>
+              <clipPath id="matcha-inside"><path d="M43.2 60L47.8 183.5A22.2 3.9 0 0 0 92.2 183.5L96.8 60Z"/></clipPath>
+              <clipPath id="matcha-level"><rect class="matcha-level" x="30" y="62" width="80" height="140"/></clipPath>
+              <clipPath id="che-inside"><path d="M300.5 94L305 182A25 4.4 0 0 0 355 182L359.5 94Z"/></clipPath>
+              <clipPath id="che-level"><rect class="che-level" x="290" y="98" width="80" height="100"/></clipPath>
+              <clipPath id="cup-top"><ellipse cx="200" cy="106" rx="24.6" ry="4.4"/></clipPath>
+            </defs>
+
+            <!-- Shadows on the counter, cast away from the window light. -->
+            <g fill="#1a110b" opacity=".38" filter="url(#d-soft)">
+              <ellipse cx="74" cy="200" rx="46" ry="5.5"/><ellipse cx="204" cy="198" rx="58" ry="6"/><ellipse cx="334" cy="200" rx="40" ry="5"/>
+            </g>
+
+            <!-- Iced matcha latte on a dark wooden coaster -->
+            <g class="matcha">
+              <ellipse cx="70" cy="196" rx="40" ry="7" fill="#251a13"/>
+              <ellipse cx="70" cy="193.5" rx="40" ry="7" fill="url(#d-wood)"/>
+              <ellipse cx="70" cy="193.5" rx="30" ry="5" fill="none" stroke="#6a5240" stroke-width=".9" opacity=".7"/>
+              <ellipse cx="70" cy="58" rx="29" ry="5.2" fill="#f3f1ea" fill-opacity=".18" stroke="#fff" stroke-opacity=".35"/>
+              <path class="straw" d="M80 176L106 4" stroke="url(#d-straw)" stroke-width="6.6" stroke-linecap="round"/>
+              <path d="M78.2 170L103.4 6" stroke="#f1d6a6" stroke-width="1" opacity=".55"/>
+              <g clip-path="url(#matcha-level)"><g clip-path="url(#matcha-inside)">
+                <rect x="40" y="148" width="60" height="44" fill="url(#d-milk)"/>
+                <path d="M40 116Q55 110 70 116T100 113V152Q85 157 70 151T40 154Z" fill="url(#d-matcha)"/>
+                <path d="M40 116Q55 110 70 116T100 113V119Q86 123 70 118T40 121Z" fill="#b6c985" opacity=".85"/>
+                <path d="M46 150Q58 145 66 151M76 152Q86 147 94 151" fill="none" stroke="#c4d19a" stroke-width="2.2" opacity=".7"/>
+                <rect x="40" y="90" width="60" height="27" fill="url(#d-milk)"/>
+                <rect x="40" y="62" width="60" height="30" fill="url(#d-foam)"/>
+                <path d="M40 90Q55 87 70 90T100 89V93Q85 95 70 92T40 94Z" fill="#e7e1d2"/>
+                <ellipse class="matcha-top" cx="70" cy="64" rx="26.8" ry="4.7" fill="#fdfcf8"/>
+                <path class="matcha-top" d="M55 64.5q4-3.4 9-.6t9-.4 8 1.4M60 66.4q6 2 13-.3" fill="none" stroke="#6f8f3a" stroke-width="1.3" stroke-linecap="round"/>
+              </g></g>
+              <g class="ice" opacity="0">
+                <path d="M52 168l12-3.5 3.5 11-12 3.5zM68 172l11 .5-.5 11-11-.5zM80 164l10 4.5-4.5 10-10-4.5z" fill="#f4f8f3" fill-opacity=".5" stroke="#ffffff" stroke-opacity=".7"/>
+                <path d="M49 182Q70 186 91 182" stroke="#9fb46a" stroke-width="2.4" opacity=".55" fill="none"/>
+              </g>
+              <path d="M41 58L46 190A24 4.3 0 0 0 94 190L99 58" fill="url(#d-glass)" stroke="#fff" stroke-opacity=".5" stroke-width="1.1"/>
+              <path d="M46.5 186A23.5 4 0 0 0 93.5 186" fill="none" stroke="#fff" stroke-opacity=".45" stroke-width="2.2"/>
+              <path d="M45 68L49 180" stroke="#fff" stroke-width="2.6" stroke-linecap="round" opacity=".5"/>
+              <path d="M41 58A29 5.2 0 0 0 99 58" fill="none" stroke="#fff" stroke-opacity=".85" stroke-width="1.4"/>
+              <g class="condensation" fill="#fff" opacity="0"><circle cx="88" cy="74" r="1.3"/><circle cx="92" cy="101" r="1"/><circle cx="51" cy="126" r="1.2"/><circle cx="90" cy="138" r="1.5"/><circle cx="55" cy="92" r=".9"/><circle cx="86" cy="164" r="1.1"/><path d="M93 112v7" stroke="#fff" stroke-width="1.2" stroke-linecap="round"/></g>
+            </g>
+
+            <!-- Egg coffee: its cup rests in a blue-and-white bowl of hot water to stay warm. -->
+            <g class="coffee">
+              <path d="M144 150C146 179 170 191 200 191C230 191 254 179 256 150Z" fill="url(#d-ceramic)"/>
+              <ellipse cx="200" cy="190.6" rx="20" ry="2.6" fill="#a99f8c"/>
+              <path d="M147.5 160C155 174 175 183 200 183C225 183 245 174 252.5 160" fill="none" stroke="#3f6290" stroke-width="2.2" opacity=".85"/>
+              <path d="M160 168q6-5 11 0t11 0M218 171q6-5 11 0t11 0" fill="none" stroke="#3f6290" stroke-width="1.4" opacity=".7"/>
+              <ellipse cx="200" cy="150" rx="56" ry="10" fill="#f6f2ea" stroke="#3f6290" stroke-width="1.6"/>
+              <ellipse cx="200" cy="151.2" rx="50" ry="8" fill="url(#d-water)"/>
+                            <path d="M178 151.5C179 158 189 160 200 160S221 158 222 151.5" fill="#e9e3d6" opacity=".35"/>
+              <path d="M175 104L179.2 151.5Q200 157 220.8 151.5L225 104Z" fill="url(#d-ceramic)"/>
+              <path d="M175.6 112.5Q200 118 224.4 112.5" fill="none" stroke="#3f6290" stroke-width="1.3" opacity=".8"/>
+              <path d="M224.6 112C240 110.5 240 135 222.8 135" fill="none" stroke="#e7e1d4" stroke-width="5.6" stroke-linecap="round"/>
+              <path d="M224.6 112C240 110.5 240 135 222.8 135" fill="none" stroke="#cfc7b6" stroke-width="1.1" opacity=".7"/>
+              <path d="M163 148Q176 146 186 149" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" opacity=".7"/>
+              <ellipse cx="200" cy="104" rx="25" ry="4.6" fill="#f3efe6" stroke="#cdc5b4" stroke-width=".9"/>
+              <path class="foam-dome" d="M175.6 105.4Q178 98.6 190 97.6Q200 96.4 210 97.6Q222 98.6 224.4 105.4Z" fill="url(#d-egg)"/>
+              <g clip-path="url(#cup-top)">
+                <rect x="172" y="96" width="56" height="16" fill="#5e3a24"/>
+                <ellipse class="foam" cx="200" cy="106" rx="24.6" ry="4.4" fill="url(#d-egg)"/>
+                <g class="foam-top" fill="#8a5a33" opacity=".55"><circle cx="193" cy="105" r=".8"/><circle cx="204" cy="106.5" r=".7"/><circle cx="199" cy="104" r=".6"/><circle cx="209" cy="104.6" r=".7"/><circle cx="188" cy="106.8" r=".6"/></g>
+              </g>
+              <path d="M178 108L181 148" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity=".55"/>
+              <g class="steam" fill="none" stroke="#b9ab92" stroke-width="1.8" stroke-linecap="round"><path d="M193 92C185 81 202 75 196 63"/><path d="M208 94C202 85 215 79 211 70"/></g>
+            </g>
+
+            <!-- Chè: pandan jelly, red "rubies" and coconut milk over crushed ice, with a long spoon -->
+            <g class="che">
+              <ellipse cx="330" cy="196" rx="36" ry="6" fill="#7a5638"/>
+              <ellipse cx="330" cy="194" rx="36" ry="6" fill="#a77b52"/>
+              <ellipse cx="330" cy="194" rx="27" ry="4.2" fill="none" stroke="#8a6342" stroke-width=".9"/>
+              <ellipse cx="330" cy="92" rx="31" ry="5.6" fill="#f3f1ea" fill-opacity=".16" stroke="#fff" stroke-opacity=".35"/>
+              <path d="M346 150L366 20" stroke="url(#d-steel)" stroke-width="3.4" stroke-linecap="round"/>
+              <ellipse cx="366.5" cy="17" rx="2.6" ry="4.2" fill="#d9d6cf" transform="rotate(9 366.5 17)"/>
+              <g clip-path="url(#che-level)"><g clip-path="url(#che-inside)">
+                <rect x="298" y="96" width="64" height="96" fill="url(#d-coconut)"/>
+                <g class="jelly">
+                  <rect x="306" y="156" width="15" height="13" rx="3" fill="#5fae3a" transform="rotate(-12 313 162)"/>
+                  <rect x="322" y="160" width="16" height="13" rx="3" fill="#79c24a" transform="rotate(8 330 166)"/>
+                  <rect x="338" y="154" width="14" height="13" rx="3" fill="#58a536" transform="rotate(-6 345 160)"/>
+                  <rect x="312" y="140" width="15" height="12" rx="3" fill="#82c853" transform="rotate(14 319 146)"/>
+                  <rect x="331" y="138" width="16" height="13" rx="3" fill="#66b23f" transform="rotate(-10 339 144)"/>
+                  <rect x="318" y="122" width="14" height="12" rx="3" fill="#8acd5c" transform="rotate(-4 325 128)"/>
+                  <rect x="336" y="120" width="13" height="12" rx="3" fill="#5fae3a" transform="rotate(12 342 126)"/>
+                </g>
+                <g class="rubies" fill="#c8324a">
+                  <rect x="309" y="173" width="8" height="7" rx="2.5" transform="rotate(10 313 176)"/><rect x="330" y="176" width="8" height="7" rx="2.5"/>
+                  <rect x="342" y="170" width="8" height="7" rx="2.5" transform="rotate(-14 346 173)"/><rect x="327" y="152" width="7" height="6" rx="2.4" transform="rotate(20 330 155)"/>
+                  <rect x="305" y="134" width="7" height="6" rx="2.4"/><rect x="348" y="137" width="7" height="6" rx="2.4" transform="rotate(-8 351 140)"/>
+                </g>
+                <g fill="#fff" opacity=".55"><path d="M309 158h7M324 162h8M313 142h6M333 140h7M320 124h6"/></g>
+                <rect x="298" y="96" width="64" height="96" fill="#f7f4ea" opacity=".14"/>
+                <ellipse cx="330" cy="99" rx="28.6" ry="5" fill="#f8f6ef"/>
+                <g class="crushed-ice" fill="#ffffff" fill-opacity=".9" stroke="#b9cfd0" stroke-width=".8" stroke-linejoin="round">
+                  <path d="M305 101l8-8 8 4-2 7zM319 99l7-9 9 3-1 8zM334 100l6-8 9 4-3 6zM345 101l5-5 6 3-2 4zM313 94l6-6 6 3-3 5z"/>
+                  <path d="M309 97l4-2M323 94l4-1M338 95l4-1" stroke="#fff" stroke-width="1"/>
+                </g>
+              </g></g>
+              <path d="M299 92L304 188A26 4.6 0 0 0 356 188L361 92" fill="url(#d-glass)" stroke="#fff" stroke-opacity=".5" stroke-width="1.1"/>
+              <path d="M304.5 184A25.5 4.3 0 0 0 355.5 184" fill="none" stroke="#fff" stroke-opacity=".45" stroke-width="2.2"/>
+              <path d="M303 102L307 178" stroke="#fff" stroke-width="2.4" stroke-linecap="round" opacity=".5"/>
+              <path d="M299 92A31 5.6 0 0 0 361 92" fill="none" stroke="#fff" stroke-opacity=".85" stroke-width="1.4"/>
+            </g>
+          </svg>
+          <button type="button" class="sip sip-matcha"><span class="visually-hidden">Sip the iced matcha latte</span></button>
+          <button type="button" class="sip sip-coffee"><span class="visually-hidden">Sip the egg coffee</span></button>
+          <button type="button" class="sip sip-che"><span class="visually-hidden">Take a spoonful of chè</span></button>
+        </div>
+        <span class="counter-ledge" aria-hidden="true"></span>
+        <span class="counter-flap" aria-hidden="true"></span>
+      </div>
+      <div class="counter-front">
+        <button type="button" class="counter-door"><span class="door-way" aria-hidden="true"></span><span class="door-panel" aria-hidden="true"><span class="door-rail"></span><span class="door-plate"></span></span><span class="door-post" aria-hidden="true"><span class="door-hinge"></span><span class="door-hinge low"></span></span><span class="visually-hidden">Swing the counter gate</span></button><div><p class="eyebrow">Keep in touch</p><h2 id="contact-title">Say hello.</h2><p>For opportunities, collaborations, or a good conversation.</p></div><div class="contact-links"><a href="mailto:michaelhtran333@gmail.com">michaelhtran333@gmail.com <span aria-hidden="true">↗</span></a><a href="https://www.linkedin.com/in/mhtranse/">LinkedIn <span aria-hidden="true">↗</span></a><a href="https://github.com/mhtran3">GitHub <span aria-hidden="true">↗</span></a></div></div>
+      <p class="visually-hidden" id="cafe-status" aria-live="polite"></p>
+    </section>
     <footer class="site-footer">
       <span>Michael Tran</span><span>Art, education, and technology.</span><a href="colophon.html">How this site is built</a><a href="https://github.com/mhtran3/mhtran3.github.io">Source</a><a href="#">Back to the top ↑</a>
       <details class="design-note">
         <summary>A note on the design</summary>
-        <p>The palette takes a cue from The Leaf Café in Đà Nẵng: dark wood, warm reading surfaces, and greenery beyond a shaded interior. Walnut-brown surroundings hold the paper and muted green cards; the foliage stays quieter in the background. The uneven arrangement gives pieces with different shapes and moods room to sit together. <a href="https://thecupscoffee.vn/the-leaf-cafe/">See the café reference.</a></p>
-        <p>The reading text and most headings use a Helvetica-based system font stack, with Arial as a fallback. Small serif accents add contrast. The exact typeface will vary with the fonts installed on your device; no external fonts are downloaded.</p>
-        <p>The foliage sits beyond an imagined frosted window behind the collection. Sparse jacaranda and bougainvillea branches leave room for pale daylight, with a softer jacaranda shape suggesting distance. These are stylized plant references I connect with Đà Nẵng and my Vietnamese heritage. The light and spacing draw on my café photographs. The background and separate bougainvillea branch at the transition into art are AI-generated decoration, distinct from the artwork in the gallery; the cards and their text stay opaque and crisp.</p>
-        <p>A flat, paper-textured wooden strip suggests a café counter. Matcha and Vietnamese egg coffee sit centered on their saucers, beside a small shaded lamp. During the day, warm openings in the foliage suggest sunlight; as evening arrives, the window dims and the lamp glows.</p>
-        <p>The atmosphere follows your device’s local time. The Café light control lets you linger in daylight, twilight, or lamplight. The branches and reading surfaces stay still, and reduced-motion preferences remove the transitions. Paper grain adds texture while the text stays crisp and the artwork keeps its original colors. <a href="colophon.html">Read the implementation choices and testing notes.</a></p>
+        <p>The page is built like a corner of The Leaf Café in Đà Nẵng, from my own photographs: a dark ceiling with small downlights, an ochre plaster wall, a window full of leaves, and a wooden counter at the bottom. The uneven arrangement gives pieces with different shapes and moods room to sit together. <a href="https://thecupscoffee.vn/the-leaf-cafe/">See the café reference.</a></p>
+        <p>Bricolage Grotesque connects the headings across my work. I chose it partly for its story: designer Mathieu Triay connects its mixed influences to migration and belonging. Inside selected stories, Fraunces introduces a more reflective voice. Paragraphs and navigation keep a quiet Helvetica-based system stack, with Arial as a fallback. Both custom fonts are hosted with this site. <a href="colophon.html#typography">More about the typography.</a></p>
+        <p>The collection sits in front of an imagined frosted window. Jacaranda and bougainvillea branches move slightly in a breeze beyond the glass. Light from a skylight overhead comes down through leaves onto everything in the room: soft shade from the distant canopy, a few leaves close enough to cast sharp shadows, and warm patches of sun. These are stylized plant references I connect with Đà Nẵng and my Vietnamese heritage. The light and spacing draw on my café photographs. The background and separate bougainvillea branch at the transition into art are AI-generated decoration, distinct from the artwork in the gallery; the cards and their text stay opaque and crisp.</p>
+        <p>The lamp on the wall is a trombone slide turned into a light fixture, drawn after one at the café. Its cord runs over a small pulley; pull it to switch the lamp. The counter ends in a lift-up flap and a swinging gate, like a real serving counter. On it are a small espresso machine you can pull a shot from, iced matcha latte drawn from the one I ordered there, Vietnamese egg coffee with its cup resting in a bowl of hot water, and chè with pandan jelly and red water-chestnut “rubies.” The drinks can be sipped, and refilled when they run out.</p>
+        <p>The light follows your device’s clock minute by minute, from dawn through golden hour to night, and the time-of-day slider lets you move through the day yourself. Shadows fall away from the sun, sunlight through branches falls across the cards by day (never across the artwork itself), paper warms under lamplight, and after dark the window reflects whichever lamps are on. The cards catch that light slightly shifted from the glass behind them and cast their shadows onto it, so they seem to stand forward; as you scroll they slide through the light. The Eye candy switch holds every ambient movement still and is remembered in your browser. Reading surfaces never move, and reduced-motion preferences stop the breeze and the transitions. Paper grain adds texture while the text stays crisp and the artwork keeps its original colors. <a href="colophon.html">Read the implementation choices and testing notes.</a></p>
       </details>
       <details class="design-note personal-note">
         <summary>Beyond this collection</summary>
@@ -141,7 +366,7 @@
 
     <section class="story-library" aria-label="More about the work">
       <article id="ai-story" class="story">
-        <p class="eyebrow">Perspective / technology & human judgment</p><h2>Okay, we have AI. Now what?</h2>
+        <p class="eyebrow">Perspective / technology & human judgment</p><h2 class="reflection-title">Okay, we have AI. Now what?</h2>
         <p>As AI lowers some barriers to making things, I think intentionality and authenticity will become more valuable. A polished result matters, but so do the choices behind it: what problem is worth solving, whose needs are being considered, and what gives the work meaning.</p>
         <p>I’m interested in the connections between disciplines. Education makes me think about access and how people learn; engineering gives me ways to test ideas; art asks me to pay attention to composition, expression, and the details that change how something feels.</p>
         <h3>Choosing what to keep doing ourselves</h3>
@@ -154,17 +379,22 @@
       </article>
       <article id="teaching-story" class="story">
         <p class="eyebrow">Education & community access</p><h2>Everyone deserves access to quality education.</h2>
-        <p>Quality education should be accessible to everyone, regardless of income or background. That commitment has guided my work with students, community programs, and learning resources.</p>
+        <p class="reflection-lead">I want to be the helping hand I once didn’t know I needed.</p>
+        <h3>Why access matters to me</h3>
+        <p>I came from a small, underresourced high school in rural Texas. Classes came easily to me, and I assumed that students who struggled simply weren’t working hard enough. At Princeton, I encountered differences in preparation, resources, and guidance that changed how I understood academic success.</p>
+        <p>I was used to memorizing and reproducing the answers I thought were expected. Weekly readings and classroom discussion called for habits my schooling hadn’t developed. Even when free tutoring was available, I didn’t use it: I was accustomed to figuring things out on my own. Those experiences shape my commitment to making support accessible and helping students feel comfortable using it.</p>
+        <h3>A way into unfamiliar problems</h3>
+        <p>I tutor students in mathematics, SAT preparation, and academic writing. A central part of my approach is helping students become comfortable with not knowing how to solve a problem immediately.</p>
+        <p>When a math problem looks unfamiliar, we look together at the information given, what we’re trying to find, the context, and ideas we’ve already learned that might apply. We practice finding a starting point and exploring possible approaches. My aim is to help students develop reasoning habits they can carry into new situations.</p>
         <h3>Arts education in Trenton</h3>
         <p>As a fellow and visual arts co-lead with Trenton Arts at Princeton, I worked with students from Trenton. Arts education is part of my commitment to making learning opportunities more accessible.</p>
         <h3>Connecting families with free tutoring</h3>
         <p>As a site coordinator with the Princeton Online Tutoring Network, I recruited, trained, and matched volunteer tutors with students whose families could not afford tutoring. I also worked with community partners and supervised sessions.</p>
         <h3>Mentoring underclassmen</h3>
         <p>As a fellow and later a head fellow in the Scholars Institute Fellows Program, I mentored underclassmen from first-generation, lower-income backgrounds. We worked through course planning, degree progress, and financial aid, and I connected them with campus offices and support.</p>
+        <p>My priority in mentorship is helping people develop a sense of self and security. I want them to feel able to ask for help and explore what they want to pursue. Speaking openly and from the heart is part of how I try to offer that support.</p>
         <h3>Designing curriculum around students’ needs</h3>
         <p>At Princeton’s Computer Science Department, I worked with faculty to develop a 12-week introductory Java and Python curriculum with first-generation, lower-income students’ learning needs in mind. I facilitated workshops, gathered feedback, and revised materials for remote delivery.</p>
-        <h3>My teaching today</h3>
-        <p>I currently tutor students in mathematics, SAT preparation, and academic writing. I assess where each student is starting, adapt explanations, and plan practice around their needs.</p>
         <a class="story-return" href="#work">Back to the collection ↑</a>
       </article>
       <article id="accessibility-story" class="story">

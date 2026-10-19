@@ -48,7 +48,7 @@ def main():
             if 'autoplay' in video or video.get('preload') != 'none':
                 errors.append(f'{path.name}: video must play on request with preload=none')
         references.extend((path, ref) for ref in page.refs)
-    for path in (ROOT / 'home.css', ROOT / 'gallery.css'):
+    for path in (ROOT / 'home.css', ROOT / 'gallery.css', ROOT / 'cafe.css'):
         references.extend((path, match[1].strip()) for match in re.findall(
             r'url\(\s*([\'"]?)(.*?)\1\s*\)', path.read_text(encoding='utf-8')))
     for origin, ref in references:
@@ -64,10 +64,13 @@ def main():
         elif parsed.fragment and target in pages and unquote(parsed.fragment) not in pages[target].ids:
             errors.append(f'{origin.name}: missing fragment: {ref}')
     budgets = [
-        ('homepage_js', ['home.js', 'lighting.js'], 10 * 1024),
-        ('stylesheets', ['home.css', 'gallery.css'], 40 * 1024),
-        ('foliage_backdrop', ['assets/jacaranda-bougainvillea.webp'], 100 * 1024),
+        ('homepage_js', ['home.js', 'lighting.js', 'cafe.js'], 28 * 1024),
+        ('stylesheets', ['home.css', 'gallery.css', 'cafe.css'], 69 * 1024),
+        ('heading_fonts', ['assets/fonts/bricolage-grotesque-medium-latin.woff2', 'assets/fonts/bricolage-grotesque-medium-latin-ext.woff2', 'assets/fonts/bricolage-grotesque-medium-vietnamese.woff2'], 72 * 1024),
+        ('reflection_fonts', ['assets/fonts/fraunces/fraunces-medium-latin.woff2', 'assets/fonts/fraunces/fraunces-medium-latin-ext.woff2', 'assets/fonts/fraunces/fraunces-medium-vietnamese.woff2'], 80 * 1024),
+        ('cafe_window', ['assets/window-far.webp', 'assets/window-jacaranda.webp', 'assets/window-bougainvillea.webp', 'assets/sky-soft.webp', 'assets/sky-far.webp', 'assets/sky-crisp-a.webp', 'assets/sky-crisp-b.webp', 'assets/sky-crisp-c.webp', 'assets/sky-far-a.webp', 'assets/sky-far-b.webp', 'assets/sky-far-c.webp'], 300 * 1024),
         ('branch_accent', ['assets/bougainvillea-branch-v1.webp'], 100 * 1024),
+        ('cafe_fixtures', ['assets/trombone-lamp.svg', 'assets/plaster.svg', 'assets/cafe-lamp.svg'], 12 * 1024),
         ('featured_illustration', ['assets/hotpot.webp'], 150 * 1024),
         ('selected_videos', [str(p.relative_to(ROOT)).replace('\\', '/') for p in sorted((ROOT / 'assets/media').glob('*.mp4'))], 5 * 1024 * 1024),
     ]
