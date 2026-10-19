@@ -1,31 +1,52 @@
 {
-  "generated_at_utc": "2026-10-17T16:05:13+00:00",
+  "generated_at_utc": "2026-10-18T20:37:09+00:00",
   "scope": "Homepage, colophon, and their stylesheets. Manual source check, not live deployment telemetry.",
   "result": "pass",
-  "local_references_checked": 103,
+  "local_references_checked": 123,
   "file_sizes": {
     "homepage_js": {
       "files": [
         "home.js",
-        "lighting.js"
+        "lighting.js",
+        "cafe.js"
       ],
-      "bytes": 4331,
-      "budget_bytes": 10240
+      "bytes": 24475,
+      "budget_bytes": 28672
     },
     "stylesheets": {
       "files": [
         "home.css",
-        "gallery.css"
+        "gallery.css",
+        "cafe.css"
       ],
-      "bytes": 38558,
-      "budget_bytes": 40960
+      "bytes": 66583,
+      "budget_bytes": 67584
     },
-    "foliage_backdrop": {
+    "heading_fonts": {
       "files": [
-        "assets/jacaranda-bougainvillea.webp"
+        "assets/fonts/bricolage-grotesque-medium-latin.woff2",
+        "assets/fonts/bricolage-grotesque-medium-latin-ext.woff2",
+        "assets/fonts/bricolage-grotesque-medium-vietnamese.woff2"
       ],
-      "bytes": 48420,
-      "budget_bytes": 102400
+      "bytes": 66368,
+      "budget_bytes": 73728
+    },
+    "cafe_window": {
+      "files": [
+        "assets/window-far.webp",
+        "assets/window-jacaranda.webp",
+        "assets/window-bougainvillea.webp",
+        "assets/sky-soft.webp",
+        "assets/sky-far.webp",
+        "assets/sky-crisp-a.webp",
+        "assets/sky-crisp-b.webp",
+        "assets/sky-crisp-c.webp",
+        "assets/sky-far-a.webp",
+        "assets/sky-far-b.webp",
+        "assets/sky-far-c.webp"
+      ],
+      "bytes": 303634,
+      "budget_bytes": 307200
     },
     "branch_accent": {
       "files": [
@@ -33,6 +54,15 @@
       ],
       "bytes": 80544,
       "budget_bytes": 102400
+    },
+    "cafe_fixtures": {
+      "files": [
+        "assets/trombone-lamp.svg",
+        "assets/plaster.svg",
+        "assets/cafe-lamp.svg"
+      ],
+      "bytes": 4302,
+      "budget_bytes": 12288
     },
     "featured_illustration": {
       "files": [
