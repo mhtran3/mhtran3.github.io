@@ -1,23 +1,24 @@
-/* The café: a dark ceiling with small downlights, a plaster wall with a trombone lamp,
-   a frosted window behind the collection, and a counter at the bottom.
+/* The café: a dark ceiling with small downlights, a plaster wall with a trombone lamp, a table
+   under the trees where the work lies open like a zine, and a serving counter at the bottom.
    lighting.js sets the light (colours, sun position, lamps) minute by minute; this file
    decides what each value touches. Decoration only ever animates transform and opacity. */
 
 /* Registered so the room eases between values instead of snapping. */
-@property --glass-1 { syntax: '<color>'; inherits: true; initial-value: #ebe6d0; }
-@property --glass-2 { syntax: '<color>'; inherits: true; initial-value: #dbc9a2; }
-@property --glass-3 { syntax: '<color>'; inherits: true; initial-value: #c8b089; }
 @property --sun { syntax: '<color>'; inherits: true; initial-value: #fffbea; }
 @property --plaster { syntax: '<color>'; inherits: true; initial-value: #cdb081; }
-@property --frame { syntax: '<color>'; inherits: true; initial-value: #4d3a2a; }
+@property --table-shade { syntax: '<color>'; inherits: true; initial-value: #3a3022; }
+@property --table-lit { syntax: '<color>'; inherits: true; initial-value: #caa063; }
+@property --paper-shade { syntax: '<color>'; inherits: true; initial-value: #cdbf9f; }
+@property --paper-lit { syntax: '<color>'; inherits: true; initial-value: #fff5dc; }
 @property --pull { syntax: '<length>'; inherits: true; initial-value: 0px; }
 
 .cafe-interior {
   /* Midday values, used as they are when JavaScript is off. */
-  --glass-1: #e8eedb; --glass-2: #d8d4a8; --glass-3: #c6b38b; --frame: #4d3a2a;
-  --sun: #fffbea; --sun-at: 60% 10%; --sun-strength: .95; --dapple-at: 60% 25%; --dapple: .85;
-  --far: .62; --near: .86; --leaf-light: 1; --reflect: 0; --dark: 0; --daylit: 1;
-  --wall-lamp: 0; --table-lamp: 0; --downlight: .25;
+  --sun: #fffbea; --sun-at: 60% 10%; --sun-strength: .95; --dapple: .85;
+  --leaf-light: 1; --dark: 0; --daylit: 1;
+  --wall-lamp: 0; --table-lamp: 0; --downlight: .25; --pool: 0;
+  --table-shade: #3a3022; --table-lit: #caa063; --paper-shade: #cdbf9f; --paper-lit: #fff5dc;
+  --pool-wood: #8a5a32; --pool-paper: #f3d7a6;
   --plaster: #cdb081; --wall-ink: #2b2219; --wall-muted: #3f3226; --wall-line: #5b473466; --wall-halo: #cdb081cc;
   --shadow-x: -3px; --shadow-y: 9px; --shadow-alpha: .38;
   --surface-tint: #fff3d6; --tint-amt: 4%;
@@ -26,96 +27,135 @@
   background-color: #2a211a;
 }
 /* Fade only once the page has settled: on first load the room should simply be at the right
-   time of day, not fade there from midday (which briefly left light text on a light wall). */
-.cafe-interior.light-ready { transition: --glass-1 .9s ease, --glass-2 .9s ease, --glass-3 .9s ease, --sun .9s ease, --plaster .9s ease, --frame .9s ease; }
+   time of day, not fade there from midday. */
+.cafe-interior.light-ready { transition: --sun .9s ease, --plaster .9s ease, --table-shade .9s ease, --table-lit .9s ease, --paper-shade .9s ease, --paper-lit .9s ease; }
 .visually-hidden { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+/* Measure the usable page width (without a scrollbar), for full-bleed walls and counters. */
+.portfolio-canvas { container-type: inline-size; overflow-x: clip; }
 
-/* ——— The window ——— */
-.cafe-window {
-  position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden;
-  background: linear-gradient(to bottom, var(--glass-1), var(--glass-2) 55%, var(--glass-3));
-}
-.cafe-window > * { position: absolute; }
-.cw-sun { inset: 0; background: radial-gradient(ellipse 55% 45% at var(--sun-at), var(--sun), transparent 72%); opacity: var(--sun-strength); }
-/* Daylight through a canopy is green: a soft wash of leaf-light where the trees are densest. */
-.cw-leaflight {
-  inset: 0; opacity: calc(var(--daylit) * .9);
-  background: radial-gradient(ellipse 50% 42% at 14% 4%, #b9d27a66, transparent 70%), radial-gradient(ellipse 34% 40% at 96% 46%, #a9c86a4d, transparent 70%), radial-gradient(ellipse 60% 30% at 40% 100%, #8fae5a33, transparent 70%);
-}
-/* Distant canopy: the most diffused layer, drifting so slowly it reads as air. */
-.cw-far {
-  inset: -5%; background: url('assets/window-far.webp') center / cover no-repeat;
-  opacity: var(--far); animation: cw-drift 64s ease-in-out infinite alternate;
-}
-/* Branches close to the glass, each hanging from its own point beyond the window. */
-.cw-branch { opacity: var(--near); }
-.cw-branch img { width: 100%; height: auto; filter: brightness(var(--leaf-light)); }
-/* Hung from the top right, where the collection leaves the most glass open. The painting's
-   stem enters at its top-left, so it is mirrored to enter from the right edge instead. */
-.cw-jacaranda { top: -4vh; right: -1.5vw; width: clamp(300px, 44vw, 700px); transform-origin: 100% 0; animation: cw-sway-a 16.3s ease-in-out infinite; }
-.cw-jacaranda img { scale: -1 1; }
-.cw-bougainvillea { top: 44vh; right: -1.5vw; width: clamp(190px, 25vw, 400px); transform-origin: 100% 22%; animation: cw-sway-b 19.7s ease-in-out infinite; }
-/* Light from a skylight through leaves, landing on the frosted glass: the same pattern that
-   falls on the cards, blurrier and calmer because the glass is farther back. */
-.cw-skylight { inset: 0; opacity: calc(var(--dapple) * .8); }
-/* Every light layer sits in one shared "room" box with the proportions of the light pattern,
-   scaled to cover the screen. Branch layers are cropped to their own leaves and placed in it by
-   percentage, so they line up exactly on the glass and on every card while the browser only
-   composites the pixels that actually hold a shadow. */
+/* ——— The table ———
+   Fixed to the screen: you sit at the table and slide the paper along it as you scroll.
+   Light works the way it does under trees. The wood is in shade; the sun comes through gaps in
+   the canopy as patches of warm light. The grain lies on top of everything, so it shows through
+   sun and shade alike. */
+.cafe-table { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; background: var(--table-shade); }
+.cafe-table > * { position: absolute; inset: 0; }
+/* A broad, faint brightening on the side the sun is on. */
+.ct-sun { background: radial-gradient(ellipse 80% 75% at var(--sun-at), color-mix(in oklab, var(--table-lit) 24%, transparent), transparent 75%); opacity: var(--daylit); }
+.ct-light { opacity: min(1, var(--dapple) * 1.18); }
+.ct-light .fleck { background-color: var(--table-lit); }
+/* After dark, lamplight pools in the middle of the table. */
+.ct-pool { background: radial-gradient(ellipse 60% 66% at 50% 44%, var(--pool-wood), transparent 74%); opacity: var(--pool); transition: opacity .6s ease; }
+.ct-grain { background: url('assets/table-grain.webp') center / cover; }
+
+/* The sun's light: one "room" box with the proportions of the light pattern, scaled to cover the
+   screen. Each patch of sun is an alpha mask filled with the colour of the light at this hour, so
+   the same images serve the table and the paper, pale at noon and orange at golden hour.
+   The soft flecks come from gaps high in the canopy; each of the three patches comes through a
+   gap near one branch, carries that branch's leaves as crisp silhouettes, and moves with it. */
 .sky-room { position: absolute; left: 50%; top: 50%; width: max(108%, 108vh * 14 / 9); aspect-ratio: 14 / 9; translate: calc(-50% + var(--sky-shift, 0px)) -50%; }
-.sky { position: absolute; background: center / 100% 100% no-repeat; }
-.sky-fill { inset: 0; }
-.sky-far { background-image: url('assets/sky-far.webp'); }
-.sky-soft { background-image: url('assets/sky-soft.webp'); }
-/* The distant canopy drifts slowly, and brightens and settles on a rhythm of its own. */
-.sky-far, .sky-soft { animation: sky-drift 29s ease-in-out infinite, sky-breathe 9.7s ease-in-out infinite; }
+.fleck { position: absolute; -webkit-mask-position: center; mask-position: center; -webkit-mask-size: 100% 100%; mask-size: 100% 100%; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; }
+.fleck-soft { inset: 0; -webkit-mask-image: url('assets/fleck-soft.webp'); mask-image: url('assets/fleck-soft.webp'); animation: sky-drift 29s ease-in-out infinite, sky-breathe 9.7s ease-in-out infinite; }
+.fleck-a { left: 50.286%; top: 0.0%; width: 49.714%; height: 57.667%; transform-origin: 68.4% 0.0%; -webkit-mask-image: url('assets/fleck-a.webp'); mask-image: url('assets/fleck-a.webp'); animation: sky-sway-a 16.3s ease-in-out infinite; }
+.fleck-b { left: 1.286%; top: 42.778%; width: 38.5%; height: 55.111%; transform-origin: -3.3% 19.2%; -webkit-mask-image: url('assets/fleck-b.webp'); mask-image: url('assets/fleck-b.webp'); animation: sky-sway-b 19.7s ease-in-out infinite; }
+.fleck-c { left: 36.357%; top: 75.0%; width: 32.214%; height: 25.0%; transform-origin: 55.7% 100.0%; -webkit-mask-image: url('assets/fleck-c.webp'); mask-image: url('assets/fleck-c.webp'); animation: sky-sway-c 23.9s ease-in-out infinite; }
 @keyframes sky-drift { 0%, 100% { transform: translate(0, 0); } 22% { transform: translate(-9px, 3px); } 40% { transform: translate(-2px, 1px); } 58% { transform: translate(-12px, 5px); } 79% { transform: translate(4px, -2px); } }
-@keyframes sky-breathe { 0%, 100% { opacity: 1; } 45% { opacity: .78; } 70% { opacity: .92; } }
-/* Three near branches, each its own layer, each swinging from its own stem on its own slow,
-   uneven rhythm, so the page never shifts as one sheet. Branch a keeps time with the jacaranda
-   in the window and b with the bougainvillea; c answers to nothing but itself. The same three
-   rhythms run on the glass (blurred, farther away) and on the cards (sharp, nearer). */
-.sky-crisp.sky-a { left: 0.0%; top: 0.0%; width: 46.143%; height: 47.333%; transform-origin: 8.7% 4.2%; background-image: url('assets/sky-crisp-a.webp'); }
-.sky-blur.sky-a { left: 0.0%; top: 0.0%; width: 46.143%; height: 47.778%; transform-origin: 8.7% 4.2%; background-image: url('assets/sky-far-a.webp'); }
-.sky-crisp.sky-b { left: 76.143%; top: 41.556%; width: 23.857%; height: 45.333%; transform-origin: 100.0% 7.6%; background-image: url('assets/sky-crisp-b.webp'); }
-.sky-blur.sky-b { left: 76.143%; top: 40.889%; width: 23.857%; height: 44.889%; transform-origin: 100.0% 9.2%; background-image: url('assets/sky-far-b.webp'); }
-.sky-crisp.sky-c { left: 29.714%; top: 64.222%; width: 36.429%; height: 35.778%; transform-origin: 28.2% 100.0%; background-image: url('assets/sky-crisp-c.webp'); }
-.sky-blur.sky-c { left: 29.429%; top: 64.0%; width: 37.0%; height: 36.0%; transform-origin: 28.6% 100.0%; background-image: url('assets/sky-far-c.webp'); }
-.sky-a { animation: sky-sway-a 16.3s ease-in-out infinite; }
-.sky-b { animation: sky-sway-b 19.7s ease-in-out infinite; }
-.sky-c { animation: sky-sway-c 23.9s ease-in-out infinite; }
+@keyframes sky-breathe { 0%, 100% { opacity: 1; } 45% { opacity: .8; } 70% { opacity: .93; } }
 @keyframes sky-sway-a { 0%, 100% { transform: rotate(0) translate(0, 0); } 22% { transform: rotate(-1.2deg) translate(-8px, 2px); } 40% { transform: rotate(-.3deg) translate(-2px, 1px); } 58% { transform: rotate(-1.6deg) translate(-11px, 4px); } 79% { transform: rotate(.5deg) translate(4px, -1px); } }
 @keyframes sky-sway-b { 0%, 100% { transform: rotate(0); } 30% { transform: rotate(1.9deg); } 52% { transform: rotate(.6deg); } 71% { transform: rotate(1.5deg); } 88% { transform: rotate(-.4deg); } }
 @keyframes sky-sway-c { 0%, 100% { transform: rotate(0) translate(0, 0); } 18% { transform: rotate(.9deg) translate(5px, 0); } 47% { transform: rotate(-.7deg) translate(-4px, 1px); } 63% { transform: rotate(.3deg) translate(2px, 0); } 84% { transform: rotate(-1.1deg) translate(-6px, 1px); } }
-/* After dark the glass mirrors the room: whichever lamps are on show as warm reflections. */
-.cw-reflections {
-  inset: 0; opacity: var(--reflect); transition: opacity .6s ease;
-  background:
-    radial-gradient(circle at 86% 14%, #ffc27a48, #ffb36a14 9%, transparent 22%),
-    radial-gradient(circle at 18% 76%, #ffc27a2a, #ffb36a0c 8%, transparent 20%),
-    radial-gradient(ellipse 120% 60% at 50% 105%, #8a5a3340, transparent 60%);
-}
-.cw-frost { inset: 0; background: url('assets/paper.svg') 0 0 / 180px 180px, linear-gradient(#ffffff0d, #ffffff05); }
-/* Dark frame at the sides and eaves overhead, so the glass reads as an opening. */
-.cw-frame {
-  inset: 0; --fw: clamp(8px, 2.1vw, 32px);
-  background:
-    linear-gradient(to right, var(--frame) var(--fw), #0000 calc(var(--fw) + 1px)),
-    linear-gradient(to left, var(--frame) var(--fw), #0000 calc(var(--fw) + 1px)),
-    linear-gradient(to bottom, #15100bcc, #15100b00 12%),
-    linear-gradient(to right, #1d140d38 var(--fw), transparent calc(var(--fw) + 7vw)),
-    linear-gradient(to left, #1d140d38 var(--fw), transparent calc(var(--fw) + 7vw));
-}
-.cw-frame::before, .cw-frame::after { content: ''; position: absolute; top: 0; bottom: 0; width: 1px; background: #ffffff1f; left: var(--fw); }
-.cw-frame::after { left: auto; right: var(--fw); }
 
-@keyframes cw-sway-a { 0%, 100% { transform: rotate(0); } 22% { transform: rotate(-2deg); } 40% { transform: rotate(-.5deg); } 58% { transform: rotate(-2.6deg); } 79% { transform: rotate(.8deg); } }
-@keyframes cw-sway-b { 0%, 100% { transform: rotate(0); } 30% { transform: rotate(-3deg); } 52% { transform: rotate(-.9deg); } 71% { transform: rotate(-2.4deg); } 88% { transform: rotate(.6deg); } }
-@keyframes cw-drift { from { transform: translate(-.6%, .3%) scale(1.01); } to { transform: translate(.6%, -.4%) scale(1.03); } }
+/* ——— Branches over the table ———
+   Close to the eye, at the edges of the view. They pass behind the wall and the counter, so they
+   only ever hang over the table, and each sways in time with the patch of sun its leaves shape. */
+.canopy { position: fixed; inset: 0; z-index: 2; pointer-events: none; overflow: hidden; }
+.bough { position: absolute; --margin: max(0px, (100vw - 980px) / 2); }
+.bough img { width: 100%; height: auto; filter: brightness(var(--leaf-light)) drop-shadow(18px 26px 14px rgb(10 8 4 / .45)); }
+/* The jacaranda reaches in from the top left; its stem is the top-left corner of the picture. */
+.bough-jacaranda { left: calc(var(--margin) * -.2 - 30px); top: -3vh; width: calc(var(--margin) * .9 + 90px); transform-origin: 0 0; animation: sky-sway-a 16.3s ease-in-out infinite; }
+/* The bougainvillea comes in from the right; its stem leaves the picture at the right edge. */
+.bough-bougainvillea { right: calc(var(--margin) * -.35 - 40px); top: 54vh; width: calc(var(--margin) * 1.2 + 120px); transform-origin: 100% 74%; animation: sky-sway-b 19.7s ease-in-out infinite; }
+/* Ceiling, wall and counter stand between the eye and the branches. */
+.cafe-interior .welcome, .cafe-interior .contact.counter, .cafe-interior .site-footer { z-index: 3; }
+
+/* ——— The paper ———
+   One long sheet, folded like a zine, lying on the table. The sun lands on it in the same places
+   as on the wood, nudged a little toward the light because the paper is nearer to it. */
+.reading { position: relative; z-index: 1; padding-block: clamp(44px, 7vw, 88px) clamp(56px, 8vw, 104px); }
+.zine {
+  --ink: #261d14; --muted: #3d3124; --accent: #1f3b25; --red: #261d14;
+  position: relative; isolation: isolate; width: min(980px, 100%); margin-inline: auto;
+  color: var(--ink); background: var(--paper-shade); border-radius: 2px;
+  box-shadow: 0 0 0 1px rgb(40 28 16 / .28), 0 1px 2px rgb(20 12 6 / .55),
+    calc(var(--shadow-x) * 1.3) calc(var(--shadow-y) * 1.3) calc(8px + var(--shadow-y)) rgb(12 8 4 / calc(var(--shadow-alpha) * 1.5));
+}
+/* How the light stays still while the paper slides: the pane inside is position: fixed, so the
+   browser pins it to the screen on the same fast path it uses for scrolling, and clip-path
+   trims it to the paper. No script runs during scroll. */
+.zine-light { position: absolute; z-index: -1; inset: 0; clip-path: inset(0 round 2px); pointer-events: none; }
+.sky-pane { position: fixed; inset: 0; transform: translate3d(calc(var(--shadow-x) * -.7), calc(var(--shadow-y) * -.7), 0); transition: transform 1.2s ease; }
+.zine-light .sky-room { opacity: min(1, var(--dapple) * 1.18); }
+.zine-light .fleck { background-color: var(--paper-lit); }
+.zine-light .pool { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 66% at 50% 44%, var(--pool-paper), transparent 74%); opacity: var(--pool); transition: opacity .6s ease; }
+/* Paper fibre, over the light so sun and shade both look like paper. */
+.zine::after { content: ''; position: absolute; z-index: -1; inset: 0; pointer-events: none; background: url('assets/paper.svg') 0 0 / 180px 180px; opacity: .7; }
+.zine a:focus-visible { outline: 3px solid var(--ink); outline-offset: 4px; }
+.zine figure { margin: 0; }
+
+/* Each part is one panel of the fold-out. Panels catch the light at slightly different angles,
+   and a crease runs between them. */
+.part { position: relative; z-index: 0; padding: clamp(36px, 6vw, 68px) clamp(22px, 6vw, 72px) clamp(44px, 7vw, 80px); }
+.part:nth-of-type(odd):not(.part--open) { background: rgb(60 44 24 / .045); }
+.part + .part::before { content: ''; position: absolute; z-index: -1; left: 0; right: 0; top: 0; height: 64px; pointer-events: none; background: linear-gradient(to bottom, rgb(60 44 24 / .16), rgb(60 44 24 / .05) 30%, transparent); }
+.part + .part::after { content: ''; position: absolute; left: 0; right: 0; top: -1px; height: 1px; pointer-events: none; background: rgb(60 44 24 / .26); box-shadow: 0 -1px 0 rgb(255 250 236 / .4); }
+
+.entry { display: grid; grid-template-columns: minmax(0, 10.5rem) minmax(0, 1fr); column-gap: clamp(24px, 4vw, 52px); align-items: start; }
+.entry + .entry { margin-top: clamp(56px, 8vw, 96px); }
+.entry .wide { grid-column: 1 / -1; margin-bottom: clamp(20px, 3vw, 30px); }
+.note { grid-column: 1; padding-top: 6px; }
+.body { grid-column: 2; max-width: 37rem; }
+.kicker { margin: 0; font: 600 14.5px/1.4 var(--sans); letter-spacing: -.003em; color: var(--ink); text-wrap: balance; }
+.meta { margin: 8px 0 0; padding: 0; font-size: 13.5px; line-height: 1.5; color: var(--muted); }
+.roles { list-style: none; }
+.roles li + li { margin-top: 9px; }
+.part-title { margin: 0 0 clamp(30px, 4.5vw, 48px); font: 500 clamp(30px, 4.2vw, 46px)/1.06 var(--display); letter-spacing: -.028em; text-wrap: balance; }
+.open-title { margin: 0 0 18px; font: 500 clamp(38px, 5.4vw, 60px)/1.02 var(--display); letter-spacing: -.034em; text-wrap: balance; }
+.entry h3 { margin: 0 0 14px; font: 500 clamp(24px, 2.5vw, 30px)/1.15 var(--display); letter-spacing: -.022em; text-wrap: balance; }
+:is(.entry h3, .open-title) a { text-decoration: none; }
+:is(.entry h3, .open-title) a:hover { text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: .16em; }
+.body p { margin: 0 0 14px; font-size: 17px; line-height: 1.68; text-wrap: pretty; }
+.body .dek { margin-bottom: 20px; font: 500 clamp(21px, 2.3vw, 26px)/1.36 var(--reflection); font-optical-sizing: auto; }
+.pull { margin: 4px 0 20px; }
+.pull p { margin: 0; font: 500 clamp(21px, 2.2vw, 25px)/1.36 var(--reflection); font-optical-sizing: auto; text-indent: -.45em; }
+.pull p::before { content: '“'; }
+.pull p::after { content: '”'; }
+.more { display: inline-block; margin-top: 2px; font-size: 15px; color: var(--accent); text-decoration: none; }
+.more span { margin-right: 3px; }
+.more:hover { text-decoration: underline; text-underline-offset: 4px; }
+.body .aside, .aside--end { margin: 18px 0 0; font-size: 14.5px; line-height: 1.6; color: var(--muted); }
+.aside a { color: var(--accent); text-underline-offset: 3px; }
+.aside--end { margin-top: clamp(48px, 7vw, 80px); padding-left: calc(min(10.5rem, 100%) + clamp(24px, 4vw, 52px)); }
+
+/* Pictures are printed on the page: a hairline edge for photographs, nothing for engravings. */
+.print img, .print-pair img { width: 100%; height: auto; border-radius: 1px; box-shadow: 0 0 0 1px rgb(40 28 16 / .16); }
+:is(.print, .before) figcaption { margin-top: 10px; font-size: 13px; line-height: 1.5; color: var(--muted); }
+.print-pair { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(16px, 3vw, 36px); align-items: center; }
+.print-pair--seals { padding-inline: clamp(0px, 5vw, 64px); gap: clamp(20px, 5vw, 64px); }
+.print-pair--seals img, .before img { box-shadow: none; }
+.before { margin-top: 20px; width: min(128px, 100%); }
+.entry--side { grid-template-areas: 'note figure' '. body'; }
+.entry--side > .note { grid-area: note; }
+.entry--side > .print { grid-area: figure; margin-bottom: 26px; }
+.entry--side > .body { grid-area: body; }
+.print--film a { position: relative; display: block; }
+.play { position: absolute; left: 50%; top: 50%; width: 58px; height: 58px; translate: -50% -50%; border-radius: 50%; background: rgb(18 12 6 / .5); box-shadow: 0 0 0 1.5px rgb(255 248 234 / .85); }
+.play::after { content: ''; position: absolute; left: 23px; top: 18px; width: 18px; height: 22px; background: #fff8ea; clip-path: polygon(0 0, 100% 50%, 0 100%); }
+.print a:hover img, .print-pair a:hover img { filter: brightness(1.04); }
+.end-mark { margin: 0; padding: 0 0 44px; text-align: center; font-size: 22px; color: var(--muted); }
 
 /* ——— Ceiling: dark boards and small warm downlights, as in the café's covered walkway ——— */
 .cafe-ceiling {
-  position: relative; z-index: 1;
+  position: relative; z-index: 4;
   background: #1d1813 repeating-linear-gradient(90deg, #ffffff05 0 1px, transparent 1px 120px);
   box-shadow: 0 1px 0 #00000066;
 }
@@ -203,71 +243,6 @@
 @keyframes cord-nudge { 30% { transform: rotate(.7deg); } 65% { transform: rotate(-.35deg); } }
 .cafe-interior:not(.cafe-ready) .lamp-cord { display: none; }
 
-/* ——— Reading surfaces stand in the room's light ——— */
-.cafe-interior :is(.perspective-note, .worktable > .piece, .design-grid > .piece, .art-grid > .piece) {
-  box-shadow: 0 1px 0 #ffffff26 inset, calc(var(--shadow-x) * 1.7) calc(var(--shadow-y) * 1.7) calc(18px + var(--shadow-y) * 1.7) -8px rgb(30 20 12 / calc(var(--shadow-alpha) * 1.25)), 0 3px 8px -4px rgb(30 20 12 / .3);
-}
-.cafe-interior .perspective-note { background: color-mix(in oklab, #bac3a9, var(--surface-tint) var(--tint-amt)); }
-.cafe-interior .perspective-link:hover { background: color-mix(in oklab, #c6ceb7, var(--surface-tint) var(--tint-amt)); }
-.cafe-interior .accessibility-feature { background: color-mix(in oklab, #d0d5c3, var(--surface-tint) var(--tint-amt)); }
-.cafe-interior .teaching { background-color: color-mix(in oklab, #c7cdb2, var(--surface-tint) var(--tint-amt)); }
-/* The skylight's light on the cards, drawn as plain transparent images (no blend modes, which
-   would make the browser render each card offscreen on every frame). The pattern is fixed to the room (the viewport), so cards
-   slide through it as the page scrolls; on each card it is shifted toward the light, because the
-   card is nearer the skylight than the glass behind it. With the card's shadow falling the other
-   way, that offset is what makes the cards read as standing forward. The layer sits beneath the
-   card's text and images inside the card's own isolated group: it lights paper and wood only. */
-.cafe-interior .lit { position: relative; isolation: isolate; }
-/* How the light stays still while cards scroll: the pane inside each card is position: fixed,
-   so the browser pins it to the screen itself, on the same fast path it uses for scrolling;
-   clip-path on the wrapper trims it to the card's shape. No script runs during scroll, so the
-   light cannot lag behind the card and jitter. (A transformed or contained ancestor would turn
-   'fixed' back into 'scrolls with the card', so lit cards are never rotated.) */
-.card-light {
-  position: absolute; z-index: -1; inset: 0; clip-path: inset(0 round 4px); pointer-events: none;
-  opacity: var(--dapple);
-}
-.sky-pane { position: fixed; inset: 0; transform: translate3d(var(--depth-x, 0px), var(--depth-y, 0px), 0); transition: transform 1.2s ease; }
-.cafe-interior .professional-work .teaching { transform: none; }
-/* On dark wood, sun would brighten the ground under cream text, so the light stays gentle here. */
-.cafe-interior .combat-feature .card-light { opacity: calc(var(--dapple) * .4); }
-/* Paper behind captions shows the card beneath it, so the light can reach it; image mats stay. */
-.cafe-interior :is(.design-grid, .art-grid) .piece-caption, .cafe-interior .design-stage { background: transparent; }
-.cafe-interior .art-grid > .piece { background: var(--paper); }
-/* This label sat just under 4.5:1 even on plain paper; darker green keeps it readable in leaf shade. */
-.cafe-interior .teaching .piece-number { color: #34422b; }
-/* Behind every line on a lit card, a soft halo of the card's own colour, the way maps keep labels
-   readable over terrain: moving leaf edges soften and clear right behind the words, and the
-   text gains contrast rather than losing it. It is drawn with the text itself, so it costs
-   nothing while the light moves. */
-.cafe-interior .perspective-note { --halo: color-mix(in oklab, #bac3a9, var(--surface-tint) var(--tint-amt)); }
-.cafe-interior .teaching { --halo: color-mix(in oklab, #c7cdb2, var(--surface-tint) var(--tint-amt)); }
-.cafe-interior .accessibility-feature { --halo: color-mix(in oklab, #d0d5c3, var(--surface-tint) var(--tint-amt)); }
-.cafe-interior :is(.design-grid, .art-grid) > .piece { --halo: var(--cream); }
-.cafe-interior .art-grid > .piece { --halo: var(--paper); }
-.cafe-interior .combat-feature { --halo: #2f251c; }
-.cafe-interior .lit :is(h2, h3, p, .card-action, .piece-number, .eyebrow, .related-study, .seal-comparison span) {
-  text-shadow: 0 0 .22em var(--halo), 0 0 .6em var(--halo), 0 0 1.1em color-mix(in srgb, var(--halo) 55%, transparent);
-}
-/* The swaying leaf shadows on the cards go soft just behind each line of words: a slight blur of
-   whatever is beneath, feathered at its edges so it never reads as a box. Away from the text the
-   shadows stay sharp. */
-.cafe-interior .lit :is(h2, h3, p, .card-action) { position: relative; isolation: isolate; }
-.cafe-interior .lit :is(h2, h3, p, .card-action)::before {
-  content: ''; position: absolute; z-index: -1; inset: -6px -10px; pointer-events: none;
-  -webkit-backdrop-filter: blur(2.5px); backdrop-filter: blur(2.5px);
-  -webkit-mask-image: linear-gradient(to right, transparent, #000 10px, #000 calc(100% - 10px), transparent), linear-gradient(to bottom, transparent, #000 6px, #000 calc(100% - 6px), transparent);
-  -webkit-mask-composite: source-in; mask-composite: intersect;
-}
-/* Small labels on lit cards: a shade darker, so they keep their margin in leaf shade. */
-.cafe-interior :is(.perspective-note, .accessibility-feature, .design-grid, .art-grid) .eyebrow { color: #3f3226; }
-/* Wood catches light along its upper edge, brighter when the sun is high. */
-.cafe-interior :is(.section-line h2, .collection-index, .collection-more summary, .experiment) {
-  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--sun) calc(var(--sun-strength) * 45%), transparent), var(--shadow-x) var(--shadow-y) 14px -8px rgb(30 20 12 / var(--shadow-alpha));
-}
-.cafe-interior :is(.collection-index, .section-line, .collection-more) {
-  --ink: #fff8eb; --muted: #fff1dc; --line: #826a53; --red: #fff1dc; color: var(--ink);
-}
 
 /* ——— The counter: a serving counter seen from the customer's side ———
    From left: a table lamp, the espresso machine, room for the dog behind the counter, the
@@ -403,6 +378,7 @@
   background: radial-gradient(ellipse 60% 120% at 50% 0, #ffffff0a, transparent), #221d19;
 }
 
+
 /* ——— Controls in the ceiling ——— */
 .lighting-control { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 10px; font-size: 12px; }
 .lighting-control[hidden] { display: none; }
@@ -418,17 +394,27 @@
 .eye-candy::after { content: ''; width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid #7d6039; background: #7d6039; }
 .eye-candy[aria-pressed="false"]::after { background: transparent; }
 /* Eye candy off: every ambient movement holds where it is. Things you click still respond. */
-.still :is(.cafe-window *, .sky, .artwork-branch img, .drinks .steam path, .lamp-cord.nudge) { animation-play-state: paused !important; }
+.still :is(.fleck, .bough, .drinks .steam path, .lamp-cord.nudge) { animation-play-state: paused !important; }
 
-/* The separate bougainvillea at the transition into art moves with the same breeze. */
-.artwork-branch img { animation: cw-sway-b 17.9s ease-in-out -2s infinite; }
-
+/* Below this width the paper fills the view, and branches would hang over the words. */
+@media (max-width: 1199px) {
+  .canopy { display: none; }
+}
 @media (max-width: 900px) {
   .lighting-control input[type="range"] { width: 120px; }
 }
+@media (max-width: 720px) {
+  .reading { padding-block: 28px 44px; }
+  .entry, .entry--side { display: block; }
+  .entry .wide, .entry--side > .print { margin-bottom: 20px; }
+  .note { padding-top: 0; margin-bottom: 12px; }
+  .note .meta { margin-top: 4px; }
+  .roles li + li { margin-top: 4px; }
+  .before { width: 104px; margin-top: 14px; }
+  .body p { font-size: 16.5px; }
+  .aside--end { padding-left: 0; }
+}
 @media (max-width: 640px) {
-  .cw-jacaranda { right: -4vw; top: -2vh; width: 90vw; }
-  .cw-bougainvillea { top: 52vh; width: 46vw; }
   .cafe-interior .welcome { padding-right: 64px; }
   .wall-lamp { width: 70px; height: 175px; right: -6px; }
   .lamp-pool { width: 220px; height: 320px; }
@@ -443,23 +429,31 @@
   .counter-espresso { left: 40px; width: 112px; }
   .counter-drinks { right: 0; width: 196px; }
   .counter-dog { left: 30%; width: 120px; height: 110px; }
+  .reading { margin-inline: -8px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .cafe-window *, .artwork-branch img, .drinks .steam path, .lamp-cord.swing, .lamp-cord.nudge, .drinks .sipping, .counter-door.swinging .door-panel, .wall-lamp-on :is(.lamp-pool, .lamp-mouth) { animation: none !important; }
+  .fleck, .bough, .drinks .steam path, .lamp-cord.swing, .lamp-cord.nudge, .drinks .sipping, .counter-door.swinging .door-panel, .wall-lamp-on :is(.lamp-pool, .lamp-mouth) { animation: none !important; }
   .lighting-control .eye-candy { display: none; }
-  .sky { animation: none !important; }
 }
 @media (prefers-contrast: more), (forced-colors: active), print {
-  .cafe-window, .lamp-pool, .lamp-shadow, .downlight, .card-light, .lighting-control .eye-candy { display: none; }
-  .cafe-interior .lit :is(h2, h3, p, .card-action)::before { display: none; }
+  .ct-sun, .ct-light, .ct-pool, .zine-light, .zine::after, .canopy, .lamp-pool, .lamp-shadow, .downlight, .lighting-control .eye-candy { display: none; }
 }
 @media (prefers-contrast: more) {
   .cafe-interior .welcome { --wall-ink: #fff8eb; --wall-muted: #fff1dc; --wall-line: #a88f72; text-shadow: none; }
   .cafe-interior .welcome::before { background: #3f3127; }
+  .zine { --muted: #2e241a; --accent: #1d3520; background: #f1e8d6; }
+  .part::before, .part::after { display: none; }
+}
+@media (forced-colors: active) {
+  .cafe-table { display: none; }
+  .zine { --ink: CanvasText; --muted: CanvasText; --accent: LinkText; background: Canvas; border: 1px solid CanvasText; }
 }
 @media print {
   .cafe-interior :is(.site-header, .welcome, .contact, .counter-front, .site-footer) { --ink: #222; --muted: #444; --red: #222; --line: #777; text-shadow: none; color: #222; }
   .cafe-interior .monogram { color: #222; }
-  .cafe-ceiling, .welcome::before, .welcome::after, .counter-front::before, .site-footer::before { background: none !important; box-shadow: none; }
-  .wall-lamp, .counter-top { display: none; }
+  .cafe-ceiling, .welcome::before, .welcome::after, .counter-top::before, .counter-front::before, .site-footer::before { background: none !important; box-shadow: none !important; }
+  .cafe-table, .wall-lamp, .counter-top { display: none; }
+  .zine { background: white; box-shadow: none; }
+  .part { background: none !important; }
+  .part::before, .part::after { display: none; }
 }

@@ -68,9 +68,9 @@ def main():
         ('stylesheets', ['home.css', 'gallery.css', 'cafe.css'], 69 * 1024),
         ('heading_fonts', ['assets/fonts/bricolage-grotesque-medium-latin.woff2', 'assets/fonts/bricolage-grotesque-medium-latin-ext.woff2', 'assets/fonts/bricolage-grotesque-medium-vietnamese.woff2'], 72 * 1024),
         ('reflection_fonts', ['assets/fonts/fraunces/fraunces-medium-latin.woff2', 'assets/fonts/fraunces/fraunces-medium-latin-ext.woff2', 'assets/fonts/fraunces/fraunces-medium-vietnamese.woff2'], 80 * 1024),
-        ('cafe_window', ['assets/window-far.webp', 'assets/window-jacaranda.webp', 'assets/window-bougainvillea.webp', 'assets/sky-soft.webp', 'assets/sky-far.webp', 'assets/sky-crisp-a.webp', 'assets/sky-crisp-b.webp', 'assets/sky-crisp-c.webp', 'assets/sky-far-a.webp', 'assets/sky-far-b.webp', 'assets/sky-far-c.webp'], 300 * 1024),
-        ('branch_accent', ['assets/bougainvillea-branch-v1.webp'], 100 * 1024),
-        ('cafe_fixtures', ['assets/trombone-lamp.svg', 'assets/plaster.svg', 'assets/cafe-lamp.svg'], 12 * 1024),
+        ('cafe_table', ['assets/table-grain.webp', 'assets/fleck-soft.webp', 'assets/fleck-a.webp', 'assets/fleck-b.webp', 'assets/fleck-c.webp'], 200 * 1024),
+        ('branches', ['assets/canopy-jacaranda.webp', 'assets/canopy-bougainvillea.webp'], 190 * 1024),
+        ('cafe_fixtures', ['assets/trombone-lamp.svg', 'assets/plaster.svg', 'assets/cafe-lamp.svg'], 24 * 1024),
         ('featured_illustration', ['assets/hotpot.webp'], 150 * 1024),
         ('selected_videos', [str(p.relative_to(ROOT)).replace('\\', '/') for p in sorted((ROOT / 'assets/media').glob('*.mp4'))], 5 * 1024 * 1024),
     ]

@@ -16,16 +16,15 @@
 </head>
 <body class="cafe-interior" data-light="day">
   <a class="skip-link" href="#main">Skip to content</a>
-  <div class="cafe-window" aria-hidden="true">
-    <div class="cw-sun"></div>
-    <div class="cw-leaflight"></div>
-    <div class="cw-far"></div>
-    <div class="cw-branch cw-jacaranda"><img src="assets/window-jacaranda.webp" alt="" width="560" height="359" decoding="async"></div>
-    <div class="cw-branch cw-bougainvillea"><img src="assets/window-bougainvillea.webp" alt="" width="380" height="389" decoding="async"></div>
-    <div class="cw-skylight"><span class="sky-room"><span class="sky sky-fill sky-far"></span><span class="sky sky-blur sky-a"></span><span class="sky sky-blur sky-b"></span><span class="sky sky-blur sky-c"></span></span></div>
-    <div class="cw-reflections"></div>
-    <div class="cw-frost"></div>
-    <div class="cw-frame"></div>
+  <div class="cafe-table" aria-hidden="true">
+    <div class="ct-sun"></div>
+    <div class="ct-light"><span class="sky-room"><span class="fleck fleck-soft"></span><span class="fleck fleck-a"></span><span class="fleck fleck-b"></span><span class="fleck fleck-c"></span></span></div>
+    <div class="ct-pool"></div>
+    <div class="ct-grain"></div>
+  </div>
+  <div class="canopy" aria-hidden="true">
+    <div class="bough bough-jacaranda"><img src="assets/canopy-jacaranda.webp" alt="" width="480" height="600" decoding="async"></div>
+    <div class="bough bough-bougainvillea"><img src="assets/canopy-bougainvillea.webp" alt="" width="900" height="600" decoding="async"></div>
   </div>
   <div class="cafe-ceiling">
   <span class="downlight" style="--x: 9%"></span><span class="downlight" style="--x: 37%"></span><span class="downlight" style="--x: 63%"></span><span class="downlight" style="--x: 91%"></span>
@@ -48,93 +47,166 @@
       <nav class="welcome-links" aria-label="Contact Michael"><a href="mailto:michaelhtran333@gmail.com">Email me</a><a href="https://www.linkedin.com/in/mhtranse/">LinkedIn</a><a href="https://github.com/mhtran3">GitHub</a></nav>
     </section>
 
-    <aside class="perspective-note" aria-labelledby="perspective-title">
-      <a class="perspective-link" href="#ai-story" data-story="ai-story">
-        <div><p class="eyebrow">Perspective <span aria-hidden="true">✳</span></p><h2 id="perspective-title">Okay, we have AI. Now what?</h2></div>
-        <div><p>When making becomes easier, what we choose to make—and why—matters more.</p><span class="card-action">Read the reflection <span aria-hidden="true">↗</span></span></div>
-      </a>
-    </aside>
+    <div class="reading">
+      <article class="zine" aria-label="Selected work">
+        <span class="zine-light" aria-hidden="true"><span class="sky-pane"><span class="sky-room"><span class="fleck fleck-soft"></span><span class="fleck fleck-a"></span><span class="fleck fleck-b"></span><span class="fleck fleck-c"></span></span><span class="pool"></span></span></span>
 
-    <section id="work" aria-labelledby="work-title">
-      <nav class="collection-index" aria-label="Explore selected work"><a href="#work-title">Education & engineering</a><a href="#graphics">Graphics & apparel</a><a href="#artwork">Animation & illustration</a></nav>
-      <div class="section-line"><h2 id="work-title">Education & engineering</h2></div>
-      <div class="worktable professional-work">
-        <article class="piece teaching">
-          <a class="piece-link teaching-link" href="#teaching-story" data-story="teaching-story">
-            <div class="teaching-top"><span class="piece-number">Education & community</span><span class="small-star" aria-hidden="true">✳</span></div>
-            <h3>Everyone deserves access to quality education.</h3>
-            <p>I help students find a starting point when a problem feels unfamiliar. My work spans arts education in Trenton, free tutoring coordination, mentoring, and curriculum for first-generation, lower-income students.</p>
-            <div class="teaching-bottom"><span class="card-action">Explore my education work</span><span class="open-arrow" aria-hidden="true">↗</span></div>
-          </a>
-        </article>
-        <article class="piece accessibility-feature">
-          <a class="piece-link accessibility-link" href="#accessibility-story" data-story="accessibility-story">
-            <p class="eyebrow">Rubrik / engineering intern / 2022</p>
-            <h3>Making a production app more accessible</h3>
-            <p>Evaluated interface barriers, implemented React and TypeScript fixes, and left the team an action plan.</p>
-            <span class="card-action">Explore the work & my role <span aria-hidden="true">↗</span></span>
-          </a>
-        </article>
-
-        <article class="piece experiment combat-feature">
-          <a class="piece-link" href="#game-story" data-story="game-story">
-            <div class="technical-preview"><img src="assets/dungeon-heatmap.webp" alt="A dungeon debugging view shows terrain-aware position scores and a white cross marking a unit’s movement target." width="1280" height="720" loading="lazy"><span class="preview-label">Recorded from the working prototype</span></div>
-            <div class="experiment-link">
-              <div class="experiment-top"><span class="piece-number">Engineering / combat AI / Godot</span><span class="status">Working prototype</span></div>
-              <h3>Making movement decisions visible</h3>
-              <p class="experiment-intro">Designed and tested combat AI where training shapes behavior, with heatmaps to inspect positioning. Built with AI-assisted development.</p>
-              <div class="experiment-bottom"><span class="card-action">Watch the heatmaps & explore</span><span class="open-arrow" aria-hidden="true">↗</span></div>
+        <section class="part part--open" aria-labelledby="perspective-title">
+          <div class="entry">
+            <div class="note"><p class="kicker">Perspective</p></div>
+            <div class="body">
+              <h2 class="open-title" id="perspective-title"><a href="#ai-story" data-story="ai-story">Okay, we have AI. Now&nbsp;what?</a></h2>
+              <p class="dek">When making becomes easier, what we choose to make—and why—matters more.</p>
+              <p>I’m interested in the connections between disciplines. Education makes me think about access and how people learn; engineering gives me ways to test ideas; art asks me to pay attention to composition, expression, and the details that change how something feels.</p>
+              <a class="more" href="#ai-story" data-story="ai-story" tabindex="-1" aria-hidden="true"><span>✳</span> Read the reflection</a>
             </div>
-          </a>
-          <a class="related-study" href="#rwkv-story" data-story="rwkv-story">RWKV: exploring model memory <span aria-hidden="true">↗</span></a>
-        </article>
-      </div>
+          </div>
+        </section>
 
-      <section id="graphics" class="collection-section" aria-labelledby="graphics-title">
-        <div class="section-line"><h2 id="graphics-title">Graphics made for communities</h2></div>
-        <div class="design-grid">
-          <article class="piece seal-feature">
-            <a class="piece-link seal-link" href="#seals-story" data-story="seals-story">
-              <div class="seal-comparison"><div><img src="assets/clio-restored.webp" width="1000" height="1000" alt="Restored Clio seal: a seated woman holding an open book, surrounded by circular lettering." loading="lazy"><span>Clio · restored seated figure</span></div><div><img src="assets/whig-eagle-restored.webp" width="999" height="1000" alt="Restored Whig seal: a bird with spread wings, ribbons, and circular lettering." loading="lazy"><span>Whig · restored bird</span></div></div>
-              <div class="piece-caption"><div><p class="eyebrow">University work / research & restoration</p><h3>Recovering the detail in Whig–Clio’s seals</h3><p class="card-summary">Recovered lost details from historical records and rebuilt damaged seals for official university use.</p><span class="card-action">Compare the source & restoration</span></div><span class="open-arrow" aria-hidden="true">↗</span></div>
-            </a>
-          </article>
-          <article class="piece apparel-feature">
-            <a class="piece-link" href="#apparel-story" data-story="apparel-story">
-              <div class="design-stage shirt-preview"><img src="assets/scully-cranes.webp" alt="Pink origami-crane graphic designed for Scully co-op." width="1100" height="1100" loading="lazy"><img src="assets/scully-printed.webp" alt="The Scully crane design printed on a dark sweatshirt." width="990" height="1000" loading="lazy"></div>
-              <div class="piece-caption"><div><p class="eyebrow">Scully / MOL / Class of 1976</p><h3>From artwork to apparel</h3><p class="card-summary">Designs rooted in community—from connecting classmates during quarantine to honoring a co-op’s traditions.</p><span class="card-action">Explore the designs & their stories</span></div><span class="open-arrow" aria-hidden="true">↗</span></div>
-            </a>
-          </article>
-          <article class="piece jacket-feature">
-            <a class="piece-link jacket-link" href="#jacket-story" data-story="jacket-story">
-              <div class="design-stage jacket-preview"><img src="assets/jackets-class-day.webp" alt="Class of 2023 jackets draped over chairs, showing orange tiger linework, ivy, diagonal stripes, and the back design." width="1200" height="759" loading="lazy"></div>
-              <div class="piece-caption"><div><p class="eyebrow">Princeton Class of 2023 / apparel</p><h3>A jacket for a graduating class</h3><p class="card-summary">Designed for Princeton’s Class of 2023. Worn at Reunions.</p><span class="card-action">See the jacket & its story</span></div><span class="open-arrow" aria-hidden="true">↗</span></div>
-            </a>
-          </article>
-        </div>
-      </section>
+        <section class="part" id="work" aria-labelledby="work-title">
+          <h2 class="part-title" id="work-title">Education &amp; engineering</h2>
 
-      <section id="artwork" class="collection-section" aria-labelledby="artwork-title">
-        <div class="artwork-branch" aria-hidden="true"><img src="assets/bougainvillea-branch-v1.webp" alt="" width="900" height="600" loading="lazy" decoding="async"></div>
-        <div class="section-line"><h2 id="artwork-title">Animation & illustration</h2></div>
-        <div class="art-grid">
-          <article class="piece illustration animation-feature">
-          <a class="piece-link" href="#bloom-story" data-story="bloom-story">
-            <div class="illustration-stage"><img src="assets/bloom-clearing.webp" alt="An orange flower and small flying insects in a painted forest clearing, framed by dark foliage." width="960" height="540" loading="lazy"><span class="preview-label">Bloom / 6-second excerpt</span></div>
-            <div class="piece-caption"><div><p class="eyebrow">Animation / painted environments</p><h3>A clearing in <em>Bloom</em></h3><p class="card-summary">Painted environments and animation, made by me.</p><span class="card-action">Watch the scene</span></div><span class="open-arrow" aria-hidden="true">↗</span></div>
-          </a>
-        </article>
-          <article class="piece cranes hotpot">
-          <a class="piece-link" href="#hotpot-story" data-story="hotpot-story">
-            <div class="art-stage"><img src="assets/hotpot.webp" alt="Game characters share hotpot around a crowded table, framed by warm light and a detailed night-time street." width="1280" height="802" loading="lazy"></div>
-            <div class="piece-caption"><div><p class="eyebrow">Illustration / composition & light</p><h3>A shared table</h3><p class="card-summary">An ensemble illustration with a look inside my drawing process.</p><span class="card-action">See the artwork & process</span></div><span class="open-arrow" aria-hidden="true">↗</span></div>
-          </a>
-        </article>
-        </div>
-      </section>
-      <details class="collection-more"><summary>From the sketchbook <span aria-hidden="true">✳</span></summary><div><a href="#illustration-story" data-story="illustration-story">Waves on a board · sketchbook study ↗</a></div></details>
-    </section>
+          <article class="entry" aria-labelledby="teaching-title">
+            <div class="note">
+              <p class="kicker">Teaching, tutoring &amp; mentoring</p>
+              <ul class="meta roles">
+                <li>Trenton Arts at Princeton: fellow and visual arts co-lead</li>
+                <li>Princeton Online Tutoring Network: site coordinator</li>
+                <li>Scholars Institute Fellows Program: fellow, then head fellow</li>
+                <li>Princeton Computer Science: an intro Java and Python curriculum</li>
+              </ul>
+            </div>
+            <div class="body">
+              <h3 id="teaching-title"><a href="#teaching-story" data-story="teaching-story">Everyone deserves access to quality education.</a></h3>
+              <blockquote class="pull"><p>I want to be the helping hand I once didn’t know I needed.</p></blockquote>
+              <p>I came from a small, underresourced high school in rural Texas, and even when free tutoring was available, I didn’t use it: I was used to figuring things out on my own. Now I tutor mathematics, SAT preparation, and academic writing, and much of my approach is helping students get comfortable with not knowing how to solve a problem right away.</p>
+              <a class="more" href="#teaching-story" data-story="teaching-story" tabindex="-1" aria-hidden="true"><span>✳</span> Why access matters to me</a>
+            </div>
+          </article>
 
+          <article class="entry entry--figure" aria-labelledby="game-title">
+            <figure class="print wide">
+              <a href="#game-story" data-story="game-story" tabindex="-1"><img src="assets/dungeon-heatmap.webp" alt="A dungeon debugging view: terrain-aware position scores, with a white cross marking a unit’s movement target." width="1280" height="720" loading="lazy"></a>
+              <figcaption>Recorded from my working prototype. Sprites and environment art are third-party.</figcaption>
+            </figure>
+            <div class="note">
+              <p class="kicker">Combat AI in Godot 4</p>
+              <p class="meta">An ongoing prototype, built with AI-assisted development</p>
+            </div>
+            <div class="body">
+              <h3 id="game-title"><a href="#game-story" data-story="game-story">Making movement decisions visible</a></h3>
+              <p>My game prototype explores combat where training a unit affects its decisions. Overlays show where a unit wants to stand and how it finds its way through the dungeon, which helps me tell route problems apart from tactical choices.</p>
+              <a class="more" href="#game-story" data-story="game-story" tabindex="-1" aria-hidden="true"><span>✳</span> Watch the footage</a>
+              <p class="aside">Also: <a href="#rwkv-story" data-story="rwkv-story">an early experiment with RWKV and model memory</a></p>
+            </div>
+          </article>
+
+          <article class="entry" aria-labelledby="a11y-title">
+            <div class="note">
+              <p class="kicker">Rubrik</p>
+              <p class="meta">Software engineering intern, June–August 2022</p>
+            </div>
+            <div class="body">
+              <h3 id="a11y-title"><a href="#accessibility-story" data-story="accessibility-story">Making a production app more accessible</a></h3>
+              <p>My internship began with fixing accessibility issues in Rubrik’s web product and grew into a broader evaluation of the front end. I implemented fixes in React and TypeScript, presented the project to the company, and left the team an action plan to keep the work going.</p>
+              <a class="more" href="#accessibility-story" data-story="accessibility-story" tabindex="-1" aria-hidden="true"><span>✳</span> The work and my role</a>
+            </div>
+          </article>
+        </section>
+
+        <section class="part" id="graphics" aria-labelledby="graphics-title">
+          <h2 class="part-title" id="graphics-title">Graphics made for communities</h2>
+
+          <article class="entry entry--figure" aria-labelledby="seals-title">
+            <div class="print-pair print-pair--seals wide">
+              <a href="#seals-story" data-story="seals-story" tabindex="-1"><img src="assets/clio-restored.webp" alt="The restored Clio seal: a seated woman holding an open book, inside circular lettering." width="1000" height="1000" loading="lazy"></a>
+              <a href="#seals-story" data-story="seals-story" tabindex="-1"><img src="assets/whig-eagle-restored.webp" alt="The restored Whig seal: a bird with spread wings and ribbons, inside circular lettering." width="999" height="1000" loading="lazy"></a>
+            </div>
+            <div class="note">
+              <p class="kicker">Whig–Clio</p>
+              <p class="meta">Historical research, restoration, and vector graphics</p>
+              <figure class="before"><img src="assets/seals-source-print.webp" alt="The supplied image of both seals: small and soft, with details lost." width="300" height="147" loading="lazy"><figcaption>Before: the image I was given</figcaption></figure>
+            </div>
+            <div class="body">
+              <h3 id="seals-title"><a href="#seals-story" data-story="seals-story">Recovering the detail in Whig–Clio’s seals</a></h3>
+              <p>Repeated compression had worn the available images down until parts of the designs were lost. I researched older records to understand the original features, restored the missing detail, and rebuilt both seals in vector form for official university use.</p>
+              <a class="more" href="#seals-story" data-story="seals-story" tabindex="-1" aria-hidden="true"><span>✳</span> The source and the restoration</a>
+            </div>
+          </article>
+
+          <article class="entry entry--figure" aria-labelledby="apparel-title">
+            <div class="print-pair wide">
+              <a href="#apparel-story" data-story="apparel-story" tabindex="-1"><img src="assets/scully-cranes.webp" alt="The Scully co-op artwork: pink origami cranes and lettering." width="1100" height="1100" loading="lazy"></a>
+              <a href="#apparel-story" data-story="apparel-story" tabindex="-1"><img src="assets/scully-printed.webp" alt="The crane design printed across a dark sweatshirt." width="990" height="1000" loading="lazy"></a>
+            </div>
+            <div class="note">
+              <p class="kicker">Scully co-op, Molecular Biology, and the Class of 1976</p>
+              <p class="meta">Shirt, reunion, and patch graphics</p>
+            </div>
+            <div class="body">
+              <h3 id="apparel-title"><a href="#apparel-story" data-story="apparel-story">From artwork to apparel</a></h3>
+              <p>During COVID quarantine, I made a shirt concept for COS. Seeing it give our scattered community something to be excited about, I kept making designs for other majors anonymously, until someone reached out to commission the official Molecular Biology Class of 2021 shirt.</p>
+              <p>For Scully, the co-op I called home, the cranes come from the paper ones that members from previous years left hanging in our shared space.</p>
+              <a class="more" href="#apparel-story" data-story="apparel-story" tabindex="-1" aria-hidden="true"><span>✳</span> The shirts and their stories</a>
+            </div>
+          </article>
+
+          <article class="entry entry--figure" aria-labelledby="jacket-title">
+            <figure class="print wide">
+              <a href="#jacket-story" data-story="jacket-story" tabindex="-1"><img src="assets/jackets-class-day.webp" alt="Class of 2023 jackets draped over chairs at Class Day, showing orange tiger linework, ivy, diagonal stripes, and the back design." width="1200" height="759" loading="lazy"></a>
+              <figcaption>Jackets at Class Day, May 2023. Photo: Denise Applewhite, Princeton University Office of Communications.</figcaption>
+            </figure>
+            <div class="note">
+              <p class="kicker">Princeton Class of 2023</p>
+              <p class="meta">Senior jacket, worn at Reunions</p>
+            </div>
+            <div class="body">
+              <h3 id="jacket-title"><a href="#jacket-story" data-story="jacket-story">A jacket for a graduating class</a></h3>
+              <p>I drew the design on an iPad, looked at earlier class jackets, and gathered classmates’ feedback as it developed. The large orange circle on the back grew from a friend’s suggestion to embrace the playful spirit of the tradition.</p>
+              <a class="more" href="#jacket-story" data-story="jacket-story" tabindex="-1" aria-hidden="true"><span>✳</span> The jacket and its story</a>
+            </div>
+          </article>
+        </section>
+
+        <section class="part" id="artwork" aria-labelledby="artwork-title">
+          <h2 class="part-title" id="artwork-title">Animation &amp; illustration</h2>
+
+          <article class="entry entry--figure" aria-labelledby="hotpot-title">
+            <figure class="print wide">
+              <a href="#hotpot-story" data-story="hotpot-story" tabindex="-1"><img src="assets/hotpot.webp" alt="Game characters share hotpot around a crowded table, framed by warm light and a detailed night-time street." width="1280" height="802" loading="lazy"></a>
+              <figcaption>Characters from Zenless Zone Zero.</figcaption>
+            </figure>
+            <div class="note">
+              <p class="kicker">Illustration</p>
+              <p class="meta">ZZZ 2025 Art Fest</p>
+            </div>
+            <div class="body">
+              <h3 id="hotpot-title"><a href="#hotpot-story" data-story="hotpot-story">A shared table</a></h3>
+              <p>Warm lighting, layered environmental details, and expressive character interactions bring a shared meal to life. Inside are frames from my drawing timelapse, from the first figure drawing to the last pass of light, working notes and all.</p>
+              <a class="more" href="#hotpot-story" data-story="hotpot-story" tabindex="-1" aria-hidden="true"><span>✳</span> See it come together</a>
+            </div>
+          </article>
+
+          <article class="entry entry--figure entry--side" aria-labelledby="bloom-title">
+            <figure class="print print--film">
+              <a href="#bloom-story" data-story="bloom-story" tabindex="-1"><img src="assets/bloom-clearing.webp" alt="An orange flower and small flying insects in a painted forest clearing, framed by dark foliage." width="960" height="540" loading="lazy"><span class="play" aria-hidden="true"></span></a>
+              <figcaption>Six seconds from 1:48 in the final film.</figcaption>
+            </figure>
+            <div class="note">
+              <p class="kicker">Animation</p>
+              <p class="meta">Visual artwork, animation, and compositing</p>
+            </div>
+            <div class="body">
+              <h3 id="bloom-title"><a href="#bloom-story" data-story="bloom-story">A clearing in <em>Bloom</em></a></h3>
+              <p>A short scene from my animated film: a bright flower and small flying insects, with layers of dark foliage framing the clearing.</p>
+              <a class="more" href="#bloom-story" data-story="bloom-story" tabindex="-1" aria-hidden="true"><span>✳</span> Watch the scene</a>
+            </div>
+          </article>
+          <p class="aside aside--end">From the sketchbook: <a href="#illustration-story" data-story="illustration-story">waves on a board</a></p>
+        </section>
+        <p class="end-mark" aria-hidden="true">✳</p>
+      </article>
+    </div>
 
     <section id="contact" class="contact counter" aria-labelledby="contact-title">
       <div class="counter-top">
@@ -352,11 +424,11 @@
       <span>Michael Tran</span><span>Art, education, and technology.</span><a href="colophon.html">How this site is built</a><a href="https://github.com/mhtran3/mhtran3.github.io">Source</a><a href="#">Back to the top ↑</a>
       <details class="design-note">
         <summary>A note on the design</summary>
-        <p>The page is built like a corner of The Leaf Café in Đà Nẵng, from my own photographs: a dark ceiling with small downlights, an ochre plaster wall, a window full of leaves, and a wooden counter at the bottom. The uneven arrangement gives pieces with different shapes and moods room to sit together. <a href="https://thecupscoffee.vn/the-leaf-cafe/">See the café reference.</a></p>
+        <p>The page is built like a corner of The Leaf Café in Đà Nẵng, from my own photographs: a dark ceiling with small downlights, an ochre plaster wall, a table under the trees, and a wooden counter at the bottom. The work lies on the table as one long folded sheet, like a zine, so the writing and the pictures are read together. <a href="https://thecupscoffee.vn/the-leaf-cafe/">See the café reference.</a></p>
         <p>Bricolage Grotesque connects the headings across my work. I chose it partly for its story: designer Mathieu Triay connects its mixed influences to migration and belonging. Inside selected stories, Fraunces introduces a more reflective voice. Paragraphs and navigation keep a quiet Helvetica-based system stack, with Arial as a fallback. Both custom fonts are hosted with this site. <a href="colophon.html#typography">More about the typography.</a></p>
-        <p>The collection sits in front of an imagined frosted window. Jacaranda and bougainvillea branches move slightly in a breeze beyond the glass. Light from a skylight overhead comes down through leaves onto everything in the room: soft shade from the distant canopy, a few leaves close enough to cast sharp shadows, and warm patches of sun. These are stylized plant references I connect with Đà Nẵng and my Vietnamese heritage. The light and spacing draw on my café photographs. The background and separate bougainvillea branch at the transition into art are AI-generated decoration, distinct from the artwork in the gallery; the cards and their text stay opaque and crisp.</p>
+        <p>The table sits under jacaranda and bougainvillea that move slightly in a breeze. Sun comes through the leaves in bright patches over deep, warm shade. Each gap between leaves throws a small oval image of the sun; where gaps crowd, the ovals overlap into a patch with a scalloped edge, and a few patches carry the sharp shapes of leaves close by. These are stylized plant references I connect with Đà Nẵng and my Vietnamese heritage. The light and spacing draw on my café photographs. The branches and the leaf shapes in the light come from AI-generated paintings, and the wood grain is generated in code; they are decoration, distinct from the work on the page. The restored seals are printed straight onto the sheet, so the paper shows through them; photographs and illustrations keep their original colors, and the light never falls across them.</p>
         <p>The lamp on the wall is a trombone slide turned into a light fixture, drawn after one at the café. Its cord runs over a small pulley; pull it to switch the lamp. The counter ends in a lift-up flap and a swinging gate, like a real serving counter. On it are a small espresso machine you can pull a shot from, iced matcha latte drawn from the one I ordered there, Vietnamese egg coffee with its cup resting in a bowl of hot water, and chè with pandan jelly and red water-chestnut “rubies.” The drinks can be sipped, and refilled when they run out.</p>
-        <p>The light follows your device’s clock minute by minute, from dawn through golden hour to night, and the time-of-day slider lets you move through the day yourself. Shadows fall away from the sun, sunlight through branches falls across the cards by day (never across the artwork itself), paper warms under lamplight, and after dark the window reflects whichever lamps are on. The cards catch that light slightly shifted from the glass behind them and cast their shadows onto it, so they seem to stand forward; as you scroll they slide through the light. The Eye candy switch holds every ambient movement still and is remembered in your browser. Reading surfaces never move, and reduced-motion preferences stop the breeze and the transitions. Paper grain adds texture while the text stays crisp and the artwork keeps its original colors. <a href="colophon.html">Read the implementation choices and testing notes.</a></p>
+        <p>The light follows your device’s clock minute by minute, from dawn through golden hour to night, and the time-of-day slider lets you move through the day yourself. The patches of sun are pale gold at noon and orange at golden hour; after dark, lamplight pools on the table and the paper, brighter with each lamp you switch on. The sheet catches the sun slightly shifted from the wood beneath it and casts its shadow away from the light. As you scroll, the paper slides along the table while the light stays where it falls. The Eye candy switch holds every ambient movement still and is remembered in your browser. Text never moves, and reduced-motion preferences stop the breeze and the transitions. <a href="colophon.html">Read the implementation choices and testing notes.</a></p>
       </details>
       <details class="design-note personal-note">
         <summary>Beyond this collection</summary>
