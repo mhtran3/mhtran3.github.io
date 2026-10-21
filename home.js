@@ -136,9 +136,8 @@
   observeMedia(document);
 })();
 
-// Seal comparison: one position moves the line through both seals. A mouse moves it at once;
-// a finger must move sideways first, so scrolling never nudges it. The range input carries the
-// same position for keyboards and screen readers. Without script the seals stay split in half.
+// Seal comparison: one position moves the line through both seals. On touch, only a sideways
+// drag or a tap moves it, so scrolling past never does. The range input handles keyboards.
 document.querySelectorAll('.compare').forEach(compare => {
   const range = compare.querySelector('.cmp-range');
   const set = value => {

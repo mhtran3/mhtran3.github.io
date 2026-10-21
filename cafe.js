@@ -9,10 +9,7 @@
   const still = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // ——— The sun on the table ———
-  // The light layers are plain markup (see index.html); the paper's copy is pinned to the screen
-  // and clipped to the sheet, so it needs no script while you scroll. This only starts every copy
-  // of a patch, and the branch that shapes it, on the same clock, so the sun on the paper and on
-  // the wood moves as one.
+  // Start every copy of the sun patches and branches on the same clock, so paper and wood move as one.
   requestAnimationFrame(() => {
     document.querySelectorAll('.fleck, .bough').forEach(el => el.getAnimations().forEach(a => { a.startTime = 0; }));
   });
@@ -177,7 +174,7 @@
     });
   }
 
-  // ——— The dog (waiting for Michael's drawings) ———
+  // ——— The dog (waiting for my drawings) ———
   // Expected: <img data-pose="awake">, optional data-pose="blink" and data-pose="nap".
   // He blinks now and then; after a few quiet minutes he naps until someone interacts.
   const dog = document.querySelector('.counter-dog');
