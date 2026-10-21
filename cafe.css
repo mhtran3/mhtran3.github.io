@@ -71,7 +71,7 @@
    clip-path polygon (home.js sizes it), so the light inside, a position: fixed pane, stays put while
    the paper scrolls; only the words turn with the paper. Without the script the papers lie straight. */
 .desk {
-  --ink: #261d14; --muted: #3d3124; --accent: #1f3b25;
+  --ink: #261d14; --muted: #392d20; --accent: #1c3622;
   position: relative; z-index: 1;
   width: min(1000px, 100%); margin-inline: auto;
   padding-block: clamp(40px, 6vw, 76px) clamp(56px, 8vw, 104px);
@@ -109,10 +109,15 @@
 .pp-surface .pool { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 66% at 50% 44%, var(--pool-paper), transparent 74%); opacity: var(--pool); transition: opacity .6s ease; }
 /* Off screen, a paper's light is switched off (home.js) so only visible papers carry moving light. */
 .pp.is-away .sky-pane { display: none; }
-/* Paper fibre and the edge of the sheet: lit along the top, darker along the bottom, turned with the paper. */
+/* The paper: a texture after giấy dó, the Vietnamese paper made from the inner bark of the dó tree and
+   formed on a bamboo screen: soft cloudiness, fine bark fibres, the screen's faint lines, the odd fleck of
+   bark. Light and dark marks drawn over the lit paper, so it reads in sun, shade and lamplight; turned
+   with the paper, and started at a different spot on each one (home.js). */
+.pp-grain, .pp-skin { position: absolute; inset: calc(var(--b, 0px) / 2) calc(var(--a, 0px) / 2); rotate: var(--turn, 0deg); }
+.pp-grain { background: url('assets/paper-do.svg') var(--grain-at, 0 0) / 384px 384px; }
+/* The edge of the sheet: lit along the top, darker along the bottom. */
 .pp-skin {
-  position: absolute; inset: calc(var(--b, 0px) / 2) calc(var(--a, 0px) / 2); rotate: var(--turn, 0deg);
-  background: url('assets/paper.svg') 0 0 / 180px 180px; opacity: .75;
+  opacity: .75;
   box-shadow: inset 0 1px 0 rgb(255 250 236 / .55), inset 0 -1px 0 rgb(40 28 16 / .22), inset 1px 0 0 rgb(255 250 236 / .25);
 }
 /* Shadows: tight where the paper touches the wood, and a softer one cast away from the sun. Both follow
@@ -132,13 +137,12 @@
 .pp-back > span { clip-path: var(--back-clip, inset(16px 8px 7px 13px));
   background: linear-gradient(to bottom right, transparent 60%, rgb(40 28 16 / .12)), color-mix(in oklab, var(--paper-shade), #3b2a18 15%); }
 .pp-lift { filter: blur(2.2px); translate: calc(var(--shadow-x) * .35) calc(var(--shadow-y) * .35); }
-.pp-lift > span { clip-path: var(--lift-clip, inset(14px)); background: rgb(20 12 6 / .62); }
+.pp-lift > span { clip-path: var(--lift-clip, inset(14px)); background: rgb(20 12 6 / .7); }
 .pp--folio .pp-skin {
   background:
-    linear-gradient(to right, rgb(50 36 20 / .2), rgb(50 36 20 / .06) 2px, transparent 5px),
-    linear-gradient(to right, rgb(60 44 24 / .05), transparent 26px),
-    url('assets/paper.svg') 0 0 / 180px 180px;
-  box-shadow: inset 0 1px 0 rgb(255 250 236 / .4), inset 0 -1px 0 rgb(40 28 16 / .22), inset 1px 0 0 rgb(40 28 16 / .16);
+    linear-gradient(to right, rgb(50 36 20 / .36), rgb(50 36 20 / .14) 2px, rgb(50 36 20 / .05) 6px, transparent 10px),
+    linear-gradient(to right, rgb(60 44 24 / .11), rgb(60 44 24 / .04) 16px, transparent 44px);
+  box-shadow: inset 0 1px 0 rgb(255 250 236 / .4), inset 0 -1px 0 rgb(40 28 16 / .22), inset 1px 0 0 rgb(40 28 16 / .28);
 }
 
 /* A note folded twice and still closed: folded down the left, then again across the top, so it is a quarter
@@ -155,11 +159,12 @@
 .pp-back--stack > span:nth-child(6) { background: color-mix(in oklab, var(--paper-shade), #3b2a18 14%); }
 .pp--quarter .pp-skin {
   background:
-    radial-gradient(circle at 0 0, rgb(50 36 20 / .14), transparent 16px),
-    linear-gradient(to bottom, rgb(50 36 20 / .22), rgb(50 36 20 / .07) 2.5px, rgb(60 44 24 / .04) 8px, transparent 20px),
-    linear-gradient(to right, rgb(50 36 20 / .2), rgb(50 36 20 / .06) 2px, transparent 5px),
-    url('assets/paper.svg') 0 0 / 180px 180px;
-  box-shadow: inset 0 1px 0 rgb(40 28 16 / .12), inset 1px 0 0 rgb(40 28 16 / .16), inset 0 -1px 0 rgb(40 28 16 / .22);
+    radial-gradient(circle at 0 0, rgb(50 36 20 / .2), transparent 18px),
+    linear-gradient(to bottom, rgb(50 36 20 / .36), rgb(50 36 20 / .13) 3px, rgb(60 44 24 / .06) 9px, transparent 24px),
+    linear-gradient(to right, rgb(50 36 20 / .34), rgb(50 36 20 / .13) 2px, rgb(50 36 20 / .05) 6px, transparent 10px),
+    linear-gradient(to bottom, rgb(60 44 24 / .08), transparent 40px),
+    linear-gradient(to right, rgb(60 44 24 / .08), transparent 40px);
+  box-shadow: inset 0 1px 0 rgb(40 28 16 / .24), inset 1px 0 0 rgb(40 28 16 / .26), inset 0 -1px 0 rgb(40 28 16 / .22);
 }
 
 /* ——— Words and pictures, turned with the paper ——— */
@@ -534,7 +539,7 @@
   .lighting-control .eye-candy { display: none; }
 }
 @media (prefers-contrast: more), (forced-colors: active), print {
-  .ct-sun, .ct-light, .ct-pool, .pp .sky-pane, .pp-skin, .pp-cast, .pp-back, .pp-lift, .canopy, .lamp-pool, .lamp-shadow, .downlight, .lighting-control .eye-candy { display: none; }
+  .ct-sun, .ct-light, .ct-pool, .pp .sky-pane, .pp-grain, .pp-skin, .pp-cast, .pp-back, .pp-lift, .canopy, .lamp-pool, .lamp-shadow, .downlight, .lighting-control .eye-candy { display: none; }
 }
 @media (prefers-contrast: more) {
   .cafe-interior .welcome { --wall-ink: #fff8eb; --wall-muted: #fff1dc; --wall-line: #a88f72; text-shadow: none; }

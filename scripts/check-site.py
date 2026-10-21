@@ -75,6 +75,7 @@ def main():
         ('branches', ['assets/canopy-jacaranda.webp', 'assets/canopy-bougainvillea.webp'], 200 * 1024),
         ('seal_comparison', ['assets/seal-clio-before.webp', 'assets/seal-whig-before.webp'], 80 * 1024),
         ('cafe_fixtures', ['assets/trombone-lamp.svg', 'assets/plaster.svg', 'assets/cafe-lamp.svg'], 24 * 1024),
+        ('paper_texture', ['assets/paper-do.svg'], 64 * 1024),
         ('featured_illustration', ['assets/hotpot.webp'], 150 * 1024),
         ('selected_videos', [str(p.relative_to(ROOT)).replace('\\', '/') for p in sorted((ROOT / 'assets/media').glob('*.mp4'))], 5 * 1024 * 1024),
     ]

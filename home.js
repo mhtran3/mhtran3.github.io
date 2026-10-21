@@ -208,7 +208,7 @@ document.querySelectorAll('.compare').forEach(compare => {
       outer = [...outline.slice(0, 3), at(tr, 1.1, .5), at(br, 6.4, 5.6), at(bl, .6, 1.5)];
       pp.style.setProperty('--lift-clip', poly([tl, at(tr, .5, .5), at(br, 2.5, 2.5), at(bl, .5, .5)], M));
     } else if (pp.querySelector(':scope > .pp-back')) {
-      const n = papers.indexOf(pp), wide = 6 + n % 3 * 1.5, low = 5 + (n + 1) % 3 * 1.5;
+      const n = papers.indexOf(pp), wide = 7.5 + n % 3 * 1.5, low = 6.5 + (n + 1) % 3 * 1.5;
       // The inside page is joined to the cover at the fold and fans out toward the open corner.
       outer = [at(tl, .5, 0), at(tr, 2, -.3), at(br, wide, low), at(bl, .5, 1.2)];
       pp.style.setProperty('--back-clip', poly(outer, M));
@@ -219,6 +219,8 @@ document.querySelectorAll('.compare').forEach(compare => {
     pp.style.setProperty('--a', `${a}px`);
     pp.style.setProperty('--b', `${b}px`);
     pp.style.setProperty('--turn', `${turn}deg`);
+    const k = papers.indexOf(pp);
+    pp.style.setProperty('--grain-at', `${k * 137 % 384}px ${k * 211 % 384}px`);
   }
   const resize = new ResizeObserver(entries => entries.forEach(e => shape(e.target)));
   papers.forEach(pp => resize.observe(pp));
