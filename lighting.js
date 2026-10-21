@@ -145,8 +145,10 @@
     if (override === null) slider.value = Math.round(current);
     const text = label(current);
     slider.setAttribute('aria-valuetext', text);
-    output.textContent = override === null ? `${text} · your time` : text;
-    nowButton.hidden = override === null;
+    output.textContent = text;
+    // "your time" and "Back to now" share one slot of fixed width, so switching between them
+    // never moves anything else in the header.
+    control.classList.toggle('is-live', override === null);
   }
   if (slider) {
     slider.addEventListener('input', () => { override = Number(slider.value); apply(); syncControl(); schedule(); });

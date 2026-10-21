@@ -414,12 +414,19 @@
 .lighting-control { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 10px; font-size: 12px; }
 .lighting-control[hidden] { display: none; }
 .lighting-control input[type="range"] { width: 150px; accent-color: #e7b56c; }
-#cafe-time-label { min-width: 9em; color: var(--muted); font-size: 11px; }
+/* Fixed widths: the readout and the slot after it never change size, so nothing in the header
+   shifts while you scrub or when "Back to now" comes and goes. */
+#cafe-time-label { display: inline-block; width: 4.9em; font-size: 12px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.time-slot { display: inline-grid; align-items: center; }
+.time-slot > * { grid-area: 1 / 1; justify-self: start; }
+.time-live { color: var(--muted); font-size: 11px; white-space: nowrap; }
+.lighting-control.is-live #cafe-now, .lighting-control:not(.is-live) .time-live { visibility: hidden; }
 .lighting-control button {
   min-height: 34px; padding: 5px 10px; cursor: pointer; color: #30271f; text-shadow: none;
   background: #ecdfc8; border: 1px solid #a58c68; border-radius: 3px; font-size: 12px;
 }
 .lighting-control button[hidden] { display: none; }
+#cafe-now { white-space: nowrap; }
 .lighting-control :is(input, button):focus-visible { outline: 3px solid #fff3e2; outline-offset: 3px; }
 .lighting-control .eye-candy { display: inline-flex; align-items: center; gap: 7px; }
 .eye-candy::after { content: ''; width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid #7d6039; background: #7d6039; }
