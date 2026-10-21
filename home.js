@@ -171,20 +171,43 @@ document.querySelectorAll('.compare').forEach(compare => {
 });
 // Papers on the table: each turns by its --tilt. Its outline is a clip-path polygon sized to the
 // paper (recomputed when it resizes, never on scroll), so the light inside stays fixed to the room
-// while the words turn. Narrow screens get a gentler turn. Papers off screen switch their light off.
+// while the words turn. A folded pamphlet also gets the outline of its inside page, splayed a little
+// from the fold, and the shadow its lifted cover casts on it; a creased note gets its edges pinched in
+// at the creases. Narrow screens get a gentler turn. Papers off screen switch their light off.
 (() => {
-  const papers = document.querySelectorAll('.pp');
+  const papers = [...document.querySelectorAll('.pp')];
   if (!papers.length || !('ResizeObserver' in window)) return;
   const narrow = window.matchMedia('(max-width: 860px)');
+  const M = 14;   // the shadow and inside-page layers are drawn in a box this much larger all round
+  const poly = (pts, o = 0) => `polygon(${pts.map(([x, y]) => `${(x + o).toFixed(1)}px ${(y + o).toFixed(1)}px`).join(', ')})`;
+  const lerp = (p, q, t) => [p[0] + (q[0] - p[0]) * t, p[1] + (q[1] - p[1]) * t];
   function shape(pp) {
     const tilt = parseFloat(getComputedStyle(pp).getPropertyValue('--tilt')) || 0;
     const turn = narrow.matches ? tilt * .35 : tilt;
     const s = Math.abs(Math.sin(turn * Math.PI / 180));
     const w = pp.offsetWidth, h = pp.offsetHeight;
     const a = h * s, b = w * s;   // how far each corner moves along its edge
-    pp.style.setProperty('--clip', turn >= 0
-      ? `polygon(${a}px 0, 100% ${b}px, calc(100% - ${a}px) 100%, 0 calc(100% - ${b}px))`
-      : `polygon(0 ${b}px, calc(100% - ${a}px) 0, 100% calc(100% - ${b}px), ${a}px 100%)`);
+    const [tl, tr, br, bl] = turn >= 0 ? [[a, 0], [w, b], [w - a, h], [0, h - b]] : [[0, b], [w - a, 0], [w, h - b], [a, h]];
+    // The paper's own directions: u along the top edge, v down the fold.
+    const unit = (p, q) => { const d = Math.hypot(q[0] - p[0], q[1] - p[1]) || 1; return [(q[0] - p[0]) / d, (q[1] - p[1]) / d]; };
+    const u = unit(tl, tr), v = unit(tl, bl);
+    const at = (p, du, dv) => [p[0] + du * u[0] + dv * v[0], p[1] + du * u[1] + dv * v[1]];
+    let outline = [tl, tr, br, bl], outer = outline;
+    if (pp.classList.contains('pp--creased')) {
+      // Valley creases pull each edge in a touch where they meet it.
+      outline = [tl, at(lerp(tl, tr, .5), 0, 1.2), tr, at(lerp(tr, br, .47), -1.2, 0), br, at(lerp(bl, br, .5), 0, -1.2), bl, at(lerp(tl, bl, .47), 1.2, 0)];
+      outer = outline;
+    }
+    if (pp.querySelector(':scope > .pp-back')) {
+      const n = papers.indexOf(pp), wide = 6 + n % 3 * 1.5, low = 5 + (n + 1) % 3 * 1.5;
+      // The inside page: the rounded fold shows just past the cover on the left, and the page fans out
+      // toward the open corner.
+      outer = [at(tl, -1.8, -.4), at(tr, 2, -.3), at(br, wide, low), at(bl, -1.8, 2)];
+      pp.style.setProperty('--back-clip', poly(outer, M));
+      pp.style.setProperty('--lift-clip', poly([at(tl, 0, 1), at(tr, 1.5, 2), at(br, wide * .7, low * .75), at(bl, 0, 1.5)], M));
+    }
+    pp.style.setProperty('--clip', poly(outline));
+    pp.style.setProperty('--outer-clip', poly(outer, M));
     pp.style.setProperty('--a', `${a}px`);
     pp.style.setProperty('--b', `${b}px`);
     pp.style.setProperty('--turn', `${turn}deg`);

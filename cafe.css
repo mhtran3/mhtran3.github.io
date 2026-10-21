@@ -115,20 +115,43 @@
   background: url('assets/paper.svg') 0 0 / 180px 180px; opacity: .75;
   box-shadow: inset 0 1px 0 rgb(255 250 236 / .55), inset 0 -1px 0 rgb(40 28 16 / .22), inset 1px 0 0 rgb(255 250 236 / .25);
 }
-/* Shadows: tight where the paper touches the wood, and a softer one cast away from the sun. */
+/* Shadows: tight where the paper touches the wood, and a softer one cast away from the sun. Both follow
+   the paper's whole outline (for a pamphlet, the inside page too), drawn in a box 14px larger all round. */
 .pp-contact { z-index: -1; filter: blur(1.2px); translate: 0 1px; }
 .pp-cast { z-index: -2; filter: blur(calc(7px + var(--shadow-y) * .4)); translate: calc(var(--shadow-x) * 1.1 * var(--lift)) calc(var(--shadow-y) * 1.1 * var(--lift)); transition: translate .2s ease; }
-.pp-contact > span, .pp-cast > span { position: absolute; inset: 0; clip-path: var(--clip); }
+.pp-contact > span, .pp-cast > span, .pp-back > span, .pp-lift > span { position: absolute; inset: -14px; clip-path: var(--outer-clip, inset(14px)); }
 .pp-contact > span { background: rgb(16 10 5 / .6); }
 .pp-cast > span { background: rgb(12 8 4 / calc(var(--shadow-alpha) * 1.45)); }
-/* Folded pamphlets: the inner pages show at the open edges, a little shorter than the cover and in its
-   shade; the fold runs down the left side of the cover. */
-.pp > .pp-back { z-index: -1; clip-path: var(--clip); translate: 5px 5px; inset: 2px 0 0 2px;
-  background: linear-gradient(to bottom right, transparent 70%, rgb(40 28 16 / .16)), color-mix(in oklab, var(--paper-shade), #3b2a18 24%); }
-.pp--folio .pp-skin, .pp--note .pp-skin {
-  background: linear-gradient(to right, rgb(60 44 24 / .2), rgb(60 44 24 / .06) 7px, transparent 18px), url('assets/paper.svg') 0 0 / 180px 180px;
+
+/* A folded pamphlet. The two halves share the fold on the left but splay apart a little, so the inside
+   page shows as a thin wedge along the open edges, widest at the corner farthest from the fold. The fold
+   itself is a rounded crest that catches the light, and the cover, springing up slightly at its open edge,
+   shades the inside page next to it. */
+.pp-back, .pp-lift { z-index: -1; }
+.pp-back > span { clip-path: var(--back-clip, inset(16px 8px 7px 13px));
+  background: linear-gradient(to bottom right, transparent 60%, rgb(40 28 16 / .12)), color-mix(in oklab, var(--paper-shade), #3b2a18 15%); }
+.pp-lift { filter: blur(2.2px); translate: calc(var(--shadow-x) * .35) calc(var(--shadow-y) * .35); }
+.pp-lift > span { clip-path: var(--lift-clip, inset(14px)); background: rgb(20 12 6 / .62); }
+.pp--folio .pp-skin {
+  background:
+    linear-gradient(to right, rgb(50 36 20 / .55), rgb(50 36 20 / .2) 2px, rgb(255 250 236 / .6) 5px, rgb(255 250 236 / .18) 10px, rgb(60 44 24 / .1) 18px, transparent 42px),
+    linear-gradient(to left, rgb(255 250 236 / .22), transparent 7px),
+    url('assets/paper.svg') 0 0 / 180px 180px;
 }
-.pp--note > .pp-back { translate: 4px 4px; }
+
+/* A note that was folded twice and opened again: a crease each way, four panels that each catch the light
+   a little differently, and edges pinched in where the creases meet them (home.js). */
+.pp--creased { --accent: #19301e; }
+.pp--creased .pp-skin {
+  --x: 50%; --y: 47%;
+  background:
+    linear-gradient(to right, transparent calc(var(--x) - 2.5px), rgb(60 44 24 / .12) calc(var(--x) - .5px), rgb(255 250 236 / .7) calc(var(--x) + .6px), transparent calc(var(--x) + 3.5px)),
+    linear-gradient(to bottom, transparent calc(var(--y) - 3px), rgb(255 250 236 / .65) calc(var(--y) - .6px), rgb(60 44 24 / .15) calc(var(--y) + .5px), transparent calc(var(--y) + 2.5px)),
+    linear-gradient(to right, transparent 28%, rgb(60 44 24 / .04) calc(var(--x) - 1px), rgb(255 250 236 / .12) calc(var(--x) + 1px), transparent 72%),
+    linear-gradient(to bottom, transparent 25%, rgb(255 250 236 / .12) calc(var(--y) - 1px), rgb(60 44 24 / .04) calc(var(--y) + 1px), transparent 70%),
+    conic-gradient(from 0deg at var(--x) var(--y), rgb(60 44 24 / .03) 0 90deg, rgb(255 250 236 / .2) 90deg 180deg, rgb(60 44 24 / .04) 180deg 270deg, rgb(255 250 236 / .16) 270deg 360deg),
+    url('assets/paper.svg') 0 0 / 180px 180px;
+}
 
 /* ——— Words and pictures, turned with the paper ——— */
 .pp-content { position: relative; z-index: 1; rotate: var(--turn, 0deg); padding: clamp(22px, 3vw, 34px) clamp(22px, 3.2vw, 38px) clamp(24px, 3.2vw, 36px); }
@@ -502,7 +525,7 @@
   .lighting-control .eye-candy { display: none; }
 }
 @media (prefers-contrast: more), (forced-colors: active), print {
-  .ct-sun, .ct-light, .ct-pool, .pp .sky-pane, .pp-skin, .pp-cast, .pp-back, .canopy, .lamp-pool, .lamp-shadow, .downlight, .lighting-control .eye-candy { display: none; }
+  .ct-sun, .ct-light, .ct-pool, .pp .sky-pane, .pp-skin, .pp-cast, .pp-back, .pp-lift, .canopy, .lamp-pool, .lamp-shadow, .downlight, .lighting-control .eye-candy { display: none; }
 }
 @media (prefers-contrast: more) {
   .cafe-interior .welcome { --wall-ink: #fff8eb; --wall-muted: #fff1dc; --wall-line: #a88f72; text-shadow: none; }
@@ -525,6 +548,6 @@
   .cafe-ceiling, .welcome::before, .welcome::after, .counter-top::before, .counter-front::before, .site-footer::before { background: none !important; box-shadow: none !important; }
   .cafe-table, .wall-lamp, .counter-top { display: none; }
   .pp-surface { background: white; }
-  .pp-contact { display: none; }
+  .pp-contact, .pp-lift { display: none; }
   .pp { border: 1px solid #bbb; break-inside: avoid; }
 }
