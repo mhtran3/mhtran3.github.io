@@ -172,15 +172,14 @@ document.querySelectorAll('.compare').forEach(compare => {
 // Papers on the table: each turns by its --tilt. Its outline is a clip-path polygon sized to the
 // paper (recomputed when it resizes, never on scroll), so the light inside stays fixed to the room
 // while the words turn. A folded pamphlet also gets the outline of its inside page, splayed a little
-// from the fold, and the shadow its lifted cover casts on it; a creased note gets its edges pinched in
-// at the creases. Narrow screens get a gentler turn. Papers off screen switch their light off.
+// from the fold, and the shadow its lifted cover casts on it; a note folded twice gets the layers
+// beneath it. Narrow screens get a gentler turn. Papers off screen switch their light off.
 (() => {
   const papers = [...document.querySelectorAll('.pp')];
   if (!papers.length || !('ResizeObserver' in window)) return;
   const narrow = window.matchMedia('(max-width: 860px)');
   const M = 14;   // the shadow and inside-page layers are drawn in a box this much larger all round
   const poly = (pts, o = 0) => `polygon(${pts.map(([x, y]) => `${(x + o).toFixed(1)}px ${(y + o).toFixed(1)}px`).join(', ')})`;
-  const lerp = (p, q, t) => [p[0] + (q[0] - p[0]) * t, p[1] + (q[1] - p[1]) * t];
   function shape(pp) {
     const tilt = parseFloat(getComputedStyle(pp).getPropertyValue('--tilt')) || 0;
     const turn = narrow.matches ? tilt * .35 : tilt;
@@ -193,12 +192,20 @@ document.querySelectorAll('.compare').forEach(compare => {
     const u = unit(tl, tr), v = unit(tl, bl);
     const at = (p, du, dv) => [p[0] + du * u[0] + dv * v[0], p[1] + du * u[1] + dv * v[1]];
     let outline = [tl, tr, br, bl], outer = outline;
-    if (pp.classList.contains('pp--creased')) {
-      // Valley creases pull each edge in a touch where they meet it.
-      outline = [tl, at(lerp(tl, tr, .5), 0, 1.2), tr, at(lerp(tr, br, .47), -1.2, 0), br, at(lerp(bl, br, .5), 0, -1.2), bl, at(lerp(tl, bl, .47), 1.2, 0)];
-      outer = outline;
-    }
-    if (pp.querySelector(':scope > .pp-back')) {
+    if (pp.classList.contains('pp--quarter')) {
+      // Folded twice: the left and top edges are folds, so the layers beneath thicken those edges a
+      // little and show properly only along the right and bottom, each out of line with the next.
+      const layers = [
+        [[-1.3, -.7], [1.5, -.7], [3.5, 3], [-1.3, 1.5]],
+        [[-2, -1.3], [3, -1.3], [5.5, 6.5], [-2, 4]],
+        [[-2.5, -1.8], [2.2, -1.8], [8.5, 8], [-2.5, 3]],
+      ];
+      const corners = [tl, tr, br, bl];
+      layers.forEach((offsets, i) => pp.style.setProperty(i ? `--back-clip-${i + 1}` : '--back-clip',
+        poly(corners.map((c, j) => at(c, ...offsets[j])), M)));
+      outer = [at(tl, -2.5, -1.8), at(tr, 3, -1.8), at(br, 8.5, 8), at(bl, -2.5, 4)];
+      pp.style.setProperty('--lift-clip', poly([tl, at(tr, 1.5, 1.5), at(br, 3, 3), at(bl, 1, 0)], M));
+    } else if (pp.querySelector(':scope > .pp-back')) {
       const n = papers.indexOf(pp), wide = 6 + n % 3 * 1.5, low = 5 + (n + 1) % 3 * 1.5;
       // The inside page: the rounded fold shows just past the cover on the left, and the page fans out
       // toward the open corner.

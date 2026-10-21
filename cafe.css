@@ -139,17 +139,21 @@
     url('assets/paper.svg') 0 0 / 180px 180px;
 }
 
-/* A note that was folded twice and opened again: a crease each way, four panels that each catch the light
-   a little differently, and edges pinched in where the creases meet them (home.js). */
-.pp--creased { --accent: #19301e; }
-.pp--creased .pp-skin {
-  --x: 50%; --y: 47%;
+/* A note folded twice and still closed: folded down the left and again across the top, so it is a quarter
+   of its sheet. At the open edges the three layers beneath show, each a little out of line with the next,
+   with a dark rim where one sheet's edge sits on the one below. Drawn from the bottom layer up. */
+.pp-back--stack > span:nth-child(odd) { background: rgb(20 12 6 / .5); translate: .5px 1px; }
+.pp-back--stack > span:nth-child(1), .pp-back--stack > span:nth-child(2) { clip-path: var(--back-clip-3, inset(14px)); }
+.pp-back--stack > span:nth-child(3), .pp-back--stack > span:nth-child(4) { clip-path: var(--back-clip-2, inset(14px)); }
+.pp-back--stack > span:nth-child(2) { background: color-mix(in oklab, var(--paper-shade), #3b2a18 7%); }
+.pp-back--stack > span:nth-child(4) { background: color-mix(in oklab, var(--paper-shade), #3b2a18 11%); }
+.pp-back--stack > span:nth-child(6) { background: color-mix(in oklab, var(--paper-shade), #3b2a18 15%); }
+.pp--quarter .pp-skin {
   background:
-    linear-gradient(to right, transparent calc(var(--x) - 2.5px), rgb(60 44 24 / .12) calc(var(--x) - .5px), rgb(255 250 236 / .7) calc(var(--x) + .6px), transparent calc(var(--x) + 3.5px)),
-    linear-gradient(to bottom, transparent calc(var(--y) - 3px), rgb(255 250 236 / .65) calc(var(--y) - .6px), rgb(60 44 24 / .15) calc(var(--y) + .5px), transparent calc(var(--y) + 2.5px)),
-    linear-gradient(to right, transparent 28%, rgb(60 44 24 / .04) calc(var(--x) - 1px), rgb(255 250 236 / .12) calc(var(--x) + 1px), transparent 72%),
-    linear-gradient(to bottom, transparent 25%, rgb(255 250 236 / .12) calc(var(--y) - 1px), rgb(60 44 24 / .04) calc(var(--y) + 1px), transparent 70%),
-    conic-gradient(from 0deg at var(--x) var(--y), rgb(60 44 24 / .03) 0 90deg, rgb(255 250 236 / .2) 90deg 180deg, rgb(60 44 24 / .04) 180deg 270deg, rgb(255 250 236 / .16) 270deg 360deg),
+    linear-gradient(to bottom, rgb(50 36 20 / .42), rgb(50 36 20 / .16) 3px, rgb(255 250 236 / .42) 8px, rgb(255 250 236 / .12) 16px, rgb(60 44 24 / .07) 26px, transparent 52px),
+    linear-gradient(to right, rgb(50 36 20 / .5), rgb(50 36 20 / .18) 2px, rgb(255 250 236 / .5) 5px, rgb(255 250 236 / .14) 10px, rgb(60 44 24 / .08) 18px, transparent 40px),
+    linear-gradient(to left, rgb(255 250 236 / .2), transparent 6px),
+    linear-gradient(to top, rgb(255 250 236 / .14), transparent 6px),
     url('assets/paper.svg') 0 0 / 180px 180px;
 }
 
