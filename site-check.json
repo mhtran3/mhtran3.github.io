@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-10-21T18:55:10+00:00",
+  "generated_at_utc": "2026-10-21T19:03:07+00:00",
   "scope": "Homepage, colophon, and their stylesheets. Manual source check, not live deployment telemetry.",
   "result": "pass",
   "local_references_checked": 139,
@@ -19,17 +19,17 @@
         "gallery.css",
         "cafe.css"
       ],
-      "bytes": 53883,
+      "bytes": 53974,
       "budget_bytes": 70656
     },
-    "heading_fonts": {
+    "bricolage_fonts": {
       "files": [
-        "assets/fonts/bricolage-grotesque-medium-latin.woff2",
-        "assets/fonts/bricolage-grotesque-medium-latin-ext.woff2",
-        "assets/fonts/bricolage-grotesque-medium-vietnamese.woff2"
+        "assets/fonts/bricolage-grotesque-latin.woff2",
+        "assets/fonts/bricolage-grotesque-latin-ext.woff2",
+        "assets/fonts/bricolage-grotesque-vietnamese.woff2"
       ],
-      "bytes": 66368,
-      "budget_bytes": 73728
+      "bytes": 119792,
+      "budget_bytes": 131072
     },
     "reflection_fonts": {
       "files": [

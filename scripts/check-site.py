@@ -69,7 +69,7 @@ def main():
     budgets = [
         ('homepage_js', ['home.js', 'lighting.js', 'cafe.js'], 32 * 1024),
         ('stylesheets', ['home.css', 'gallery.css', 'cafe.css'], 69 * 1024),
-        ('heading_fonts', ['assets/fonts/bricolage-grotesque-medium-latin.woff2', 'assets/fonts/bricolage-grotesque-medium-latin-ext.woff2', 'assets/fonts/bricolage-grotesque-medium-vietnamese.woff2'], 72 * 1024),
+        ('bricolage_fonts', ['assets/fonts/bricolage-grotesque-latin.woff2', 'assets/fonts/bricolage-grotesque-latin-ext.woff2', 'assets/fonts/bricolage-grotesque-vietnamese.woff2'], 128 * 1024),
         ('reflection_fonts', ['assets/fonts/fraunces/fraunces-medium-latin.woff2', 'assets/fonts/fraunces/fraunces-medium-latin-ext.woff2', 'assets/fonts/fraunces/fraunces-medium-vietnamese.woff2'], 80 * 1024),
         ('cafe_table', ['assets/table-grain.webp', 'assets/fleck-soft.webp', 'assets/fleck-a.webp', 'assets/fleck-b.webp', 'assets/fleck-c.webp'], 224 * 1024),
         ('branches', ['assets/canopy-jacaranda.webp', 'assets/canopy-bougainvillea.webp'], 200 * 1024),
