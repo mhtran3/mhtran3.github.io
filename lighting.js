@@ -1,17 +1,12 @@
-// Café light: the room follows the visitor's local clock, minute by minute.
-// A day is a handful of hand-picked moments (dawn, noon, golden hour...). Between two
-// moments, every colour and strength is blended, so the light drifts instead of switching.
-// The script writes CSS custom properties; cafe.css decides what each one touches.
+// Café light: follows the visitor's clock, blending between hand-picked moments of the day.
+// Writes CSS custom properties; cafe.css decides what each one touches.
 (() => {
   const body = document.querySelector('body.cafe-interior');
   if (!body) return;
   const root = document.documentElement;
 
-  // [minute of day, palette]. t = table wood in shade / in sun, p = paper in shade / in sun,
-  // s = sunlight colour, ss = sun strength, d = how much sun gets through the leaves,
-  // l = how lit the leaves are, w = plaster wall colour.
-  // Shade under leaves is cool and a little green; sun is warm. That split, and the distance
-  // between the two, is what makes the patches read as light rather than as a pattern.
+  // t = table in shade / sun, p = paper in shade / sun, s = sunlight, ss = sun strength,
+  // d = sun through the leaves, l = how lit the leaves are, w = plaster wall.
   const H = h => Math.round(h * 60);
   const night = { t: ['#241b14', '#3a2a1c'], p: ['#bba98a', '#ccb894'], s: '#c8904f', ss: .1, d: 0, l: .3, w: '#3d3127' };
   const blue = { t: ['#2b2622', '#4a4440'], p: ['#b9b09d', '#c8bfae'], s: '#d7a49c', ss: .25, d: 0, l: .45, w: '#5b4b3d' };
@@ -103,10 +98,8 @@
       '--sky-shift': `${((sun.x - 50) * 2.4).toFixed(1)}px`,
       '--dark': dark.toFixed(3), '--daylit': sun.daylight.toFixed(3),
     };
-    // Choose whichever ink reads best on the plaster at this moment. Around sunrise and
-    // sunset the wall passes through mid-tones where neither ink is comfortable, so the
-    // plaster is nudged lighter or darker until small text clears 6.2:1 on bare plaster, leaving
-    // room for leaf shade and sun patches moving across it.
+    // Pick the ink that reads best on the plaster; around sunrise and sunset, nudge the plaster
+    // until small text clears 6.2:1.
     const darkInk = contrast(luminance(p.w), luminance('#2b2219')) >= contrast(luminance(p.w), luminance('#fff3e2'));
     const ink = darkInk ? '#2b2219' : '#fff3e2';
     let wallLab = toLab(p.w);

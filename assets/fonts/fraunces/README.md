@@ -15,6 +15,6 @@ Latin: 34,292 bytes; extended Latin: 31,420; Vietnamese: 11,100.
 Total: 76,812 bytes. The original font data is unmodified; local filenames
 describe its family, weight, and character coverage.
 
-Used only on the expanded AI reflection title and education opening statement.
+Used for a few reflective passages: the opening statement and education quote on the homepage, and the openings of two stories.
 Unicode ranges match the upstream CSS. No preload or runtime Google Fonts
 request; font-display: swap keeps fallback text readable while loading.
