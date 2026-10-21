@@ -111,18 +111,18 @@ body{
   background: url('assets/wash.svg') center / 100% 100% no-repeat;
   opacity: .8; transform: rotate(-3deg);
 }
-.welcome h1{ font-family: var(--display); font-weight: 500; letter-spacing: -.025em; }
+.welcome h1{ font-family: var(--display); font-weight: 500; letter-spacing: -.012em; }
 .welcome h1 + .eyebrow{ margin: 12px 0 0; font-size: 15px; }
 .welcome-copy{ max-width: 530px; }
 .welcome-links{ grid-column: 2; display: flex; flex-wrap: wrap; gap: 14px 25px; font-size: 14px; }
 .welcome-links a{ padding-block: 7px; }
-.eyebrow{ letter-spacing: .035em; text-transform: none; font-weight: 400; }
+.eyebrow{ letter-spacing: normal; text-transform: none; font-weight: 400; }
 
 .lamp-glow{ position: absolute; inset: -60px -110px -5px; background: radial-gradient(ellipse at 50% 48%, #f6bd6e85, #d8974933 40%, transparent 70%); opacity: var(--lamp-light); transition: opacity 1.6s ease; }
 .lamp-bulb{ position: absolute; z-index: 1; top: 40%; left: 16%; width: 68%; height: 8%; border-radius: 50%; background: #ffe7a8; box-shadow: 0 8px 25px #ffd18c77; opacity: var(--lamp-light); transition: opacity 1.6s ease; }
 
 .contact{ border-top-color: var(--line); margin-top: 36px; }
-.contact h2{ font-family: var(--display); font-weight: 500; }
+.contact h2{ font-family: var(--display); font-weight: 500; letter-spacing: -.012em; }
 .contact-links a:hover{ background: #e4dfcd; }
 .site-footer{ align-items: center; flex-wrap: wrap; }
 .design-note{ flex-basis: 100%; padding-top: 8px; max-width: 680px; font-size: 13px; color: var(--ink); }
@@ -136,7 +136,7 @@ dialog::backdrop{ background: #2d271ee0; }
 .dialog-bar{ background: #e9dcc4; }
 .dialog-bar button{ border-color: #97836a; }
 .dialog-bar button:hover{ background: #d9c8aa; }
-.dialog-content h2, .story h2, .dialog-content h3, .story h3{ font-family: var(--display); font-weight: 500; }
+.dialog-content h2, .story h2, .dialog-content h3, .story h3{ font-family: var(--display); font-weight: 500; letter-spacing: -.012em; word-spacing: -.03em; }
 /* Element classes survive dialog cloning and the direct/no-JS view. */
 :is(.story, .dialog-content) .reflection-title{
   font: 500 clamp(28px, 4vw, 42px)/1.16 var(--reflection);
@@ -157,7 +157,7 @@ dialog::backdrop{ background: #2d271ee0; }
 .story-points li + li{ margin-top: 14px; }
 .dialog-content .board-study, .story .board-study{ max-height: none; width: min(100%, 520px); }
 .colophon{ max-width: 760px; padding-block: 55px 64px; }
-.colophon h1{ font-family: var(--display); font-size: clamp(32px, 5vw, 48px); font-weight: 500; line-height: 1.15; letter-spacing: -1.4px; margin: 12px 0 25px; }
+.colophon h1{ font-family: var(--display); font-size: clamp(32px, 5vw, 48px); font-weight: 500; line-height: 1.15; letter-spacing: -.015em; word-spacing: -.03em; margin: 12px 0 25px; }
 .colophon-intro{ font-size: 19px; line-height: 1.75; }
 .colophon-index{ display: flex; flex-wrap: wrap; gap: 12px 24px; padding-block: 14px 24px; font-size: 14px; }
 .colophon section{ border-top: 1px solid var(--line); padding-block: 28px 18px; }

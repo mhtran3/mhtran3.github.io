@@ -77,3 +77,10 @@ Private planning records, reference photos, student materials, local project sou
 ## Media behavior
 
 The sheet includes an inline heatmap video in place of its former still image. That preview and its copy inside the game story use muted, loop, playsinline, preload=none and data-autoplay="visible". IntersectionObserver starts them when at least 35% visible, pauses them offscreen, and honors a viewer pause. Opening a dialog pauses the background preview; closing unregisters and removes cloned media. Hidden documents pause video. Reduced motion disables automatic playback; native controls still allow manual play. Without JavaScript or IntersectionObserver, the poster and native controls remain. Autoplay policy rejections are caught without retries; loading interrupted by visibility can resume. Other clips stay manual, and a running manual clip takes priority over automatic heatmaps. A single-play listener prevents overlapping videos. All five video elements (four unique media files) retain accessible labels, posters, and controls.
+
+
+## Trombone lamp placement and contact shadow — October 19, 2026
+
+The lamp has a reserved right margin on the plaster introduction. Desktop geometry is 84×210 px, inset 44 px from the wrap's right edge and 24 px below the ceiling. The introduction reserves 144 px on the right and a 266 px minimum height so the fixture clears the lower timber trim at tablet sizes. At ≤640 px the lamp is 64×160 px, 28 px below the ceiling, with 72 px reserved beside the text. SVG proportions and percentage-based pulley/cord alignment stay intact.
+
+The former enlarged silhouette translated by amplified paper-shadow values is replaced by a tight contact drop-shadow plus an unscaled cast shadow clamped to ±2.5 px horizontally and 1–3 px vertically. Its daylight component disappears after dark, leaving a restrained ambient shadow. The warm light pool and interactive cord are retained. No asset or JavaScript changes.
