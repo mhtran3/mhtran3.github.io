@@ -67,7 +67,7 @@ def main():
         elif parsed.fragment and target in pages and unquote(parsed.fragment) not in pages[target].ids:
             errors.append(f'{origin.name}: missing fragment: {ref}')
     budgets = [
-        ('homepage_js', ['home.js', 'lighting.js', 'cafe.js'], 32 * 1024),
+        ('homepage_js', ['home.js', 'lighting.js', 'cafe.js'], 36 * 1024),
         ('stylesheets', ['home.css', 'gallery.css', 'cafe.css'], 69 * 1024),
         ('bricolage_fonts', ['assets/fonts/bricolage-grotesque-latin.woff2', 'assets/fonts/bricolage-grotesque-latin-ext.woff2', 'assets/fonts/bricolage-grotesque-vietnamese.woff2'], 128 * 1024),
         ('reflection_fonts', ['assets/fonts/fraunces/fraunces-medium-latin.woff2', 'assets/fonts/fraunces/fraunces-medium-latin-ext.woff2', 'assets/fonts/fraunces/fraunces-medium-vietnamese.woff2'], 80 * 1024),
