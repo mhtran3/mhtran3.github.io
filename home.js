@@ -193,23 +193,24 @@ document.querySelectorAll('.compare').forEach(compare => {
     const at = (p, du, dv) => [p[0] + du * u[0] + dv * v[0], p[1] + du * u[1] + dv * v[1]];
     let outline = [tl, tr, br, bl], outer = outline;
     if (pp.classList.contains('pp--quarter')) {
-      // Folded twice: the left and top edges are folds, so the layers beneath thicken those edges a
-      // little and show properly only along the right and bottom, each out of line with the next.
+      // Folded twice, down the left and across the top. The layers inside stay within those folds and
+      // fan out toward the open corner, each out of line with the next; where the folds meet, the corner
+      // is blunted by the bulk of paper wrapped inside it.
+      outline = [at(tl, 0, 3.5), at(tl, 1, 1), at(tl, 3.5, 0), tr, br, bl];
       const layers = [
-        [[-1.3, -.7], [1.5, -.7], [3.5, 3], [-1.3, 1.5]],
-        [[-2, -1.3], [3, -1.3], [5.5, 6.5], [-2, 4]],
-        [[-2.5, -1.8], [2.2, -1.8], [8.5, 8], [-2.5, 3]],
+        [[.5, .5], [.6, .3], [2.6, 2.2], [.4, .7]],
+        [[.5, .5], [1.1, .4], [4.2, 4.8], [.5, 1.1]],
+        [[.5, .5], [.8, .5], [6.4, 5.6], [.6, 1.5]],
       ];
       const corners = [tl, tr, br, bl];
       layers.forEach((offsets, i) => pp.style.setProperty(i ? `--back-clip-${i + 1}` : '--back-clip',
         poly(corners.map((c, j) => at(c, ...offsets[j])), M)));
-      outer = [at(tl, -2.5, -1.8), at(tr, 3, -1.8), at(br, 8.5, 8), at(bl, -2.5, 4)];
-      pp.style.setProperty('--lift-clip', poly([tl, at(tr, 1.5, 1.5), at(br, 3, 3), at(bl, 1, 0)], M));
+      outer = [...outline.slice(0, 3), at(tr, 1.1, .5), at(br, 6.4, 5.6), at(bl, .6, 1.5)];
+      pp.style.setProperty('--lift-clip', poly([tl, at(tr, .5, .5), at(br, 2.5, 2.5), at(bl, .5, .5)], M));
     } else if (pp.querySelector(':scope > .pp-back')) {
       const n = papers.indexOf(pp), wide = 6 + n % 3 * 1.5, low = 5 + (n + 1) % 3 * 1.5;
-      // The inside page: the rounded fold shows just past the cover on the left, and the page fans out
-      // toward the open corner.
-      outer = [at(tl, -1.8, -.4), at(tr, 2, -.3), at(br, wide, low), at(bl, -1.8, 2)];
+      // The inside page is joined to the cover at the fold and fans out toward the open corner.
+      outer = [at(tl, .5, 0), at(tr, 2, -.3), at(br, wide, low), at(bl, .5, 1.2)];
       pp.style.setProperty('--back-clip', poly(outer, M));
       pp.style.setProperty('--lift-clip', poly([at(tl, 0, 1), at(tr, 1.5, 2), at(br, wide * .7, low * .75), at(bl, 0, 1.5)], M));
     }

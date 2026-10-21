@@ -123,9 +123,10 @@
 .pp-contact > span { background: rgb(16 10 5 / .6); }
 .pp-cast > span { background: rgb(12 8 4 / calc(var(--shadow-alpha) * 1.45)); }
 
-/* A folded pamphlet. The two halves share the fold on the left but splay apart a little, so the inside
-   page shows as a thin wedge along the open edges, widest at the corner farthest from the fold. The fold
-   itself is a rounded crest that catches the light, and the cover, springing up slightly at its open edge,
+/* A folded pamphlet. The two halves are joined at the fold on the left, so nothing shows past it; they
+   splay apart a little toward the open edges, where the inside page shows as a thin wedge, widest at the
+   corner farthest from the fold. A creased fold is about as round as the paper is thick, so from above it
+   is just a clean edge with a hairline of shade. The cover springs up slightly at its open edge and
    shades the inside page next to it. */
 .pp-back, .pp-lift { z-index: -1; }
 .pp-back > span { clip-path: var(--back-clip, inset(16px 8px 7px 13px));
@@ -134,27 +135,31 @@
 .pp-lift > span { clip-path: var(--lift-clip, inset(14px)); background: rgb(20 12 6 / .62); }
 .pp--folio .pp-skin {
   background:
-    linear-gradient(to right, rgb(50 36 20 / .55), rgb(50 36 20 / .2) 2px, rgb(255 250 236 / .6) 5px, rgb(255 250 236 / .18) 10px, rgb(60 44 24 / .1) 18px, transparent 42px),
-    linear-gradient(to left, rgb(255 250 236 / .22), transparent 7px),
+    linear-gradient(to right, rgb(50 36 20 / .2), rgb(50 36 20 / .06) 2px, transparent 5px),
+    linear-gradient(to right, rgb(60 44 24 / .05), transparent 26px),
     url('assets/paper.svg') 0 0 / 180px 180px;
+  box-shadow: inset 0 1px 0 rgb(255 250 236 / .4), inset 0 -1px 0 rgb(40 28 16 / .22), inset 1px 0 0 rgb(40 28 16 / .16);
 }
 
-/* A note folded twice and still closed: folded down the left and again across the top, so it is a quarter
-   of its sheet. At the open edges the three layers beneath show, each a little out of line with the next,
-   with a dark rim where one sheet's edge sits on the one below. Drawn from the bottom layer up. */
-.pp-back--stack > span:nth-child(odd) { background: rgb(20 12 6 / .5); translate: .5px 1px; }
+/* A note folded twice and still closed: folded down the left, then again across the top, so it is a quarter
+   of its sheet. The layers inside are wrapped by those folds and show only along the open edges: down the
+   right they fan out from the top fold, along the bottom from the left fold, each a little out of line with
+   the next, with a fine dark line where one sheet's edge rests on the one below. The top fold wraps two
+   layers, so its shade is a little wider; where the folds meet, the corner is bulky and slightly blunted
+   (home.js). Drawn from the bottom layer up. */
+.pp-back--stack > span:nth-child(odd) { background: rgb(20 12 6 / .36); translate: .4px .7px; }
 .pp-back--stack > span:nth-child(1), .pp-back--stack > span:nth-child(2) { clip-path: var(--back-clip-3, inset(14px)); }
 .pp-back--stack > span:nth-child(3), .pp-back--stack > span:nth-child(4) { clip-path: var(--back-clip-2, inset(14px)); }
-.pp-back--stack > span:nth-child(2) { background: color-mix(in oklab, var(--paper-shade), #3b2a18 7%); }
-.pp-back--stack > span:nth-child(4) { background: color-mix(in oklab, var(--paper-shade), #3b2a18 11%); }
-.pp-back--stack > span:nth-child(6) { background: color-mix(in oklab, var(--paper-shade), #3b2a18 15%); }
+.pp-back--stack > span:nth-child(2) { background: color-mix(in oklab, var(--paper-shade), #3b2a18 6%); }
+.pp-back--stack > span:nth-child(4) { background: color-mix(in oklab, var(--paper-shade), #3b2a18 10%); }
+.pp-back--stack > span:nth-child(6) { background: color-mix(in oklab, var(--paper-shade), #3b2a18 14%); }
 .pp--quarter .pp-skin {
   background:
-    linear-gradient(to bottom, rgb(50 36 20 / .42), rgb(50 36 20 / .16) 3px, rgb(255 250 236 / .42) 8px, rgb(255 250 236 / .12) 16px, rgb(60 44 24 / .07) 26px, transparent 52px),
-    linear-gradient(to right, rgb(50 36 20 / .5), rgb(50 36 20 / .18) 2px, rgb(255 250 236 / .5) 5px, rgb(255 250 236 / .14) 10px, rgb(60 44 24 / .08) 18px, transparent 40px),
-    linear-gradient(to left, rgb(255 250 236 / .2), transparent 6px),
-    linear-gradient(to top, rgb(255 250 236 / .14), transparent 6px),
+    radial-gradient(circle at 0 0, rgb(50 36 20 / .14), transparent 16px),
+    linear-gradient(to bottom, rgb(50 36 20 / .22), rgb(50 36 20 / .07) 2.5px, rgb(60 44 24 / .04) 8px, transparent 20px),
+    linear-gradient(to right, rgb(50 36 20 / .2), rgb(50 36 20 / .06) 2px, transparent 5px),
     url('assets/paper.svg') 0 0 / 180px 180px;
+  box-shadow: inset 0 1px 0 rgb(40 28 16 / .12), inset 1px 0 0 rgb(40 28 16 / .16), inset 0 -1px 0 rgb(40 28 16 / .22);
 }
 
 /* ——— Words and pictures, turned with the paper ——— */
