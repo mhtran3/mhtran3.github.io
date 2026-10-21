@@ -66,74 +66,112 @@
 /* Ceiling, wall and counter stand between the eye and the branches. */
 .cafe-interior .welcome, .cafe-interior .contact.counter, .cafe-interior .site-footer { z-index: 3; }
 
-/* ——— The paper ———
-   One long folded sheet on the table; its light sits slightly toward the sun. */
-.reading { position: relative; z-index: 1; padding-block: clamp(44px, 7vw, 88px) clamp(56px, 8vw, 104px); }
-.zine {
-  --ink: #261d14; --muted: #3d3124; --accent: #1f3b25; --red: #261d14;
-  position: relative; isolation: isolate; width: min(980px, 100%); margin-inline: auto;
-  color: var(--ink); background: var(--paper-shade); border-radius: 2px;
-  box-shadow: 0 0 0 1px rgb(40 28 16 / .28), 0 1px 2px rgb(20 12 6 / .55),
-    calc(var(--shadow-x) * 1.3) calc(var(--shadow-y) * 1.3) calc(8px + var(--shadow-y)) rgb(12 8 4 / calc(var(--shadow-alpha) * 1.5));
+/* ——— The work: papers on the table ———
+   Each project is its own sheet, card or folded pamphlet, turned slightly. A paper's outline is a
+   clip-path polygon (home.js sizes it), so the light inside, a position: fixed pane, stays put while
+   the paper scrolls; only the words turn with the paper. Without the script the papers lie straight. */
+.desk {
+  --ink: #261d14; --muted: #3d3124; --accent: #1f3b25;
+  position: relative; z-index: 1;
+  width: min(1000px, 100%); margin-inline: auto;
+  padding-block: clamp(40px, 6vw, 76px) clamp(56px, 8vw, 104px);
 }
-/* The light pane is position: fixed and clipped to the paper, so it stays put while the paper scrolls. */
-.zine-light { position: absolute; z-index: -1; inset: 0; clip-path: inset(0 round 2px); pointer-events: none; }
+.desk-part + .desk-part { margin-top: clamp(72px, 10vw, 128px); }
+/* Each collection's name is a slip of paper too, so it stays readable when the sun crosses it. */
+.pp--label { width: fit-content; margin: 0 0 clamp(20px, 2.8vw, 32px) clamp(0px, 2vw, 24px); }
+#graphics .pp--label { margin-left: clamp(0px, 6vw, 72px); }
+.pp--label .pp-content { padding: 12px 22px 13px; }
+.desk-title { margin: 0; font: 500 clamp(24px, 2.6vw, 30px)/1.1 var(--display); letter-spacing: -.012em; word-spacing: -.03em; color: var(--ink); }
+.desk-row { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: clamp(20px, 3vw, 40px); align-items: start; }
+.desk-row + .desk-row { margin-top: clamp(30px, 4.5vw, 56px); }
+.desk-row--one > .pp--folio { grid-column: 1 / span 7; }
+.desk-row--wide > .pp--folio { grid-column: 1 / span 8; }
+.desk-row--one > .desk-stack { grid-column: 8 / span 5; }
+.desk-row--wide > .desk-stack { grid-column: 9 / span 4; }
+.desk-row--two > .pp--folio { grid-column: 2 / span 7; }
+.desk-row--two > .pp--small { grid-column: 9 / span 4; margin-top: clamp(40px, 7vw, 88px); }
+.desk-row--three > .pp--folio { grid-column: 4 / span 8; }
+.desk-stack { display: grid; gap: clamp(26px, 3.4vw, 40px); }
+.desk-stack--low { padding-top: clamp(24px, 5vw, 64px); }
+.desk-stack > .pp--note { width: min(100%, 360px); justify-self: end; margin-right: 8px; margin-top: 14px; }
+.desk-stack > .pp--card { margin-left: -10px; }
+.desk-stack > .pp--slip { justify-self: start; margin-left: 18px; }
+
+/* ——— One paper ——— */
+.pp { position: relative; isolation: isolate; color: var(--ink); --clip: inset(0); --lift: 1; }
+.pp > span { position: absolute; inset: 0; pointer-events: none; }
+.pp-surface { z-index: 0; clip-path: var(--clip); background: var(--paper-shade); }
 .sky-pane { position: fixed; inset: 0; transform: translate3d(calc(var(--shadow-x) * -.7), calc(var(--shadow-y) * -.7), 0); transition: transform 1.2s ease; }
-.zine-light .sky-room { opacity: min(1, var(--dapple) * 1.18); }
-.zine-light .fleck { background-color: var(--paper-lit); }
-.zine-light .pool { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 66% at 50% 44%, var(--pool-paper), transparent 74%); opacity: var(--pool); transition: opacity .6s ease; }
-/* Paper fibre, over the light so sun and shade both look like paper. */
-.zine::after { content: ''; position: absolute; z-index: -1; inset: 0; pointer-events: none; background: url('assets/paper.svg') 0 0 / 180px 180px; opacity: .7; }
-.zine a:focus-visible { outline: 3px solid var(--ink); outline-offset: 4px; }
-.zine figure { margin: 0; }
+.pp-surface .sky-room { opacity: min(1, var(--dapple) * 1.18); }
+.pp-surface .fleck { background-color: var(--paper-lit); }
+.pp-surface .pool { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 66% at 50% 44%, var(--pool-paper), transparent 74%); opacity: var(--pool); transition: opacity .6s ease; }
+/* Off screen, a paper's light is switched off (home.js) so only visible papers carry moving light. */
+.pp.is-away .sky-pane { display: none; }
+/* Paper fibre and the edge of the sheet: lit along the top, darker along the bottom, turned with the paper. */
+.pp-skin {
+  position: absolute; inset: calc(var(--b, 0px) / 2) calc(var(--a, 0px) / 2); rotate: var(--turn, 0deg);
+  background: url('assets/paper.svg') 0 0 / 180px 180px; opacity: .75;
+  box-shadow: inset 0 1px 0 rgb(255 250 236 / .55), inset 0 -1px 0 rgb(40 28 16 / .22), inset 1px 0 0 rgb(255 250 236 / .25);
+}
+/* Shadows: tight where the paper touches the wood, and a softer one cast away from the sun. */
+.pp-contact { z-index: -1; filter: blur(1.2px); translate: 0 1px; }
+.pp-cast { z-index: -2; filter: blur(calc(7px + var(--shadow-y) * .4)); translate: calc(var(--shadow-x) * 1.1 * var(--lift)) calc(var(--shadow-y) * 1.1 * var(--lift)); transition: translate .2s ease; }
+.pp-contact > span, .pp-cast > span { position: absolute; inset: 0; clip-path: var(--clip); }
+.pp-contact > span { background: rgb(16 10 5 / .6); }
+.pp-cast > span { background: rgb(12 8 4 / calc(var(--shadow-alpha) * 1.45)); }
+/* Folded pamphlets: the inner pages show at the open edges, a little shorter than the cover and in its
+   shade; the fold runs down the left side of the cover. */
+.pp > .pp-back { z-index: -1; clip-path: var(--clip); translate: 5px 5px; inset: 2px 0 0 2px;
+  background: linear-gradient(to bottom right, transparent 70%, rgb(40 28 16 / .16)), color-mix(in oklab, var(--paper-shade), #3b2a18 24%); }
+.pp--folio .pp-skin, .pp--note .pp-skin {
+  background: linear-gradient(to right, rgb(60 44 24 / .2), rgb(60 44 24 / .06) 7px, transparent 18px), url('assets/paper.svg') 0 0 / 180px 180px;
+}
+.pp--note > .pp-back { translate: 4px 4px; }
 
-/* Each part is a panel of the fold-out, with a crease between. */
-.part { position: relative; z-index: 0; padding: clamp(36px, 6vw, 68px) clamp(22px, 6vw, 72px) clamp(44px, 7vw, 80px); }
-.part:nth-of-type(odd):not(.part--open) { background: rgb(60 44 24 / .045); }
-.part + .part::before { content: ''; position: absolute; z-index: -1; left: 0; right: 0; top: 0; height: 64px; pointer-events: none; background: linear-gradient(to bottom, rgb(60 44 24 / .16), rgb(60 44 24 / .05) 30%, transparent); }
-.part + .part::after { content: ''; position: absolute; left: 0; right: 0; top: -1px; height: 1px; pointer-events: none; background: rgb(60 44 24 / .26); box-shadow: 0 -1px 0 rgb(255 250 236 / .4); }
+/* ——— Words and pictures, turned with the paper ——— */
+.pp-content { position: relative; z-index: 1; rotate: var(--turn, 0deg); padding: clamp(22px, 3vw, 34px) clamp(22px, 3.2vw, 38px) clamp(24px, 3.2vw, 36px); }
+.pp--folio .pp-content { padding-left: clamp(26px, 3.6vw, 44px); }
+.pp--slip .pp-content { padding: 16px 22px 18px; }
+.pp .kicker { margin: 0; font: 600 14.5px/1.4 var(--sans); letter-spacing: -.003em; color: var(--ink); text-wrap: balance; }
+.pp .meta { margin: 6px 0 0; padding: 0; list-style: none; font-size: 13.5px; line-height: 1.5; color: var(--muted); }
+.pp h3 { margin: 10px 0 12px; font: 500 clamp(22px, 2.3vw, 29px)/1.15 var(--display); letter-spacing: -.01em; word-spacing: -.03em; text-wrap: balance; }
+:is(.pp--note, .pp--card, .pp--slip) h3 { font-size: clamp(21px, 1.9vw, 24px); }
+.pp--slip h3 { margin-bottom: 0; }
+.pp p { margin: 0 0 12px; font-size: 16px; line-height: 1.62; text-wrap: pretty; }
+.pp .pp-dek { font: 500 19px/1.36 var(--reflection); font-optical-sizing: auto; }
+.pp-roles { margin-top: 16px !important; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 22px; }
+.pp .pp-more { margin: 14px 0 0; font-size: 15px; color: var(--accent); }
+.pp-split { display: grid; grid-template-columns: minmax(0, 11rem) minmax(0, 1fr); gap: 24px; }
+.pp-split h3 { margin-top: 0; }
+/* The whole paper opens its story; pictures and players sit above that, so they still work. */
+.pp-link { text-decoration: none; }
+.pp-link::after { content: ''; position: absolute; inset: 0; z-index: 2; }
+.pp:hover { --lift: 1.5; }
+.pp:hover .pp-link { text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: .16em; }
+.pp-link:focus-visible { outline: none; }
+/* Keyboard focus: a cream ring with a dark halo shows on paper, dark wood and sun alike; the paper lifts a little. */
+.pp-link:focus-visible::after { outline: 3px solid #fff1d6; outline-offset: 6px; border-radius: 3px; box-shadow: 0 0 0 9px rgb(20 12 6 / .6); }
+.pp:focus-within { --lift: 1.6; }
+.pp-media { position: relative; margin: 0 0 20px; }
+.pp-live { z-index: 3; }
+.pp-media :is(img, video) { display: block; width: 100%; height: auto; border-radius: 1px; box-shadow: 0 0 0 1px rgb(40 28 16 / .16); }
+.pp-media figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--muted); }
+.pp-still { position: relative; display: block; }
+.pp-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: center; margin-bottom: 18px; }
+.pp-pair img { width: 100%; height: auto; border-radius: 1px; box-shadow: 0 0 0 1px rgb(40 28 16 / .16); }
+.play { position: absolute; left: 50%; top: 50%; width: 52px; height: 52px; translate: -50% -50%; border-radius: 50%; background: rgb(18 12 6 / .5); box-shadow: 0 0 0 1.5px rgb(255 248 234 / .85); }
+.play::after { content: ''; position: absolute; left: 20px; top: 16px; width: 16px; height: 20px; background: #fff8ea; clip-path: polygon(0 0, 100% 50%, 0 100%); }
 
-.entry { display: grid; grid-template-columns: minmax(0, 10.5rem) minmax(0, 1fr); column-gap: clamp(24px, 4vw, 52px); align-items: start; }
-.entry + .entry { margin-top: clamp(56px, 8vw, 96px); }
-.entry .wide { grid-column: 1 / -1; margin-bottom: clamp(20px, 3vw, 30px); }
-.note { grid-column: 1; padding-top: 6px; }
-.body { grid-column: 2; max-width: 37rem; }
-.kicker { margin: 0; font: 600 14.5px/1.4 var(--sans); letter-spacing: -.003em; color: var(--ink); text-wrap: balance; }
-.meta { margin: 8px 0 0; padding: 0; font-size: 13.5px; line-height: 1.5; color: var(--muted); }
-.roles { list-style: none; }
-.roles li + li { margin-top: 9px; }
-.part-title { margin: 0 0 clamp(30px, 4.5vw, 48px); font: 500 clamp(30px, 4.2vw, 46px)/1.06 var(--display); letter-spacing: -.015em; word-spacing: -.035em; text-wrap: balance; }
-.open-title { margin: 0 0 18px; font: 500 clamp(38px, 5.4vw, 60px)/1.02 var(--display); letter-spacing: -.018em; word-spacing: -.04em; text-wrap: balance; }
-.entry h3 { margin: 0 0 14px; font: 500 clamp(24px, 2.5vw, 30px)/1.15 var(--display); letter-spacing: -.01em; word-spacing: -.03em; text-wrap: balance; }
-:is(.entry h3, .open-title) a { text-decoration: none; }
-:is(.entry h3, .open-title) a:hover { text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: .16em; }
-.body p { margin: 0 0 14px; font-size: 17px; line-height: 1.68; text-wrap: pretty; }
-.body .dek { margin-bottom: 20px; font: 500 clamp(21px, 2.3vw, 26px)/1.36 var(--reflection); font-optical-sizing: auto; }
-.pull { margin: 4px 0 20px; }
-.pull p { margin: 0; font: 500 clamp(21px, 2.2vw, 25px)/1.36 var(--reflection); font-optical-sizing: auto; text-indent: -.45em; }
-.pull p::before { content: '“'; }
-.pull p::after { content: '”'; }
-.more { display: inline-block; margin-top: 2px; font-size: 15px; color: var(--accent); text-decoration: none; }
-.more span { margin-right: 3px; }
-.more:hover { text-decoration: underline; text-underline-offset: 4px; }
-.body .aside, .aside--end { margin: 18px 0 0; font-size: 14.5px; line-height: 1.6; color: var(--muted); }
-.aside a { color: var(--accent); text-underline-offset: 3px; }
-.aside--end { margin-top: clamp(48px, 7vw, 80px); padding-left: calc(min(10.5rem, 100%) + clamp(24px, 4vw, 52px)); }
-
-/* Pictures are printed on the page: a hairline edge for photographs, nothing for engravings. */
-.print img, .print-pair img { width: 100%; height: auto; border-radius: 1px; box-shadow: 0 0 0 1px rgb(40 28 16 / .16); }
-.print figcaption { margin-top: 10px; font-size: 13px; line-height: 1.5; color: var(--muted); }
-.print-pair { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(16px, 3vw, 36px); align-items: center; }
 /* Seal before-and-after: one position moves the line through both seals. */
-.compare { position: relative; margin: 0; padding-inline: clamp(0px, 5vw, 64px); }
-.compare-seals { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(20px, 5vw, 64px); border-radius: 4px; }
+.compare { margin-bottom: 26px; padding-inline: clamp(0px, 2.4vw, 28px); }
+.compare-seals { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(20px, 4vw, 48px); border-radius: 4px; }
 .seal-cmp { position: relative; aspect-ratio: 1; touch-action: pan-y; user-select: none; -webkit-user-select: none; }
-.seal-cmp img { position: absolute; inset: 0; width: 100%; height: 100%; -webkit-user-drag: none; }
+.seal-cmp img { position: absolute; inset: 0; width: 100%; height: 100%; box-shadow: none; -webkit-user-drag: none; }
 .cmp-before { clip-path: inset(0 calc(100% - var(--cut)) 0 0); }
 .cmp-after { clip-path: inset(0 0 0 var(--cut)); }
 .cmp-line { position: absolute; top: -10px; bottom: -10px; left: var(--cut); width: 1.5px; translate: -50% 0; background: var(--ink); pointer-events: none; }
 .cmp-range { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
-.compare figcaption { display: flex; justify-content: space-between; gap: 16px; margin-top: 18px; font-size: 13px; line-height: 1.5; color: var(--muted); }
+.compare figcaption { display: flex; justify-content: space-between; gap: 16px; margin-top: 16px; font-size: 13px; line-height: 1.5; color: var(--muted); }
 .cmp-hint { display: none; }
 /* With the script running, the line gets a handle and the seals answer the pointer. */
 .compare-ready .seal-cmp { cursor: ew-resize; }
@@ -144,15 +182,6 @@
 }
 .compare-ready .cmp-hint { display: block; text-align: center; }
 .compare:has(.cmp-range:focus-visible) .compare-seals { outline: 3px solid var(--ink); outline-offset: 12px; }
-.entry--side { grid-template-areas: 'note figure' '. body'; }
-.entry--side > .note { grid-area: note; }
-.entry--side > .print { grid-area: figure; margin-bottom: 26px; }
-.entry--side > .body { grid-area: body; }
-.print--film a { position: relative; display: block; }
-.play { position: absolute; left: 50%; top: 50%; width: 58px; height: 58px; translate: -50% -50%; border-radius: 50%; background: rgb(18 12 6 / .5); box-shadow: 0 0 0 1.5px rgb(255 248 234 / .85); }
-.play::after { content: ''; position: absolute; left: 23px; top: 18px; width: 18px; height: 22px; background: #fff8ea; clip-path: polygon(0 0, 100% 50%, 0 100%); }
-.print a:hover img, .print-pair a:hover img { filter: brightness(1.04); }
-.end-mark { margin: 0; padding: 0 0 44px; text-align: center; font-size: 22px; color: var(--muted); }
 
 /* ——— Ceiling ——— */
 .cafe-ceiling {
@@ -418,15 +447,19 @@
 @media (max-width: 900px) {
   .lighting-control input[type="range"] { width: 120px; }
 }
+@media (max-width: 860px) {
+  /* One paper after another, turned less (home.js); still a little uneven. */
+  .desk-row { display: block; }
+  .desk-stack { display: contents; }
+  .desk-row > .pp, .desk-stack > .pp { margin: clamp(24px, 5vw, 34px) 0 0; width: auto; }
+  .desk-stack > .pp--note, .desk-stack > .pp--slip { width: fit-content; max-width: 100%; margin-left: 12px; }
+  .desk-row:first-of-type > .pp:first-child { margin-top: 0; }
+  .pp-roles { grid-template-columns: 1fr; }
+  .pp-split { display: block; }
+  .pp-split h3 { margin-top: 14px; }
+}
 @media (max-width: 720px) {
-  .reading { padding-block: 28px 44px; }
-  .entry, .entry--side { display: block; }
-  .entry .wide, .entry--side > .print { margin-bottom: 20px; }
-  .note { padding-top: 0; margin-bottom: 12px; }
-  .note .meta { margin-top: 4px; }
-  .roles li + li { margin-top: 4px; }
-  .body p { font-size: 16.5px; }
-  .aside--end { padding-left: 0; }
+  .desk { padding-block: 28px 44px; }
 }
 @media (max-width: 560px) {
   /* Phones: stack the seals. */
@@ -449,26 +482,28 @@
   .counter-espresso { left: 40px; width: 112px; }
   .counter-drinks { right: 0; width: 196px; }
   .counter-dog { left: 30%; width: 120px; height: 110px; }
-  .reading { margin-inline: -8px; }
 }
 @media (prefers-reduced-motion: reduce) {
+  .pp-cast { transition: none; }
   .fleck, .bough, .drinks .steam path, .lamp-cord.swing, .lamp-cord.nudge, .drinks .sipping, .counter-door.swinging .door-panel, .wall-lamp-on :is(.lamp-pool, .lamp-mouth) { animation: none !important; }
   .lighting-control .eye-candy { display: none; }
 }
 @media (prefers-contrast: more), (forced-colors: active), print {
-  .ct-sun, .ct-light, .ct-pool, .zine-light, .zine::after, .canopy, .lamp-pool, .lamp-shadow, .downlight, .lighting-control .eye-candy { display: none; }
+  .ct-sun, .ct-light, .ct-pool, .pp .sky-pane, .pp-skin, .pp-cast, .pp-back, .canopy, .lamp-pool, .lamp-shadow, .downlight, .lighting-control .eye-candy { display: none; }
 }
 @media (prefers-contrast: more) {
   .cafe-interior .welcome { --wall-ink: #fff8eb; --wall-muted: #fff1dc; --wall-line: #a88f72; text-shadow: none; }
   .cafe-interior .welcome::before { background: #3f3127; }
-  .zine { --muted: #2e241a; --accent: #1d3520; background: #f1e8d6; }
-  .part::before, .part::after { display: none; }
+  .desk { --muted: #2e241a; --accent: #1d3520; }
+  .pp-surface { background: #f1e8d6; }
 }
 @media (forced-colors: active) {
   .cafe-table { display: none; }
   .cmp-line { forced-color-adjust: none; background: CanvasText; }
   .compare-ready .cmp-line::after { forced-color-adjust: none; background-color: Canvas; box-shadow: 0 0 0 1.5px CanvasText; }
-  .zine { --ink: CanvasText; --muted: CanvasText; --accent: LinkText; background: Canvas; border: 1px solid CanvasText; }
+  .desk { --ink: CanvasText; --muted: CanvasText; --accent: LinkText; }
+  .pp { border: 1px solid CanvasText; --turn: 0deg !important; --clip: inset(0) !important; }
+  .pp-surface { background: Canvas; }
 }
 @media print {
   .compare-ready .cmp-line::after, .compare-ready .cmp-hint { display: none; }
@@ -476,7 +511,7 @@
   .cafe-interior .monogram { color: #222; }
   .cafe-ceiling, .welcome::before, .welcome::after, .counter-top::before, .counter-front::before, .site-footer::before { background: none !important; box-shadow: none !important; }
   .cafe-table, .wall-lamp, .counter-top { display: none; }
-  .zine { background: white; box-shadow: none; }
-  .part { background: none !important; }
-  .part::before, .part::after { display: none; }
+  .pp-surface { background: white; }
+  .pp-contact { display: none; }
+  .pp { border: 1px solid #bbb; break-inside: avoid; }
 }

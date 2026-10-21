@@ -169,3 +169,32 @@ document.querySelectorAll('.compare').forEach(compare => {
   compare.classList.add('compare-ready');
   set(+range.value);
 });
+// Papers on the table: each turns by its --tilt. Its outline is a clip-path polygon sized to the
+// paper (recomputed when it resizes, never on scroll), so the light inside stays fixed to the room
+// while the words turn. Narrow screens get a gentler turn. Papers off screen switch their light off.
+(() => {
+  const papers = document.querySelectorAll('.pp');
+  if (!papers.length || !('ResizeObserver' in window)) return;
+  const narrow = window.matchMedia('(max-width: 860px)');
+  function shape(pp) {
+    const tilt = parseFloat(getComputedStyle(pp).getPropertyValue('--tilt')) || 0;
+    const turn = narrow.matches ? tilt * .35 : tilt;
+    const s = Math.abs(Math.sin(turn * Math.PI / 180));
+    const w = pp.offsetWidth, h = pp.offsetHeight;
+    const a = h * s, b = w * s;   // how far each corner moves along its edge
+    pp.style.setProperty('--clip', turn >= 0
+      ? `polygon(${a}px 0, 100% ${b}px, calc(100% - ${a}px) 100%, 0 calc(100% - ${b}px))`
+      : `polygon(0 ${b}px, calc(100% - ${a}px) 0, 100% calc(100% - ${b}px), ${a}px 100%)`);
+    pp.style.setProperty('--a', `${a}px`);
+    pp.style.setProperty('--b', `${b}px`);
+    pp.style.setProperty('--turn', `${turn}deg`);
+  }
+  const resize = new ResizeObserver(entries => entries.forEach(e => shape(e.target)));
+  papers.forEach(pp => resize.observe(pp));
+  narrow.addEventListener('change', () => papers.forEach(shape));
+  if ('IntersectionObserver' in window) {
+    const seen = new IntersectionObserver(entries => entries.forEach(e => e.target.classList.toggle('is-away', !e.isIntersecting)),
+      { rootMargin: '25% 0px' });
+    papers.forEach(pp => seen.observe(pp));
+  }
+})();
