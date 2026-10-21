@@ -96,8 +96,8 @@
 .desk-col--main > .pp + .pp { width: 95%; justify-self: end; }
 .desk-col--side > .pp--folio { margin-left: -4px; }
 .desk-col > .pp--slip { justify-self: start; margin-left: 18px; }
-.desk-across { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: clamp(20px, 3vw, 40px); margin-top: clamp(30px, 4.5vw, 56px); }
-.desk-across > .pp { grid-column: 3 / span 8; }
+/* A feature paper runs across the table, ahead of the columns. */
+.desk-feature { margin: 0 clamp(0px, 2vw, 24px) clamp(30px, 4.5vw, 56px) 0; }
 
 /* ——— One paper ——— */
 .pp { position: relative; isolation: isolate; color: var(--ink); --clip: inset(0); --lift: 1; }
@@ -180,11 +180,12 @@
 .pp .pp-dek { font: 500 19px/1.36 var(--reflection); font-optical-sizing: auto; }
 .pp-roles { margin-top: 16px !important; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 22px; }
 .pp .pp-more { margin: 14px 0 0; font-size: 15px; color: var(--accent); }
-.pp-split { display: grid; grid-template-columns: minmax(0, 11rem) minmax(0, 1fr); gap: 24px; }
-.pp-split h3 { margin-top: 0; }
-/* In the narrower column, the label sits above the words instead of beside them. */
-.desk-col--side .pp-split { display: block; }
-.desk-col--side .pp-split h3 { margin-top: 14px; }
+/* The label sits above the words, so no corner of a paper is left empty. */
+.pp-split h3 { margin-top: 14px; }
+.pp--feature .compare { margin-bottom: clamp(22px, 3vw, 34px); padding-inline: clamp(0px, 4vw, 56px); }
+.pp--feature .compare-seals { gap: clamp(24px, 7vw, 88px); }
+.pp-words { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 12px clamp(24px, 4vw, 48px); align-items: start; }
+.pp-words h3 { margin-bottom: 0; }
 /* The whole paper opens its story; pictures and players sit above that, so they still work. */
 .pp-link { text-decoration: none; }
 .pp-link::after { content: ''; position: absolute; inset: 0; z-index: 2; }
@@ -200,8 +201,6 @@
 .pp-media figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--muted); }
 .pp-still { position: relative; display: block; }
 .pp-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: center; margin-bottom: 18px; }
-.pp-across { display: grid; grid-template-columns: minmax(0, 13rem) minmax(0, 1fr); gap: 26px; align-items: start; }
-.pp-across .pp-pair { grid-template-columns: 1fr; margin: 4px 0 0; }
 .pp-pair img { width: 100%; height: auto; border-radius: 1px; box-shadow: 0 0 0 1px rgb(40 28 16 / .16); }
 .play { position: absolute; left: 50%; top: 50%; width: 52px; height: 52px; translate: -50% -50%; border-radius: 50%; background: rgb(18 12 6 / .5); box-shadow: 0 0 0 1.5px rgb(255 248 234 / .85); }
 .play::after { content: ''; position: absolute; left: 20px; top: 16px; width: 16px; height: 20px; background: #fff8ea; clip-path: polygon(0 0, 100% 50%, 0 100%); }
@@ -491,28 +490,24 @@
 @media (max-width: 900px) {
   .lighting-control input[type="range"] { width: 120px; }
 }
-@media (max-width: 1100px) {
-  .pp-split { display: block; }
-  .pp-split h3 { margin-top: 14px; }
-}
 @media (max-width: 860px) {
   /* One paper after another, turned less (home.js); still a little uneven. */
-  .desk-cols, .desk-across { display: block; margin: 0; }
+  .desk-cols { display: block; margin: 0; }
+  .desk-feature { margin: 0; }
   .desk-col { display: contents; }
-  .desk-cols .pp, .desk-across .pp { margin: clamp(24px, 5vw, 34px) 0 0; width: auto; }
+  .desk-cols .pp { margin: clamp(24px, 5vw, 34px) 0 0; width: auto; }
+  .desk-feature + .desk-cols > .desk-col:first-child > .pp:first-child { margin-top: clamp(24px, 5vw, 34px); }
   .desk-col > .pp--note, .desk-col > .pp--slip { width: fit-content; max-width: 100%; margin-left: 12px; }
   .desk-col:first-child > .pp:first-child { margin-top: 0; }
   .pp-roles { grid-template-columns: 1fr; }
-  .pp-split { display: block; }
-  .pp-split h3 { margin-top: 14px; }
 }
 @media (max-width: 720px) {
   .desk { padding-block: 28px 44px; }
+  .pp-words { display: block; }
+  .pp-words h3 { margin-bottom: 12px; }
 }
 @media (max-width: 560px) {
   /* Phones: stack the seals. */
-  .pp-across { display: block; }
-  .pp-across .pp-pair { grid-template-columns: 1fr 1fr; margin-bottom: 18px; }
   .compare-seals { grid-template-columns: minmax(0, 340px); justify-content: center; gap: 28px; }
   .compare figcaption { flex-wrap: wrap; justify-content: space-between; max-width: 340px; margin-inline: auto; }
   .compare-ready .cmp-hint { order: 3; flex-basis: 100%; }

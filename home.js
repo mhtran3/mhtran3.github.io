@@ -168,6 +168,31 @@ document.querySelectorAll('.compare').forEach(compare => {
   });
   compare.classList.add('compare-ready');
   set(+range.value);
+  // The first time the seals come into view, the line sweeps across once to show what it does; not
+  // with reduced motion or Eye candy off, and never once the reader has touched it.
+  let touched = false;
+  ['pointerdown', 'keydown', 'focusin'].forEach(type => compare.addEventListener(type, () => { touched = true; }));
+  const calm = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches || document.documentElement.classList.contains('still');
+  if (!('IntersectionObserver' in window)) return;
+  const seen = new IntersectionObserver(([entry]) => {
+    if (!entry.isIntersecting) return;
+    seen.disconnect();
+    if (touched || calm()) return;
+    const keys = [[0, 50], [.32, 16], [.72, 84], [1, 50]], length = 2600;
+    let start = null;
+    const step = now => {
+      if (touched) return;
+      start ??= now;
+      const t = Math.min(1, (now - start) / length);
+      const i = keys.findIndex(([at]) => at >= t) || 1;
+      const [t0, v0] = keys[i - 1], [t1, v1] = keys[i];
+      const f = (1 - Math.cos(Math.PI * (t - t0) / (t1 - t0))) / 2;   // ease in and out of each stop
+      set(v0 + (v1 - v0) * f);
+      if (t < 1) requestAnimationFrame(step);
+    };
+    setTimeout(() => requestAnimationFrame(step), 350);
+  }, { threshold: .6 });
+  seen.observe(compare.querySelector('.compare-seals'));
 });
 // Papers on the table: each turns by its --tilt. Its outline is a clip-path polygon sized to the
 // paper (recomputed when it resizes, never on scroll), so the light inside stays fixed to the room

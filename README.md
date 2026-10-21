@@ -21,7 +21,7 @@ It's plain HTML, CSS and JavaScript with no build step. To preview it, serve the
 - Fonts: [Bricolage Grotesque](https://ateliertriay.github.io/bricolage/) by Mathieu Triay, and [Fraunces](https://fraunces.undercase.xyz/) by Phaedra Charles and Flavia Zimbardi, both under the SIL Open Font License (see `assets/fonts/`).
 - Class of 2023 jacket photo: Denise Applewhite, Princeton University Office of Communications.
 - The game footage uses third-party sprites and environment art. The hotpot illustration depicts characters from Zenless Zone Zero.
-- The branches over the table and the leaf shapes in the sunlight come from AI-generated paintings, and the wood grain, paper texture and light patterns are generated in code. They're decoration, not my artwork. I built the site with AI assistance for code and writing.
+- The jacaranda over the table is cut from my own photo of the café's skylight. The bougainvillea and the leaf shapes in the sunlight come from AI-generated paintings, and the wood grain, paper texture and light patterns are generated in code. They're decoration, not my artwork. I built the site with AI assistance for code and writing.
 
 ## License
 
