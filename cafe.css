@@ -118,9 +118,9 @@
 .meta { margin: 8px 0 0; padding: 0; font-size: 13.5px; line-height: 1.5; color: var(--muted); }
 .roles { list-style: none; }
 .roles li + li { margin-top: 9px; }
-.part-title { margin: 0 0 clamp(30px, 4.5vw, 48px); font: 500 clamp(30px, 4.2vw, 46px)/1.06 var(--display); letter-spacing: -.028em; text-wrap: balance; }
-.open-title { margin: 0 0 18px; font: 500 clamp(38px, 5.4vw, 60px)/1.02 var(--display); letter-spacing: -.034em; text-wrap: balance; }
-.entry h3 { margin: 0 0 14px; font: 500 clamp(24px, 2.5vw, 30px)/1.15 var(--display); letter-spacing: -.022em; text-wrap: balance; }
+.part-title { margin: 0 0 clamp(30px, 4.5vw, 48px); font: 500 clamp(30px, 4.2vw, 46px)/1.06 var(--display); letter-spacing: -.015em; word-spacing: -.035em; text-wrap: balance; }
+.open-title { margin: 0 0 18px; font: 500 clamp(38px, 5.4vw, 60px)/1.02 var(--display); letter-spacing: -.018em; word-spacing: -.04em; text-wrap: balance; }
+.entry h3 { margin: 0 0 14px; font: 500 clamp(24px, 2.5vw, 30px)/1.15 var(--display); letter-spacing: -.01em; word-spacing: -.03em; text-wrap: balance; }
 :is(.entry h3, .open-title) a { text-decoration: none; }
 :is(.entry h3, .open-title) a:hover { text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: .16em; }
 .body p { margin: 0 0 14px; font-size: 17px; line-height: 1.68; text-wrap: pretty; }
@@ -190,7 +190,7 @@
 .cafe-interior .monogram { color: #fff3e2; }
 
 /* ——— Plaster wall ——— */
-.cafe-interior .welcome { isolation: isolate; padding-bottom: 58px; }
+.cafe-interior .welcome { isolation: isolate; min-height: 266px; padding-right: 144px; padding-bottom: 58px; }
 /* The lamp's light may spread past the page edge; clip it there rather than widen the page. */
 .portfolio-canvas { overflow-x: clip; }
 .cafe-interior .welcome > :not(.wall-lamp) { position: relative; z-index: 1; }
@@ -219,13 +219,25 @@
 }
 .cafe-interior .welcome-links a { text-decoration-color: var(--wall-line); }
 
-/* The trombone lamp. Its shadow falls on the plaster away from the light; at night it
-   throws a warm cone down the wall. */
-.wall-lamp { position: absolute; right: 1.5%; top: -6px; width: 94px; height: 236px; }
+/* A wall-mounted fixture in its own right-hand margin, fully below the ceiling.
+   The 2:5 box keeps the SVG, light mouth, and pulley cord on one coordinate system. */
+.wall-lamp { position: absolute; right: 44px; top: 24px; width: 84px; height: 210px; }
 /* The link row is only as wide as its links, so it never sits over the lamp's cord. */
 .cafe-interior .welcome-links { width: fit-content; }
-.wall-lamp-light, .lamp-body, .lamp-shadow, .lamp-shadow img { position: absolute; inset: 0; width: 100%; height: auto; }
-.lamp-shadow { z-index: -1; filter: brightness(0) blur(3px); opacity: calc(.16 + .14 * var(--daylit)); transform: translate(calc(var(--shadow-x) * 3 - 9px), calc(var(--shadow-y) * 1.3 + 4px)) scale(1.03); transform-origin: 50% 0; }
+.wall-lamp-light, .lamp-body, .lamp-shadow, .lamp-shadow img { position: absolute; inset: 0; width: 100%; height: 100%; }
+/* Keep the contact shadow on the fixture; the shallow cast shadow moves only a few
+   pixels with daylight. Paper shadows describe a different depth and must not be
+   amplified here. After dark this settles into ambient shade, not its own light. */
+.lamp-body { filter: drop-shadow(.4px .7px .45px rgb(24 16 10 / .48)); }
+.lamp-shadow {
+  z-index: -1; pointer-events: none;
+  filter: brightness(0) blur(.85px);
+  opacity: calc(.12 + .12 * var(--daylit));
+  transform: translate(
+    clamp(-2.5px, calc(var(--shadow-x) * .2 * var(--daylit)), 2.5px),
+    clamp(1px, calc(1px + var(--shadow-y) * .12 * var(--daylit)), 3px)
+  );
+}
 .lamp-pool {
   position: absolute; z-index: -1; left: 80%; top: 24%; width: 360px; height: 460px; translate: -50% 0;
   background: radial-gradient(ellipse 46% 60% at 50% 3%, #ffd08f, #ffb86a66 36%, #ffb86a00 72%);
@@ -439,8 +451,8 @@
   .compare-ready .cmp-hint { order: 3; flex-basis: 100%; }
 }
 @media (max-width: 640px) {
-  .cafe-interior .welcome { padding-right: 64px; }
-  .wall-lamp { width: 70px; height: 175px; right: -6px; }
+  .cafe-interior .welcome { padding-right: 72px; }
+  .wall-lamp { width: 64px; height: 160px; right: -2px; top: 28px; }
   .lamp-pool { width: 220px; height: 320px; }
   .counter-top { height: 150px; }
   .counter { --gate: 0px; }
