@@ -6,10 +6,10 @@ Live at https://mhtran3.github.io.
 
 ## What's here
 
-- `index.html`: the homepage: the café, my selected work, and the full project stories
+- `index.html`: the homepage: the café, my work laid out as papers on the table, and the full project stories
 - `colophon.html`: how the site is built and who made what
 - `home.css`, `gallery.css`, `cafe.css`: base layout; fonts and stories; the café itself
-- `home.js`: opens project stories as dialogs, plays the heatmap clip when it's in view, and runs the seal before-and-after
+- `home.js`: turns the papers on the table, opens project stories as dialogs, plays the heatmap clip when it's in view, and runs the seal before-and-after
 - `lighting.js`: the time-of-day light, the time slider and the Eye candy switch
 - `cafe.js`: the things you can touch: the lamps, the espresso machine, the drinks and the counter gate
 - `scripts/check-site.py`: checks local links, IDs and file sizes before I publish

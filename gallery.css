@@ -187,7 +187,7 @@ dialog::backdrop{ background: #2d271ee0; }
 }
 
 video:focus-visible { outline: 3px solid var(--red); outline-offset: 5px; }
-.print video{ display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: #192028; border-radius: 1px; box-shadow: 0 0 0 1px rgb(40 28 16 / .16); }
+.pp-media video { aspect-ratio: 16 / 9; background: #192028; border-radius: 1px; box-shadow: 0 0 0 1px rgb(40 28 16 / .16); }
 .story .featured-art, .dialog-content .featured-art{ width: 100%; max-height: none; background: transparent; }
 .story-asterisk{ color: var(--red); font-size: .8em; }
 .media-figure{ margin: 25px 0 32px; }
