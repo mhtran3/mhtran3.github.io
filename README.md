@@ -23,6 +23,10 @@ It's plain HTML, CSS and JavaScript with no build step. To preview it, serve the
 - The game footage uses third-party sprites and environment art. The hotpot illustration depicts characters from Zenless Zone Zero.
 - The branches over the table and the leaf shapes in the sunlight come from AI-generated paintings, and the wood grain and light patterns are generated in code. They're decoration, not my artwork. I built the site with AI assistance for code and writing.
 
+## License
+
+All rights reserved. My artwork and writing here aren't free to reuse; please ask me first. See `LICENSE` for the details and for the things that belong to other people.
+
 ## For later
 
 My dog will stand behind the counter once I've drawn him: add transparent images inside `.counter-dog` with `data-pose="awake"` (and optionally `"blink"` and `"nap"`), all the same size, and `cafe.js` takes care of the rest.
