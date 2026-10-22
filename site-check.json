@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-10-22T04:37:24+00:00",
+  "generated_at_utc": "2026-10-22T05:24:21+00:00",
   "scope": "Homepage, colophon, and their stylesheets. Manual source check, not live deployment telemetry.",
   "result": "pass",
   "local_references_checked": 123,
@@ -56,7 +56,7 @@
         "assets/canopy-jacaranda.webp",
         "assets/canopy-bougainvillea.webp"
       ],
-      "bytes": 206846,
+      "bytes": 204552,
       "budget_bytes": 221184
     },
     "seal_comparison": {
