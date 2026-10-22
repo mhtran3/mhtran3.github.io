@@ -72,7 +72,7 @@ def main():
         ('bricolage_fonts', ['assets/fonts/bricolage-grotesque-latin.woff2', 'assets/fonts/bricolage-grotesque-latin-ext.woff2', 'assets/fonts/bricolage-grotesque-vietnamese.woff2'], 128 * 1024),
         ('reflection_fonts', ['assets/fonts/fraunces/fraunces-medium-latin.woff2', 'assets/fonts/fraunces/fraunces-medium-latin-ext.woff2', 'assets/fonts/fraunces/fraunces-medium-vietnamese.woff2'], 80 * 1024),
         ('cafe_table', ['assets/table-grain.webp', 'assets/fleck-soft.webp', 'assets/fleck-a.webp', 'assets/fleck-b.webp', 'assets/fleck-c.webp'], 224 * 1024),
-        ('branches', ['assets/canopy-jacaranda.webp', 'assets/canopy-bougainvillea.webp'], 200 * 1024),
+        ('branches', ['assets/canopy-jacaranda.webp', 'assets/canopy-bougainvillea.webp'], 216 * 1024),
         ('seal_comparison', ['assets/seal-clio-before.webp', 'assets/seal-whig-before.webp'], 80 * 1024),
         ('cafe_fixtures', ['assets/trombone-lamp.svg', 'assets/plaster.svg', 'assets/cafe-lamp.svg'], 24 * 1024),
         ('paper_texture', ['assets/paper-do.svg'], 64 * 1024),

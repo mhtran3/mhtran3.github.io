@@ -60,7 +60,7 @@
 .bough { position: absolute; --margin: max(0px, (100vw - 980px) / 2); }
 .bough img { width: 100%; height: auto; filter: brightness(var(--leaf-light)) drop-shadow(18px 26px 14px rgb(10 8 4 / .45)); }
 /* Jacaranda from the top left. */
-.bough-jacaranda { left: calc(var(--margin) * -.2 - 30px); top: -3vh; width: calc(var(--margin) * .9 + 90px); transform-origin: 0 0; animation: sky-sway-a 16.3s ease-in-out infinite; }
+.bough-jacaranda { left: calc(var(--margin) * -.2 - 30px); top: -3vh; width: calc((var(--margin) * .9 + 90px) * 1.098); transform-origin: 0 0; animation: sky-sway-a 16.3s ease-in-out infinite; }
 /* Bougainvillea from the right. */
 .bough-bougainvillea { right: calc(var(--margin) * -.35 - 40px); top: 54vh; width: calc(var(--margin) * 1.2 + 120px); transform-origin: 100% 74%; animation: sky-sway-b 19.7s ease-in-out infinite; }
 /* Ceiling, wall and counter stand between the eye and the branches. */
