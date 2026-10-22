@@ -5,20 +5,25 @@
   if (!body) return;
   const root = document.documentElement;
 
+  // Painted the way a painter handles the day: warm light against cool shade. Low sun is orange and
+  // its shadows lean violet; night is a cool, moonlit room that the lamps warm in pools; dawn starts
+  // lavender and turns rose before the light goes clean and pale. Noon stays nearly neutral.
   // t = table in shade / sun, p = paper in shade / sun, s = sunlight, ss = sun strength,
-  // d = sun through the leaves, l = how lit the leaves are, w = plaster wall.
+  // d = sun through the leaves, l = how lit the leaves are, w = plaster wall,
+  // sh = the colour of shadows, lh / ls = the leaves' hue shift (degrees) and saturation.
   const H = h => Math.round(h * 60);
-  const night = { t: ['#241b14', '#3a2a1c'], p: ['#bba98a', '#ccb894'], s: '#c8904f', ss: .1, d: 0, l: .3, w: '#3d3127' };
-  const blue = { t: ['#2b2622', '#4a4440'], p: ['#b9b09d', '#c8bfae'], s: '#d7a49c', ss: .25, d: 0, l: .45, w: '#5b4b3d' };
-  const rise = { t: ['#342a20', '#c98d55'], p: ['#c8b799', '#ffdcac'], s: '#ffca8c', ss: .75, d: .55, l: .72, w: '#a9855c' };
-  const morning = { t: ['#383022', '#d0a76a'], p: ['#cfc2a3', '#fff8e6'], s: '#fff8e4', ss: .88, d: .8, l: .95, w: '#c6a97c' };
-  const noon = { t: ['#3a3022', '#caa063'], p: ['#cdbf9f', '#fff5dc'], s: '#fffbea', ss: .95, d: .85, l: 1, w: '#cdb081' };
-  const afternoon = { t: ['#3b2f21', '#cd9a5a'], p: ['#ccbc9a', '#fff0d0'], s: '#ffe3ae', ss: .9, d: .85, l: .95, w: '#c7a374' };
-  const golden = { t: ['#3a2b1d', '#d38a46'], p: ['#cab693', '#ffe2b2'], s: '#ffbe70', ss: .82, d: .75, l: .8, w: '#b6875b' };
-  const sunset = { t: ['#30251b', '#b76a3c'], p: ['#c0aa89', '#ffcf9c'], s: '#ff9b5d', ss: .55, d: .35, l: .55, w: '#80593f' };
+  const night = { t: ['#161b26', '#33405a'], p: ['#a9adb6', '#c4c9d6'], s: '#9db2e0', ss: .1, d: 0, l: .32, w: '#2b3140', sh: '#060a18', lh: 14, ls: .5 };
+  const dawn = { t: ['#1e2434', '#55638a'], p: ['#b2b3bf', '#d4cfe0'], s: '#b9aee0', ss: .25, d: 0, l: .45, w: '#4d5470', sh: '#0c1030', lh: 10, ls: .62 };
+  const rise = { t: ['#2d2933', '#dc9a7c'], p: ['#c2b8b4', '#ffdccb'], s: '#ffb39a', ss: .72, d: .55, l: .72, w: '#ad857c', sh: '#1c1030', lh: -4, ls: .9 };
+  const morning = { t: ['#302f2e', '#d3b07c'], p: ['#cbc5b6', '#fffaec'], s: '#fff6dd', ss: .88, d: .8, l: .95, w: '#c6b293', sh: '#10121c', lh: 0, ls: 1 };
+  const noon = { t: ['#3a3022', '#caa063'], p: ['#cdbf9f', '#fff5dc'], s: '#fffbea', ss: .95, d: .85, l: 1, w: '#cdb081', sh: '#0c0804', lh: 0, ls: 1 };
+  const afternoon = { t: ['#3a2e24', '#d29c5a'], p: ['#ccbc9c', '#fff0cc'], s: '#ffe0a4', ss: .9, d: .85, l: .95, w: '#c9a270', sh: '#120a0a', lh: -3, ls: 1.05 };
+  const golden = { t: ['#2e2530', '#e18a3e'], p: ['#c2b0a0', '#ffd9a2'], s: '#ffad55', ss: .85, d: .78, l: .85, w: '#c58650', sh: '#1e1030', lh: -9, ls: 1.15 };
+  const sunset = { t: ['#291f2d', '#cf5f32'], p: ['#bba9a5', '#ffc196'], s: '#ff7e45', ss: .6, d: .4, l: .6, w: '#8f5244', sh: '#22103a', lh: -14, ls: 1.2 };
+  const dusk = { t: ['#1f1e30', '#6b5684'], p: ['#b0abb8', '#d8c8dc'], s: '#c99ccc', ss: .22, d: 0, l: .42, w: '#4f4562', sh: '#140c2a', lh: 8, ls: .66 };
   const day = [
-    [0, night], [H(5), night], [H(5.75), blue], [H(6.5), rise], [H(8), morning], [H(12.5), noon],
-    [H(16), afternoon], [H(17.75), golden], [H(18.75), sunset], [H(19.5), blue], [H(20.5), night], [1440, night],
+    [0, night], [H(5), night], [H(5.75), dawn], [H(6.5), rise], [H(8), morning], [H(12.5), noon],
+    [H(16), afternoon], [H(17.75), golden], [H(18.75), sunset], [H(19.5), dusk], [H(20.5), night], [1440, night],
   ];
 
   // Colour blending happens in OKLab, where halfway between two colours looks halfway.
@@ -51,8 +56,8 @@
     const t = ease((minute - m0) / (m1 - m0 || 1));
     return {
       t: a.t.map((c, k) => mixHex(c, b.t[k], t)), p: a.p.map((c, k) => mixHex(c, b.p[k], t)),
-      s: mixHex(a.s, b.s, t), w: mixHex(a.w, b.w, t),
-      ss: mix(a.ss, b.ss, t), d: mix(a.d, b.d, t), l: mix(a.l, b.l, t),
+      s: mixHex(a.s, b.s, t), w: mixHex(a.w, b.w, t), sh: mixHex(a.sh, b.sh, t),
+      ss: mix(a.ss, b.ss, t), d: mix(a.d, b.d, t), l: mix(a.l, b.l, t), lh: mix(a.lh, b.lh, t), ls: mix(a.ls, b.ls, t),
     };
   }
 
@@ -80,7 +85,8 @@
     const lampLight = (wall ? .6 : 0) + (table ? .4 : 0);
     const v = {
       '--sun': p.s, '--sun-at': `${sun.x.toFixed(1)}% ${sun.y.toFixed(1)}%`, '--sun-strength': p.ss.toFixed(3),
-      '--dapple': p.d.toFixed(3), '--leaf-light': p.l.toFixed(3),
+      '--dapple': p.d.toFixed(3), '--leaf-light': p.l.toFixed(3), '--leaf-hue': `${p.lh.toFixed(1)}deg`, '--leaf-sat': p.ls.toFixed(3),
+      '--shadow-ink': p.sh,
       '--table-shade': p.t[0], '--table-lit': p.t[1], '--paper-shade': p.p[0], '--paper-lit': p.p[1],
       '--wall-lamp': wall ? 1 : 0, '--table-lamp': table ? 1 : 0,
       // Lamplight pools on the table; it only shows once the room is darker than the lamp.
@@ -98,6 +104,19 @@
       '--sky-shift': `${((sun.x - 50) * 2.4).toFixed(1)}px`,
       '--dark': dark.toFixed(3), '--daylit': sun.daylight.toFixed(3),
     };
+    // Rim light: the edge of each paper that faces the light catches a thin highlight. Low sun rakes
+    // across from its side (left in the morning, right in the evening); overhead sun leaves almost none.
+    // After dark the wall lamp, up on the right, takes over.
+    const rake = (1 - sun.altitude) ** 1.2 * sun.daylight * p.ss;
+    const lampRim = dark * (wall ? .95 : 0) + dark * (table ? .3 : 0);
+    const rimSum = rake + lampRim || 1;
+    const sunSide = Math.max(-1, Math.min(1, (50 - sun.x) / 34));
+    v['--rim'] = Math.min(1, rake * 1.6 + lampRim).toFixed(3);
+    v['--rim-x'] = ((sunSide * rake + -.75 * lampRim) / rimSum).toFixed(3);
+    v['--rim-y'] = ((.45 * rake + .65 * lampRim) / rimSum).toFixed(3);
+    v['--rim-color'] = mixHex(mixHex(p.s, '#fff6e6', .35), '#ffc77a', lampRim / rimSum);
+    // Bloom: low sun scatters, so at sunrise and sunset the sun patches get a soft warm halo.
+    v['--bloom'] = Math.min(1, (1 - sun.altitude) ** 1.4 * sun.daylight * p.ss * 1.7).toFixed(3);
     // Pick the ink that reads best on the plaster; around sunrise and sunset, nudge the plaster
     // until small text clears 6.2:1.
     const darkInk = contrast(luminance(p.w), luminance('#2b2219')) >= contrast(luminance(p.w), luminance('#fff3e2'));
