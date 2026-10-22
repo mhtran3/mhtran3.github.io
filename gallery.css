@@ -236,3 +236,17 @@ video:focus-visible { outline: 3px solid var(--red); outline-offset: 5px; }
   .cafe-interior .monogram{ color: #222; }
   .lighting-control{ display: none; }
 }
+/* A series shown side by side: the tigers for each major, and the reunion set. */
+.tiger-series, .reunion-set{ display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px 16px; margin-block: 24px 30px; }
+.reunion-set{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.tiger-series figure, .reunion-set figure{ margin: 0; min-width: 0; }
+.tiger-series img{ width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: contain; background: #000; margin: 0; max-height: none; }
+.tiger-series figure:first-child img{ background: #fff; }
+.reunion-set img{ width: 100%; height: auto; margin: 0; max-height: none; background: transparent; }
+.tiger-series figcaption, .reunion-set figcaption{ font-size: 13px; line-height: 1.6; color: var(--muted); margin-top: 10px; }
+.tiger-series figcaption strong, .reunion-set figcaption strong{ display: block; margin-bottom: 2px; font-size: 14px; font-weight: 600; color: var(--ink, inherit); }
+@media (max-width:640px){
+  .tiger-series{ grid-template-columns: 1fr 1fr; }
+  .reunion-set{ grid-template-columns: 1fr 1fr; }
+}
+.dialog-content .painted-photo img, .story .painted-photo img{ max-height: none; width: 100%; height: auto; background: transparent; }

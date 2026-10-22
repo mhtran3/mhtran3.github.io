@@ -92,6 +92,7 @@
 .desk-col--low { padding-top: clamp(24px, 5vw, 60px); }
 .desk-col > .pp--note { width: min(100%, 360px); justify-self: end; margin: 14px 8px 0 0; }
 .desk-col > .pp--card { margin-left: -10px; }
+.desk-col > .pp--card + .pp--card { margin: 0 -4px 0 14px; }
 .desk-col > .pp--small { width: 88%; justify-self: end; margin: 6px -6px 0 0; }
 .desk-col--main > .pp + .pp { width: 95%; justify-self: end; }
 .desk-col--side > .pp--folio { margin-left: -4px; }
@@ -202,6 +203,14 @@
 .pp-still { position: relative; display: block; }
 .pp-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: center; margin-bottom: 18px; }
 .pp-pair img { width: 100%; height: auto; border-radius: 1px; box-shadow: 0 0 0 1px rgb(40 28 16 / .16); }
+/* COS, where the series began, and MOL, the one that was printed, side by side; the rest of the series beneath. */
+.pp-tigers { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px; margin-bottom: 18px; }
+.pp-tigers img { display: block; grid-column: span 2; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: contain; background: #000; border-radius: 1px; box-shadow: 0 0 0 1px rgb(40 28 16 / .16); }
+.pp-tigers img:first-child { grid-column: 1 / span 3; grid-row: 1; background: #fff; }
+.pp-tigers img:last-child { grid-column: 4 / span 3; grid-row: 1; background: #f47920; }
+/* The reunion set, printed straight onto the paper. */
+.pp-marks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(10px, 2vw, 22px); margin: 0 0 8px; }
+.pp-marks img { display: block; width: 100%; height: auto; }
 .play { position: absolute; left: 50%; top: 50%; width: 52px; height: 52px; translate: -50% -50%; border-radius: 50%; background: rgb(18 12 6 / .5); box-shadow: 0 0 0 1.5px rgb(255 248 234 / .85); }
 .play::after { content: ''; position: absolute; left: 20px; top: 16px; width: 16px; height: 20px; background: #fff8ea; clip-path: polygon(0 0, 100% 50%, 0 100%); }
 
@@ -499,10 +508,14 @@
   .desk-feature + .desk-cols > .desk-col:first-child > .pp:first-child { margin-top: clamp(24px, 5vw, 34px); }
   .desk-col > .pp--note, .desk-col > .pp--slip { width: fit-content; max-width: 100%; margin-left: 12px; }
   .desk-col:first-child > .pp:first-child { margin-top: 0; }
+  .desk-col > .pp--card + .pp--card { margin: clamp(24px, 5vw, 34px) 0 0; }
   .pp-roles { grid-template-columns: 1fr; }
 }
 @media (max-width: 720px) {
   .desk { padding-block: 28px 44px; }
+  .desk .desk-coda { margin: clamp(24px, 5vw, 34px) 0 0; }
+  .desk-coda .pp--band .pp-content { display: block; }
+  .desk-coda .pp-marks--sifp { margin-bottom: 18px; }
   .pp-words { display: block; }
   .pp-words h3 { margin-bottom: 12px; }
 }
@@ -560,3 +573,13 @@
   .pp-contact, .pp-lift { display: none; }
   .pp { border: 1px solid #bbb; break-inside: avoid; }
 }
+/* Two pictures with a word under each. */
+.pp-pair--captioned { align-items: end; }
+.pp-pair--captioned figure { margin: 0; min-width: 0; }
+.pp-pair--captioned figcaption { margin-top: 6px; font-size: 13px; line-height: 1.4; color: var(--muted); }
+.pp-pair--captioned img[src*="logo"] { box-shadow: none; }
+/* A last paper laid across the table under the columns: pictures on the left, words on the right. */
+.desk-coda { margin: clamp(30px, 4.5vw, 56px) clamp(0px, 3vw, 36px) 0 clamp(0px, 9vw, 108px); }
+.pp--band .pp-content { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 18px clamp(24px, 3.4vw, 44px); align-items: center; }
+.pp-marks--sifp { align-items: end; margin: 0; }
+.pp-marks--sifp img { box-shadow: 0 0 0 1px rgb(40 28 16 / .16); }

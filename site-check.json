@@ -1,8 +1,8 @@
 {
-  "generated_at_utc": "2026-10-22T05:24:21+00:00",
+  "generated_at_utc": "2026-10-22T19:47:15+00:00",
   "scope": "Homepage, colophon, and their stylesheets. Manual source check, not live deployment telemetry.",
   "result": "pass",
-  "local_references_checked": 123,
+  "local_references_checked": 147,
   "file_sizes": {
     "homepage_js": {
       "files": [
@@ -19,7 +19,7 @@
         "gallery.css",
         "cafe.css"
       ],
-      "bytes": 57625,
+      "bytes": 60766,
       "budget_bytes": 70656
     },
     "bricolage_fonts": {
