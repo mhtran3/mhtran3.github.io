@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-10-21T23:44:01+00:00",
+  "generated_at_utc": "2026-10-22T04:37:24+00:00",
   "scope": "Homepage, colophon, and their stylesheets. Manual source check, not live deployment telemetry.",
   "result": "pass",
   "local_references_checked": 123,
@@ -19,7 +19,7 @@
         "gallery.css",
         "cafe.css"
       ],
-      "bytes": 57615,
+      "bytes": 57625,
       "budget_bytes": 70656
     },
     "bricolage_fonts": {
@@ -56,8 +56,8 @@
         "assets/canopy-jacaranda.webp",
         "assets/canopy-bougainvillea.webp"
       ],
-      "bytes": 199432,
-      "budget_bytes": 204800
+      "bytes": 206846,
+      "budget_bytes": 221184
     },
     "seal_comparison": {
       "files": [
