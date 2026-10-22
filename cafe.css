@@ -4,6 +4,7 @@
 /* Registered so the room eases between values instead of snapping. */
 @property --sun { syntax: '<color>'; inherits: true; initial-value: #fffbea; }
 @property --plaster { syntax: '<color>'; inherits: true; initial-value: #cdb081; }
+@property --shadow-ink { syntax: '<color>'; inherits: true; initial-value: #0c0804; }
 @property --table-shade { syntax: '<color>'; inherits: true; initial-value: #3a3022; }
 @property --table-lit { syntax: '<color>'; inherits: true; initial-value: #caa063; }
 @property --paper-shade { syntax: '<color>'; inherits: true; initial-value: #cdbf9f; }
@@ -18,14 +19,14 @@
   --table-shade: #3a3022; --table-lit: #caa063; --paper-shade: #cdbf9f; --paper-lit: #fff5dc;
   --pool-wood: #8a5a32; --pool-paper: #f3d7a6;
   --plaster: #cdb081; --wall-ink: #2b2219; --wall-muted: #3f3226; --wall-line: #5b473466; --wall-halo: #cdb081cc;
-  --shadow-x: -3px; --shadow-y: 9px; --shadow-alpha: .38;
+  --shadow-x: -3px; --shadow-y: 9px; --shadow-alpha: .38; --shadow-ink: #0c0804; --leaf-hue: 0deg; --leaf-sat: 1; --rim: 0; --rim-x: 0; --rim-y: 1; --rim-color: #fff6e6; --bloom: 0;
   --surface-tint: #fff3d6; --tint-amt: 4%;
   --paper: color-mix(in oklab, #e4d7bf, var(--surface-tint) var(--tint-amt));
   --cream: color-mix(in oklab, #ecdfc8, var(--surface-tint) var(--tint-amt));
   background-color: #2a211a;
 }
 /* No fade on first load; only later changes ease in. */
-.cafe-interior.light-ready { transition: --sun .9s ease, --plaster .9s ease, --table-shade .9s ease, --table-lit .9s ease, --paper-shade .9s ease, --paper-lit .9s ease; }
+.cafe-interior.light-ready { transition: --sun .9s ease, --plaster .9s ease, --table-shade .9s ease, --table-lit .9s ease, --paper-shade .9s ease, --paper-lit .9s ease, --shadow-ink .9s ease; }
 .visually-hidden { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 /* Usable page width without the scrollbar, for full-bleed walls and counters. */
 .portfolio-canvas { container-type: inline-size; overflow-x: clip; }
@@ -35,7 +36,9 @@
 .cafe-table { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; background: var(--table-shade); }
 .cafe-table > * { position: absolute; inset: 0; }
 /* A broad, faint brightening on the side the sun is on. */
-.ct-sun { background: radial-gradient(ellipse 80% 75% at var(--sun-at), color-mix(in oklab, var(--table-lit) 24%, transparent), transparent 75%); opacity: var(--daylit); }
+.ct-sun { background:
+  radial-gradient(ellipse 60% 55% at var(--sun-at), color-mix(in oklab, var(--sun) calc(var(--bloom) * 34%), transparent), transparent 80%),
+  radial-gradient(ellipse 80% 75% at var(--sun-at), color-mix(in oklab, var(--table-lit) 24%, transparent), transparent 75%); opacity: var(--daylit); }
 .ct-light { opacity: min(1, var(--dapple) * 1.18); }
 .ct-light .fleck { background-color: var(--table-lit); }
 /* After dark, lamplight pools in the middle of the table. */
@@ -58,7 +61,7 @@
 /* ——— Branches over the table ——— */
 .canopy { position: fixed; inset: 0; z-index: 2; pointer-events: none; overflow: hidden; }
 .bough { position: absolute; --margin: max(0px, (100vw - 980px) / 2); }
-.bough img { width: 100%; height: auto; filter: brightness(var(--leaf-light)) drop-shadow(18px 26px 14px rgb(10 8 4 / .45)); }
+.bough img { width: 100%; height: auto; filter: brightness(var(--leaf-light)) saturate(var(--leaf-sat)) hue-rotate(var(--leaf-hue)) drop-shadow(18px 26px 14px color-mix(in srgb, var(--shadow-ink) 45%, transparent)); }
 /* Jacaranda from the top left. */
 .bough-jacaranda { left: calc(var(--margin) * -.2 - 30px); top: -3vh; width: calc((var(--margin) * .9 + 90px) * 1.098); transform-origin: 0 0; animation: sky-sway-a 16.3s ease-in-out infinite; }
 /* Bougainvillea from the right. */
@@ -107,6 +110,17 @@
 .sky-pane { position: fixed; inset: 0; transform: translate3d(calc(var(--shadow-x) * -.7), calc(var(--shadow-y) * -.7), 0); transition: transform 1.2s ease; }
 .pp-surface .sky-room { opacity: min(1, var(--dapple) * 1.18); }
 .pp-surface .fleck { background-color: var(--paper-lit); }
+/* Bloom: when the sun is low, the soft layer under the sun patches warms and brightens into a halo, and
+   a faint haze gathers on the side of the sky the sun is on. Both fade out toward noon. */
+.ct-light .fleck-soft { background-color: color-mix(in oklab, var(--table-lit), var(--sun) calc(var(--bloom) * 80%)); }
+.pp-surface .fleck-soft { background-color: color-mix(in oklab, var(--paper-lit), var(--sun) calc(var(--bloom) * 75%)); }
+.pp-surface .sky-pane { background: radial-gradient(ellipse 70% 65% at var(--sun-at), color-mix(in oklab, var(--sun) calc(var(--bloom) * 34%), transparent), transparent 75%); }
+/* Rim light along the edges that face the light (lighting.js): a crisp line, and a softer glow inside it.
+   Drawn on the grain layer, which is turned with the paper and sits at full strength. */
+.pp-grain::after { content: ''; position: absolute; inset: 0; pointer-events: none;
+  box-shadow:
+    inset calc(var(--rim-x) * 2.5px) calc(var(--rim-y) * 2.5px) 0 color-mix(in srgb, var(--rim-color) calc(var(--rim) * 100%), transparent),
+    inset calc(var(--rim-x) * 26px) calc(var(--rim-y) * 26px) 26px -10px color-mix(in srgb, var(--rim-color) calc(var(--rim) * 75%), transparent); }
 .pp-surface .pool { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 66% at 50% 44%, var(--pool-paper), transparent 74%); opacity: var(--pool); transition: opacity .6s ease; }
 /* Off screen, a paper's light is switched off (home.js) so only visible papers carry moving light. */
 .pp.is-away .sky-pane { display: none; }
@@ -126,8 +140,8 @@
 .pp-contact { z-index: -1; filter: blur(1.2px); translate: 0 1px; }
 .pp-cast { z-index: -2; filter: blur(calc(7px + var(--shadow-y) * .4)); translate: calc(var(--shadow-x) * 1.1 * var(--lift)) calc(var(--shadow-y) * 1.1 * var(--lift)); transition: translate .2s ease; }
 .pp-contact > span, .pp-cast > span, .pp-back > span, .pp-lift > span { position: absolute; inset: -14px; clip-path: var(--outer-clip, inset(14px)); }
-.pp-contact > span { background: rgb(16 10 5 / .6); }
-.pp-cast > span { background: rgb(12 8 4 / calc(var(--shadow-alpha) * 1.45)); }
+.pp-contact > span { background: color-mix(in srgb, var(--shadow-ink) 60%, transparent); }
+.pp-cast > span { background: color-mix(in srgb, var(--shadow-ink) calc(var(--shadow-alpha) * 145%), transparent); }
 
 /* A folded pamphlet. The two halves are joined at the fold on the left, so nothing shows past it; they
    splay apart a little toward the open edges, where the inside page shows as a thin wedge, widest at the
