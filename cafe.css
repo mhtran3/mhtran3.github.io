@@ -597,3 +597,23 @@
 .pp--band .pp-content { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 18px clamp(24px, 3.4vw, 44px); align-items: center; }
 .pp-marks--sifp { align-items: end; margin: 0; }
 .pp-marks--sifp img { box-shadow: 0 0 0 1px rgb(40 28 16 / .16); }
+
+/* ——— Signs of use: a coffee ring, a pencil left by the sketch, a clip holding the committee's painting ——— */
+.pp-ring { position: absolute; right: -52px; bottom: -58px; width: 170px; height: 170px; background: url('assets/coffee-ring.svg') center / contain no-repeat; opacity: .4; rotate: 25deg; }
+.pp > .pp-pencil { inset: auto auto -26px 34%; z-index: 2; width: 150px; height: 11px; rotate: -9deg;
+  background: url('assets/pencil.svg') center / contain no-repeat;
+  filter: drop-shadow(calc(var(--shadow-x) * .35) calc(var(--shadow-y) * .35) 1.5px color-mix(in srgb, var(--shadow-ink) 60%, transparent)); }
+.pp-pair--captioned figure { position: relative; }
+.pp-clip { position: absolute; z-index: 2; top: -16px; left: 14%; width: 15px; height: 50px; rotate: 4deg;
+  background: url('assets/paper-clip.svg') center / contain no-repeat;
+  filter: drop-shadow(calc(var(--shadow-x) * .2) calc(var(--shadow-y) * .2) 1px color-mix(in srgb, var(--shadow-ink) 55%, transparent)); }
+
+/* ——— A tiger cub (one of my SIFP drawings) peeks over the counter, and ducks if you reach for it ——— */
+.counter-cub { position: absolute; z-index: 1; left: 51%; bottom: 10px; width: 96px; height: 78px; overflow: hidden; }
+.counter-cub img { position: absolute; left: 0; bottom: 0; width: 100%; height: auto; translate: 0 104%; transition: translate .9s cubic-bezier(.3, .7, .3, 1); }
+.counter-cub.is-peeking img { translate: 0 16%; }
+.counter-cub.is-ducking img { translate: 0 104%; transition-duration: .22s; transition-timing-function: ease-in; }
+.still .counter-cub img { transition: none; }
+@media (max-width: 640px) { .counter-cub { display: none; } }
+@media (prefers-reduced-motion: reduce) { .counter-cub img { transition: none; } }
+@media (prefers-contrast: more), (forced-colors: active), print { .pp-ring, .pp-pencil, .pp-clip, .counter-cub { display: none; } }
