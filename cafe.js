@@ -194,5 +194,23 @@
     ['pointerdown', 'keydown', 'scroll'].forEach(type => addEventListener(type, wake, { passive: true }));
   }
 
+  // ——— The cub ———
+  // Peeks up over the counter the first time the counter comes into view, ducks when a pointer
+  // reaches for it, and comes back up a little later.
+  const cub = document.querySelector('.counter-cub');
+  if (cub && 'IntersectionObserver' in window) {
+    let back;
+    new IntersectionObserver((entries, obs) => {
+      if (!entries[0].isIntersecting) return;
+      obs.disconnect();
+      setTimeout(() => cub.classList.add('is-peeking'), still() ? 0 : 900);
+    }, { threshold: .9 }).observe(cub);
+    cub.addEventListener('pointerenter', () => {
+      if (!cub.classList.contains('is-peeking')) return;
+      cub.classList.add('is-ducking'); clearTimeout(back);
+      back = setTimeout(() => cub.classList.remove('is-ducking'), 3200);
+    });
+  }
+
   body.classList.add('cafe-ready');
 })();

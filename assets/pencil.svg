@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 22"><!-- A green pencil, sharpened, lying on the table. -->
+<path d="M44 2h236v18H44z" fill="#2c5236"/><path d="M44 2h236v5H44z" fill="#4c7a56"/><path d="M44 15h236v5H44z" fill="#1f3b27"/>
+<path d="M280 2h22v18h-22z" fill="#b89452"/><path d="M284 2v18M289 2v18M294 2v18" stroke="#7d6232" stroke-width="1.2"/><path d="M280 4h22" stroke="#e9d39a" stroke-width="1.4"/>
+<path d="M302 2h12a6 6 0 0 1 6 6v6a6 6 0 0 1-6 6h-12z" fill="#d7867f"/><path d="M302 4h11a5 5 0 0 1 5 4" fill="none" stroke="#f0b3ad" stroke-width="1.4"/>
+<path d="M44 2L10 9.5v3L44 20z" fill="#e2bb87"/><path d="M44 2L10 9.5 44 9z" fill="#efd0a6"/><path d="M15 8.4L0 11l15 2.6z" fill="#35302b"/><path d="M15 8.4L0 11l15-0.4z" fill="#5d5650"/>
+</svg>
