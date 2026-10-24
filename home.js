@@ -245,7 +245,8 @@ document.querySelectorAll('.compare').forEach(compare => {
     pp.style.setProperty('--b', `${b}px`);
     pp.style.setProperty('--turn', `${turn}deg`);
     const k = papers.indexOf(pp);
-    pp.style.setProperty('--grain-at', `${k * 137 % 384}px ${k * 211 % 384}px`);
+    // Set directly: a style variable inside the background would make the texture redraw on every light change.
+    const grain = pp.querySelector('.pp-grain'); if (grain) grain.style.backgroundPosition = `${k * 137 % 384}px ${k * 211 % 384}px`;
   }
   const resize = new ResizeObserver(entries => entries.forEach(e => shape(e.target)));
   papers.forEach(pp => resize.observe(pp));

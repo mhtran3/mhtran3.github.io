@@ -73,6 +73,9 @@
   const lamps = { wall: null, table: null };
   let override = null; // minute of day chosen on the slider, or null for the real clock
   let current = 0, timer = null;
+  const FINE = new Set(['--rim', '--rim-x', '--rim-y', '--rim-color', '--bloom', '--leaf-hue', '--leaf-sat', '--leaf-light', '--shadow-ink']);
+  const written = {};
+  let scrubbing = false, frame = 0, settle = 0, lastDraw = 0;
 
   function apply() {
     const now = new Date();
@@ -84,7 +87,7 @@
     const wall = lamps.wall ?? autoOn, table = lamps.table ?? autoOn;
     const lampLight = (wall ? .6 : 0) + (table ? .4 : 0);
     const v = {
-      '--sun': p.s, '--sun-at': `${sun.x.toFixed(1)}% ${sun.y.toFixed(1)}%`, '--sun-strength': p.ss.toFixed(3),
+      '--sun': p.s, '--sun-at': `${sun.x.toFixed(1)}% ${sun.y.toFixed(1)}%`, '--sun-dx': `${((sun.x - 50) / 2).toFixed(2)}%`, '--sun-dy': `${((sun.y - 50) / 2).toFixed(2)}%`, '--sun-strength': p.ss.toFixed(3),
       '--dapple': p.d.toFixed(3), '--leaf-light': p.l.toFixed(3), '--leaf-hue': `${p.lh.toFixed(1)}deg`, '--leaf-sat': p.ls.toFixed(3),
       '--shadow-ink': p.sh,
       '--table-shade': p.t[0], '--table-lit': p.t[1], '--paper-shade': p.p[0], '--paper-lit': p.p[1],
@@ -127,7 +130,13 @@
     Object.assign(v, darkInk
       ? { '--wall-ink': '#2b2219', '--wall-muted': '#3f3226', '--wall-line': '#5b473466', '--wall-halo': p.w + 'cc' }
       : { '--wall-ink': '#fff3e2', '--wall-muted': '#f0dcc1', '--wall-line': '#e8cfae55', '--wall-halo': p.w + 'cc' });
-    for (const [k, val] of Object.entries(v)) body.style.setProperty(k, val);
+    // While the time slider is being dragged, the subtlest effects (rim light, glow, leaf tint, shadow
+    // colour) wait until it stops: they cost the most to redraw and can't be seen changing mid-drag.
+    // Only values that actually changed are written, so unchanged ones cause no work.
+    for (const [k, val] of Object.entries(v)) {
+      if (scrubbing && FINE.has(k)) continue;
+      if (written[k] !== val) { body.style.setProperty(k, val); written[k] = val; }
+    }
     body.dataset.light = sun.daylight > .6 ? 'day' : sun.daylight > .15 ? 'dusk' : 'night';
     body.classList.toggle('wall-lamp-on', wall);
     body.classList.toggle('table-lamp-on', table);
@@ -152,6 +161,12 @@
   const output = document.querySelector('#cafe-time-label');
   const nowButton = document.querySelector('#cafe-now');
   const label = m => new Date(2000, 0, 1, Math.floor(m / 60) % 24, Math.floor(m % 60)).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+  function syncLabel() {
+    if (!slider) return;
+    const text = label(Number(slider.value));
+    slider.setAttribute('aria-valuetext', text);
+    output.textContent = text;
+  }
   function syncControl() {
     if (!slider) return;
     if (override === null) slider.value = Math.round(current);
@@ -163,7 +178,17 @@
     control.classList.toggle('is-live', override === null);
   }
   if (slider) {
-    slider.addEventListener('input', () => { override = Number(slider.value); apply(); syncControl(); schedule(); });
+    // Dragging: redraw at most once a frame, with fades off, then settle the fine effects once it stops.
+    slider.addEventListener('input', () => {
+      override = Number(slider.value);
+      if (!scrubbing) { scrubbing = true; body.classList.add('scrubbing'); }
+      syncLabel();
+      // The light catches up about ten times a second; the slider itself stays free to move every frame.
+      const now = performance.now();
+      if (!frame) frame = setTimeout(() => { frame = 0; lastDraw = performance.now(); requestAnimationFrame(apply); }, Math.max(0, 100 - (now - lastDraw)));
+      clearTimeout(settle);
+      settle = setTimeout(() => { scrubbing = false; apply(); body.classList.remove('scrubbing'); syncControl(); schedule(); }, 200);
+    });
     nowButton.addEventListener('click', () => { override = null; apply(); syncControl(); schedule(); slider.focus(); });
   }
   document.addEventListener('visibilitychange', () => { if (!document.hidden) apply(); syncControl(); schedule(); });
