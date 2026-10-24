@@ -27,6 +27,12 @@
 }
 /* No fade on first load; only later changes ease in. */
 .cafe-interior.light-ready { transition: --sun .9s ease, --plaster .9s ease, --table-shade .9s ease, --table-lit .9s ease, --paper-shade .9s ease, --paper-lit .9s ease, --shadow-ink .9s ease; }
+/* While the time slider is dragged, the light follows it directly, without fades (lighting.js). */
+.cafe-interior.scrubbing, .scrubbing :is(.sky-pane, .pp-surface .pool, .ct-pool, .pp-cast) { transition: none; }
+/* Eye candy off: the café keeps its colour for the time of day, but the patches of sun, the rim light
+   and the glow go, along with the motion. */
+body.still { --bloom: 0 !important; --rim: 0 !important; }
+.still :is(.pp-surface .sky-room, .ct-light) { display: none; }
 .visually-hidden { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 /* Usable page width without the scrollbar, for full-bleed walls and counters. */
 .portfolio-canvas { container-type: inline-size; overflow-x: clip; }
@@ -36,13 +42,16 @@
 .cafe-table { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; background: var(--table-shade); }
 .cafe-table > * { position: absolute; inset: 0; }
 /* A broad, faint brightening on the side the sun is on. */
-.ct-sun { background:
-  radial-gradient(ellipse 60% 55% at var(--sun-at), color-mix(in oklab, var(--sun) calc(var(--bloom) * 34%), transparent), transparent 80%),
-  radial-gradient(ellipse 80% 75% at var(--sun-at), color-mix(in oklab, var(--table-lit) 24%, transparent), transparent 75%); opacity: var(--daylit); }
+.cafe-table > .ct-sun { inset: -50%; opacity: var(--daylit); translate: var(--sun-dx, 0) var(--sun-dy, 0); }
+/* Gradients that read a style variable get redrawn whenever anything on the page changes, so these
+   colours sit in plain layers and the soft edge is a fixed mask. */
+.ct-sun::before, .ct-sun::after { content: ''; position: absolute; inset: 0; }
+.ct-sun::after { background-color: var(--table-lit); opacity: .24; -webkit-mask-image: radial-gradient(ellipse 40% 37.5% at 50% 50%, #000, transparent 75%); mask-image: radial-gradient(ellipse 40% 37.5% at 50% 50%, #000, transparent 75%); }
+.ct-sun::before { background-color: var(--sun); opacity: calc(var(--bloom) * .34); -webkit-mask-image: radial-gradient(ellipse 30% 27.5% at 50% 50%, #000, transparent 80%); mask-image: radial-gradient(ellipse 30% 27.5% at 50% 50%, #000, transparent 80%); }
 .ct-light { opacity: min(1, var(--dapple) * 1.18); }
 .ct-light .fleck { background-color: var(--table-lit); }
 /* After dark, lamplight pools in the middle of the table. */
-.ct-pool { background: radial-gradient(ellipse 60% 66% at 50% 44%, var(--pool-wood), transparent 74%); opacity: var(--pool); transition: opacity .6s ease; }
+.ct-pool { background: radial-gradient(ellipse 60% 66% at 50% 44%, #8a5a32, transparent 74%); opacity: var(--pool); transition: opacity .6s ease; }
 .ct-grain { background: url('assets/table-grain.webp') center / cover; }
 
 /* The sun: alpha masks filled with the light's current colour, so the same images work on wood and paper. */
@@ -110,18 +119,17 @@
 .sky-pane { position: fixed; inset: 0; transform: translate3d(calc(var(--shadow-x) * -.7), calc(var(--shadow-y) * -.7), 0); transition: transform 1.2s ease; }
 .pp-surface .sky-room { opacity: min(1, var(--dapple) * 1.18); }
 .pp-surface .fleck { background-color: var(--paper-lit); }
-/* Bloom: when the sun is low, the soft layer under the sun patches warms and brightens into a halo, and
-   a faint haze gathers on the side of the sky the sun is on. Both fade out toward noon. */
+/* Bloom: when the sun is low, the soft layer under the sun patches warms and brightens into a halo.
+   It fades out toward noon. */
 .ct-light .fleck-soft { background-color: color-mix(in oklab, var(--table-lit), var(--sun) calc(var(--bloom) * 80%)); }
 .pp-surface .fleck-soft { background-color: color-mix(in oklab, var(--paper-lit), var(--sun) calc(var(--bloom) * 75%)); }
-.pp-surface .sky-pane { background: radial-gradient(ellipse 70% 65% at var(--sun-at), color-mix(in oklab, var(--sun) calc(var(--bloom) * 34%), transparent), transparent 75%); }
 /* Rim light along the edges that face the light (lighting.js): a crisp line, and a softer glow inside it.
    Drawn on the grain layer, which is turned with the paper and sits at full strength. */
 .pp-grain::after { content: ''; position: absolute; inset: 0; pointer-events: none;
   box-shadow:
     inset calc(var(--rim-x) * 2.5px) calc(var(--rim-y) * 2.5px) 0 color-mix(in srgb, var(--rim-color) calc(var(--rim) * 100%), transparent),
     inset calc(var(--rim-x) * 26px) calc(var(--rim-y) * 26px) 26px -10px color-mix(in srgb, var(--rim-color) calc(var(--rim) * 75%), transparent); }
-.pp-surface .pool { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 66% at 50% 44%, var(--pool-paper), transparent 74%); opacity: var(--pool); transition: opacity .6s ease; }
+.pp-surface .pool { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 66% at 50% 44%, #f3d7a6, transparent 74%); opacity: var(--pool); transition: opacity .6s ease; }
 /* Off screen, a paper's light is switched off (home.js) so only visible papers carry moving light. */
 .pp.is-away .sky-pane { display: none; }
 /* The paper: a texture after giấy dó, the Vietnamese paper made from the inner bark of the dó tree and
@@ -129,7 +137,7 @@
    bark. Light and dark marks drawn over the lit paper, so it reads in sun, shade and lamplight; turned
    with the paper, and started at a different spot on each one (home.js). */
 .pp-grain, .pp-skin { position: absolute; inset: calc(var(--b, 0px) / 2) calc(var(--a, 0px) / 2); rotate: var(--turn, 0deg); }
-.pp-grain { background: url('assets/paper-do.svg') var(--grain-at, 0 0) / 384px 384px; }
+.pp-grain { background: url('assets/paper-do.svg') 0 0 / 384px 384px; }
 /* The edge of the sheet: lit along the top, darker along the bottom. */
 .pp-skin {
   opacity: .75;
@@ -138,7 +146,7 @@
 /* Shadows: tight where the paper touches the wood, and a softer one cast away from the sun. Both follow
    the paper's whole outline (for a pamphlet, the inside page too), drawn in a box 14px larger all round. */
 .pp-contact { z-index: -1; filter: blur(1.2px); translate: 0 1px; }
-.pp-cast { z-index: -2; filter: blur(calc(7px + var(--shadow-y) * .4)); translate: calc(var(--shadow-x) * 1.1 * var(--lift)) calc(var(--shadow-y) * 1.1 * var(--lift)); transition: translate .2s ease; }
+.pp-cast { z-index: -2; filter: blur(10px); translate: calc(var(--shadow-x) * 1.1 * var(--lift)) calc(var(--shadow-y) * 1.1 * var(--lift)); transition: translate .2s ease; }
 .pp-contact > span, .pp-cast > span, .pp-back > span, .pp-lift > span { position: absolute; inset: -14px; clip-path: var(--outer-clip, inset(14px)); }
 .pp-contact > span { background: color-mix(in srgb, var(--shadow-ink) 60%, transparent); }
 .pp-cast > span { background: color-mix(in srgb, var(--shadow-ink) calc(var(--shadow-alpha) * 145%), transparent); }
@@ -270,7 +278,7 @@
 .cafe-interior .welcome { isolation: isolate; min-height: 266px; padding-right: 144px; padding-bottom: 58px; }
 /* The lamp's light may spread past the page edge; clip it there rather than widen the page. */
 .portfolio-canvas { overflow-x: clip; }
-.cafe-interior .welcome > :not(.wall-lamp) { position: relative; z-index: 1; }
+.cafe-interior .welcome > :not(.wall-lamp, .wall-light) { position: relative; z-index: 1; }
 .cafe-interior .welcome {
   --ink: var(--wall-ink); --muted: var(--wall-muted); --line: var(--wall-line); --red: var(--wall-ink);
   color: var(--ink); text-shadow: 0 0 .5em var(--wall-halo), 0 0 1.2em var(--wall-halo);
@@ -279,16 +287,21 @@
   /* Full-bleed: the wall runs to the edges of the page, measured without the scrollbar. */
   content: ''; display: block; position: absolute; z-index: -2; inset: 0 calc((100% - 100cqw) / 2);
   width: auto; height: auto; opacity: 1; transform: none;
-  background:
-    radial-gradient(ellipse 110px 210px at 9% 0, color-mix(in srgb, #ffd696 calc(var(--downlight) * 34%), transparent), transparent 75%),
-    radial-gradient(ellipse 110px 210px at 37% 0, color-mix(in srgb, #ffd696 calc(var(--downlight) * 34%), transparent), transparent 75%),
-    radial-gradient(ellipse 110px 210px at 63% 0, color-mix(in srgb, #ffd696 calc(var(--downlight) * 34%), transparent), transparent 75%),
-    radial-gradient(ellipse 110px 210px at 91% 0, color-mix(in srgb, #ffd696 calc(var(--downlight) * 34%), transparent), transparent 75%),
-    linear-gradient(to top, color-mix(in srgb, var(--sun) calc(var(--daylit) * 22%), transparent), transparent 70%),
-    url('assets/plaster.svg') 0 0 / 320px 320px,
-    var(--plaster);
-  background-blend-mode: normal, normal, normal, normal, soft-light, multiply, normal;
+  background: url('assets/plaster.svg') 0 0 / 320px 320px;
+  background-color: var(--plaster);
+  background-blend-mode: multiply;
 }
+/* The light on the wall sits in its own layers with fixed gradients; only their opacity follows the
+   time of day. (A gradient that reads a style variable is redrawn on every change to the page.) */
+.wall-light { position: absolute; z-index: -1; inset: 0 calc((100% - 100cqw) / 2); pointer-events: none; }
+.wall-light::before, .wall-light::after { content: ''; position: absolute; inset: 0; }
+.wall-light::before { background-color: var(--sun); opacity: calc(var(--daylit) * .22); mix-blend-mode: soft-light;
+  -webkit-mask-image: linear-gradient(to top, #000, transparent 70%); mask-image: linear-gradient(to top, #000, transparent 70%); }
+.wall-light::after { opacity: var(--downlight); background:
+  radial-gradient(ellipse 110px 210px at 9% 0, #ffd69657, transparent 75%),
+  radial-gradient(ellipse 110px 210px at 37% 0, #ffd69657, transparent 75%),
+  radial-gradient(ellipse 110px 210px at 63% 0, #ffd69657, transparent 75%),
+  radial-gradient(ellipse 110px 210px at 91% 0, #ffd69657, transparent 75%); }
 .cafe-interior .welcome::after {
   /* Dark beam under the wall. */
   content: ''; position: absolute; z-index: -1; left: calc((100% - 100cqw) / 2); right: calc((100% - 100cqw) / 2); bottom: 0; height: 16px;
@@ -428,10 +441,11 @@
 .counter-front::before {
   content: ''; position: absolute; z-index: -1; top: 0; bottom: 0; left: calc((100% - 100cqw) / 2); right: 0;
   background:
-    linear-gradient(to bottom, color-mix(in srgb, #ffc274 calc((.25 + .75 * var(--dark)) * 38%), transparent), transparent 70px),
     repeating-linear-gradient(90deg, #3b2b1f 0 26px, #2c2018 26px 28px, #35271c 28px 54px, #2a1f17 54px 56px),
     #30241b;
 }
+.counter-glow { position: absolute; z-index: -1; top: 0; left: calc((100% - 100cqw) / 2); right: 0; height: 70px; pointer-events: none;
+  background: linear-gradient(to bottom, #ffc27461, transparent); opacity: calc(.25 + .75 * var(--dark)); }
 .counter-front::after {
   /* Past the counter: the back of the café. */
   content: ''; position: absolute; z-index: -1; top: -16px; bottom: 0; left: 100%; width: calc((100cqw - 100%) / 2);
@@ -582,7 +596,7 @@
   .cafe-interior :is(.site-header, .welcome, .contact, .counter-front, .site-footer) { --ink: #222; --muted: #444; --red: #222; --line: #777; text-shadow: none; color: #222; }
   .cafe-interior .monogram { color: #222; }
   .cafe-ceiling, .welcome::before, .welcome::after, .counter-top::before, .counter-front::before, .site-footer::before { background: none !important; box-shadow: none !important; }
-  .cafe-table, .wall-lamp, .counter-top { display: none; }
+  .cafe-table, .wall-lamp, .counter-top, .wall-light, .counter-glow { display: none; }
   .pp-surface { background: white; }
   .pp-contact, .pp-lift { display: none; }
   .pp { border: 1px solid #bbb; break-inside: avoid; }
