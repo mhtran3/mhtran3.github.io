@@ -58,6 +58,28 @@
         else if (!video.ended) state.userPaused = true;
       });
       video.addEventListener('play', () => { state.userPaused = false; });
+      // While a clip plays on its own, its controls stay out of the way. They come back when the
+      // pointer is over it, when it has keyboard focus, after a tap, and whenever it is paused, so it
+      // can always be paused or started again.
+      let over = false, focused = false, tapped = 0;
+      const controls = () => { video.controls = over || focused || video.paused || !!tapped; };
+      video.tabIndex = 0;
+      video.addEventListener('pointerenter', event => { if (event.pointerType === 'mouse') { over = true; controls(); } });
+      video.addEventListener('pointerleave', event => { if (event.pointerType === 'mouse') { over = false; controls(); } });
+      video.addEventListener('pointerdown', event => {
+        if (event.pointerType === 'mouse') return;
+        clearTimeout(tapped); tapped = setTimeout(() => { tapped = 0; controls(); }, 3500); controls();
+      });
+      video.addEventListener('focus', () => { focused = true; controls(); });
+      video.addEventListener('blur', () => { focused = false; controls(); });
+      ['play', 'pause'].forEach(type => video.addEventListener(type, controls));
+      // Space or K on the focused clip pauses and plays it (handled here, so every browser agrees).
+      video.addEventListener('keydown', event => {
+        if (event.target !== video || !(event.key === ' ' || event.key === 'k' || event.key === 'K')) return;
+        event.preventDefault();
+        if (video.paused) video.play().catch(() => {}); else video.pause();
+      });
+      controls();
       observer.observe(video);
     });
   }
