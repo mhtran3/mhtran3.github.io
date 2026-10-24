@@ -13,6 +13,7 @@ Live at https://mhtran3.github.io.
 - `lighting.js`: the time-of-day light, the time slider and the Eye candy switch
 - `cafe.js`: the things you can touch: the lamps, the espresso machine, the drinks and the counter gate
 - `scripts/check-site.py`: checks local links, IDs and file sizes before I publish
+- `scripts/stamp-assets.py`: tags each stylesheet and script link with a hash of its contents, so a new page never loads an old cached file
 
 It's plain HTML, CSS and JavaScript with no build step. To preview it, serve the folder (for example `python -m http.server`) and open http://localhost:8000.
 

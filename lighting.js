@@ -198,19 +198,14 @@
   // Enable fades only after the first, instant placement has been drawn.
   requestAnimationFrame(() => requestAnimationFrame(() => body.classList.add('light-ready')));
 
-  // Eye candy: one switch for every ambient movement (branches, light, steam). The choice is
-  // remembered in this browser only; people who ask their device for less motion start still.
+  // Eye candy: one switch for every ambient movement (branches, light, steam) and the patches of sun.
+  // It starts on for every visit; turning it off lasts until the page is left or reloaded. (Motion is
+  // already off for people who ask their device for less of it.)
   const candy = document.querySelector('.eye-candy');
   if (candy) {
-    let stored = null;
-    try { stored = localStorage.getItem('cafe-eye-candy'); } catch (e) { /* storage unavailable */ }
-    const set = on => {
-      body.classList.toggle('still', !on);
-      candy.setAttribute('aria-pressed', String(on));
-      try { localStorage.setItem('cafe-eye-candy', on ? 'on' : 'off'); } catch (e) { /* not remembered */ }
-    };
-    body.classList.toggle('still', stored === 'off');
-    candy.setAttribute('aria-pressed', String(stored !== 'off'));
+    try { localStorage.removeItem('cafe-eye-candy'); } catch (e) { /* an old saved choice, if any */ }
+    const set = on => { body.classList.toggle('still', !on); candy.setAttribute('aria-pressed', String(on)); };
+    set(true);
     candy.addEventListener('click', () => set(body.classList.contains('still')));
     candy.hidden = false;
   }
