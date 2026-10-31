@@ -132,6 +132,8 @@ body.still { --bloom: 0 !important; --rim: 0 !important; }
 .pp-surface .pool { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 66% at 50% 44%, #f3d7a6, transparent 74%); opacity: var(--pool); transition: opacity .6s ease; }
 /* Off screen, a paper's light is switched off (home.js) so only visible papers carry moving light. */
 .pp.is-away .sky-pane { display: none; }
+/* While a story is open the room is covered, so its moving light, branches and steam hold still. */
+body.dialog-open :is(.fleck, .bough, .drinks .steam path) { animation-play-state: paused; }
 /* The paper: a texture after giấy dó, the Vietnamese paper made from the inner bark of the dó tree and
    formed on a bamboo screen: soft cloudiness, fine bark fibres, the screen's faint lines, the odd fleck of
    bark. Light and dark marks drawn over the lit paper, so it reads in sun, shade and lamplight; turned

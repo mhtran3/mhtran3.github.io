@@ -28,10 +28,9 @@
     if (motion.matches) return;
     for (const [video, state] of automatic) {
       if (!inView(video, state) || !video.paused || state.userPaused || state.blocked || state.pending) continue;
-      // An automatic preview never interrupts another clip the reader started. Silent loops can
-      // play side by side, so a playing loop doesn't hold the others back.
-      if ([...document.querySelectorAll('video')].some(other => other !== video && !automatic.has(other) && !other.paused && !other.ended) ||
-          [...automatic.values()].some(other => other.pending)) continue;
+      // An automatic preview never interrupts another clip the reader started. Silent loops play
+      // side by side and start independently, so one slow clip never holds the others back.
+      if ([...document.querySelectorAll('video')].some(other => other !== video && !automatic.has(other) && !other.paused && !other.ended)) continue;
       state.pending = true;
       video.muted = true;
       video.play().then(() => {
@@ -59,6 +58,8 @@
         else if (!video.ended) state.userPaused = true;
       });
       video.addEventListener('play', () => { state.userPaused = false; });
+      // If the browser can't play the file, stop trying; the poster and the fallback link remain.
+      video.querySelector('source:last-of-type')?.addEventListener('error', () => { state.blocked = true; });
       // While a clip plays on its own, its controls stay out of the way. They come back when the
       // pointer is over it, when it has keyboard focus, after a tap, and whenever it is paused, so it
       // can always be paused or started again.
