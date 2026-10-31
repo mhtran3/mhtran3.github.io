@@ -28,8 +28,9 @@
     if (motion.matches) return;
     for (const [video, state] of automatic) {
       if (!inView(video, state) || !video.paused || state.userPaused || state.blocked || state.pending) continue;
-      // An automatic preview never interrupts another clip the reader started.
-      if ([...document.querySelectorAll('video')].some(other => other !== video && !other.paused && !other.ended) ||
+      // An automatic preview never interrupts another clip the reader started. Silent loops can
+      // play side by side, so a playing loop doesn't hold the others back.
+      if ([...document.querySelectorAll('video')].some(other => other !== video && !automatic.has(other) && !other.paused && !other.ended) ||
           [...automatic.values()].some(other => other.pending)) continue;
       state.pending = true;
       video.muted = true;
@@ -90,8 +91,9 @@
       automatic.delete(video);
     });
   }
+  // A clip the reader starts plays alone. Silent loops leave each other running.
   document.addEventListener('play', event => {
-    if (event.target.tagName !== 'VIDEO') return;
+    if (event.target.tagName !== 'VIDEO' || automatic.has(event.target)) return;
     document.querySelectorAll('video').forEach(video => {
       if (video !== event.target) pauseVideo(video);
     });

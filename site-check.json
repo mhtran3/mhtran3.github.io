@@ -1,8 +1,8 @@
 {
-  "generated_at_utc": "2026-10-31T20:30:23+00:00",
+  "generated_at_utc": "2026-10-31T20:45:43+00:00",
   "scope": "Homepage, colophon, and their stylesheets. Manual source check, not live deployment telemetry.",
   "result": "pass",
-  "local_references_checked": 152,
+  "local_references_checked": 157,
   "file_sizes": {
     "homepage_js": {
       "files": [
@@ -10,7 +10,7 @@
         "lighting.js",
         "cafe.js"
       ],
-      "bytes": 39015,
+      "bytes": 39246,
       "budget_bytes": 40960
     },
     "stylesheets": {
@@ -93,17 +93,18 @@
     "selected_videos": {
       "files": [
         "assets/media/bloom-clearing.mp4",
+        "assets/media/bloom-creature.mp4",
         "assets/media/bloom-water.mp4",
         "assets/media/dungeon-flow.mp4",
         "assets/media/dungeon-heatmap.mp4",
         "assets/media/hotpot-process.mp4"
       ],
-      "bytes": 4765135,
+      "bytes": 5080119,
       "budget_bytes": 5242880
     }
   },
-  "play_on_request_videos": 4,
-  "visibility_autoplay_videos": 2,
+  "play_on_request_videos": 2,
+  "visibility_autoplay_videos": 6,
   "not_checked": [
     "external URLs",
     "browser layout",
