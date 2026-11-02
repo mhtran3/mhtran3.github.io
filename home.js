@@ -28,8 +28,7 @@
     if (motion.matches) return;
     for (const [video, state] of automatic) {
       if (!inView(video, state) || !video.paused || state.userPaused || state.blocked || state.pending) continue;
-      // An automatic preview never interrupts another clip the reader started. Silent loops play
-      // side by side and start independently, so one slow clip never holds the others back.
+      // Never interrupt a clip the reader started; silent loops play side by side.
       if ([...document.querySelectorAll('video')].some(other => other !== video && !automatic.has(other) && !other.paused && !other.ended)) continue;
       state.pending = true;
       video.muted = true;
@@ -40,8 +39,7 @@
         if (error.name !== 'AbortError') state.blocked = true;
       }).finally(() => {
         state.pending = false;
-        // Let a queued native pause event record reader intent before retrying.
-        // A different visible clip may be waiting for this pending request.
+        // Let a queued pause event record reader intent before retrying.
         setTimeout(syncMedia, 0);
       });
     }
@@ -58,11 +56,9 @@
         else if (!video.ended) state.userPaused = true;
       });
       video.addEventListener('play', () => { state.userPaused = false; });
-      // If the browser can't play the file, stop trying; the poster and the fallback link remain.
+      // Unplayable file: stop trying; the poster and link remain.
       video.querySelector('source:last-of-type')?.addEventListener('error', () => { state.blocked = true; });
-      // While a clip plays on its own, its controls stay out of the way. They come back when the
-      // pointer is over it, when it has keyboard focus, after a tap, and whenever it is paused, so it
-      // can always be paused or started again.
+      // Controls hide while a clip plays on its own, and return on hover, focus, tap or pause.
       let over = false, focused = false, tapped = 0;
       const controls = () => { video.controls = over || focused || video.paused || !!tapped; };
       video.tabIndex = 0;
@@ -75,7 +71,7 @@
       video.addEventListener('focus', () => { focused = true; controls(); });
       video.addEventListener('blur', () => { focused = false; controls(); });
       ['play', 'pause'].forEach(type => video.addEventListener(type, controls));
-      // Space or K on the focused clip pauses and plays it (handled here, so every browser agrees).
+      // Space or K toggles the focused clip in every browser.
       video.addEventListener('keydown', event => {
         if (event.target !== video || !(event.key === ' ' || event.key === 'k' || event.key === 'K')) return;
         event.preventDefault();
@@ -92,7 +88,7 @@
       automatic.delete(video);
     });
   }
-  // A clip the reader starts plays alone. Silent loops leave each other running.
+  // A clip the reader starts plays alone; loops keep running.
   document.addEventListener('play', event => {
     if (event.target.tagName !== 'VIDEO' || automatic.has(event.target)) return;
     document.querySelectorAll('video').forEach(video => {
@@ -310,5 +306,19 @@ document.querySelectorAll('.compare').forEach(compare => {
       }
       frame = requestAnimationFrame(settled);
     });
+  });
+})();
+
+// The note by the lamp: a hello that follows the café clock (lighting.js).
+(() => {
+  const el = document.querySelector('#greeting');
+  if (!el) return;
+  const parts = [[300, 'Late night? Same here.|Up late too?'], [480, 'Up before the sun?|Early start today.'],
+    [720, 'Morning. Coffee first?|Vietnamese coffee time.'], [1020, 'Afternoon nap, anyone?|Afternoon slump?'],
+    [1260, 'Evening. Tea time?|Long day?'], [1440, 'Winding down?|Tea before bed?']]
+    .map(([end, lines]) => [end, lines.split('|')[Math.random() * 2 | 0]]);
+  document.addEventListener('cafe:light', event => {
+    const text = parts.find(([end]) => event.detail.minute % 1440 < end)[1];
+    if (el.textContent !== text) el.textContent = text;
   });
 })();
