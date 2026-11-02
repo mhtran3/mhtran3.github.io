@@ -78,7 +78,6 @@ def main():
         ('paper_texture', ['assets/paper-do.svg'], 64 * 1024),
         ('featured_illustration', ['assets/hotpot.webp'], 150 * 1024),
         ('printed_apparel_photo', ['assets/mol-sweatshirt.webp'], 320 * 1024),
-        ('printed_apparel_photo', ['assets/mol-sweatshirt.webp'], 320 * 1024),
         ('selected_videos', [str(p.relative_to(ROOT)).replace('\\', '/') for p in sorted((ROOT / 'assets/media').glob('*.mp4'))], 5 * 1024 * 1024),
     ]
     sizes = {}
