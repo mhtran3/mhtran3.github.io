@@ -282,3 +282,33 @@ document.querySelectorAll('.compare').forEach(compare => {
     papers.forEach(pp => seen.observe(pp));
   }
 })();
+
+// Native anchors work without JS. Mark arrival once scrolling has settled.
+(() => {
+  let frame = 0, timer = 0, active = null;
+  document.querySelectorAll('.role-links a').forEach(link => {
+    link.addEventListener('click', event => {
+      if (event.button || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+      const card = document.getElementById(link.hash.slice(1));
+      if (!card) return;
+      cancelAnimationFrame(frame);
+      clearTimeout(timer);
+      active?.classList.remove('role-arrival');
+      active = card;
+      const keyboard = event.detail === 0, start = performance.now();
+      let last = window.scrollY, stable = start;
+      function settled(now) {
+        if (Math.abs(window.scrollY - last) > .5) stable = now;
+        last = window.scrollY;
+        if ((now - start < 180 || now - stable < 100) && now - start < 2500) {
+          frame = requestAnimationFrame(settled);
+          return;
+        }
+        if (keyboard) card.querySelector('.pp-link')?.focus({ preventScroll: true });
+        card.classList.add('role-arrival');
+        timer = setTimeout(() => card.classList.remove('role-arrival'), 1600);
+      }
+      frame = requestAnimationFrame(settled);
+    });
+  });
+})();
