@@ -282,3 +282,24 @@ document.querySelectorAll('.compare').forEach(compare => {
     papers.forEach(pp => seen.observe(pp));
   }
 })();
+
+// A short hello above the name. It follows the café's clock (lighting.js), so it changes with the
+// time slider too; each part of the day keeps the line it drew when the page opened.
+(() => {
+  const el = document.querySelector('#greeting');
+  if (!el) return;
+  const parts = [ // [ends at minute of day, lines]
+    [300, ['Late night? Same here.', 'Up late too?']],
+    [480, ['Up before the sun?', 'Early start today.']],
+    [720, ['Morning. Coffee first?', 'Vietnamese coffee time.']],
+    [1020, ['Afternoon nap, anyone?', 'Afternoon slump?']],
+    [1260, ['Evening. Tea time?', 'Long day?']],
+    [1440, ['Winding down?', 'Tea before bed?']],
+  ];
+  const chosen = parts.map(([, lines]) => lines[Math.floor(Math.random() * lines.length)]);
+  document.addEventListener('cafe:light', event => {
+    const minute = event.detail.minute % 1440;
+    const text = chosen[parts.findIndex(([end]) => minute < end)];
+    if (el.textContent !== text) el.textContent = text;
+  });
+})();
