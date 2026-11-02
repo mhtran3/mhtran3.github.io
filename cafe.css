@@ -281,6 +281,8 @@ body.dialog-open :is(.fleck, .bough, .drinks .steam path) { animation-play-state
 /* The lamp's light may spread past the page edge; clip it there rather than widen the page. */
 .portfolio-canvas { overflow-x: clip; }
 .cafe-interior .welcome > :not(.wall-lamp, .wall-light) { position: relative; z-index: 1; }
+/* The hello above the name (home.js). Its line is held open so the name never moves when it fills in. */
+.greeting { min-height: 1.4em; margin: 0 0 4px; font: 500 18px/1.4 var(--reflection); font-optical-sizing: auto; color: var(--muted); }
 .cafe-interior .welcome {
   --ink: var(--wall-ink); --muted: var(--wall-muted); --line: var(--wall-line); --red: var(--wall-ink);
   color: var(--ink); text-shadow: 0 0 .5em var(--wall-halo), 0 0 1.2em var(--wall-halo);
