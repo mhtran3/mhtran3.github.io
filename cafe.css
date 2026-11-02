@@ -281,8 +281,18 @@ body.dialog-open :is(.fleck, .bough, .drinks .steam path) { animation-play-state
 /* The lamp's light may spread past the page edge; clip it there rather than widen the page. */
 .portfolio-canvas { overflow-x: clip; }
 .cafe-interior .welcome > :not(.wall-lamp, .wall-light) { position: relative; z-index: 1; }
-/* The hello above the name (home.js). Its line is held open so the name never moves when it fills in. */
-.greeting { min-height: 1.4em; margin: 0 0 4px; font: 500 18px/1.4 var(--reflection); font-optical-sizing: auto; color: var(--muted); }
+/* A note taped to the wall beside the lamp, with a hello for the time of day (home.js). It takes
+   the room's paper light, so it dims and cools at night like the work on the table. */
+.cafe-interior .welcome > .wall-note { position: absolute; z-index: 2; bottom: 52px; right: 158px; margin: 0; padding: 8px 15px 9px;
+  font: 500 16px/1.35 var(--reflection); font-optical-sizing: auto; color: #2b2219; text-shadow: none; white-space: nowrap;
+  background: var(--paper-lit); rotate: -2.5deg;
+  box-shadow: calc(var(--shadow-x) * .3) calc(var(--shadow-y) * .3) 4px color-mix(in srgb, var(--shadow-ink) 30%, transparent); }
+.wall-note::before { content: ''; position: absolute; top: -8px; left: 50%; width: 40px; height: 14px; translate: -50% 0; rotate: 4deg;
+  background: rgb(236 226 200 / .62); box-shadow: 0 0 0 .5px rgb(60 45 30 / .14); }
+.wall-note:empty { visibility: hidden; }
+/* Narrower walls have no room beside the lamp: the note moves under the name, then below everything. */
+@media (max-width: 1040px) { .cafe-interior .welcome > .wall-note { right: auto; left: 6px; bottom: 44px; } }
+@media (max-width: 820px) { .cafe-interior .welcome > .wall-note { position: relative; bottom: auto; left: auto; grid-column: 1 / -1; justify-self: start; margin: 18px 0 0 4px; } }
 .cafe-interior .welcome {
   --ink: var(--wall-ink); --muted: var(--wall-muted); --line: var(--wall-line); --red: var(--wall-ink);
   color: var(--ink); text-shadow: 0 0 .5em var(--wall-halo), 0 0 1.2em var(--wall-halo);
@@ -559,6 +569,7 @@ body.dialog-open :is(.fleck, .bough, .drinks .steam path) { animation-play-state
 }
 @media (max-width: 640px) {
   .cafe-interior .welcome { padding-right: 72px; }
+  .cafe-interior .welcome > .wall-note { display: inline-block; margin-top: 26px; }
   .wall-lamp { width: 64px; height: 160px; right: -2px; top: 28px; }
   .lamp-pool { width: 220px; height: 320px; }
   .counter-top { height: 150px; }
@@ -584,6 +595,7 @@ body.dialog-open :is(.fleck, .bough, .drinks .steam path) { animation-play-state
 @media (prefers-contrast: more) {
   .cafe-interior .welcome { --wall-ink: #fff8eb; --wall-muted: #fff1dc; --wall-line: #a88f72; text-shadow: none; }
   .cafe-interior .welcome::before { background: #3f3127; }
+  .wall-note { background: #f1e8d6; box-shadow: none; }
   .desk { --muted: #2e241a; --accent: #1d3520; }
   .pp-surface { background: #f1e8d6; }
 }
