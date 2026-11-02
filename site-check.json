@@ -1,8 +1,8 @@
 {
-  "generated_at_utc": "2026-10-31T20:52:34+00:00",
+  "generated_at_utc": "2026-11-02T02:00:19+00:00",
   "scope": "Homepage, colophon, and their stylesheets. Manual source check, not live deployment telemetry.",
   "result": "pass",
-  "local_references_checked": 157,
+  "local_references_checked": 158,
   "file_sizes": {
     "homepage_js": {
       "files": [
@@ -19,7 +19,7 @@
         "gallery.css",
         "cafe.css"
       ],
-      "bytes": 65759,
+      "bytes": 66691,
       "budget_bytes": 70656
     },
     "bricolage_fonts": {
@@ -89,6 +89,13 @@
       ],
       "bytes": 112266,
       "budget_bytes": 153600
+    },
+    "printed_apparel_photo": {
+      "files": [
+        "assets/mol-sweatshirt.webp"
+      ],
+      "bytes": 302278,
+      "budget_bytes": 327680
     },
     "selected_videos": {
       "files": [
