@@ -290,6 +290,8 @@ body.dialog-open :is(.fleck, .bough, .drinks .steam path) { animation-play-state
 .wall-note::before { content: ''; position: absolute; top: -8px; left: 50%; width: 40px; height: 14px; translate: -50% 0; rotate: 4deg;
   background: rgb(236 226 200 / .62); box-shadow: 0 0 0 .5px rgb(60 45 30 / .14); }
 .wall-note:empty { visibility: hidden; }
+/* Until home.js writes the hello, the empty note holds one line, so the table below doesn't shift. */
+.js .wall-note:empty::after { content: "\a0"; }
 /* Narrower walls have no room beside the lamp: the note moves under the name, then below everything. */
 @media (max-width: 1040px) { .cafe-interior .welcome > .wall-note { right: auto; left: 6px; bottom: 44px; } }
 @media (max-width: 820px) { .cafe-interior .welcome > .wall-note { position: relative; bottom: auto; left: auto; grid-column: 1 / -1; justify-self: start; margin: 18px 0 0 4px; } }
