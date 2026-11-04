@@ -81,8 +81,11 @@
 
   // ——— The serving door: push it and it swings through, then settles. ———
   const door = document.querySelector('.counter-door');
+  let held;
   door?.addEventListener('click', () => {
-    if (still()) return;
+    say('The counter gate swings, then settles.');
+    // With reduced motion the gate simply stands open for a moment, then shut.
+    if (still()) { door.classList.add('held'); clearTimeout(held); held = setTimeout(() => door.classList.remove('held'), 1600); return; }
     door.classList.remove('swinging'); void door.offsetWidth; door.classList.add('swinging');
   });
   door?.addEventListener('animationend', () => door.classList.remove('swinging'));

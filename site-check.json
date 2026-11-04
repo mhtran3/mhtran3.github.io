@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-11-04T22:00:50+00:00",
+  "generated_at_utc": "2026-11-04T22:01:29+00:00",
   "scope": "Homepage, colophon, and their stylesheets. Manual source check, not live deployment telemetry.",
   "result": "pass",
   "local_references_checked": 163,
@@ -10,7 +10,7 @@
         "lighting.js",
         "cafe.js"
       ],
-      "bytes": 41059,
+      "bytes": 41316,
       "budget_bytes": 43008
     },
     "stylesheets": {
@@ -19,7 +19,7 @@
         "gallery.css",
         "cafe.css"
       ],
-      "bytes": 70150,
+      "bytes": 70212,
       "budget_bytes": 70656
     },
     "bricolage_fonts": {
