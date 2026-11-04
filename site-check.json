@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-11-04T21:58:42+00:00",
+  "generated_at_utc": "2026-11-04T21:58:52+00:00",
   "scope": "Homepage, colophon, and their stylesheets. Manual source check, not live deployment telemetry.",
   "result": "pass",
   "local_references_checked": 163,
@@ -11,7 +11,7 @@
         "cafe.js"
       ],
       "bytes": 40954,
-      "budget_bytes": 40960
+      "budget_bytes": 43008
     },
     "stylesheets": {
       "files": [
