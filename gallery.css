@@ -263,3 +263,5 @@ video:focus-visible { outline: 3px solid var(--red); outline-offset: 5px; }
 @keyframes role-arrival{0%,25%{opacity:1;}100%{opacity:0;}}
 @media(prefers-reduced-motion:reduce){.pp.role-arrival::after{animation:none;}}
 @media(forced-colors:active){.pp.role-arrival::after{border-color:Highlight;}}
+/* On touch screens the header links get a taller, wider hit area; the negative margin cancels it, so nothing moves. */
+@media (pointer: coarse){ .site-header nav a{ padding: 12px 6px; margin: -4px -6px; } }
