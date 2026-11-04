@@ -128,8 +128,8 @@
     for (let i = 0; i < 40 && contrast(luminance(toHex(wallLab)), luminance(ink)) < 6.2; i++) wallLab[0] += darkInk ? .01 : -.01;
     p.w = toHex(wallLab); v['--plaster'] = p.w;
     Object.assign(v, darkInk
-      ? { '--wall-ink': '#2b2219', '--wall-muted': '#3f3226', '--wall-line': '#5b473466', '--wall-halo': p.w + 'cc' }
-      : { '--wall-ink': '#fff3e2', '--wall-muted': '#f0dcc1', '--wall-line': '#e8cfae55', '--wall-halo': p.w + 'cc' });
+      ? { '--wall-ink': '#2b2219', '--wall-muted': '#382c21', '--wall-line': '#5b473466', '--wall-halo': p.w + 'cc' }
+      : { '--wall-ink': '#fff3e2', '--wall-muted': '#f5e4cc', '--wall-line': '#e8cfae55', '--wall-halo': p.w + 'cc' });
     // While the time slider is being dragged, the subtlest effects (rim light, glow, leaf tint, shadow
     // colour) wait until it stops: they cost the most to redraw and can't be seen changing mid-drag.
     // Only values that actually changed are written, so unchanged ones cause no work.
