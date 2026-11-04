@@ -514,6 +514,10 @@ body.dialog-open :is(.fleck, .bough, .drinks .steam path) { animation-play-state
 /* ——— Controls in the ceiling ——— */
 .lighting-control { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 10px; font-size: 12px; }
 .lighting-control[hidden] { display: none; }
+/* With scripts on, the control holds its place until lighting.js shows it, so the page never jumps
+   down when it appears (it wraps onto a second row on phones). The js class is set in the page head. */
+.js .lighting-control[hidden] { display: flex; }
+.lighting-control[hidden], .lighting-control .eye-candy[hidden] { visibility: hidden; }
 .lighting-control input[type="range"] { width: 150px; accent-color: #e7b56c; }
 /* Fixed widths so the header never shifts while scrubbing the time. */
 #cafe-time-label { display: inline-block; width: 4.9em; font-size: 12px; font-variant-numeric: tabular-nums; white-space: nowrap; }
@@ -525,7 +529,7 @@ body.dialog-open :is(.fleck, .bough, .drinks .steam path) { animation-play-state
   min-height: 34px; padding: 5px 10px; cursor: pointer; color: #30271f; text-shadow: none;
   background: #ecdfc8; border: 1px solid #a58c68; border-radius: 3px; font-size: 12px;
 }
-.lighting-control button[hidden] { display: none; }
+:root:not(.js) .lighting-control button[hidden] { display: none; }
 #cafe-now { white-space: nowrap; }
 .lighting-control :is(input, button):focus-visible { outline: 3px solid #fff3e2; outline-offset: 3px; }
 .lighting-control .eye-candy { display: inline-flex; align-items: center; gap: 7px; }
