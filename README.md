@@ -8,12 +8,16 @@ Live at https://mhtran3.github.io.
 
 - `index.html`: the homepage: the café, my work laid out as papers on the table, and the full project stories
 - `colophon.html`: how the site is built and who made what
+- `404.html`: the page for a link that leads nowhere
 - `home.css`, `gallery.css`, `cafe.css`: base layout; fonts and stories; the café itself
-- `home.js`: turns the papers on the table, opens project stories as dialogs, plays the heatmap clip when it's in view, and runs the seal before-and-after
+- `home.js`: turns the papers on the table, opens project stories as dialogs, plays the silent loops when they're in view, and runs the seal before-and-after
 - `lighting.js`: the time-of-day light, the time slider and the Eye candy switch
 - `cafe.js`: the things you can touch: the lamps, the espresso machine, the drinks and the counter gate
 - `scripts/check-site.py`: checks local links, IDs and file sizes before I publish
 - `scripts/stamp-assets.py`: tags each stylesheet and script link with a hash of its contents, so a new page never loads an old cached file
+- `.github/workflows/check-site.yml`: runs both scripts on every push and pull request, and fails if a link is broken, a file is over budget or a stamp is out of date
+- `assets/`: images, fonts and clips. A file ending in a width, like `tiger-cos-360.webp`, is a smaller copy of the image with the same name, used for its thumbnail on the table; the stories use the full one. `social-preview.jpg` is the card shown when someone shares a link to the site
+- `robots.txt`, `sitemap.xml`: point search engines to the homepage and the colophon
 
 It's plain HTML, CSS and JavaScript with no build step. To preview it, serve the folder (for example `python -m http.server`) and open http://localhost:8000.
 
