@@ -55,3 +55,6 @@ body.dialog-open{overflow:hidden}
 @media(max-width:1050px){.wrap{width:calc(100% - 56px)}.welcome{grid-template-columns:1fr 1.25fr}.welcome-copy{font-size:14px}}
 @media(max-width:640px){.wrap{width:calc(100% - 36px)}.site-header{padding:20px 0;gap:12px}.identity{font-size:13px;gap:12px}.monogram{font-size:28px}.monogram span{font-size:17px}.site-header nav{gap:16px;font-size:12px}.site-header nav a:first-child{display:none}.welcome{display:block;padding:32px 0 29px}.welcome h1{font-size:38px}.welcome-copy{margin-top:17px;font-size:15px}.contact{grid-template-columns:1fr;gap:23px;padding:32px 0}.contact-links{justify-self:start;max-width:none}.contact-links a{font-size:14px;min-height:45px}.site-footer{flex-wrap:wrap;gap:10px}.site-footer>span:nth-child(2){order:3;flex-basis:100%}.dialog-bar{padding:12px 18px}.dialog-content{padding:23px}.dialog-content p{font-size:15px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+/* On touch screens, small footer and index links get a taller hit area (at least 24px); the padding is
+   cancelled by an equal negative margin, so nothing moves. */
+@media(pointer:coarse){.site-footer>a,.colophon-index a,.empty-table a{padding-block:6px;margin-block:-6px}}
