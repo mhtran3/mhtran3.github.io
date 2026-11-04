@@ -651,3 +651,16 @@ body.dialog-open :is(.fleck, .bough, .drinks .steam path) { animation-play-state
 @media (max-width: 640px) { .counter-cub { display: none; } }
 @media (prefers-reduced-motion: reduce) { .counter-cub img { transition: none; } }
 @media (prefers-contrast: more), (forced-colors: active), print { .pp-ring, .pp-pencil, .pp-clip, .counter-cub { display: none; } }
+
+/* ——— Touch targets ———
+   On touch screens, the small controls get a hit area of about 44px. Padding is cancelled by an equal
+   negative margin, or a transparent pseudo-element reaches past the edges, so nothing moves or shows. */
+@media (pointer: coarse) {
+  .role-links a { padding: 10px 3px; margin: -5px -3px; }
+  .welcome-links a { padding-block: 11px; margin-block: -4px; }
+  .lighting-control input[type="range"] { height: 32px; margin-block: -8px; }
+  .lighting-control .eye-candy, .design-note summary { position: relative; }
+  .lighting-control .eye-candy::before, .design-note summary::before { content: ''; position: absolute; inset: -5px 0; }
+  .cord-pull { width: 44px; }
+  .counter .table-lamp::after, :is(.sip, .pull-shot)::before { content: ''; position: absolute; inset: 0 -4px; }
+}
