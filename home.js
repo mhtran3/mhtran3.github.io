@@ -25,7 +25,8 @@
     for (const [video, state] of automatic) {
       if (!inView(video, state)) pauseVideo(video);
     }
-    if (motion.matches) return;
+    // Loops wait for a press when the visitor has asked to save data.
+    if (motion.matches || navigator.connection?.saveData) return;
     for (const [video, state] of automatic) {
       if (!inView(video, state) || !video.paused || state.userPaused || state.blocked || state.pending) continue;
       // Never interrupt a clip the reader started; silent loops play side by side.
