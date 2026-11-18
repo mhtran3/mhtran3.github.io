@@ -9,6 +9,7 @@ Live at https://mhtran3.github.io.
 - `index.html`: the homepage: the café, my work laid out as papers on the table, and the full project stories
 - `colophon.html`: how the site is built and who made what
 - `404.html`: the page for a link that leads nowhere
+- `Michael_Tran_Resume.pdf`: my resume, linked from the welcome wall and the counter. The file name stays the same when the resume is updated, so links to it keep working
 - `home.css`, `gallery.css`, `cafe.css`: base layout; fonts and stories; the café itself
 - `home.js`: turns the papers on the table, opens project stories as dialogs, plays the silent loops when they're in view, and runs the seal before-and-after
 - `lighting.js`: the time-of-day light, the time slider and the Eye candy switch
