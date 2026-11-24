@@ -16,6 +16,7 @@ Live at https://mhtran3.github.io.
 - `cafe.js`: the things you can touch: the lamps, the espresso machine, the drinks and the counter gate
 - `scripts/check-site.py`: checks local links, IDs and file sizes before I publish
 - `scripts/stamp-assets.py`: tags each stylesheet and script link with a hash of its contents, so a new page never loads an old cached file
+- `scripts/light/build-light.py`: builds the leaf-light images in `assets/` from the original shapes in `scripts/light/source/`, varying the sun spots and softening edges by leaf height
 - `.github/workflows/check-site.yml`: runs both scripts on every push and pull request, and fails if a link is broken, a file is over budget or a stamp is out of date
 - `assets/`: images, fonts and clips. A file ending in a width, like `tiger-cos-360.webp`, is a smaller copy of the image with the same name, used for its thumbnail on the table; the stories use the full one. `social-preview.jpg` is the card shown when someone shares a link to the site
 - `robots.txt`, `sitemap.xml`: point search engines to the homepage and the colophon
