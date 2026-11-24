@@ -123,6 +123,7 @@
         document.querySelectorAll('video').forEach(pauseVideo);
         content.replaceChildren(...Array.from(story.children, child => child.cloneNode(true)));
         content.querySelector('h2').id = 'dialog-title';
+        content.querySelectorAll('video[data-poster]').forEach(v => { v.poster = v.dataset.poster; });
         document.body.classList.add('dialog-open');
         if (!dialog.open) dialog.showModal();
         observeMedia(content);
@@ -147,6 +148,7 @@
     function showDirectStory() {
       const id = window.location.hash.slice(1);
       if (document.getElementById(id)?.classList.contains('story')) {
+        document.getElementById(id).querySelectorAll('video[data-poster]').forEach(v => { v.poster = v.dataset.poster; });
         document.documentElement.classList.remove('js-ready');
       }
     }

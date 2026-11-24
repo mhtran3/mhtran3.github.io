@@ -27,7 +27,7 @@ class Page(HTMLParser):
             self.videos.append(attrs)
         if 'data-story' in attrs:
             self.stories.append(attrs['data-story'])
-        for attr in ('href', 'src', 'poster'):
+        for attr in ('href', 'src', 'poster', 'data-poster'):
             if attrs.get(attr):
                 self.refs.append(attrs[attr])
 
@@ -43,7 +43,8 @@ def main():
             if target not in page.ids:
                 errors.append(f'{path.name}: missing story {target}')
         for video in page.videos:
-            if any(attr not in video for attr in ('controls', 'playsinline', 'poster', 'aria-label')):
+            # A story's videos may carry data-poster instead: home.js sets the still when the story opens.
+            if any(attr not in video for attr in ('controls', 'playsinline', 'aria-label')) or not ('poster' in video or 'data-poster' in video):
                 errors.append(f'{path.name}: video needs controls, inline playback, a poster and an accessible label')
             if 'autoplay' in video or video.get('preload') != 'none':
                 errors.append(f'{path.name}: videos must defer loading; autoplay is managed by visibility, not the HTML autoplay attribute')

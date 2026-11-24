@@ -23,7 +23,7 @@
   <link rel="stylesheet" href="home.css?v=946e9bce">
   <link rel="stylesheet" href="gallery.css?v=fd546465">
   <link rel="stylesheet" href="cafe.css?v=3c5ee5a2">
-  <script src="home.js?v=31272155" defer></script>
+  <script src="home.js?v=baed95e9" defer></script>
   <script src="lighting.js?v=18437461" defer></script>
   <script src="cafe.js?v=ed63f4f6" defer></script>
 </head>
@@ -36,8 +36,8 @@
     <div class="ct-grain"></div>
   </div>
   <div class="canopy" aria-hidden="true">
-    <div class="bough bough-jacaranda"><img src="assets/canopy-jacaranda.webp" alt="" width="527" height="642" decoding="async"></div>
-    <div class="bough bough-bougainvillea"><img src="assets/canopy-bougainvillea.webp" alt="" width="900" height="600" decoding="async"></div>
+    <div class="bough bough-jacaranda"><img loading="lazy" src="assets/canopy-jacaranda.webp" alt="" width="527" height="642" decoding="async"></div>
+    <div class="bough bough-bougainvillea"><img loading="lazy" src="assets/canopy-bougainvillea.webp" alt="" width="900" height="600" decoding="async"></div>
   </div>
   <div class="cafe-ceiling">
   <span class="downlight" style="--x: 9%"></span><span class="downlight" style="--x: 37%"></span><span class="downlight" style="--x: 63%"></span><span class="downlight" style="--x: 91%"></span>
@@ -390,8 +390,8 @@
     <section id="contact" class="contact counter" aria-labelledby="contact-title">
       <div class="counter-top">
         <div class="counter-dog" aria-hidden="true"></div>
-        <div class="counter-cub" aria-hidden="true"><img src="assets/cub-peek.webp" alt="" width="260" height="236"></div>
-        <button type="button" class="table-lamp" aria-pressed="false"><span class="lamp-glow" aria-hidden="true"></span><span class="lamp-bulb" aria-hidden="true"></span><img src="assets/cafe-lamp.svg" alt="" width="128" height="200"><span class="visually-hidden">Table lamp</span></button>
+        <div class="counter-cub" aria-hidden="true"><img loading="lazy" src="assets/cub-peek.webp" alt="" width="260" height="236"></div>
+        <button type="button" class="table-lamp" aria-pressed="false"><span class="lamp-glow" aria-hidden="true"></span><span class="lamp-bulb" aria-hidden="true"></span><img loading="lazy" src="assets/cafe-lamp.svg" alt="" width="128" height="200"><span class="visually-hidden">Table lamp</span></button>
         <div class="counter-espresso">
           <svg class="espresso" viewBox="0 0 250 210" aria-hidden="true">
             <!-- A single-group lever-top espresso machine: brushed steel, walnut side panel and brass
@@ -666,8 +666,8 @@
         <p>I started this because the auto-battler genre felt stagnant to me. I wanted a proof of concept that complex fighting AI, while hard, is doable: units read a positioning heatmap and score their options instead of following a decision tree. The real challenge has been making them feel alive. They lean toward certain behaviors without being guaranteed to follow them, which plays very differently from a complicated finite state machine.</p>
         <h3>See the decisions</h3>
         <p>The prototype includes overlays for inspecting movement. These recordings show the existing systems running in the dungeon, with automatic movement active.</p>
-        <figure class="media-figure"><video controls muted loop playsinline preload="none" data-autoplay="visible" width="960" height="540" poster="assets/dungeon-heatmap.webp" aria-label="Dungeon combat positioning heatmap demonstration"><source src="assets/media/dungeon-heatmap.mp4" type="video/mp4"><a href="assets/media/dungeon-heatmap.mp4">Open the video</a></video><figcaption><strong>Choosing a fighting position.</strong> Scores update across the terrain for the highlighted unit. The white cross marks its current movement target; the map makes its preferences visible. <span class="media-note">Silent looping excerpt · starts in view unless reduced motion is enabled. Use the controls to pause.</span></figcaption></figure>
-        <figure class="media-figure"><video controls playsinline preload="none" width="960" height="540" poster="assets/dungeon-flow.webp" aria-label="Dungeon directional flow-field demonstration"><source src="assets/media/dungeon-flow.mp4" type="video/mp4"><a href="assets/media/dungeon-flow.mp4">Open the video</a></video><figcaption><strong>Mapping routes through terrain.</strong> The arrows show the exploration flow field across walkable rooms and corridors. The field remains visible during this fight; combat positioning adds separate decisions. <span class="media-note">Silent excerpt · play on request.</span></figcaption></figure>
+        <figure class="media-figure"><video controls muted loop playsinline preload="none" data-autoplay="visible" width="960" height="540" data-poster="assets/dungeon-heatmap.webp" aria-label="Dungeon combat positioning heatmap demonstration"><source src="assets/media/dungeon-heatmap.mp4" type="video/mp4"><a href="assets/media/dungeon-heatmap.mp4">Open the video</a></video><figcaption><strong>Choosing a fighting position.</strong> Scores update across the terrain for the highlighted unit. The white cross marks its current movement target; the map makes its preferences visible. <span class="media-note">Silent looping excerpt · starts in view unless reduced motion is enabled. Use the controls to pause.</span></figcaption></figure>
+        <figure class="media-figure"><video controls playsinline preload="none" width="960" height="540" data-poster="assets/dungeon-flow.webp" aria-label="Dungeon directional flow-field demonstration"><source src="assets/media/dungeon-flow.mp4" type="video/mp4"><a href="assets/media/dungeon-flow.mp4">Open the video</a></video><figcaption><strong>Mapping routes through terrain.</strong> The arrows show the exploration flow field across walkable rooms and corridors. The field remains visible during this fight; combat positioning adds separate decisions. <span class="media-note">Silent excerpt · play on request.</span></figcaption></figure>
         <h3>Two movement questions</h3>
         <p>Getting through a corridor and choosing where to stand during a fight need different information. The dungeon builds a distance field over walkable cells, then derives directions toward the exploration goal. Combat evaluates positions using the unit’s situation. Keeping both visible helps separate route problems from tactical choices.</p>
         <p class="story-credit">Recorded from the ongoing Godot prototype. These excerpts demonstrate the diagnostic views, not a benchmark of optimal behavior. Game sprites and environment assets are third-party artwork; my contribution here is the system design and development process.</p>
@@ -771,15 +771,15 @@
       <article id="bloom-story" class="story">
         <p class="eyebrow">Animation / painted environments</p><h2>A clearing in <em>Bloom</em></h2>
         <p>A short scene from my animated film, with a bright flower, small flying insects, and layers of dark foliage framing the clearing.</p>
-        <figure class="media-figure"><video controls muted loop playsinline preload="none" data-autoplay="visible" width="960" height="540" poster="assets/bloom-clearing-loop.webp" aria-label="Bloom: an orange flower and small flying insects in a painted forest clearing"><source src="assets/media/bloom-clearing.mp4" type="video/mp4"><a href="assets/media/bloom-clearing.mp4">Open the video</a></video><figcaption>Six seconds from 1:48–1:54 in the final film.</figcaption></figure>
+        <figure class="media-figure"><video controls muted loop playsinline preload="none" data-autoplay="visible" width="960" height="540" data-poster="assets/bloom-clearing-loop.webp" aria-label="Bloom: an orange flower and small flying insects in a painted forest clearing"><source src="assets/media/bloom-clearing.mp4" type="video/mp4"><a href="assets/media/bloom-clearing.mp4">Open the video</a></video><figcaption>Six seconds from 1:48–1:54 in the final film.</figcaption></figure>
         <h3>A closer look</h3>
         <p>The orange flower is the focal point in a muted forest, and the dark leaves in front frame the clearing.</p>
         <h3>Over the rocks</h3>
         <p>Earlier in the film, water runs between the rocks while small spirits start to glow.</p>
-        <figure class="media-figure"><video controls muted loop playsinline preload="none" data-autoplay="visible" width="960" height="540" poster="assets/bloom-water.webp" aria-label="Bloom: water flowing between rocks as small spirits glow"><source src="assets/media/bloom-water.mp4" type="video/mp4"><a href="assets/media/bloom-water.mp4">Open the video</a></video><figcaption>Eight seconds from 1:02–1:10 in the final film.</figcaption></figure>
+        <figure class="media-figure"><video controls muted loop playsinline preload="none" data-autoplay="visible" width="960" height="540" data-poster="assets/bloom-water.webp" aria-label="Bloom: water flowing between rocks as small spirits glow"><source src="assets/media/bloom-water.mp4" type="video/mp4"><a href="assets/media/bloom-water.mp4">Open the video</a></video><figcaption>Eight seconds from 1:02–1:10 in the final film.</figcaption></figure>
         <h3>Near the end</h3>
         <p>A small creature waves from a stump.</p>
-        <figure class="media-figure"><video controls muted loop playsinline preload="none" data-autoplay="visible" width="960" height="540" poster="assets/bloom-creature.webp" aria-label="Bloom: a small butterfly-winged creature waving from a stump in a dark forest"><source src="assets/media/bloom-creature.mp4" type="video/mp4"><a href="assets/media/bloom-creature.mp4">Open the video</a></video><figcaption>A loop from 2:12 in the final film, cropped in closer.</figcaption></figure>
+        <figure class="media-figure"><video controls muted loop playsinline preload="none" data-autoplay="visible" width="960" height="540" data-poster="assets/bloom-creature.webp" aria-label="Bloom: a small butterfly-winged creature waving from a stump in a dark forest"><source src="assets/media/bloom-creature.mp4" type="video/mp4"><a href="assets/media/bloom-creature.mp4">Open the video</a></video><figcaption>A loop from 2:12 in the final film, cropped in closer.</figcaption></figure>
         <p class="story-credit">Drawn in Procreate. Visual artwork, animation, and compositing by Michael Tran. The clips are silent loops. They start when they come into view unless reduced motion is on, and the controls pause them.</p>
         <a class="story-return" href="#work">Back to the collection ↑</a>
       </article>
@@ -792,7 +792,7 @@
         <p>These frames come from my drawing timelapse. They show the figure drawing, color blocking, environmental detail, and lighting at different stages, including the working notes left on the canvas.</p>
         <div class="process-grid"><figure><img src="assets/hotpot-drawing.webp" alt="Line drawing of the characters arranged around the table, with handwritten working notes." width="960" height="540" loading="lazy"><figcaption><strong>Figure drawing</strong>The figures, poses, and shared table take shape in the line drawing.</figcaption></figure><figure><img src="assets/hotpot-color.webp" alt="Characters and food filled with flat colors over the initial drawing, with visible working notes." width="960" height="540" loading="lazy"><figcaption><strong>Color blocking</strong>Flat colors establish the characters and food before the rendering develops.</figcaption></figure><figure><img src="assets/hotpot-rendering.webp" alt="The hotpot, characters, and street environment with painted color, form, and detail." width="960" height="540" loading="lazy"><figcaption><strong>Rendering the scene</strong>The street, food, and figures gain detail and a sense of volume.</figcaption></figure><figure><img src="assets/hotpot-lighting.webp" alt="The completed gathering with warm highlights, rim light, and atmospheric glow." width="960" height="540" loading="lazy"><figcaption><strong>Light and atmosphere</strong>Warm highlights and atmospheric light bring the separate elements together.</figcaption></figure></div>
         <h3>From drawing to color</h3>
-        <figure class="media-figure"><video controls playsinline preload="none" width="960" height="540" poster="assets/hotpot-drawing.webp" aria-label="Hotpot illustration drawing and color-blocking timelapse"><source src="assets/media/hotpot-process.mp4" type="video/mp4"><a href="assets/media/hotpot-process.mp4">Open the video</a></video><figcaption>An 18-second timelapse excerpt follows the early construction into color. The original recording includes layers being shown and hidden as the work develops. <span class="media-note">Silent excerpt · play on request.</span></figcaption></figure>
+        <figure class="media-figure"><video controls playsinline preload="none" width="960" height="540" data-poster="assets/hotpot-drawing.webp" aria-label="Hotpot illustration drawing and color-blocking timelapse"><source src="assets/media/hotpot-process.mp4" type="video/mp4"><a href="assets/media/hotpot-process.mp4">Open the video</a></video><figcaption>An 18-second timelapse excerpt follows the early construction into color. The original recording includes layers being shown and hidden as the work develops. <span class="media-note">Silent excerpt · play on request.</span></figcaption></figure>
         <p class="story-credit">Illustration by Michael Tran. Characters from Zenless Zone Zero.</p>
         <a class="story-return" href="#work">Back to the collection ↑</a>
       </article>
