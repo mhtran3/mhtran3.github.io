@@ -160,12 +160,14 @@
   const slider = document.querySelector('#cafe-time');
   const output = document.querySelector('#cafe-time-label');
   const nowButton = document.querySelector('#cafe-now');
+  const toggleTime = document.querySelector('.light-toggle-time');
   const label = m => new Date(2000, 0, 1, Math.floor(m / 60) % 24, Math.floor(m % 60)).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
   function syncLabel() {
     if (!slider) return;
     const text = label(Number(slider.value));
     slider.setAttribute('aria-valuetext', text);
     output.textContent = text;
+    if (toggleTime) toggleTime.textContent = text;
   }
   function syncControl() {
     if (!slider) return;
@@ -173,6 +175,7 @@
     const text = label(current);
     slider.setAttribute('aria-valuetext', text);
     output.textContent = text;
+    if (toggleTime) toggleTime.textContent = text;
     // "your time" and "Back to now" share one slot of fixed width, so switching between them
     // never moves anything else in the header.
     control.classList.toggle('is-live', override === null);
@@ -195,6 +198,17 @@
   window.addEventListener('pageshow', () => { apply(); syncControl(); schedule(); });
   apply(); syncControl(); schedule();
   if (control) control.hidden = false;
+  // Phones: the time button opens and closes the controls (a disclosure; focus stays on the button).
+  const toggle = document.querySelector('.light-toggle');
+  if (toggle && control) {
+    const header = toggle.closest('.site-header');
+    const setOpen = open => { header.classList.toggle('lights-open', open); toggle.setAttribute('aria-expanded', String(open)); };
+    toggle.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') !== 'true'));
+    control.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && header.classList.contains('lights-open')) { setOpen(false); toggle.focus(); }
+    });
+    toggle.hidden = false;
+  }
   // Enable fades only after the first, instant placement has been drawn.
   requestAnimationFrame(() => requestAnimationFrame(() => body.classList.add('light-ready')));
 
